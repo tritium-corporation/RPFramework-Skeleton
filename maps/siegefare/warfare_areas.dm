@@ -45,6 +45,7 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 		L.clear_fullscreen("fog")
 		L.clear_fullscreen("ash")
 		L.clear_fullscreen("fallout")
+		L.clear_fullscreen("ashparticle")
 		//L.clear_fullscreen("rain")
 
 /area/warfare/battlefield/no_mans_land
@@ -59,9 +60,7 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 	if(istype(L) && !istype(A, /area/warfare/battlefield))//Doesn't work but this does stop the lag.
 		L.overlay_fullscreen("fog", /obj/screen/fullscreen/fog)
 		L.overlay_fullscreen("fallout", /obj/screen/fullscreen/fallout)
-		L.overlay_fullscreen("ash", /obj/screen/fullscreen/storm)
 		//L.overlay_fullscreen("rain", /obj/screen/fullscreen/siegestorm)
-
 /area/warfare/battlefield/capture_point
 	name = "\improper Capture Point"
 	icon_state = "storage"
@@ -247,7 +246,7 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 		L.clear_fullscreen("ash")
 		L.clear_fullscreen("fallout")
 		//L.clear_fullscreen("rain")
-
+		L.clear_fullscreen("ashparticle")
 /area/warfare/homebase/red
 	name = "\improper Red Base"
 	icon_state = "security"

@@ -11,7 +11,7 @@
 	/datum/job/soldier/red_soldier/sniper,
 	/datum/job/soldier/red_soldier/flame_trooper,
     /datum/job/soldier/red_soldier,
-	/datum/job/soldier/red_soldier/scout,
+//	/datum/job/soldier/red_soldier/scout, // Removed temporairly. Reason: Bugged as fuck.
 	/datum/job/fortress/red/practitioner,
 
     /datum/job/soldier/blue_soldier/captain,
@@ -21,7 +21,7 @@
 	/datum/job/soldier/blue_soldier/sniper,
 	/datum/job/soldier/blue_soldier/flame_trooper,
     /datum/job/soldier/blue_soldier,
-	/datum/job/soldier/blue_soldier/scout,
+// 	/datum/job/soldier/blue_soldier/scout,
 	/datum/job/fortress/blue/practitioner
 	)
 

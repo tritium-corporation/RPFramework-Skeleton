@@ -33,7 +33,7 @@
 	if(T.density)
 		return
 
-	if(istype(T, /turf/simulated/floor/trench)  || istype(T, /turf/simulated/floor/exoplanet/water/shallow) || istype(T, /turf/simulated/floor/dirty/sand))
+	if(istype(T, /turf/simulated/floor/trench)  || istype(T, /turf/simulated/floor/exoplanet/water/shallow))
 		return
 
 	else if(prob(10))
@@ -72,7 +72,10 @@
 	//if(prob(1)) //Rats are lagging I'm pretty sure.
 	//	new /mob/living/simple_animal/hostile/retaliate/rat(T)
 
-	else if(prob(20))
+	else if(prob(10))
+		new /obj/structure/flora/ash(T)
+
+	else if(prob(15))
 		new /obj/structure/barbwire(T)
 
 	else if(prob(5))

@@ -6,8 +6,14 @@
 	throwpass = TRUE//we can throw grenades despite its density
 	anchored = TRUE
 	density = FALSE
+	color = "#979db3"
+
 	plane = ABOVE_OBJ_PLANE
 	layer = BASE_ABOVE_OBJ_LAYER
+	 // Crates kept getting hidden under these. // Edit: cannot do that. It fucks up the turf smoothing overlays.
+	/*plane = OBJ_PLANE
+	layer = BELOW_OBJ_LAYER-0.1 // I want this to be under crates and items. || It also means that you can throw grenades back if they land on dirt cover.
+	*/
 	atom_flags = ATOM_FLAG_CLIMBABLE
 	var/health = 100
 

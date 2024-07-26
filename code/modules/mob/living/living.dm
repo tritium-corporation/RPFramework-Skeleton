@@ -676,7 +676,7 @@ default behaviour is:
 	if(staminaloss <= 0)
 		setStaminaLoss(0)
 
-	if(staminaloss && !weapon_readied) // combat_mode)//If we're not doing anything, we're not in combat mode, and we've lost stamina we can wait to gain it back.
+	if(staminaloss && !weapon_readied || staminaloss && !combat_mode)//If we're not doing anything, we're not in combat mode, and we've lost stamina we can wait to gain it back.
 		var/speed = 0
 		if(is_hellbanned())//SLower recovery if you're hellbanned.
 			speed = 5

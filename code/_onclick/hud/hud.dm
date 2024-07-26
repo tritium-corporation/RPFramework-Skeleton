@@ -179,6 +179,18 @@
 						if(S.name == "chest_holster")
 							S.overlays += "hud_fill"
 
+			if(slot_l_store)
+				if(H.l_store)
+					for(var/obj/screen/S in all_inv)
+						if(S.name == "storage1")
+							S.overlays += "hud_fill"
+
+			if(slot_r_store)
+				if(H.r_store)
+					for(var/obj/screen/S in all_inv)
+						if(S.name == "storage2")
+							S.overlays += "hud_fill"
+
 
 
 

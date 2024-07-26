@@ -9,7 +9,7 @@
 	else
 		hud_data = target.species.hud
 
-	ui_style = 'icons/mob/screen/screen_neo_dark.dmi'//Set this to whatever you want. screen_neo looks best.
+	ui_style = 'icons/mob/screen/screen_neo.dmi'//Set this to whatever you want. screen_neo looks best.
 
 	src.adding = list()
 	src.other = list()
@@ -436,7 +436,7 @@
 	mymob.combat_icon.icon = ui_style
 	mymob.combat_icon.icon_state = "combat0"
 	mymob.combat_icon.screen_loc = ui_combat
-	//hud_elements |= mymob.combat_icon
+	hud_elements |= mymob.combat_icon
 
 	mymob.combat_intent_icon = new /obj/screen()//combat mode
 	mymob.combat_intent_icon.name = "combat intent"
@@ -469,7 +469,7 @@
 
 	mymob.atk_intent_icon = new /obj/screen/combat_intents()
 	mymob.atk_intent_icon.screen_loc = ui_atk
-	//hud_elements |= mymob.atk_intent_icon
+	hud_elements |= mymob.atk_intent_icon
 
 
 	/*

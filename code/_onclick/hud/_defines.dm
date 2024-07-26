@@ -52,11 +52,12 @@
 #define ui_drop_throw "SOUTH-2,13"
 #define ui_pull "SOUTH-2,11"
 #define ui_jmp_kck "SOUTH-2, 10"
-#define ui_atk "SOUTH-2, 14"//atk_intents
+#define ui_atk "SOUTH-1, 14"//atk_intents
 #define ui_resist "EAST+1,SOUTH-2"
 #define ui_acti "SOUTH-2,9"
-#define ui_combat "SOUTH-2,12"//COMBAT MODE!
-#define ui_combat_intent "SOUTH-2, 9"
+#define ui_combat "SOUTH-2,14"//COMBAT MODE!
+#define ui_combat_intent "SOUTH-2, 9" // parry/dodge
+#define ui_intent "SOUTH-2, 12"
 #define ui_movi "EAST,SOUTH-2"
 #define ui_zonesel "EAST+1, NORTH-2"
 #define ui_acti_alt "SOUTH-2,9" //alternative intent switcher for when the interface is hidden (F12)

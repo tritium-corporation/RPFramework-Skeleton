@@ -258,7 +258,7 @@
 /obj/screen/intent
 	name = "intent"
 	icon_state = "intent_help"
-	screen_loc = ui_combat // ui_drop_throw
+	screen_loc = ui_intent // ui_drop_throw
 	var/intent = I_HELP
 
 /obj/screen/intent/Click(var/location, var/control, var/params)

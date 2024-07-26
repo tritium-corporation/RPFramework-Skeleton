@@ -637,8 +637,9 @@
 
 //attachment shit
 /obj/item/gun/RightClick(mob/user)
-	if(!field_strip(user))
-		..()
+	user.toggle_gun_safety()
+	/*if(!field_strip(user))
+		..()*/
 
 //Gun safety
 /obj/item/gun/proc/toggle_safety(mob/user)

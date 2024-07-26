@@ -1,6 +1,6 @@
 //Going here till I find a better place for it.
 /mob/living/carbon/human/proc/handle_combat_mode()//Makes it so that you can't regain stamina in combat mode.
-	if(weapon_readied)// combat_mode)
+	if(weapon_readied || combat_mode)
 		if(staminaloss < (staminaexhaust/2))
 			adjustStaminaLoss(2)
 
@@ -72,7 +72,6 @@
 /client/verb/CombatModeToggle()
 	set hidden = 1
 
-	return
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/C = usr
 	if(C.combat_mode)

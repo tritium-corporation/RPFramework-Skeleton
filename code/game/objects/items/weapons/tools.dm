@@ -148,12 +148,16 @@
 		var/mob/living/carbon/human/H = C
 		var/mob/living/carbon/human/teeth_pulling_bitch = user //Fuck you scavs. You know what you did.
 		var/obj/item/organ/external/head/O = locate() in H.organs
+		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
+			if(protection && (protection.body_parts_covered & FACE))
+				to_chat(teeth_pulling_bitch, "<span class='warning'>You're going to need to remove whatever's covering their mouth first.</span>")
+				return
 		if(!O || !O.get_teeth())
 			to_chat(teeth_pulling_bitch, "<span class='notice'>[H] doesn't have any teeth left!</span>")
 			return
 		if(!H.stat == DEAD)//If they're dead they're fair game. Otherwise don't pull out your teammates fucking teeth.
 			if(teeth_pulling_bitch.warfare_faction == H.warfare_faction)
-				to_chat(teeth_pulling_bitch, "<span class='notice'>[H] is on my side, it would be rude to pull out their teeth!</span>")
+				to_chat(teeth_pulling_bitch, "<span class='notice'>[H] is on my side, it would be rude to pull out their teeth!</span>") // this is broken?
 				return
 		if(!teeth_pulling_bitch.doing_something)
 			teeth_pulling_bitch.doing_something = 1

@@ -30,6 +30,10 @@
 	var/obj/screen/fullscreen/screen = screens[category]
 	if(!screen)
 		return
+	if(particles)
+		animate(screen, alpha=0, time=10)
+		spawn(10 SECONDS)
+			screen.particles = null
 
 	screens -= category
 
@@ -87,6 +91,12 @@
 /obj/screen/fullscreen/blind
 	icon_state = "blackimageoverlay"
 	layer = BLIND_LAYER
+
+/obj/screen/fullscreen/ashparticles
+	icon = 'icons/effects/weather.dmi'
+	icon_state = "oxydamageoverlay1"
+	alpha = 255
+	particles = new/particles/dust
 
 /obj/screen/fullscreen/blackout
 	icon = 'icons/mob/screen1.dmi'

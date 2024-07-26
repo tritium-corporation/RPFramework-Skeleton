@@ -10,44 +10,17 @@
 
 //Dirt!
 /turf/simulated/floor/dirty
-	name = "snowy dirt"
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow_3"
+	name = "dirt" //"snowy dirt"
+	//icon = 'icons/turf/snow.dmi'
+	//icon_state = "snow_3"
+	icon = 'icons/turf/dirt.dmi'
+	icon_state = "dirt1"
 	movement_delay = 1
 	has_coldbreath = TRUE
-	blend_with_neighbors = 3
 	atom_flags = ATOM_FLAG_CLIMBABLE
-	var/has_snow = TRUE
 	var/has_light = TRUE
 	var/can_generate_water = TRUE
 	var/can_be_dug = TRUE
-	var/list/crossed_dirs = list()
-
-/turf/simulated/floor/dirty/sand
-	name = "sand"
-	icon = 'icons/turf/ground.dmi'
-	icon_state = "sand"
-	blend_with_neighbors = 1
-	movement_delay = 0.4
-	has_snow = FALSE
-
-/turf/simulated/floor/dirty/Entered(mob/A)
-	if(has_snow)
-		if(isliving(A))
-			var/mob/living/L = A
-			if(L.lying) //Lying down shouldn't make footprints.
-				return ..()
-			var/mdir = "[A.dir]"
-			crossed_dirs[mdir] = 1
-			update_icon()
-			return ..() //I hate life.
-		return ..()
-	. = ..()
-
-/turf/simulated/floor/dirty/update_icon()
-	..()
-	for(var/d in crossed_dirs)
-		overlays += image(icon = 'icons/turf/snow.dmi', icon_state = "snow_footprints", dir = text2num(d))
 
 /turf/simulated/floor/dirty/fake
 	atom_flags = null
@@ -124,6 +97,32 @@
 	user.visible_message("<span class='warning'>[user] climbed onto \the [src]!</span>")
 	climbers -= user
 
+/turf/simulated/floor/do_climb(var/mob/living/user)
+	if(!can_climb(user))
+		return
+
+	if(istype(get_area(src), /area/warfare))//We're trying to go?
+		if(locate(/obj/item/gun/projectile/automatic/mg08) in user)//Locate the mg.
+			if(istype(usr.l_hand, /obj/item/gun/projectile/automatic/mg08) || istype(usr.r_hand, /obj/item/gun/projectile/automatic/mg08))
+				to_chat(user, "I can't climb with this in my hands!")//No you fucking don't.
+				return //Keep that mg stowed asshole.
+
+	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	climbers |= user
+
+	if(!can_climb(user))
+		climbers -= user
+		return
+
+	if(!do_after(user,15))
+		climbers -= user
+		return
+
+	user.forceMove(get_turf(src))
+	user.visible_message("<span class='warning'>[user] climbed onto \the [src]!</span>")
+	climbers -= user
+
+
 /turf/simulated/floor/MouseDrop_T(mob/target, mob/user)
 	var/mob/living/H = user
 	if(istype(H) && can_climb(H) && target == user)
@@ -143,15 +142,14 @@
 /turf/simulated/floor/dirty/New()
 	..()
 	temperature = T0C - 60
-	//icon_state = pick("snow_3","snow_4")
+	//icon_state = pick("snow[rand(1,12)]","snow0")
 	dir = pick(GLOB.alldirs)
-	spawn(0)
+	if(!(locate(/obj/effect/lighting_dummy/daylight) in src) && has_light)
+		new /obj/effect/lighting_dummy/daylight(src)
+	spawn(1)
 		overlays.Cut()
 		vis_contents.Cut()
-		update_icon(1)
-		if(!(locate(/obj/effect/lighting_dummy/daylight) in src) && has_light)
-			new /obj/effect/lighting_dummy/daylight(src)
-
+		update_icon()
 	if(loc.type != /area/warfare/battlefield/no_mans_land) // no base puddles
 		return
 	if(!can_generate_water)//This type can't generate water so don't bother.
@@ -173,54 +171,62 @@
 						possible_water.ChangeTurf(/turf/simulated/floor/exoplanet/water/shallow)
 						waters += possible_water
 
-
 /turf/simulated/floor/dirty/attackby(obj/O as obj, mob/living/user as mob)
 	if(istype(O, /obj/item/shovel))
-		if(src.density)
-			return
 		if(!user.doing_something)
 			user.doing_something = TRUE
+			if(src.density)
+				user.doing_something = FALSE
+				return
 			for(var/obj/structure/object in contents)
 				if(object)
 					to_chat(user, "There are things in the way.")
 					user.doing_something = FALSE
 					return
-				playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
-				visible_message("[user] begins to dig some dirt cover!")
-				if(do_after(user, (backwards_skill_scale(user.SKILL_LEVEL(engineering)) * 5)))
-					var/obj/structure/dirt_wall/DW = new(src)
-					for(var/mob/living/M in contents)
-						DW.Crossed(M)  // if dirt wall was dug on the same tile with the mob - the mob will rise
-					visible_message("[user] finishes digging the dirt cover.")
-					playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
+			playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
+			visible_message("[user] begins to dig some dirt cover!")
+			if(do_after(user, (backwards_skill_scale(user.SKILL_LEVEL(engineering)) * 5)))
+				var/obj/structure/dirt_wall/DW = new(src)
+				for(var/mob/living/M in contents)
+					DW.Crossed(M)  // if dirt wall was dug on the same tile with the mob - the mob will rise
+				visible_message("[user] finishes digging the dirt cover.")
+				playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
 
-				user.doing_something = FALSE
+			user.doing_something = FALSE
 
 		else
 			to_chat(user, "You're already digging.")
 
 /turf/simulated/floor/dirty/RightClick(mob/living/user)
 	if(!CanPhysicallyInteract(user))
-		..()
 		return
 	var/obj/item/shovel/S = user.get_active_hand()
 	if(!istype(S))
-		..()
 		return
 	if(!can_be_dug)//No escaping to mid early.
 		return
-	if(src.density)
-		return
-	for(var/obj/structure/object in contents)
-		if(object)
-			to_chat(user, "There are things in the way.")
+	if(!user.doing_something)
+		user.doing_something = TRUE
+		if(src.density)
+			user.doing_something = FALSE
 			return
-	playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
-	visible_message("[user] begins to dig a trench!")
-	if(do_after(user, backwards_skill_scale(user.SKILL_LEVEL(engineering)) * 5))
-		ChangeTurf(/turf/simulated/floor/trench)
-		visible_message("[user] finishes digging the trench.")
-		playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
+		for(var/obj/structure/object in contents)
+			if(object)
+				to_chat(user, "There are things in the way.")
+				user.doing_something = FALSE
+				return
+		playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
+		visible_message("[user] begins to dig a trench!")
+		if(do_after(user, backwards_skill_scale(user.SKILL_LEVEL(engineering)) * 5))
+			ChangeTurf(/turf/simulated/floor/trench)
+			visible_message("[user] finishes digging the trench.")
+			playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
+			user.doing_something = FALSE
+
+		user.doing_something = FALSE
+
+	else
+		to_chat(user, "You're already digging.")
 
 /turf/simulated/floor/dirty/update_dirt()
 	return	// Dirt doesn't doesn't become dirty
@@ -252,7 +258,7 @@
 	name = "water"
 	icon = 'icons/turf/dirt.dmi'//This appears under the water.
 	icon_state = "mud"
-	movement_delay = 5
+	movement_delay = 3
 	mudpit = 1
 	has_coldbreath = TRUE
 	var/has_light = TRUE
