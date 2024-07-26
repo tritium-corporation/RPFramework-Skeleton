@@ -6,7 +6,7 @@
 	throwpass = TRUE//we can throw grenades despite its density
 	anchored = TRUE
 	density = FALSE
-	color = "#979db3"
+	color = "#7e8499" // I Cba to resprite these rn so its just a recolor to make them blend in more. - Kas
 
 	plane = ABOVE_OBJ_PLANE
 	layer = BASE_ABOVE_OBJ_LAYER
