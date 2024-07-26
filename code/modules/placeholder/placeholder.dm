@@ -40,7 +40,7 @@
 	density = TRUE
 	var/credits
 	var/loggedin = FALSE
-	var/list/INPUTS = list("BROWSE CATALOG", "SELL PRODUCTS", "WITHDRAW MONEY", "CONTACT MIDDLE MANAGEMENT", "RECONNECT PADS", "CHECK BALANCE", "LOGOUT", "CANCEL")
+	var/list/INPUTS = list("BROWSE CATALOG", "CHECK BALANCE", "LOGOUT", "CANCEL")
 	var/list/pads
 	var/id
 	var/withdraw_amount
@@ -57,7 +57,7 @@
 		list("name" = "Dev shotgun crate", "price" = 20, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo/shotguns), // Low price for basic pistols
 	)
 
-	var/list/categories = list("Consumables", "Weaponry", "Wearable", "Ammunition", "Miscellaneous")
+	var/list/categories = list("Weaponry", "Ammunition", "Miscellaneous", "Artillery")
 
 /obj/machinery/kaos/cargo_machine/proc/pingpads()
 	for(var/obj/structure/cargo_pad/pad in pads)
@@ -86,7 +86,6 @@
 			else
 				playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 250, 0.5)
 				to_chat(src, "\icon[src]LINK ESTABLISHED SUCCESSFULLY.")
-				speak("LINK ESTABLISHED SUCCESSFULLY. RETRY OPERATION.")
 				to_chat(user, "\icon[src]AMOUNT OF LINKED PADS: [pads.len]")
 
 /obj/machinery/kaos/cargo_machine/proc/get_objects_on_turf(turf/T)
@@ -138,15 +137,6 @@
 
 	// Return the list of objects
 	return people_on_turf
-
-/obj/machinery/kaos/cargo_machine/proc/speak(var/message)
-	var/list/hearme
-	if (!message)
-		return
-	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>The Cargo Machine</span> beeps, \"[message]\"</span>", 2)
-		hearme += O
-	return
 
 /obj/machinery/kaos/cargo_machine/proc/reconnectpads()
 	pads = list()
@@ -232,65 +222,14 @@
 		to_chat(user, "\icon[src]Goodbye, <span class='warning'>Administrator</span>.")
 		playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
 		src.loggedin = FALSE
-	else if(machine_input == "WITHDRAW MONEY" && useable)
-		var/withdraw_amount = input(user, "ENTER AMOUNT TO WITHDRAW.", "CARGO MACHINE.") as num
-		if(src.credits == 0)
-			playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
-			to_chat(user, "\icon[src]You have no money to withdraw.")
-		else
-			if(withdraw_amount > src.credits | withdraw_amount < 0 | !withdraw_amount)
-				to_chat(user, "\icon[src]You cannot withdraw that amount.")
-				playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
-			else
-				playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
-				spawn(0.6 SECONDS)
-					playsound(src.loc, 'sound/machines/rpf/transcriptprint.ogg', 90, 0)
-					spawn(1.68 SECONDS)
-						src.credits -= withdraw_amount
-						var/obj/item/spacecash/bundle/P = new /obj/item/spacecash/bundle(get_turf(src))
-						P.worth = withdraw_amount
-						P.update_icon()
-						P.name = "[withdraw_amount] credits"
-						P.desc = "It's money.."
-						to_chat(user, "\icon[src]You withdraw [withdraw_amount] credits.")
 	else if(machine_input == "CHECK BALANCE" && useable)
 		if(src.credits > 0)
 			playsound(src, "keyboard_sound", 100, 1)
 			to_chat(user, "\icon[src]The machine has [src.credits] credits.")
-			src.speak("The machine has [src.credits] credits.")
 			playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
 		else
 			to_chat(user, "\icon[src]The machine has no credits.")
 			playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
-	else if(machine_input == "CONTACT MIDDLE MANAGEMENT" && useable)
-		var/line_input = sanitize(input(user, "ENTER MESSAGE.", "CARGO MACHINE.", ""))
-		line_input = sanitize(line_input)
-		if(line_input && !cooldown)
-			playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
-			spawn(0.25 SECONDS)
-				playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
-				spawn(1.06 SECONDS)
-					if(id == "blue")
-						log_and_message_admins("[user] has messaged B.L.U.E. Middle Management at [src]!<br><span class='danger'>The message is as follows...</span><br><span class='boldannounce'>'[line_input]'</span>")
-						to_chat(user, "\icon[src]Your message has been sent to B.L.U.E. Middle Management.")
-						src.speak("Your message has been sent to <span='alert'>B.L.U.E. Middle Management</span>.")
-					else
-						log_and_message_admins("[user] has messaged R.E.D. Middle Management at [src]!<br><span class='danger'>The message is as follows...</span><br><span class='boldannounce'>'[line_input]'</span>")
-						to_chat(user, "\icon[src]Your message has been sent to R.E.D. Middle Management.")
-						src.speak("Your message has been sent to <span='alert'>R.E.D. Middle Management</span>.")
-					cooldown = TRUE
-					spawn(30 SECONDS)
-						cooldown = FALSE
-		else if(cooldown)
-			to_chat(user, "\icon[src]The machine is still processing your last message.")
-			playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
-		else if(!line_input)
-			to_chat(user, "\icon[src]You must enter a message.")
-			playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
-	else if(machine_input == "RECONNECT PADS" && useable)
-		//reconnectpads() // COMMENT OUT WHEN NOT TESTING!!
-		set_light(1, 1,"#110f0c")
-		playpadsequence(user)
 	else if(machine_input == "BROWSE CATALOG" && useable)
 		if(!pads)
 			to_chat(user, "\icon[src]ERROR. NO LINKED CARGO PADS. REESTABLISH CONNECTION AND TRY AGAIN.")
@@ -402,7 +341,6 @@
 									resetlightping()
 									playsound(src.loc, 'sound/machines/rpf/ChatMsg.ogg', 100, 0)
 									useable = TRUE
-									speak("The request was processed successfully.")
 
 					else if(productprice > src.credits)
 						to_chat(user, "\icon[src]Insufficient funds to purchase [product["name"]].")
@@ -414,7 +352,7 @@
 						to_chat(user, "\icon[src]FATAL ERROR.")
 					else
 						to_chat(user, "\icon[src]An UNKNOWN error has occured.")
-	else if(machine_input == "SELL PRODUCTS" && useable)
+/*	else if(machine_input == "SELL PRODUCTS" && useable)
 		var/confirm = input(user, "Are you sure you want to sell all items on the pads?", "CARGO MACHINE.") as null|anything in list("Yes", "No")
 		if(confirm == "Yes") // Figure out a way to get the items that are on the pads, use get_value to get their value, and delte them.
 			if(!pads)
@@ -491,7 +429,7 @@
 				playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
 		else
 			to_chat(user, "\icon[src]Sell operation cancelled.")
-			playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+			playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)*/
 
 /obj/effect/overlay/cargopadglow
 	name = "Cargo Pad"
