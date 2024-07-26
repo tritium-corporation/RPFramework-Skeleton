@@ -156,6 +156,8 @@
 
 /obj/machinery/kaos/cargo_machine/New()
 	credits = rand(300, 500) // temporary(?)
+	if(id == "blue")
+		name = "B.L.U.E. Cargo Machine"
 	reconnectpads()
 
 /obj/machinery/kaos/cargo_machine/attackby(obj/item/C as obj, mob/user as mob)
@@ -169,12 +171,12 @@
 			playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4)
 			src.credits += dolla.worth
 			qdel(C)
-	if(istype(C, /obj/item/stack/teeth/human)) // FUCK YOU SCAVS, YOU DID TIS TO ME
+	else if(istype(C, /obj/item/stack/teeth/human)) // FUCK YOU SCAVS, YOU DID TIS TO ME
 		var/obj/item/stack/teeth/human/toof = C
 		if(toof.amount <= 0)
 			qdel(toof) // no you dont get to insert 0 teeth for cash.
 			return
-		if(toof.amount >= 1)
+		else if(toof.amount >= 1)
 			toof.amount--
 			src.credits += 5
 			playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4) // it sounds nicer when its played from the person ngl
@@ -182,12 +184,14 @@
 				qdel(toof)
 				return
 			return
-	if(istype(C, /obj/item/clothing/head/helmet/redhelmet) && id == "blue" || istype(C, /obj/item/clothing/head/helmet/bluehelmet) && id == "red" ) // meh
+		else // huh?
+			return
+	else if(istype(C, /obj/item/clothing/head/helmet/redhelmet) && id == "blue" || istype(C, /obj/item/clothing/head/helmet/bluehelmet) && id == "red" ) // meh
 		src.credits += 10
 		playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4)
 		qdel(C)
 
-	if(istype(C, /obj/item/card/id/dog_tag/red) && id == "blue" || istype(C, /obj/item/card/id/dog_tag/blue) && id == "red" ) // meh
+	else if(istype(C, /obj/item/card/id/dog_tag/red) && id == "blue" || istype(C, /obj/item/card/id/dog_tag/blue) && id == "red" ) // meh
 		src.credits += 10
 		playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4)
 		qdel(C)
@@ -203,7 +207,7 @@
 		playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.3)
 	else if(!loggedin && useable)
 		playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
-		var/line_input = sanitize(input(user, "ENTER LOGIN.", "R.E.D. CARGO MACHINE", "")) // remove hint when we're done
+		var/line_input = sanitize(input(user, "ENTER LOGIN.", "[name]", "")) // remove hint when we're done
 		line_input = sanitize(line_input)
 		if(!line_input)
 			to_chat(user, "\icon[src]You must enter a login.")
@@ -266,9 +270,14 @@
 			spawn(0.25 SECONDS)
 				playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
 				spawn(1.06 SECONDS)
-					log_and_message_admins("[user] has messaged R.E.D. Middle Management at [src]!<br><span class='danger'>The message is as follows...</span><br><span class='boldannounce'>'[line_input]'</span>")
-					to_chat(user, "\icon[src]Your message has been sent to R.E.D. Middle Management.")
-					src.speak("Your message has been sent to <span='alert'>R.E.D. Middle Management</span>.")
+					if(id == "blue")
+						log_and_message_admins("[user] has messaged B.L.U.E. Middle Management at [src]!<br><span class='danger'>The message is as follows...</span><br><span class='boldannounce'>'[line_input]'</span>")
+						to_chat(user, "\icon[src]Your message has been sent to B.L.U.E. Middle Management.")
+						src.speak("Your message has been sent to <span='alert'>B.L.U.E. Middle Management</span>.")
+					else
+						log_and_message_admins("[user] has messaged R.E.D. Middle Management at [src]!<br><span class='danger'>The message is as follows...</span><br><span class='boldannounce'>'[line_input]'</span>")
+						to_chat(user, "\icon[src]Your message has been sent to R.E.D. Middle Management.")
+						src.speak("Your message has been sent to <span='alert'>R.E.D. Middle Management</span>.")
 					cooldown = TRUE
 					spawn(30 SECONDS)
 						cooldown = FALSE
