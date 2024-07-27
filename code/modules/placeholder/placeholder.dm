@@ -14,25 +14,8 @@
 	icon_opened = "securecrateopen"
 	icon_closed = "securecrate"
 
-/obj/structure/closet/crate/scuffedcargo/New()
-	var/list/will_contain = WillContain()
-	if(will_contain)
-		create_objects_in_loc(src, will_contain)
-
-
-
-/obj/structure/closet/crate/scuffedcargo/shotguns
-	name = "Surplus shotgun ammunition crate"
-	desc = "I LOVE TEST CRATES!!"
-/obj/structure/closet/crate/scuffedcargo/redcrate4/shotguns/WillContain()
-	return list(
-	)
-
-
-
-
 /obj/machinery/kaos/cargo_machine
-	name = "R.E.D. Cargo Machine"
+	name = "Cargo Machine"
 	desc = "You use this to buy shit."
 	icon = 'icons/obj/old_computers.dmi'
 	icon_state = "cargo_machine"
@@ -40,7 +23,7 @@
 	density = TRUE
 	var/credits
 	var/loggedin = FALSE
-	var/list/INPUTS = list("BROWSE CATALOG", "CHECK BALANCE", "LOGOUT", "CANCEL")
+	var/list/INPUTS = list("BROWSE CATALOG", "CHECK BALANCE", "CANCEL")
 	var/list/pads
 	var/id
 	var/withdraw_amount
@@ -54,10 +37,9 @@
 	// When adding products, use this format
 	// list("name" = "name in input list", "price" = price, "category" = "What category", "path" = object path),
 	var/list/products = list(
-		list("name" = "Dev shotgun crate", "price" = 20, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo/shotguns), // Low price for basic pistols
 	)
 
-	var/list/categories = list("Weaponry", "Ammunition", "Miscellaneous", "Artillery")
+	var/list/categories = list("Weaponry", "Ammunition", "Miscellaneous", "Units", "Artillery")
 
 /obj/machinery/kaos/cargo_machine/proc/pingpads()
 	for(var/obj/structure/cargo_pad/pad in pads)
@@ -145,9 +127,7 @@
 			pads += pad
 
 /obj/machinery/kaos/cargo_machine/New()
-	credits = rand(300, 500) // temporary(?)
-	if(id == "blue")
-		name = "B.L.U.E. Cargo Machine"
+	credits = 500 // temporary(?)
 	reconnectpads()
 
 /obj/machinery/kaos/cargo_machine/attackby(obj/item/C as obj, mob/user as mob)
@@ -176,12 +156,12 @@
 			return
 		else // huh?
 			return
-	else if(istype(C, /obj/item/clothing/head/helmet/redhelmet) && id == "blue" || istype(C, /obj/item/clothing/head/helmet/bluehelmet) && id == "red" ) // meh
+	else if(istype(C, /obj/item/clothing/head/helmet/redhelmet) && id == BLUE_TEAM || istype(C, /obj/item/clothing/head/helmet/bluehelmet) && id == RED_TEAM ) // meh
 		src.credits += 10
 		playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4)
 		qdel(C)
 
-	else if(istype(C, /obj/item/card/id/dog_tag/red) && id == "blue" || istype(C, /obj/item/card/id/dog_tag/blue) && id == "red" ) // meh
+	else if(istype(C, /obj/item/card/id/dog_tag/red) && id == BLUE_TEAM || istype(C, /obj/item/card/id/dog_tag/blue) && id == RED_TEAM ) // meh
 		src.credits += 10
 		playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4)
 		qdel(C)
@@ -192,37 +172,11 @@
 		return
 	if (useable)
 		set_light(3, 3,"#ebc683")
-	if (!useable)
+		machine_input = input(user, "CARGO MACHINE.") as null|anything in INPUTS
+	else if (!useable)
 		to_chat(user, "\icon[src]The machine is currently busy processing something..")
 		playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.3)
-	else if(!loggedin && useable)
-		playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
-		var/line_input = sanitize(input(user, "ENTER LOGIN.", "[name]", "")) // remove hint when we're done
-		line_input = sanitize(line_input)
-		if(!line_input)
-			to_chat(user, "\icon[src]You must enter a login.")
-			playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
-			set_light(0)
-		else
-			if(line_input == GLOB.cargo_password)
-				playsound(src, "switch_sound", 100, 1)
-				to_chat(user, "\icon[src]Welcome, <span class='warning'>Administrator</span>.")
-				playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
-				loggedin = TRUE
-				machine_input = input(user, "CARGO MACHINE.") as null|anything in INPUTS
-				//var/machine_input = input(user, "CARGO MACHINE.") as null|anything in INPUTS // Figure out how to make this work without breaking the machine
-			else
-				to_chat(user, "\icon[src]Incorrect login.")
-				playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
-				set_light(0)
-	else if (loggedin & useable)
-		machine_input = input(user, "CARGO MACHINE.") as null|anything in INPUTS
-	if(machine_input == "LOGOUT")
-		set_light(0)
-		to_chat(user, "\icon[src]Goodbye, <span class='warning'>Administrator</span>.")
-		playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
-		src.loggedin = FALSE
-	else if(machine_input == "CHECK BALANCE" && useable)
+	if(machine_input == "CHECK BALANCE" && useable)
 		if(src.credits > 0)
 			playsound(src, "keyboard_sound", 100, 1)
 			to_chat(user, "\icon[src]The machine has [src.credits] credits.")
@@ -239,10 +193,58 @@
 			var/list/CATEGORY_INPUTS = list()
 			for(var/category in categories)
 				CATEGORY_INPUTS += "- [category]"
-			CATEGORY_INPUTS += "-- Return --"
 			var/selected_category = input(user, "CHOOSE A CATEGORY TO BROWSE.") as null|anything in CATEGORY_INPUTS
-			if((selected_category=="-- Return --") && useable)
-				playsound(src.loc, "sound/machines/rpf/UI_labelselect.ogg", 100, 0.15)
+			if(selected_category=="- Artillery")
+				playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
+				var/line_input = sanitize(input(user, "ENTER LOGIN.", "[name]", "")) // remove hint when we're done
+				line_input = sanitize(line_input)
+				if(!line_input)
+					to_chat(user, "\icon[src]You must enter the password to proceed.")
+					playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+					set_light(0)
+				else
+					if(line_input == GLOB.cargo_password)
+						playsound(src, "switch_sound", 100, 1)
+						to_chat(user, "\icon[src]Welcome, <span class='warning'>Captain</span>.")
+						playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
+						var/x = input(user, "Please input the X coordinate.") as num
+						if(x)
+							playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
+							var/y = input(user, "Please input the Y coordinate.") as num
+							var/costofartillery = 550 // shitty way to go about it. redo this someday.
+							if(y && credits >= costofartillery)
+								var/turf/turf_to_drop = locate(x,y,2)
+								if(istype(turf_to_drop.loc, /area/warfare/battlefield/no_mans_land) || istype(turf_to_drop.loc, /area/warfare/battlefield/capture_point/mid))
+									playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
+									spawn(1 SECOND)
+										to_chat(user, "\icon[src]<span class='danger'>ENGAGING ARTILLERY FIRE AT LOCATION: \n\icon[src]X coordinate[x], Y coordinate [y].\n")
+										to_chat(world, uppertext("<font size=5><b>INCOMING!! NO MAN'S LAND!!</b></font>"))
+										for(var/i = 1, i<4, i++)
+											sound_to(world, 'sound/effects/arty_distant.ogg')
+										credits -= costofartillery
+										playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
+										artillery_barage(x,y)
+								else
+									playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+									to_chat(user, "\icon[src]The coordinates were invalid, <span class='warning'>Captain</span>.")
+									set_light(0)
+							else if(y && credits < costofartillery)
+								playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+								to_chat(user, "\icon[src]You are unable to afford an artillery strike, <span class='warning'>Captain</span>.")
+								set_light(0)
+							else if(!y)
+								playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+								to_chat(user, "\icon[src]Please input the Y coordinate</span>.")
+								set_light(0)
+						else
+							playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+							to_chat(user, "\icon[src]Please input the X coordinate.")
+							set_light(0)
+						//var/machine_input = input(user, "CARGO MACHINE.") as null|anything in INPUTS // Figure out how to make this work without breaking the machine
+					else
+						to_chat(user, "\icon[src]Incorrect password provided.")
+						playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+						set_light(0)
 			else if(selected_category && useable)
 				playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
 				var/list/PRODUCT_INPUTS = list()
@@ -250,10 +252,10 @@
 					if("- " + product["category"] == selected_category)
 						PRODUCT_INPUTS += "- [product["name"]] -- [product["price"]] credits"
 				PRODUCT_INPUTS += "-- Return --"
-				var/selected_product = input(user, "CHOOSE A PRODUCT TO BUY.") as null|anything in PRODUCT_INPUTS
+				var/selected_product = input(user, "CHOOSE A PRODUCT TO PURCHASE.") as null|anything in PRODUCT_INPUTS
 				//to_chat(user, "\icon[src]PRODUCTS: [products]") // broken devmsg
 				if((selected_product=="-- Return --") && useable)
-					playsound(src.loc, "sound/machines/rpf/barotraumastuff/UI_labelselect.ogg", 100, 0.15)
+					playsound(src.loc, "sound/machines/rpf/UI_labelselect.ogg", 100, 0.15)
 				else if(selected_product && useable)
 					playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
 					var/pos1 = findtext(selected_product, "- ") + 2
@@ -267,36 +269,45 @@
 					productname = product["name"]
 					var/productprice = product["price"]
 					var/productpath = product["path"]
+					var/productwill_contain
+					if(product["willcontain"])
+						productwill_contain = product["willcontain"]
 					var/turf/pickedloc
 					var/list/clear_turfs = list()
-					var/padstatusprint = "...///Begining PD-LOG <br>///..."
 					var/obj/structure/cargo_pad/pickedpad
+					if(useable && selected_category == "- Units")
+						if(productprice <= src.credits)
+							if(productname == "Reinforcements")
+								if(id == BLUE_TEAM)
+									var/newcount = SSwarfare.blue.left + 5
+									SSwarfare.blue.left = newcount
+									playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
+									return
+								if(id == RED_TEAM)
+									var/newcount = SSwarfare.red.left + 5
+									SSwarfare.red.left = newcount
+									playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
+									return
+								else
+									playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
+									return
+							else
+								playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
+								var/datum/job/team_job = SSjobs.GetJobByType(productpath) //Open up the corresponding job on that team.
+								SSjobs.allow_one_more(team_job.title)
+								return
+						else
+							to_chat(user, "\icon[src]You lack the required funding to purchase this product.")
+							playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
 					//var/list/cargoturfs = list()
 				//	var/hasdenseobject
 					if(productprice <= src.credits) // This shitcode works! Checks for dense objects on the turf!
-						var/padnum = 0
 						reconnectpads() // let's be cheeky and silently reocnnect it just incase one got deleted
 						for(var/obj/structure/cargo_pad/pad in pads)
 							if(get_dense_objects_on_turf(get_turf(pad)).len <= 0)
-								padnum += 1
-								padstatusprint += "<br>...///PD-[padnum]-CLR///...<br>"
 								clear_turfs += pad
 							else
-								padnum += 1
-								padstatusprint += "<br>...///PD-[padnum]-BLKD - CLEAR THE PAD.///...<br><br>!COMPANY REMINDER: PURCHASES ARE NON REFUNDABLE!<br><br>"
 								continue
-						// 	cargoturfs += get_turf(pad) // supplyshuttle.dm shitcode that i stole. doesn't work.
-						// for(var/turf/T in cargoturfs)
-						// 	hasdenseobject = FALSE
-						// 	for(var/obj/object in get_objects_on_turf(T))
-						// 		if(object.density == 1)
-						// 			continue
-						// 			hasdenseobject = TRUE
-						// 	if(hasdenseobject == FALSE)
-						// 		clear_turfs += T
-						// 	else if(hasdenseobject == TRUE)
-						// 		to_chat(user, "\icon[src]There's dense stuff on the pad.")
-						//i = rand(1,clear_turfs.len) // supplyshuttle.dm shitcode that i stole. doesn't work.
 						pickedpad = pick(clear_turfs)
 						pickedloc = get_turf(pickedpad)
 					if(!clear_turfs)
@@ -327,16 +338,20 @@
 											gibthisguy.gib()
 										else
 											continue // if this were to happen, it would be a miracle
-									new productpath(pickedloc)
+									var/obj/A = new productpath(pickedloc)
+									A.desc = "A [productname] crate."
+									A.name = "[productname] crate"
+									if(productwill_contain) // hopefully this will prevent runtimes
+										create_objects_in_loc(A, productwill_contain)
 							spawn(2.7 SECONDS)
 								pickedpad.isselected()
 					//				pad.lightdown()
 						//A.SetName("[productname]")
-								to_chat(user, "\icon[src]You have purchased [productname].")
 								src.credits -= productprice
 								spawn(0.1 SECONDS)
 									qdel(glowobj)
 									pickedpad.isdeselected()
+								playsound(src.loc, 'sound/machines/rpf/transcriptprint.ogg', 90, 0)
 								spawn(2 SECONDS)
 									resetlightping()
 									playsound(src.loc, 'sound/machines/rpf/ChatMsg.ogg', 100, 0)
@@ -352,84 +367,72 @@
 						to_chat(user, "\icon[src]FATAL ERROR.")
 					else
 						to_chat(user, "\icon[src]An UNKNOWN error has occured.")
-/*	else if(machine_input == "SELL PRODUCTS" && useable)
-		var/confirm = input(user, "Are you sure you want to sell all items on the pads?", "CARGO MACHINE.") as null|anything in list("Yes", "No")
-		if(confirm == "Yes") // Figure out a way to get the items that are on the pads, use get_value to get their value, and delte them.
-			if(!pads)
-				to_chat(user, "\icon[src]ERROR. NO LINKED CARGO PADS. REESTABLISH CONNECTION AND TRY AGAIN.")
-				playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
-			else if(pads.len > 0)
-				reconnectpads() // reocnnecting just INCASE
-				useable = FALSE
-				playsound(src.loc, 'sound/machines/rpf/cargo_starttp.ogg', 100, 0)
-				spawn(2.2 SECONDS)
-					for(var/obj/structure/cargo_pad/pad in pads)
-					//	pad.lightup()
-						pad.isselected()
-						var/obj/glowobj = new /obj/effect/overlay/cargopadglow(pad.loc)
-						if(pads.len > 4)
-							playsound(pad.loc, 'sound/machines/rpf/cargo_endtp.ogg', 27, 0)
-						else
-							playsound(pad.loc, 'sound/machines/rpf/cargo_endtp.ogg', 40, 0)
-						spawn(2.65 SECONDS)
-							var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
-							sparks.set_up(3, 0, pad.loc)
-							sparks.start()
-							pad.isselectedbrighter()
-							/*spawn(0.025 SECONDS)
-								var/list/togib = get_people_on_turf(get_turf(pad))
-								for(var/mob/gibthisguy in togib)
-									if(gibthisguy.loc == pad.loc) // sanity check I guess
-										log_and_message_admins("[gibthisguy] has <span class='danger'>sold themselves</span> on the following cargo pad: [pad]!")
-										to_chat(gibthisguy, "\icon[glowobj]You gibbed yourself on the cargo pad. Congratulations.. Your story ends here..<span class='alert'>(DEV MSG)</span>")
-										gibthisguy.gib()
-									else
-										continue*/
-						spawn(2.7 SECONDS)
-							pad.isselected()
-							// temporary src loc
-							//				pad.lightdown()
-							//A.SetName("[productname]")
-							var/turf/sellturf = get_turf(pad)
-							for(var/obj/item in sellturf)
-								if(istype(item, /obj/item/))
-									src.credits += get_value(item)
-									qdel(item)
-								else if(istype(item, /obj/structure/closet))
-									for(var/obj/iteminside in (item.contents))
-										//src.credits += get_value(iteminside)
-										//qdel(iteminside)
-										if(istype(iteminside, /mob/living/carbon/human))
-											var/personinside = iteminside
-											var/mob/living/carbon/human/H = user
-											for(var/obj/item/organ/internal/organ in (H.organs)) // Internals // doesnt work
-												src.credits += get_value(organ)
-												qdel(organ)
-											for(var/obj/item/organ/external/organ in (H.organs)) // Externals // doesnt work
-												src.credits += get_value(organ)
-												qdel(organ)
-											to_chat(personinside, "\icon[pad]You find yourself transported to an unfamiliar place..") // this wont print for some reason?
-											src.credits += get_value(personinside)
-											qdel(personinside)
-											qdel(item)
-										else
-											src.credits += get_value(iteminside)
-											qdel(iteminside)
-									src.credits += get_value(item)
-									qdel(item)
-							spawn(0.1 SECONDS)
-								qdel(glowobj)
-								pad.isdeselected()
-					spawn(5.375 SECONDS)
-						resetlightping()
-						playsound(src.loc, 'sound/machines/rpf/ChatMsg.ogg', 100, 0)
-						useable = TRUE
-					//				speak("\icon[src]The request was processed successfully.")
-				to_chat(user, "\icon[src]All items on the pads have been sold. <span class='alert'>(DEV MSG)</span>")
-				playsound(src.loc, 'sound/machines/rpf/consolebeep.ogg', 100, 0.5)
-		else
-			to_chat(user, "\icon[src]Sell operation cancelled.")
-			playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)*/
+
+/obj/machinery/kaos/cargo_machine/red
+	name = "R.E.D. Cargo Machine"
+	id = RED_TEAM
+	products = list(
+		// general ammo stuff
+		list("name" = "Rifle Ammo Pack", "price" = 50, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_box/rifle = 10)),
+		list("name" = "Shotgun Ammo Pack", "price" = 100, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_box/shotgun = 10)),
+		list("name" = "Pistol Ammo Pack", "price" = 50, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_magazine/c45m/warfare = 10)),
+		list("name" = "Revolver Ammo Pack", "price" = 50, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_magazine/handful/revolver = 10)),
+		list("name" = "Soulburn Ammo Pack", "price" = 50, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_magazine/mc9mmt/machinepistol = 10)),
+		list("name" = "HMG Ammo Pack", "price" = 100, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_magazine/box/a556/mg08 = 5)),
+		list("name" = "Warmonger Ammo", "price" = 50, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_magazine/c45rifle/akarabiner = 10)),
+		list("name" = "Flamethrower Ammo Pack", "price" = 100, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_magazine/flamer = 5)),
+		list("name" = "PTSD Ammo Pack", "price" = 100, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/ammo_box/ptsd = 5)),
+		list("name" = "Mortar Ammo", "price" = 800, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_shell = 8)),
+
+		// general weapon stuff
+		list("name" = "Shotgun Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/shotgun/pump/shitty = 5)),
+		list("name" = "Harbinger Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/mg08 = 2)),
+		list("name" = "Warmonger Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/m22/warmonger = 10)),
+		list("name" = "Shovel Crate", "price" = 50, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/shovel = 5)),
+		list("name" = "Doublebarrel Shotgun Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/shotgun/doublebarrel = 5)),
+		list("name" = "Bolt Action Rifle Pack", "price" = 50, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/random/bolt_action = 10)),
+		list("name" = "Soulburn Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/machinepistol = 5)),
+		list("name" = "Flamethrower Pack", "price" = 200, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/flamer = 1, /obj/item/ammo_magazine/flamer = 2)),
+		list("name" = "Grenade Pack", "price" = 350, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade/frag/warfare = 5)),
+		list("name" = "Trench Club Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/melee/classic_baton/trench_club = 5)),
+		list("name" = "Mortar Pack", "price" = 600, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_launcher = 2, /obj/item/mortar_shell = 6)),
+
+		// medical and supply stuff
+		list("name" = "Gas Mask Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/clothing/mask/gas = 10)),
+		list("name" = "Barbwire Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/stack/barbwire = 5)),
+		list("name" = "Canned Food Pack", "price" = 20, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/random/canned_food = 10)),
+		list("name" = "Bodybag Pack", "price" = 5, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/storage/box/bodybags = 3)),
+		list("name" = "Cigarette Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/storage/fancy/cigarettes = 10)),
+		list("name" = "First Aid Pack", "price" = 100, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/storage/firstaid/regular = 5)),
+		list("name" = "Medical Belt Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/storage/belt/medical/full = 10)),
+		list("name" = "Booze Crate", "price" = 100, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/random/drinkbottle = 8)),
+		list("name" = "Atepoine Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/reagent_containers/hypospray/autoinjector/revive = 10)),
+		list("name" = "Blood Injector Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/reagent_containers/hypospray/autoinjector/blood = 10)),
+
+		// team stuff
+		list("name" = "Illumination Mortar Ammo (Red)", "price" = 300, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_shell/flare = 8)),
+		list("name" = "Illumination Mortar Ammo (Blue)", "price" = 300, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_shell/flare/blue = 8)),
+
+	// warfunits
+
+		list("name" = "Red sniper", "price" = 10, "category" = "Units", "path" = /datum/job/soldier/red_soldier/sniper),
+		list("name" = "Red flamer", "price" = 10, "category" = "Units", "path" = /datum/job/soldier/red_soldier/flame_trooper),
+		list("name" = "Red sentry", "price" = 10, "category" = "Units", "path" = /datum/job/soldier/red_soldier/sentry),
+		list("name" = "Reinforcements", "price" = 10, "category" = "Units", "path" = "none")
+	)
+
+/obj/machinery/kaos/cargo_machine/blue
+	name = "B.L.U.E. Cargo Machine"
+	id = BLUE_TEAM
+	products = list(
+		list("name" = "Dev shotgun crate", "price" = 20, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo), // Low price for basic pistols
+// warfunits
+
+		list("name" = "Blue sniper", "price" = 10, "category" = "Units", "path" = /datum/job/soldier/blue_soldier/sniper),
+		list("name" = "Blue flamer", "price" = 10, "category" = "Units", "path" = /datum/job/soldier/blue_soldier/flame_trooper),
+		list("name" = "Blue sentry", "price" = 10, "category" = "Units", "path" = /datum/job/soldier/blue_soldier/sentry),
+		list("name" = "Reinforcements", "price" = 10, "category" = "Units", "path" = "none"),
+	)
 
 /obj/effect/overlay/cargopadglow
 	name = "Cargo Pad"
@@ -475,7 +478,11 @@
 /obj/structure/cargo_pad/ex_act()
 	return
 
+/obj/structure/cargo_pad/red
+	id = RED_TEAM
+
 /obj/structure/cargo_pad/blue
+	id = BLUE_TEAM
 
 	isselected()
 		set_light(2, 1,"#6899e2")

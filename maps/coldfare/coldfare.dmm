@@ -1,18 +1,18 @@
 "aa" = (/turf/simulated/mineral,/area/space)
 "ab" = (/turf/simulated/wall/concrete,/area/warfare/homebase/red)
 "ac" = (/obj/structure/sign/neon/cargo,/turf/simulated/wall/concrete,/area/warfare/homebase/red)
-"ad" = (/obj/machinery/kaos/cargo_machine{id = "red"},/turf/simulated/floor/tiled,/area/warfare/homebase/red)
-"ae" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/cargo_pad{id = "red"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
-"af" = (/obj/structure/cargo_pad{id = "red"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
+"ad" = (/obj/machinery/kaos/cargo_machine/red,/turf/simulated/floor/tiled,/area/warfare/homebase/red)
+"ae" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/cargo_pad/red,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
+"af" = (/obj/structure/cargo_pad/red,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
 "ag" = (/turf/simulated/wall/concrete,/area/warfare/homebase/blue)
 "ah" = (/obj/structure/sign/neon/cargo,/turf/simulated/wall/concrete,/area/warfare/homebase/blue)
 "ai" = (/obj/structure/poster/blue,/turf/simulated/wall/concrete,/area/warfare/homebase/blue)
-"aj" = (/obj/machinery/kaos/cargo_machine{id = "blue"},/turf/simulated/floor/tiled,/area/warfare/homebase/blue)
-"ak" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/cargo_pad/blue{id = "blue"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
-"al" = (/obj/structure/cargo_pad/blue{id = "blue"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
+"aj" = (/obj/machinery/kaos/cargo_machine/blue,/turf/simulated/floor/tiled,/area/warfare/homebase/blue)
+"ak" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/cargo_pad/blue,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
+"al" = (/obj/structure/cargo_pad/blue,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
 "am" = (/obj/structure/bed/chair{dir = 1; icon_state = "chair_preview"},/obj/machinery/light/small/red{dir = 8},/turf/simulated/floor/tiled,/area/warfare/homebase/blue)
-"an" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/window/reinforced,/obj/structure/cargo_pad/blue{id = "blue"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
-"ap" = (/obj/structure/window/reinforced,/obj/machinery/light/small/red{dir = 4},/obj/structure/cargo_pad/blue{id = "blue"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
+"an" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/window/reinforced,/obj/structure/cargo_pad/blue,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
+"ap" = (/obj/structure/window/reinforced,/obj/machinery/light/small/red{dir = 4},/obj/structure/cargo_pad/blue,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
 "aq" = (/turf/simulated/mineral,/area/warfare/homebase/blue)
 "ar" = (/obj/structure/closet/crate,/obj/random/canned_food,/obj/random/canned_food,/turf/simulated/floor/tiled,/area/warfare/homebase/blue)
 "as" = (/obj/structure/banner/blue/small{pixel_y = 32},/turf/simulated/floor/tiled,/area/warfare/homebase/blue)
@@ -61,7 +61,7 @@
 "bj" = (/obj/machinery/door/airlock/multi_tile/metal/maintenance,/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/two)
 "bk" = (/obj/structure/table/rack,/obj/item/storage/firstaid/regular,/obj/item/storage/firstaid/regular,/obj/item/storage/firstaid/regular,/obj/item/storage/firstaid/regular,/obj/machinery/light/small/red,/turf/simulated/floor/trenches,/area/warfare/battlefield/trench_section/underground)
 "bl" = (/obj/structure/bed/chair{dir = 1; icon_state = "chair_preview"},/turf/simulated/floor/tiled,/area/warfare/homebase/red)
-"bm" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/window/reinforced,/obj/structure/cargo_pad{id = "red"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
+"bm" = (/obj/structure/window/reinforced{dir = 8; icon_state = "rwindow"},/obj/structure/window/reinforced,/obj/structure/cargo_pad/red,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
 "bo" = (/mob/living/simple_animal/hostile/retaliate/rat,/obj/machinery/light/small/red{dir = 8},/turf/simulated/floor/trenches,/area/warfare/battlefield/trench_section/underground)
 "bp" = (/obj/structure/closet/crate,/obj/random/canned_food,/obj/random/canned_food,/turf/simulated/floor/tiled,/area/warfare/homebase/red)
 "bq" = (/obj/structure/banner/red/small{pixel_y = 32},/obj/machinery/light/small/red{dir = 1},/turf/simulated/floor/tiled,/area/warfare/homebase/red)
@@ -116,7 +116,7 @@
 "cn" = (/turf/simulated/mineral,/area/warfare/battlefield/capture_point/blue/two)
 "co" = (/obj/machinery/light/small/red{dir = 8},/mob/living/simple_animal/hostile/retaliate/rat,/turf/simulated/floor/trenches,/area/warfare/battlefield/trench_section/underground)
 "cp" = (/obj/machinery/light/small/red{dir = 1},/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/red/two)
-"cq" = (/obj/structure/window/reinforced,/obj/machinery/light/small/red{dir = 4},/obj/structure/cargo_pad{id = "red"},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
+"cq" = (/obj/structure/window/reinforced,/obj/machinery/light/small/red{dir = 4},/obj/structure/cargo_pad/red,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
 "cr" = (/obj/structure/table/woodentable,/obj/machinery/light/small/red,/obj/item/device/compass,/obj/item/device/compass,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
 "cs" = (/turf/simulated/wall/concrete,/area/warfare/battlefield/trench_section/underground)
 "ct" = (/turf/simulated/floor/trenches,/area/warfare/battlefield/trench_section/underground)
@@ -401,6 +401,7 @@
 "iE" = (/obj/effect/landmark/map_data{height = 2},/turf/simulated/mineral,/area/warfare/homebase/red)
 "iF" = (/obj/machinery/light/small/red{dir = 4},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
 "iU" = (/obj/machinery/light/small/red{dir = 8},/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/one)
+"mJ" = (/obj/machinery/door/airlock/multi_tile/metal/maintenance,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
 "mW" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/two)
 "pC" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/turf/simulated/floor/tiled,/area/warfare/homebase/red)
 "qk" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/turf/simulated/floor/tiled,/area/warfare/homebase/red)
@@ -412,12 +413,15 @@
 "wC" = (/obj/machinery/light/small/red{dir = 8},/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/two)
 "zO" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/turf/simulated/floor/tiled,/area/warfare/homebase/red)
 "CA" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/two)
+"DW" = (/obj/structure/warfare/barricade/concrete_barrier{dir = 1},/turf/simulated/floor/dirty/indestructable,/area/warfare/battlefield/capture_point/red/one)
 "Nc" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/turf/simulated/floor/tiled,/area/warfare/homebase/blue)
+"Oa" = (/obj/machinery/door/airlock/multi_tile/metal/maintenance,/turf/simulated/floor/tiled/dark,/area/warfare/homebase/blue)
 "Qb" = (/obj/effect/landmark/start{name = "Red Medic"},/obj/machinery/light/small/red{dir = 8},/turf/simulated/floor/tiled/dark,/area/warfare/homebase/red)
 "ST" = (/obj/machinery/light/small/red{dir = 1},/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/one)
 "Te" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/two)
 "TD" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/m14/battlerifle_mag,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/obj/item/ammo_magazine/a762/allrounder,/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/blue/two)
 "UC" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/c45rifle/akarabiner,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/turf/simulated/floor/trenches,/area/warfare/battlefield/capture_point/red/two)
+"Vj" = (/obj/structure/warfare/barricade/concrete_barrier,/turf/simulated/floor/dirty/indestructable,/area/warfare/battlefield/capture_point/blue/one)
 "YW" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/mc9mmt/machinepistol,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/m14,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/obj/item/ammo_magazine/a762/sks,/turf/simulated/floor/tiled,/area/warfare/homebase/red)
 "Zc" = (/turf/simulated/mineral,/area/warfare/battlefield/no_mans_land)
 
@@ -690,13 +694,13 @@ aaaqaqaqaqaqaqaqaqagejejiFagcHavejaveBavavaviFagatatagagaiagagagagagaqaqaqaqaqaq
 aaaqaqaqaqaqaqaqaqagefavavageBavejaveBaveyezeIagatatatatatateJeKeKagaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaa
 aaaqaqaqaqaqaqaqaqagejejavaXeBeLejeLeBavavavaxagatatatatcAateJeKeKagaqaqaqaqaqaqaqaqaqaqaqaqaqaqaqaa
 aaaqaqaqaqaqaqaqaqagagagagagagagagagagagagagagageNatagagagagagagagagagagagagagagagagagagagaqaqaqaqaa
-aaaqaqaqaqaqaqaqaqagruavePavaviFagagagagagagagagatbfagagagbceWavagbceWavagbceWbaagbceWbaagaqaqaqaqaa
-aaaqaqaqaqaqaqaqaqagavavavavavavagagagagagagagagatatagagagcJfafbagcJfafbagruaZfcagruaZfcagaqaqaqaqaa
-aaaqaqaqaqaqaqaqaqagavavfdfdavavagagagagagagagagatatagagagfaavbaagfaavbaagfhavfaagfhavfaagaqaqaqaqaa
-aaaqaqaqaqaqaqaqaqagrufifjfjfkiFagagagagagagagagatbfagagagagaXaiagagaXagagagaXagagagaXagagagaqaqaqaa
-aaaqaqaqaqaqaqaqaqagavfifjfjfkavagagagagagagagagatatavavavavavavavavavavavavavavavavavavavagaqaqaqaa
-aaaqaqaqaqaqaqaqaqagavfifjfjfkavagagagagagagagagatatfqavavavavavavavavavavavavavavavavavavagaqaqaqaa
-aaaqaqaqaqaqaqaqaqagruavfrfraviFagagagagagagagagatbfagarfsatftftatataSagagarfsatftftatataTagaqaqaqaa
+aaaqaqaqaqaqaqaqaqagruavePavaviFagavavfdfdavavagatbfagagagbceWavagbceWavagbceWbaagbceWbaagaqaqaqaqaa
+aaaqaqaqaqaqaqaqaqagavavavavavavagavavfjfjavavagatatagagagcJfafbagcJfafbagruaZfcagruaZfcagaqaqaqaqaa
+aaaqaqaqaqaqaqaqaqagavavfdfdavavagfifjfjfjfjfkagatatagagagfaavbaagfaavbaagfhavfaagfhavfaagaqaqaqaqaa
+aaaqaqaqaqaqaqaqaqagrufifjfjfkiFagfifjfjfjfjfkagatbfagagagagaXaiagagaXagagagaXagagagaXagagagaqaqaqaa
+aaaqaqaqaqaqaqaqaqagavfifjfjfkavagavavfjfjavavagatatavavavavavavavavavavavavavavavavavavavagaqaqaqaa
+aaaqaqaqaqaqaqaqaqagavfifjfjfkavagavavavavavavagatatfqavavavavavavavavavavavavavavavavavavagaqaqaqaa
+aaaqaqaqaqaqaqaqaqagruavfrfraviFagagagOaavagagagatbfagarfsatftftatataSagagarfsatftftatataTagaqaqaqaa
 aaaqaqaqaqaqaqaqaqagavavavavavavavavavavavavavavfuatagarfsatftftatataSagagarfsatftftatataTagaqaqaqaa
 aaaqaqaqaqaqaqaqaqagavavfdfdavavavfdfdavavavavfqatatagcLaAatatatataAauagagcLaAatatatataAauagaqaqaqaa
 aaaqaqaqaqaqaqaqaqagrufifjfjfkavfieWfjfkavaviFagatbfagaCaDatfwfwataEaFagagaFfxatfwfwataFaHagaqaqaqaa
@@ -736,7 +740,7 @@ aaaaaaaaaaaaaaaaaaaaaaaagmgmgogogogogogogmgmgogogogogogogmgmgogogogogogogmgmaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagmgmgmgmgmgmgmgmgmgmgogpgpgpgpgogmgmgmgmgmgmgmgmgmgmaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagmgmgmgmgmgmgmgmgmgmgogpgpgpgpgogmgmgmgmgmgmgmgmgmgmaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpgpaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaagogogogogogogogogogogogogqgqgogogogogogogogogogogogoaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaVjVjVjVjVjVjVjVjVjVjVjVjgqgqVjVjVjVjVjVjVjVjVjVjVjVjaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagrgrgrgrgrgrgrgrgrgrgrgrgqgqgrgrgrgrgrgrgrgrgrgrgrgraaaaaaaaaaaaaaaaaaaaaaaa
 aaaaZcZcZcZcZcZcZcZcZcZcgsgsgsgsgsgsgsgsgsgsgsgsgtgtgsgsgsgsgsgsgsgsgsgsgsgsZcZcZcZcZcZcZcZcZcZcaaaa
 aaaaZcZcZcZcZcZcZcZcZcZcgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtZcZcZcZcZcZcZcZcZcZcaaaa
@@ -867,7 +871,7 @@ aaaaZcZcZcZcZcZcZcZcZcZcgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtZcZc
 aaaaZcZcZcZcZcZcZcZcZcZcgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgtZcZcZcZcZcZcZcZcZcZcaaaa
 aaaaZcZcZcZcZcZcZcZcZcZcgsgsgsgsgsgsgsgsgsgsgsgsgtgtgsgsgsgsgsgsgsgsgsgsgsgsZcZcZcZcZcZcZcZcZcZcaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagAgAgAgAgAgAgAgAgAgAgAgAgBgBgAgAgAgAgAgAgAgAgAgAgAgAaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaagCgCgCgCgCgCgCgCgCgCgCgCgBgBgCgCgCgCgCgCgCgCgCgCgCgCaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaDWDWDWDWDWDWDWDWDWDWDWDWgBgBDWDWDWDWDWDWDWDWDWDWDWDWaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDgDaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagEgEgEgEgEgEgEgEgEgEgCgDgDgDgDgCgEgEgEgEgEgEgEgEgEgEaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaagEgEgEgEgEgEgEgEgEgEgCgDgDgDgDgCgEgEgEgEgEgEgEgEgEgEaaaaaaaaaaaaaaaaaaaaaaaa
@@ -900,13 +904,13 @@ aaaaaaaadYdYdYdYdYdYdYdYgSgSgSgSgSgSgSgSgSgSgSgSgRgRgSgSgSgSgSgSgSgSgSgSgSgSdYdY
 aadYdYdYdYdYdYdYdYdYdYgTgRgRgRgRgRgRgRgRgRgRgRgUgRgRgUgRgRgRgRgRgRgRgRgRgRgRgVgVgVgVdYdYdYdYdYdYdYaa
 aadYdYdYdYdYdYdYdYdYdYgTgRgRgRgRgRgRgRgRgRgRgRgWgRgRgXgRgRgRgRgRgRgRgRgRgRgRgVgVgVgVdYdYdYdYdYdYdYaa
 aadYdYdYdYdYdYdYdYababababgYababababababababababgZhaababababgYgYbgabababababababgYgYababababdYdYdYaa
-aadYdYdYdYdYdYdYdYabhdhchdbvhehfababababababababhlbsabbpbuhnhohobrbsYWababbpbuhnbrbrbrbsbRabdYdYdYaa
-aadYdYdYdYdYdYdYdYabbXbvbvbvhpbvababababababababhgbsabbpbubshthtbsbszOababbpbuhobsbshobsbRabdYdYdYaa
-aadYdYdYdYdYdYdYdYabbvbvhuhubvbvbgabababababababbsbsabbybzbshxhxbsbzbAababbybzbsbsbsbsbzbAabdYdYdYaa
-aadYdYdYdYdYdYdYdYabbXhyhzhzhAhfababababababababbsbsabbBbCbsbsbsbsbDbEbgabbEhCbsbsbsbsbEbGabdYdYdYaa
-aadYdYdYdYdYdYdYdYbgbvhyhzhzhAbvababababababababhgbsabbHbEbsbsbsbsbJbKababbGhCbsbsbsbsbLbMabdYdYdYaa
-aadYdYdYdYdYdYdYdYabbXhyhzhzhAbvababababababababbsbsabbNbObsbsbsbsbObPababbNbObsbsbsbsbObPabdYdYdYaa
-aadYdYdYdYdYdYdYdYabbvbvhHhHbvhfababababababababbshmabbRbsbsbsbsbsqkbRababbRbsbsbsbsbsbshIabdYdYdYaa
+aadYdYdYdYdYdYdYdYabhdhchdbvhehfabbvbvhuhubvbvabhlbsabbpbuhnhohobrbsYWababbpbuhnbrbrbrbsbRabdYdYdYaa
+aadYdYdYdYdYdYdYdYabbXbvbvbvhpbvabbvbvhzhzbvbvabhgbsabbpbubshthtbsbszOababbpbuhobsbshobsbRabdYdYdYaa
+aadYdYdYdYdYdYdYdYabbvbvhuhubvbvbghyhzhzhzhzhAabbsbsabbybzbshxhxbsbzbAababbybzbsbsbsbsbzbAabdYdYdYaa
+aadYdYdYdYdYdYdYdYabbXhyhzhzhAhfabhyhzhzhzhzhAabbsbsabbBbCbsbsbsbsbDbEbgabbEhCbsbsbsbsbEbGabdYdYdYaa
+aadYdYdYdYdYdYdYdYbgbvhyhzhzhAbvabbvbvhzhzbvbvabhgbsabbHbEbsbsbsbsbJbKababbGhCbsbsbsbsbLbMabdYdYdYaa
+aadYdYdYdYdYdYdYdYabbXhyhzhzhAbvabbvbvbvbvbvbvabbsbsabbNbObsbsbsbsbObPababbNbObsbsbsbsbObPabdYdYdYaa
+aadYdYdYdYdYdYdYdYabbvbvhHhHbvhfabababmJbvabababbshmabbRbsbsbsbsbsqkbRababbRbsbsbsbsbsbshIabdYdYdYaa
 aadYdYdYdYdYdYdYdYabbXbvbvbvbvbvbvbvbvbvbvbvbvbvbsbsabbRbsbsbsbsbspCbRababbRbsbsbsbsbsbshIabdYdYdYaa
 aadYdYdYdYdYdYdYdYabbvbvhuhubvbvbvhuhubvbvbvbvhJhKbsbvbvbvbvbvbvbvbvbvhGhGbvbvbvbvbvbvbvbvabdYdYdYaa
 aadYdYdYdYdYdYdYdYabbXhyhzhzhAbvhyhzhzhAbvbvhfabbsbshJbvbvbvbvbvbvbvhLhLbvbvhLhMbvbvbvbvbvabdYdYdYaa
