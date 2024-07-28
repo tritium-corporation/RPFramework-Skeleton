@@ -54,6 +54,7 @@
 
 /datum/effect/system/explosion
 	var/turf/location
+	var/smoke
 
 /datum/effect/system/explosion/proc/set_up(loca)
 	if(istype(loca, /turf/)) location = loca
@@ -65,6 +66,7 @@
 	P.set_up(10,location)
 	P.start()
 	spawn(5)
-		var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
-		S.set_up(5,0,location,null)
-		S.start()
+		if(smoke)
+			var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
+			S.set_up(5,0,location,null)
+			S.start()

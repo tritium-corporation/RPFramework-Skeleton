@@ -47,7 +47,6 @@
 		on_explosion(O)
 
 	src.fragmentate(O, num_fragments, spread_range, fragment_types)
-
 	qdel(src)
 
 
@@ -142,7 +141,7 @@ obj/mortar/flare/blue
 
 /obj/item/grenade/frag/proc/on_explosion(var/turf/O)
 	if(explosion_size)
-		explosion(O, -1, -1, explosion_size, round(explosion_size/2), 0)
+		explosion(O, -1, -1, explosion_size, round(explosion_size/2), 0, particles = TRUE, large = FALSE, color = COLOR_BLACK)
 
 /obj/item/grenade/frag/warfare
 	desc = "Throw it at THE ENEMEY!"
@@ -178,4 +177,4 @@ obj/mortar/flare/blue
 
 /obj/item/grenade/frag/high_yield/on_explosion(var/turf/O)
 	if(explosion_size)
-		explosion(O, -1, round(explosion_size/2), explosion_size, round(explosion_size/2), 0) //has a chance to blow a hole in the floor
+		explosion(O, -1, round(explosion_size/2), explosion_size, round(explosion_size/2), 0, particles = TRUE, autosize = TRUE, color = COLOR_BLACK) //has a chance to blow a hole in the floor

@@ -1,6 +1,6 @@
 //TODO: Flash range does nothing currently
 
-proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
+proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped, silent, particles, color = LIGHT_COLOR_LAVA, autosize = TRUE, large, sizeofboom, smoke, explosionsound, farexplosionsound)
 	var/multi_z_scalar = 0.35
 	src = null	//so we don't abort once src is deleted
 	spawn(0)
@@ -32,33 +32,61 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		far_dist += heavy_impact_range * 5
 		far_dist += devastation_range * 20
 		var/frequency = get_rand_frequency()
-		for(var/mob/M in GLOB.player_list)
-			if(M.z == epicenter.z)
-				var/turf/M_turf = get_turf(M)
-				var/dist = get_dist(M_turf, epicenter)
-				// If inside the blast radius + world.view - 2
-				if(dist <= round(max_range + world.view - 2, 1))
-					if(devastation_range > 0)
-						M.playsound_local(epicenter, get_sfx("explosion"), 100, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
-						shake_camera(M, Clamp(devastation_range, 3, 10), 2)
-					else
-						M.playsound_local(epicenter, get_sfx("explosion_small"), 100, 1, frequency, falloff = 5)
-						shake_camera(M, 4, 1)
+		if(!silent)
+			for(var/mob/M in GLOB.player_list)
+				if(M.z == epicenter.z)
+					var/turf/M_turf = get_turf(M)
+					var/dist = get_dist(M_turf, epicenter)
+					// If inside the blast radius + world.view - 2
+					if(dist <= round(max_range + world.view - 2, 1))
+						if(devastation_range > 0)
+							if(!explosionsound)
+								M.playsound_local(epicenter, get_sfx("explosion"), 100, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+							else
+								M.playsound_local(epicenter, get_sfx(explosionsound), 100, 1, frequency, falloff = 5)
+							shake_camera(M, Clamp(devastation_range, 3, 10), 2)
+						else
+							if(!explosionsound)
+								M.playsound_local(epicenter, get_sfx("explosion_small"), 100, 1, frequency, falloff = 5)
+							else
+								M.playsound_local(epicenter, get_sfx(explosionsound), 100, 1, frequency, falloff = 5)
+							shake_camera(M, 4, 1)
 
-					//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 
-				else if(dist <= far_dist)
-					var/far_volume = Clamp(far_dist*3, 30, 50) // Volume is based on explosion size and dist
-					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
-					if(devastation_range > 0)
-						M.playsound_local(epicenter, 'sound/effects/explosionfarnew.ogg', far_volume * 2, 1, frequency, falloff = 5)
-						shake_camera(M, 5, 1)
-					else
-						M.playsound_local(epicenter, 'sound/effects/explosionsmallfarnew.ogg', far_volume * 2, 1, frequency, falloff = 5)
+						//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 
-		if(adminlog)
-			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
-			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
+					else if(dist <= far_dist)
+						var/far_volume = Clamp(far_dist*3, 30, 50) // Volume is based on explosion size and dist
+						far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
+						if(devastation_range > 0)
+							if(!farexplosionsound)
+								M.playsound_local(epicenter, 'sound/effects/explosionfarnew.ogg', far_volume * 2, 1, frequency, falloff = 5)
+							else
+								M.playsound_local(epicenter, get_sfx(farexplosionsound), far_volume * 2, 1, frequency, falloff = 5)
+							shake_camera(M, 5, 1)
+						else
+							if(!farexplosionsound)
+								M.playsound_local(epicenter, 'sound/effects/explosionsmallfarnew.ogg', far_volume * 2, 1, frequency, falloff = 5)
+							else
+								M.playsound_local(epicenter, get_sfx(farexplosionsound), far_volume * 2, 1, frequency, falloff = 5)
+		if(particles)
+			var/boom_range
+			if(!sizeofboom)
+				boom_range = max_range
+			else
+				boom_range = sizeofboom
+			if(autosize)
+				if(devastation_range > 0)
+					new /obj/effect/temp_visual/explosion(epicenter, boom_range, color, FALSE, TRUE)
+				else if(heavy_impact_range > 0)
+					new /obj/effect/temp_visual/explosion(epicenter, boom_range, color, FALSE, FALSE)
+				else if(light_impact_range > 0)
+					new /obj/effect/temp_visual/explosion(epicenter, boom_range, color, TRUE, FALSE)
+			else if(!autosize)
+				if(large)
+					new /obj/effect/temp_visual/explosion(epicenter, boom_range, color, FALSE, TRUE)
+				else
+					new /obj/effect/temp_visual/explosion(epicenter, boom_range, color, TRUE, FALSE)
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
 		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
@@ -67,6 +95,8 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 
 		if(heavy_impact_range > 1)
 			var/datum/effect/system/explosion/E = new/datum/effect/system/explosion()
+			if(smoke)
+				E.smoke = TRUE
 			E.set_up(epicenter)
 			E.start()
 
@@ -109,25 +139,33 @@ proc/secondaryexplosion(turf/epicenter, range)
 
 
 proc/drop_mortar(turf/dropped, mortar)
-	var/direction = pick(GLOB.cardinal)
-	var/turf/dropped_turf = get_step(dropped,direction)
-	playsound(dropped_turf, 'sound/effects/mortar_falling.ogg', 100, FALSE)
-	var/obj/effect/shadow/S = new(dropped_turf)//Create a cool shadow effect for the bomb.
-	spawn(40)
-		qdel(S)
-		if(mortar == "rflare") //They don't hit the ground.
-			new /obj/mortar/flare(dropped_turf)
-			return
-		if(mortar == "bflare")
-			new /obj/mortar/flare/blue(dropped_turf)
-			return
-		explosion(dropped_turf, 1, 1, 1, 1)
-		if(mortar == "shrapnel")
-			new /obj/mortar/frag(dropped_turf)
-		if(mortar == "gas")
-			new /obj/mortar/gas(dropped_turf)
-		if(mortar == "fire")
-			new /obj/mortar/fire(dropped_turf)
+	spawn(3.5 SECONDS) // This is to make up for the fact that they all spawn faster now.
+		var/direction = pick(GLOB.cardinal)
+		var/turf/dropped_turf = get_step(dropped,direction)
+		var/thismortarnoise = pick('sound/effects/mortar_fallingalt.ogg', 'sound/effects/mortar_fallingalt2.ogg') // original: sound/effects/mortar_falling.ogg
+		var/thisexplosionsound = pick('sound/effects/mortarexplo1.ogg','sound/effects/mortarexplo2.ogg','sound/effects/mortarexplo3.ogg')
+		var/delay
+		playsound(dropped_turf, thismortarnoise, 100, FALSE)
+		var/obj/effect/shadow/S = new(dropped_turf)//Create a cool shadow effect for the bomb.
+		switch(thismortarnoise)
+			if('sound/effects/mortar_fallingalt.ogg') delay=3.9
+			if('sound/effects/mortar_fallingalt2.ogg') delay=2.25
+		spawn(delay SECONDS)
+			qdel(S)
+			if(mortar == "rflare") //They don't hit the ground.
+				new /obj/mortar/flare(dropped_turf)
+				return
+			if(mortar == "bflare")
+				new /obj/mortar/flare/blue(dropped_turf)
+				return
+			explosion(dropped_turf, 1,1,1,1, particles = TRUE, autosize = FALSE, sizeofboom = 2, large = TRUE, explosionsound = thisexplosionsound)
+
+			if(mortar == "shrapnel")
+				new /obj/mortar/frag(dropped_turf)
+			if(mortar == "gas")
+				new /obj/mortar/gas(dropped_turf)
+			if(mortar == "fire")
+				new /obj/mortar/fire(dropped_turf)
 
 /obj/effect/shadow
 	name = "Shadow"

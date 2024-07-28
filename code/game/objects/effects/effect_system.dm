@@ -170,6 +170,8 @@ steam.start() -- spawns the effect
 	mouse_opacity = 0
 	var/amount = 6.0
 	var/time_to_live = 200
+	plane = -5
+	layer = ABOVE_HUMAN_LAYER
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -339,7 +341,7 @@ steam.start() -- spawns the effect
 		if(src.total_smoke > 20)
 			return
 		addtimer(CALLBACK(src, .proc/make_smokes, i), 0)
-			
+
 
 //Hi, this isn't bay. Please don't think too hard about how ugly these are. It's better than a billion spawns.
 /datum/effect/effect/system/smoke_spread/proc/make_smokes(var/i)

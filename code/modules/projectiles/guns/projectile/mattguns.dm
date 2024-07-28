@@ -445,7 +445,7 @@
 
 /obj/item/gun/projectile/automatic/machinepistol
 	name = "Mk.2 Soulburn SMG"
-	desc = "A prototype SMG. Prone to malfunction but it shoots perty fast."
+	desc = "A prototype SMG. Prone to malfunction but it shoots pretty fast."
 	icon_state = "machinepistol"
 	item_state = "machinepistol"
 	wielded_item_state = "machinepistol-wielded"
@@ -473,7 +473,7 @@
 
 /obj/item/gun/projectile/automatic/machinepistol/wooden
 	name = "Mk.1 Soulburn SMG"
-	desc = "A prototype, protoype SMG. Prone to malfunction but it shoots perty fast."
+	desc = "A prototype, protoype SMG. Prone to malfunction but it shoots pretty fast."
 	icon_state = "schmeiser"
 	item_state = "schmeiser"
 	wielded_item_state = "schmeiser-wielded"

@@ -82,6 +82,8 @@
 
 #define isScrewdriver(A) istype(A, /obj/item/screwdriver)
 
+#define iswater(A) (istype(A, /turf/simulated/floor/exoplanet/water/shallow))
+
 #define isMultitool(A) istype(A, /obj/item/device/multitool)
 
 #define isCrowbar(A) istype(A, /obj/item/crowbar)

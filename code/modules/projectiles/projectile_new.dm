@@ -13,6 +13,8 @@
 	anchored = TRUE
 	mouse_opacity = 0
 	appearance_flags = KEEP_APART|TILE_BOUND
+	plane = EFFECTS_BELOW_LIGHTING_PLANE
+	layer = 100
 
 /obj/effect/abstract/particle_holder/Initialize(mapload, particle_path = null)
 	. = ..()
