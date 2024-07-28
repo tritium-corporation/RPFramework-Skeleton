@@ -223,7 +223,8 @@
 											sound_to(world, 'sound/effects/arty_distant.ogg')
 										credits -= costofartillery
 										playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
-										artillery_barage(x,y)
+										spawn(4 SECONDS)
+											artillery_barage(x,y)
 								else
 									playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
 									to_chat(user, "\icon[src]The coordinates were invalid, <span class='warning'>Captain</span>.")

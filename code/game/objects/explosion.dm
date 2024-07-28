@@ -139,7 +139,7 @@ proc/secondaryexplosion(turf/epicenter, range)
 
 
 proc/drop_mortar(turf/dropped, mortar)
-	spawn(3.5 SECONDS) // This is to make up for the fact that they all spawn faster now.
+	spawn(1.5 SECONDS) // This is to make up for the fact that they all spawn faster now.
 		var/direction = pick(GLOB.cardinal)
 		var/turf/dropped_turf = get_step(dropped,direction)
 		var/thismortarnoise = pick('sound/effects/mortar_fallingalt.ogg', 'sound/effects/mortar_fallingalt2.ogg') // original: sound/effects/mortar_falling.ogg
