@@ -71,7 +71,7 @@
 
 /client/verb/CombatModeToggle()
 	set hidden = 1
-
+	return
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/C = usr
 	if(C.combat_mode)
