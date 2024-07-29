@@ -927,7 +927,9 @@ default behaviour is:
 	if(!crouching)
 		to_chat(src, "<span class='binfo'>You crouch low.")
 		if(istype(loc, /turf/simulated/floor/trench))
-			pixel_y = -7
+			pixel_y = -12
+			for(var/obj/effect/trench/mask/mask in vis_contents)
+				mask.pixel_y = -18
 		if(zoomed)//Can't zoom in if you're crouching behind cover.
 			do_zoom()
 		if(ishuman(src))
@@ -938,7 +940,9 @@ default behaviour is:
 	else
 		to_chat(src, "<span class='binfo'>You stand up.</span>")
 		if(istype(loc, /turf/simulated/floor/trench))
-			pixel_y = -3
+			pixel_y = -8
+			for(var/obj/effect/trench/mask/mask in vis_contents)
+				mask.pixel_y = -21
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.remove_crouching()

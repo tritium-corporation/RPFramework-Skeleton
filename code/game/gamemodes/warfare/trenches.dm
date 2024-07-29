@@ -1,3 +1,6 @@
+/mob/living
+	var/has_trench_overlay = FALSE
+
 /turf/simulated/floor/trenches
 	name = "trench"
 	icon = 'icons/turf/trenches_turfs.dmi'
@@ -41,6 +44,9 @@
 	movement_delay = 0.5
 	has_coldbreath = TRUE
 	var/can_be_dug = TRUE
+
+/turf/simulated/floor
+	var/add_mask = FALSE
 
 /turf/simulated/floor/trench/fake
 	atom_flags = null
@@ -112,7 +118,9 @@
 					trench_side.layer = BELOW_OBJ_LAYER
 				if(SOUTH)
 					trench_side.pixel_y -= ((world.icon_size) - 16)
-					trench_side.plane = ABOVE_OBJ_PLANE
+					trench_side.plane = PLATING_PLANE
+					trench_side.layer = BELOW_OBJ_LAYER
+					add_mask = TRUE
 				if(EAST)
 					trench_side.pixel_x += (world.icon_size)
 					trench_side.plane = ABOVE_OBJ_PLANE
@@ -122,6 +130,19 @@
 					trench_side.plane = ABOVE_OBJ_PLANE
 					trench_side.layer = BASE_MOB_LAYER
 			vis_contents += trench_side
+
+
+//Masks and overlays.
+/obj/effect/trench/mask
+	name = null
+	mouse_opacity = FALSE
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "trench_mask"
+	plane = HIDDEN_SHIT_PLANE
+	appearance_flags = KEEP_APART | RESET_TRANSFORM
+	vis_flags = VIS_UNDERLAY
+	pixel_y = -21
+
 
 /turf/simulated/floor/trench/update_icon()
 	update_trench_shit()
@@ -139,15 +160,33 @@
 /turf/simulated/floor/trench/Crossed(var/mob/living/carbon/human/M)
 	if(istype(M))
 		if(!M.throwing)
-			//if(M.client)
-			//	M.fov_mask.screen_loc = "1,0.8"
-			//	M.fov.screen_loc = "1,0.8"
+			if(M.client)
+				M.fov_mask.screen_loc = "1,0.8"
+				M.fov.screen_loc = "1,0.8"
 			if(M.crouching)
-				M.pixel_y = -7
+				M.pixel_y = -12
 			else
-				M.pixel_y = -3
+				M.pixel_y = -8
 
 			M.plane = LYING_HUMAN_PLANE
+			M.in_trench = 1 // Yes, we in trench now.
+
+			if(add_mask)
+				M.vis_contents += new /obj/effect/trench/mask
+				M.has_trench_overlay = TRUE
+				if(M.crouching)
+					for(var/obj/effect/trench/mask/mask in M.vis_contents)
+						mask.pixel_y = -18
+
+			else if(!add_mask)
+				if(M.has_trench_overlay)
+					for(var/obj/effect/trench/mask/mask in M.vis_contents)
+						M.vis_contents -= mask
+						qdel(mask)
+					M.has_trench_overlay = FALSE
+
+
+
 
 			var/trench_check = 0 //If we're not up against a trench wall, we don't want to stay zoomed in.
 			for(var/direction in GLOB.cardinal)
@@ -160,8 +199,13 @@
 
 /turf/simulated/floor/trench/Uncrossed(var/mob/living/carbon/human/M)
 	if(istype(M))
-		//if(M.client)
-		//	M.fov_mask.screen_loc = "1,1"
-		//	M.fov.screen_loc = "1,1"
+		if(M.client)
+			M.fov_mask.screen_loc = "1,1"
+			M.fov.screen_loc = "1,1"
+		M.in_trench = 0 // We leave the trench.
 		M.pixel_y = 0
 		M.plane = HUMAN_PLANE
+		if(M.has_trench_overlay)
+			for(var/obj/effect/trench/mask/mask in M.vis_contents)
+				M.vis_contents -= mask
+				qdel(mask)

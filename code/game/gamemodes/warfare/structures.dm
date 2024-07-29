@@ -8,7 +8,7 @@
 	density = FALSE
 	color = "#7e8499" // I Cba to resprite these rn so its just a recolor to make them blend in more. - Kas
 
-	plane = ABOVE_OBJ_PLANE
+	plane = PLATING_PLANE
 	layer = BASE_ABOVE_OBJ_LAYER
 	 // Crates kept getting hidden under these. // Edit: cannot do that. It fucks up the turf smoothing overlays.
 	/*plane = OBJ_PLANE
