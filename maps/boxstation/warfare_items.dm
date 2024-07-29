@@ -228,12 +228,6 @@
 	item_state = "blue_uniform"
 
 //Hats
-/obj/item/clothing/head/warfare_officer/blueofficer
-	name = "Blue Officer\'s Cap"
-	desc = "Fit for an officer of just your ranking. And nothing more."
-	icon_state = "blue_captain_hat"
-	item_state = "blue_captain_hat"
-	warfare_team = BLUE_TEAM
 
 //Helmets
 /obj/item/clothing/head/helmet/bluehelmet
@@ -709,8 +703,8 @@
 	warfare_team = RED_TEAM
 
 /obj/item/clothing/shoes/jackboots/warfare/blue
-	icon_state = "blueboots"
-	item_state = "blueboots"
+	icon_state = "redboots"
+	item_state = "redboots"
 	warfare_team = BLUE_TEAM
 
 /obj/item/grenade_dud

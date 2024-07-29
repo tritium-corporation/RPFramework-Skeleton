@@ -24,17 +24,17 @@
 /obj/item/clothing/suit/child_coat
 	name = "scav coat"
 	desc = "Fitted just for scavs."
-	icon_state = "red_child"
+	icon_state = "child_redcoat"
 	can_be_worn_by_child = TRUE
 	child_exclusive = TRUE
 
 
 /obj/item/clothing/suit/child_coat/red
-	icon_state = "red_child"
+	icon_state = "child_redcoat"
 	warfare_team = RED_TEAM
 
 /obj/item/clothing/suit/child_coat/blue
-	icon_state = "blue_child"
+	icon_state = "child_bluecoat"
 	warfare_team = BLUE_TEAM
 
 
@@ -55,6 +55,22 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inv = null
+
+/obj/item/clothing/suit/armor/redcoat/sniper
+	icon_state = "redcoat_sniper"
+	item_state = "redcoat_sniper"
+
+/obj/item/clothing/head/helmet/redhelmet/sniper
+	icon_state = "redsniperhelmet"
+	item_state = "redsniperhelmet"
+
+/obj/item/clothing/suit/armor/bluecoat/sniper
+	icon_state = "bluecoat_sniper"
+	item_state = "bluecoat_sniper"
+
+/obj/item/clothing/head/helmet/bluehelmet/sniper
+	icon_state = "bluesniperhelmet"
+	item_state = "bluesniperhelmet"
 
 
 /obj/item/clothing/head/helmet/redhelmet/fire
@@ -83,7 +99,7 @@
 /obj/item/clothing/suit/armor/redcoat
 	name = "Red Team's jacket"
 	desc = "The proud jacket of the Red Baron!"
-	icon_state = "redcoat"
+	icon_state = "redcoatnew"
 	warfare_team = RED_TEAM
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -93,18 +109,13 @@
 	name = "[RED_TEAM]'s jacket"
 	desc = "The proud jacket of the [RED_TEAM]."
 
-/obj/item/clothing/suit/armor/redcoat/soldier/New()
-	icon_state = pick("redcoat", "redcoatalt", "redcoatalt2")
-	item_state = icon_state
-	..()
-
 /obj/item/clothing/suit/armor/redcoat/sl
 	icon_state = "redsl"
 	item_state = "redsl"
 
 /obj/item/clothing/suit/armor/sentry/red
 	name = "Red Sentry Armor"
-	icon_state = "redsentry"
+	icon_state = "redsentryarmor"
 	warfare_team = RED_TEAM
 
 /obj/item/clothing/head/helmet/sentryhelm/red
@@ -127,8 +138,8 @@
 	item_state = "redcaptain"
 
 /obj/item/clothing/suit/armor/redcoat/medic
-	icon_state = "redmedic"
-	item_state = "redmedic"
+	icon_state = "redcoat_medic"
+	item_state = "redcoat_medic"
 
 /obj/item/clothing/head/warfare_officer/redofficer
 	name = "Red Officer\'s Cap"
@@ -140,15 +151,15 @@
 /obj/item/clothing/head/helmet/redhelmet
 	name = "Red's Helmet"
 	desc = "Sometimes protects your head from bullets and blows."
-	icon_state = "redhelm"
+	icon_state = "redhelmet"
 	warfare_team = RED_TEAM
 
 /obj/item/clothing/head/helmet/redhelmet/medic
-	icon_state = "redcoathelmmedic"
+	icon_state = "redhelmet_medic"
 	flags_inv = HIDEEARS|BLOCKHAIR
 
 /obj/item/clothing/head/helmet/redhelmet/leader
-	icon_state = "redslhelm"
+	icon_state = "bluehelmet_leader"
 
 
 //Nam shit
@@ -189,7 +200,7 @@
 /obj/item/clothing/suit/armor/bluecoat
 	name = "Blue Team's jacket"
 	desc = "The proud jacket of the Bluecoats!"
-	icon_state = "blue_coat"
+	icon_state = "bluecoatnew"
 	warfare_team = BLUE_TEAM
 	allowed = list(/obj/item/ammo_magazine,/obj/item/ammo_casing)
 	//starting_accessories = list(/obj/item/clothing/accessory/blue_outline)
@@ -201,10 +212,21 @@
 	name = "The [BLUE_TEAM]'s jacket"
 	desc = "The proud jacket of the [BLUE_TEAM]."
 
+/obj/item/clothing/suit/armor/bluecoat/sl
+	item_state = "blue_prac"
+	icon_state = "blue_prac"
+
+/obj/item/clothing/head/warfare_officer/sl
+	name = "Blue Seargeant\'s Cap"
+	desc = "Fit for an officer of just your ranking. And nothing more."
+	icon_state = "captain_hat"
+	item_state = "captain_hat"
+	warfare_team = BLUE_TEAM
+
 /obj/item/clothing/suit/armor/sentry/blue
 	warfare_team = BLUE_TEAM
 	name = "Blue Sentry Armor"
-	icon_state = "blue_sentry"
+	icon_state = "bluesentryarmor"
 
 /obj/item/clothing/head/helmet/sentryhelm/blue
 	warfare_team = BLUE_TEAM
@@ -216,8 +238,8 @@
 	icon_state = "captain_blue"
 
 /obj/item/clothing/suit/armor/bluecoat/medic
-	icon_state = "blue_medic"
-	item_state = "blue_medic"
+	icon_state = "bluecoat_medic"
+	item_state = "bluecoat_medic"
 
 //Uniform.
 /obj/item/clothing/under/blue_uniform
@@ -239,11 +261,11 @@
 /obj/item/clothing/head/helmet/bluehelmet
 	name = "Blue's Helmet"
 	desc = "Sometimes protects your head from bullets and blows."
-	icon_state = "blue_helmet"
+	icon_state = "bluehelmet"
 	warfare_team = BLUE_TEAM
 
 /obj/item/clothing/head/helmet/bluehelmet/medic
-	icon_state = "blue_helmet_medic"
+	icon_state = "bluehelmet_medic"
 
 /obj/item/clothing/gloves/thick/swat/combat/warfare/blue
 	icon_state = "blue_gloves"
@@ -251,14 +273,14 @@
 	warfare_team = BLUE_TEAM
 
 /obj/item/clothing/mask/gas/blue
-	icon_state = "bluemask"
-	item_state = "bluemask"
+	icon_state = "gasmask"
+	item_state = "gasask"
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
 	body_parts_covered = FACE|EYES
 	helmet_vision = TRUE
 
 /obj/item/clothing/head/helmet/bluehelmet/leader
-	starting_accessories = list(/obj/item/clothing/accessory/helm_patch/leader)
+	icon_state = "bluehelmet_leader"
 
 /obj/item/card/id/dog_tag
 	var/warfare_faction = null
@@ -518,6 +540,21 @@
 		new /obj/item/ammo_magazine/autoshotty(src)
 		new /obj/item/ammo_magazine/autoshotty(src)
 
+/obj/item/storage/belt/armageddon
+	name = "ammo belt"
+	desc = "Great for holding ammo! This one starts with Armageddon ammo."
+	icon_state = "warfare_belt"
+	item_state = "warfare_belt"
+	can_hold = list(
+		/obj/item/ammo_magazine,
+		)
+
+	New()
+		..()
+		new /obj/item/ammo_magazine/a762/rsc(src)
+		new /obj/item/ammo_magazine/a762/rsc(src)
+		new /obj/item/ammo_magazine/a762/rsc(src)
+		new /obj/item/ammo_magazine/a762/rsc(src)
 
 /obj/item/storage/box/ifak
 	name = "IFAK"
