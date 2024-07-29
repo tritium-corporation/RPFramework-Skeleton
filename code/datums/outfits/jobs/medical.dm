@@ -24,7 +24,6 @@
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/doctor_vest
 	l_hand = /obj/item/storage/firstaid/adv
-	r_ear = /obj/item/device/flashlight/pen
 	id_type = /obj/item/card/id/medical
 
 /decl/hierarchy/outfit/job/medical/doctor/emergency_physician
