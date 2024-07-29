@@ -168,7 +168,7 @@
 
 /obj/machinery/kaos/cargo_machine/attack_hand(mob/living/user as mob) // notice: find a way to sync both versions without having them be duplicates // Done, ignore this notice
 	var/machine_input
-	if(!user.Adjacent(src))
+	if(!CanPhysicallyInteract(user))
 		return
 	if (useable)
 		set_light(3, 3,"#ebc683")
@@ -212,19 +212,20 @@
 							playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
 							var/y = input(user, "Please input the Y coordinate.") as num
 							var/costofartillery = 550 // shitty way to go about it. redo this someday.
-							if(y && credits >= costofartillery)
+							if(y && credits >= costofartillery && CanPhysicallyInteract(user))
 								var/turf/turf_to_drop = locate(x,y,2)
 								if(istype(turf_to_drop.loc, /area/warfare/battlefield/no_mans_land) || istype(turf_to_drop.loc, /area/warfare/battlefield/capture_point/mid))
 									playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
+									to_chat(user, "\icon[src]<span class='danger'>ENGAGING ARTILLERY FIRE AT LOCATION: \n\icon[src]X coordinate[x], Y coordinate [y].\n")
+									to_chat(world, uppertext("<font size=5><b>INCOMING!! NO MAN'S LAND!!</b></font>"))
 									spawn(1 SECOND)
-										to_chat(user, "\icon[src]<span class='danger'>ENGAGING ARTILLERY FIRE AT LOCATION: \n\icon[src]X coordinate[x], Y coordinate [y].\n")
-										to_chat(world, uppertext("<font size=5><b>INCOMING!! NO MAN'S LAND!!</b></font>"))
-										for(var/i = 1, i<4, i++)
+										for(var/i = 1, i<3, i++) // it sounds nicer when its delayed.
 											sound_to(world, 'sound/effects/arty_distant.ogg')
-										credits -= costofartillery
-										playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
-										spawn(4 SECONDS)
-											artillery_barage(x,y)
+											sleep(50)
+									credits -= costofartillery
+									playsound(src.loc, 'sound/machines/rpf/sendmsgcargo.ogg', 100, 0)
+									spawn(8 SECONDS)
+										artillery_barage(x,y)
 								else
 									playsound(src.loc, 'sound/machines/rpf/denybeep.ogg', 100, 0.5)
 									to_chat(user, "\icon[src]The coordinates were invalid, <span class='warning'>Captain</span>.")
@@ -257,7 +258,7 @@
 				//to_chat(user, "\icon[src]PRODUCTS: [products]") // broken devmsg
 				if((selected_product=="-- Return --") && useable)
 					playsound(src.loc, "sound/machines/rpf/UI_labelselect.ogg", 100, 0.15)
-				else if(selected_product && useable)
+				else if(selected_product && useable && CanPhysicallyInteract(user))
 					playsound(src.loc, "sound/machines/rpf/press1.ogg", 100, 0.7)
 					var/pos1 = findtext(selected_product, "- ") + 2
 					var/pos2 = findtext(selected_product, " --")

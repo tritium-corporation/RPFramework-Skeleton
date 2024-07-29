@@ -139,33 +139,32 @@ proc/secondaryexplosion(turf/epicenter, range)
 
 
 proc/drop_mortar(turf/dropped, mortar)
-	spawn(1.5 SECONDS) // This is to make up for the fact that they all spawn faster now.
-		var/direction = pick(GLOB.cardinal)
-		var/turf/dropped_turf = get_step(dropped,direction)
-		var/thismortarnoise = pick('sound/effects/mortar_fallingalt.ogg', 'sound/effects/mortar_fallingalt2.ogg') // original: sound/effects/mortar_falling.ogg
-		var/thisexplosionsound = pick('sound/effects/mortarexplo1.ogg','sound/effects/mortarexplo2.ogg','sound/effects/mortarexplo3.ogg')
-		var/delay
-		playsound(dropped_turf, thismortarnoise, 100, FALSE)
-		var/obj/effect/shadow/S = new(dropped_turf)//Create a cool shadow effect for the bomb.
-		switch(thismortarnoise)
-			if('sound/effects/mortar_fallingalt.ogg') delay=3.9
-			if('sound/effects/mortar_fallingalt2.ogg') delay=2.25
-		spawn(delay SECONDS)
-			qdel(S)
-			if(mortar == "rflare") //They don't hit the ground.
-				new /obj/mortar/flare(dropped_turf)
-				return
-			if(mortar == "bflare")
-				new /obj/mortar/flare/blue(dropped_turf)
-				return
-			explosion(dropped_turf, 1,1,1,1, particles = TRUE, autosize = FALSE, sizeofboom = 2, large = TRUE, explosionsound = thisexplosionsound)
-
-			if(mortar == "shrapnel")
-				new /obj/mortar/frag(dropped_turf)
-			if(mortar == "gas")
-				new /obj/mortar/gas(dropped_turf)
-			if(mortar == "fire")
-				new /obj/mortar/fire(dropped_turf)
+	var/direction = pick(GLOB.cardinal)
+	var/turf/dropped_turf = get_step(dropped,direction)
+	var/thismortarnoise = pick('sound/effects/mortar_fallingalt.ogg', 'sound/effects/mortar_fallingalt2.ogg') // original: sound/effects/mortar_falling.ogg
+	var/delay
+	playsound(dropped_turf, thismortarnoise, 100, FALSE)
+	var/obj/effect/shadow/S = new(dropped_turf)//Create a cool shadow effect for the bomb.
+	switch(thismortarnoise)
+		if('sound/effects/mortar_fallingalt.ogg') delay=3.9
+		if('sound/effects/mortar_fallingalt2.ogg') delay=2.25
+	spawn(delay SECONDS)
+		qdel(S)
+		if(mortar == "rflare") //They don't hit the ground.
+			new /obj/mortar/flare(dropped_turf)
+			return
+		if(mortar == "bflare")
+			new /obj/mortar/flare/blue(dropped_turf)
+			return
+		explosion(dropped_turf, 1,1,1,1, particles = TRUE, autosize = FALSE, sizeofboom = 1, large = TRUE, explosionsound = pick('sound/effects/mortarexplo1.ogg','sound/effects/mortarexplo2.ogg','sound/effects/mortarexplo3.ogg'), farexplosionsound = pick('sound/effects/farexplonewnew1.ogg','sound/effects/farexplonewnew2.ogg','sound/effects/farexplonewnew3.ogg'))
+		spawn(5)
+			dropped_turf.overlays += image(icon='icons/turf/crater64.dmi',icon_state="dirt_shell_alt", dir=pick(GLOB.cardinal), layer = BASE_ABOVE_OBJ_LAYER, pixel_x = rand(-14,-16), pixel_y = rand(-14,-16))
+		if(mortar == "shrapnel")
+			new /obj/mortar/frag(dropped_turf)
+		if(mortar == "gas")
+			new /obj/mortar/gas(dropped_turf)
+		if(mortar == "fire")
+			new /obj/mortar/fire(dropped_turf)
 
 /obj/effect/shadow
 	name = "Shadow"
