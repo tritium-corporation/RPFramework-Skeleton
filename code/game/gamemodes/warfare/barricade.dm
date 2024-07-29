@@ -9,7 +9,7 @@
 	atom_flags = ATOM_FLAG_CHECKS_BORDER
 	var/health = 300
 	var/maxhealth = 300
-	var/secured
+	var/secured = FALSE
 
 /obj/structure/defensive_barrier/Initialize()
 	. = ..()

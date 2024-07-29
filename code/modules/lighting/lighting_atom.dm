@@ -132,9 +132,9 @@ if(loc != old_loc) {\
 		var/atom/movable/M = loc
 		if(light_range)
 			M.vis_contents |= light_new
-			vis_contents.Cut()
+			//vis_contents.Cut()
 		else
-			M.vis_contents.Cut()
+			//M.vis_contents.Cut()
 			M.update_light()
 
 
@@ -148,7 +148,8 @@ if(loc != old_loc) {\
 	. = ..()
 	if((light_new in vis_contents))//We have no light already, so get rid of it.
 		vis_contents -= light_new
-		user.vis_contents.Cut()
+		qdel(light_new)
+		//user.vis_contents.Cut()
 		user.update_light()
 	//update_light()
 
@@ -162,6 +163,6 @@ if(loc != old_loc) {\
 
 /obj/item/dropped(mob/user)
 	. = ..()
-	user.vis_contents.Cut()
+	//user.vis_contents.Cut()
 	user.update_light()
 	update_light()
