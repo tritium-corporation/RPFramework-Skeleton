@@ -236,7 +236,7 @@
 	l_pocket = /obj/item/storage/box/ifak
 	suit = /obj/item/clothing/suit/armor/redcoat
 	gloves = /obj/item/clothing/gloves/thick/swat/combat/warfare/red
-	back = /obj/item/storage/backpack/satchel/warfare/red
+	back = /obj/item/storage/backpack/satchel/warfare/
 	neck = /obj/item/reagent_containers/food/drinks/canteen
 	pda_type = null
 	id_type = /obj/item/card/id/dog_tag/red
