@@ -371,7 +371,7 @@
 						to_chat(user, "\icon[src]An UNKNOWN error has occured.")
 
 /obj/machinery/kaos/cargo_machine/red
-	name = "Cargo Machine"
+	name = "R.E.D Cargo Machine"
 	id = RED_TEAM
 	products = list(
 		// general ammo stuff
