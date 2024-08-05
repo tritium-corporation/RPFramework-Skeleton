@@ -10,24 +10,27 @@
 ///INTERACTIONS///
 
 /obj/item/grenade_box/attackby(obj/item/G as obj, mob/user as mob) //PUTTING GRENADES IN
-	if(open == FALSE)
+	if(!open)
 		to_chat(user,SPAN_WARNING("I can't use it when it's closed!"))
 
 	else if(istype(G,/obj/item/grenade))
 		insert_grenade(G,user)
 
 /obj/item/grenade_box/RightClick(mob/user) //Opening and closing
-	toggleopen()
+	if(CanInteract(user, GLOB.physical_state))
+		toggleopen()
 
 /obj/item/grenade_box/attack_hand(mob/living/carbon/human/user)
-	if(open == TRUE)
+	if(open)
 		remove_grenade(user)
 	else
 		..()
 
 ///PROCS///
 
-/obj/item/grenade_box/proc/update_sprite() //Updating the sprite to reflect the amount of grenades within
+/obj/item/grenade_box/update_icon()
+	. = ..()
+	//Updating the sprite to reflect the amount of grenades within
 	icon_state = "grenade_box_open[grenades.len]"
 
 /obj/item/grenade_box/proc/toggleopen() //Opening and closing - the specific proc
@@ -37,7 +40,7 @@
 			icon_state = "grenade_box"
 		if(FALSE)
 			open = TRUE
-			update_sprite()
+			update_icon()
 
 /obj/item/grenade_box/proc/insert_grenade(obj/item/G as obj, mob/user as mob) //Putting in grenades
 	if(grenades.len >= 5)
@@ -46,20 +49,21 @@
 		grenades.Add(G)
 		to_chat(user,SPAN_NOTICE("You put the [G.name] into the box."))
 		user.drop_item(G)
-		G.loc = src
-		update_sprite()
+		G.forceMove(src)
+		update_icon()
 
 
 
 /obj/item/grenade_box/proc/remove_grenade(mob/user as mob) //Taking out grenades
-	if(grenades.len == 0)
+	if(!grenades.len)
 		to_chat(user,SPAN_WARNING("It's empty. I can't remove nothing. What is wrong with me?"))
 	else
-		var/removal_target = pick(grenades)
+		var/last_grenade = grenades.len
+		var/removal_target = grenades[last_grenade]
 		to_chat(user,SPAN_NOTICE("You remove [removal_target] from the box."))
 		grenades.Remove(removal_target)
 		user.put_in_hands(removal_target)
-		update_sprite()
+		update_icon()
 
 
 
