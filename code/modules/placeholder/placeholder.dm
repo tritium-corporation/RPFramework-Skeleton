@@ -62,7 +62,7 @@
 			set_light(3, 3,"#ebc683")
 			if (pads.len < 0 | pads.len == null | pads.len == 0) // I WANT TO MAKE SURE IM SANE. SO I DID IT THREE TIMES.
 				set_light(3, 3,"#ebc683")
-				to_chat(src, "\icon[src]ERROR. NO CARGO PADS LOCATED. CONTACT R.E.D. ADMINISTRATOR.")
+				to_chat(src, "\icon[src]ERROR. NO CARGO PADS LOCATED. CONTACT YOUR SUPERIOR OFFICER.")
 				playsound(src.loc, 'sound/machines/rpf/harshdeny.ogg', 250, 0.5)
 				to_chat(user, "\icon[src]AMOUNT OF LINKED PADS: [pads.len]")
 			else
