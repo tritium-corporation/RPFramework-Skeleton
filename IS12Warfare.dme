@@ -1948,6 +1948,7 @@
 #include "code\modules\particle_lib\explosion.dm"
 #include "code\modules\particle_lib\particles.dm"
 #include "code\modules\particle_lib\screenfilters.dm"
+#include "code\modules\particle_lib\weather.dm"
 #include "code\modules\placeholder\placeholder.dm"
 #include "code\modules\power\apc.dm"
 #include "code\modules\power\batteryrack.dm"
