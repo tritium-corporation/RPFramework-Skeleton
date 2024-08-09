@@ -367,3 +367,29 @@
 	QDEL_NULL(falling_debris)
 	QDEL_NULL(dirt_kickup)
 	return ..()
+
+/particles/smokescreen
+	icon = 'icons/effects/particles/smokes_updated.dmi'
+	//icon_state = list("testsmoke" = 3, "smoke" = 2)
+	icon_state = "smokkum"
+	width = 750
+	height = 750
+	gradient = list("#dedadb", "#ededed")
+	count = 60
+	spawning = 6
+	//lifespan = generator(GEN_NUM, 1, 2.98, NORMAL_RAND)
+	lifespan = generator(GEN_NUM, 5, 10.98, NORMAL_RAND)
+	fade = 4
+	fadein = 3
+	//scale = generator(GEN_NUM, 1.5, 2, NORMAL_RAND)
+	position = generator(GEN_SPHERE, 16, 16)
+	color = generator(GEN_NUM, 0, 0.25)
+	rotation = generator(GEN_NUM, 0, 360, NORMAL_RAND)
+	spin = generator(GEN_NUM, 0.5, 1, NORMAL_RAND)
+	color_change = generator(GEN_NUM, 0.04, 0.05)
+	grow = generator(GEN_NUM, -0.01, -0.03, NORMAL_RAND)
+	//gravity = list(0, -1)
+
+/obj/effect/abstract/particle_holder/test
+	particles = new/particles/smokescreen
+	blend_mode = BLEND_OVERLAY

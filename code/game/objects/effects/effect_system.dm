@@ -170,9 +170,12 @@ steam.start() -- spawns the effect
 	mouse_opacity = 0
 	var/amount = 6.0
 	var/time_to_live = 200
+	var/fade_out_time = 20
+	var/fade_in_time = 10
 	plane = -5
 	layer = ABOVE_HUMAN_LAYER
-
+	alpha = 255
+	var/usesparticles = TRUE
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
@@ -180,12 +183,37 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	QDEL_IN(src, time_to_live)
+	/*if(usesparticles) // TEMPORARY FIX FOR COLORED SMOKE, DON'T FORGET TO IMPLEMENT THIS PROPERLY, ME!! - K
+		icon = 'icons/effects/particles/smokes_updated.dmi'
+		icon_state = "smokkum"
+		opacity = 0
+		spawn(25)
+			opacity = 1
+		pixel_step_size = 1 // this makes it glide
+		blend_mode = BLEND_OVERLAY // The redistani scientists claim that this makes it look better
+		if(!color)
+			particles = new/particles/smokescreen
+	*/
+	if(fade_in_time)
+		var/tothisalpha = alpha
+		alpha = 0
+		animate(src, alpha = tothisalpha, time = fade_in_time)
+	if(fade_out_time)
+		fadeoutqdel()
+	else
+		QDEL_IN(src, time_to_live)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
 	..()
 	if(istype(M))
 		affect(M)
+
+/obj/effect/effect/smoke/proc/fadeoutqdel()
+	QDEL_IN(src, time_to_live)
+	spawn(time_to_live-fade_out_time)
+		spawn(fade_out_time/2)
+			opacity = 0
+		animate(src, time = fade_out_time, alpha = 0)
 
 /obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
 	if (istype(M))
