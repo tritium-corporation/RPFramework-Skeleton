@@ -183,22 +183,21 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	/*if(usesparticles) // TEMPORARY FIX FOR COLORED SMOKE, DON'T FORGET TO IMPLEMENT THIS PROPERLY, ME!! - K
+	if(usesparticles) // TEMPORARY FIX FOR COLORED SMOKE, DON'T FORGET TO IMPLEMENT THIS PROPERLY, ME!! - K
 		icon = 'icons/effects/particles/smokes_updated.dmi'
 		icon_state = "smokkum"
 		opacity = 0
-		spawn(25)
+		spawn(25) // this just makes it so the black void doesn't appear instantly as it begins moving, and rather as it reaches its stepping destination or whatever LMAO
 			opacity = 1
-		pixel_step_size = 1 // this makes it glide
-		blend_mode = BLEND_OVERLAY // The redistani scientists claim that this makes it look better
-		if(!color)
+		pixel_step_size = 1 // this makes it glide nicer, it doesnt look like its taking a step
+		blend_mode = BLEND_OVERLAY // The redistani scientists claim that this makes it look better, unknown whether true
+		if(!color) // I gotta figure out making a seperate variant that can be colored, for now its disabled if the thing is colored
 			particles = new/particles/smokescreen
-	*/
-	if(fade_in_time)
+	if(fade_in_time) // YAY, WE CAN FADE IN NOW
 		var/tothisalpha = alpha
 		alpha = 0
 		animate(src, alpha = tothisalpha, time = fade_in_time)
-	if(fade_out_time)
+	if(fade_out_time) // YAY WE CAN FADE OUT NOW
 		fadeoutqdel()
 	else
 		QDEL_IN(src, time_to_live)
