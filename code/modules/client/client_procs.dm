@@ -210,6 +210,9 @@
 
 	screen += tooltip
 
+/client
+	var/obj/hovered_obj = null
+
 /client/MouseEntered(atom/object, location, control, params)
 	if (tooltip)
 		screen |= tooltip
@@ -227,7 +230,10 @@
 					tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\">[uppertext(object.name)]</span></center></b>"
 			else
 				tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\">[uppertext(object.name)]</span></center></b>"
-
+		if(istype(object, /obj/))
+			hovered_obj = object
+		else
+			hovered_obj = null
 
 //////////////
 //DISCONNECT//

@@ -331,6 +331,11 @@ h1.alert, h2.alert		{color: #ffffff;}
 
 .reflex_shoot			{color: #000099; font-style: italic;}
 
+/* Phone talk */
+
+.phonespeaker			{color: #773f88; text-shadow: 0 0 7px #624a68;}
+.phonetext				{color: #8f5d9e; font-weight: bold; text-shadow: 0 0 7px #47374b;}
+
 /* Languages */
 
 .alien					{color: #543354;}

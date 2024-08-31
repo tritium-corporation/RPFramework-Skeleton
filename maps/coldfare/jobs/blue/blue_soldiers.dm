@@ -193,6 +193,10 @@
 		H.voice_in_head(pick(GLOB.lone_thoughts))
 		to_chat(H, "<b>Artillery Password</b>: [GLOB.cargo_password]")
 		H.mind.store_memory("<b>Artillery Password</b>: [GLOB.cargo_password]")
+		for(var/obj/structure/phone/phone in GLOB.phone_list)
+			if(phone.phonename == RED_TEAM)
+				to_chat(H, "<b>Enemy captain's phone number</b>: [phone.fullphonenumber]")
+				H.mind.store_memory("<b>Enemy captain's phone number</b>: [phone.fullphonenumber]")
 		H.say(";[H.real_name] [pick("taking","in")] command!")
 
 /datum/job/soldier/blue_soldier/scout
