@@ -22,6 +22,7 @@
 
 #define LANGUAGE_RED  "Redenese"
 #define LANGUAGE_BLUE "Bluesnian"
+#define LANGUAGE_DIPLOMATIC "Diplomatic Standard"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.
