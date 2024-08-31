@@ -97,7 +97,7 @@
 	icon_state = ""
 	alpha = 255
 	particles = new/particles/dust
-	screen_loc = "CENTERF(),CENTER"
+	screen_loc = "CENTER,CENTER"
 
 /obj/screen/fullscreen/blackout
 	icon = 'icons/mob/screen1.dmi'
