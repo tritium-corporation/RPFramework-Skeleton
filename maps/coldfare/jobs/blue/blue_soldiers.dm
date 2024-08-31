@@ -3,7 +3,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/bluesoldier/soldier
 	is_blue_team = TRUE
 	selection_color = "#76abb2"
-
+	supervisors = "the president, the chain of command, and the drums of war"
 	auto_rifle_skill = 10
 	semi_rifle_skill = 7
 	sniper_skill = 3
@@ -194,6 +194,8 @@
 		to_chat(H, "<b>Artillery Password</b>: [GLOB.cargo_password]")
 		H.mind.store_memory("<b>Artillery Password</b>: [GLOB.cargo_password]")
 		H.say(";[H.real_name] [pick("taking","in")] command!")
+		H.add_language(LANGUAGE_DIPLOMATIC)
+		to_chat(H,SPAN_NOTICE("You are fluent in <u>Diplomatic Standard</u>, allowing you to communicate with the opposing captain. <b>Check the language tab for more details.</b>"))
 
 /datum/job/soldier/blue_soldier/scout
 	title = "Blue Scavenger"
@@ -214,7 +216,7 @@
 	shotgun_skill = 1
 	lmg_skill = 1
 	smg_skill = 1
-
+	supervisors = "adults and your very cool country"
 	announced = FALSE
 
 	equip(mob/living/carbon/human/H)
