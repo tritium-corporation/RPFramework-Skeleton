@@ -472,14 +472,20 @@
 /obj/item/landmine
 	name = "landmine"
 	desc = "Use it to place a landmine in front of you. Beee careful..."
+	density = TRUE
 	icon = 'icons/obj/warfare.dmi'
 	icon_state = "mine_item"
 
+/obj/item/landmine/CanPass(atom/movable/mover, turf/target, height, air_group)
+	return TRUE
 
 /obj/item/landmine/attack_self(var/mob/user)
 	var/turf/T = get_step(user, user.dir)
 	if(T)
 		if(isopenspace(T))
+			return
+		if(turf_contains_dense_objects(T) || iswall(T)) //no 20 structures of barbed wire in one tile/in walls
+			to_chat(H, "There's already something there!")
 			return
 		visible_message("[user] begins to place the mine!")
 		if(do_after(user, 20))
@@ -635,3 +641,138 @@
 
 /obj/structure/banner/blue/small
 	icon_state = "bluesmall"
+
+/obj/structure/factionbanner
+	name = "faction banner"
+	desc = "Raise it, or die trying.<br>Portable now, too!<br><b>Left click to raise<br>Right click to lower</b>"
+	icon = 'icons/obj/32x64.dmi'
+	icon_state = "flag1"
+	density = TRUE
+	anchored = TRUE
+	plane = ABOVE_HUMAN_PLANE
+	layer = ABOVE_HUMAN_LAYER
+	var/progress = 1
+	var/mob/living/carbon/human/lastuser // forgive me lord
+	var/currentfaction
+	var/sound_id
+	var/datum/sound_token/sound_token
+
+/obj/structure/factionbanner/CanPass(atom/movable/mover, turf/target, height, air_group)
+	return TRUE
+
+/obj/structure/factionbanner/update_icon() // not just for updating icons.. I'm sorry, fellow coders.
+	. = ..()
+	QDEL_NULL(sound_token)// just incase.
+	currentfaction = null
+	// just gonna place this here as a small sanity thing + it gets called anytime it gets changed so yeah
+	if(progress>4 || 0>=progress) // it just hard resets it to 1 if multiple people were to try to raise it or lower it
+		progress = 1
+	if(progress == 4)
+		icon_state = "flag3"
+	else
+		icon_state = "flag[progress]"
+	overlays.Cut()
+	if(progress == 4)
+		if(lastuser.warfare_faction == RED_TEAM)
+			START_PROCESSING(SSprocessing, src)
+			sound_token = sound_player.PlayLoopingSound(src, sound_id, 'sound/ambience/space_loop.ogg', volume = 75, range = 4, falloff = 0.5, prefer_mute = TRUE, ignore_vis = TRUE)
+			overlays += "redbanner"
+			currentfaction = RED_TEAM
+		else
+			START_PROCESSING(SSprocessing, src)
+			sound_token = sound_player.PlayLoopingSound(src, sound_id, 'sound/ambience/space_loop.ogg', volume = 75, range = 4, falloff = 0.5, prefer_mute = TRUE, ignore_vis = TRUE)
+			overlays += "bluebanner"
+			currentfaction = BLUE_TEAM
+
+/obj/structure/factionbanner/New() // I PROMISE this makes it look nicer
+	. = ..()
+	pixel_x = rand(0,6)
+	pixel_y = rand(-4,-6)
+	sound_id = "[type]_[sequential_id(type)]"
+
+/obj/structure/factionbanner/attack_hand(mob/living/user)
+	. = ..()
+	if(CanPhysicallyInteract(user))
+		if(progress<4 && progress>0 && !user.doing_something)
+			user.doing_something = TRUE
+			if(do_after(user, 45)) // I like odd numbers
+				progress++
+				playsound(src.loc, "sound/effects/teleextend[progress].ogg", 85, 1)
+				update_icon()
+				lastuser = user
+				user.doing_something = FALSE
+				return
+			else
+				user.doing_something = FALSE
+				return
+
+/obj/structure/factionbanner/RightClick(mob/living/user)
+	. = ..()
+	if(CanPhysicallyInteract(user))
+		if(progress==1 && !user.doing_something)
+			user.doing_something = TRUE
+			if(do_after(user, 60))
+				playsound(src.loc, "sound/effects/teleretract[progress].ogg", 85, 1)
+				user.doing_something = FALSE
+				new /obj/item/melee/classic_baton/factionbanner(loc)
+				qdel(src)
+				return
+			else
+				user.doing_something = FALSE
+				return
+		if(progress<=4 && progress>0 && !user.doing_something)
+			user.doing_something = TRUE
+			if(do_after(user, 30))
+				progress--
+				update_icon()
+				playsound(src.loc, "sound/effects/teleretract[progress].ogg", 85, 1)
+				lastuser = user
+				user.doing_something = FALSE
+				if(is_processing)
+					STOP_PROCESSING(SSprocessing, src)
+				return
+			else
+				user.doing_something = FALSE
+				return
+
+/obj/structure/factionbanner/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(user.warfare_faction == currentfaction)
+		to_chat(user, "This is your flag! Go [user.warfare_faction]!")
+
+/obj/structure/factionbanner/Process()
+	for(var/mob/living/carbon/human/H in range(4, src))
+		to_chat(H, "You are in the radius")
+		if(H.warfare_faction == currentfaction)
+			to_chat(H, "faction good")
+			H.add_event("banner boost", /datum/happiness_event/banner_boost) // YOU ARE SAD, YOU ARE HAPPY, YOU ARE sad // Please fix.. i dont like the spam..
+			// if you cant fix it, stuff, make it give some other kind of boost maybe? idk.. like pain tolerance or smth?
+
+/obj/item/melee/classic_baton/factionbanner
+	name = "Flagpole"
+	desc = "Use it to place your faction's flagpole in front of you. Show them what you're really fighting for!<br>Also doubles as a melee weapon, cool!"
+	icon_state = "metal-rod"
+	item_state = "telebaton_0"
+	w_class = ITEM_SIZE_NORMAL // It's foldable.. but still!
+	force = 7
+	block_chance = 10
+
+/obj/item/melee/classic_baton/factionbanner/attack_self(mob/living/user)
+	if(CanPhysicallyInteract(user))
+		var/turf/T = get_step(user, user.dir)
+		if(T && !user.doing_something)
+			if(isopenspace(T))
+				return
+			if(turf_contains_dense_objects(T) || iswall(T)) //no 20 structures of barbed wire in one tile/in walls
+				to_chat(H, "There's already something there!")
+				return
+			visible_message("[user] begins to place the faction banner!")
+			user.doing_something = TRUE
+			if(do_after(user, 60))
+				playsound(T, "sound/effects/teleextend[rand(2,3)].ogg", 85, 1)
+				user.doing_something = FALSE
+				qdel(src)
+				new /obj/structure/factionbanner(T)
+			else
+				user.doing_something = FALSE
+				return

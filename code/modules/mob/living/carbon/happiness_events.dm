@@ -176,6 +176,11 @@
 	happiness = 12
 	timeout = 1800
 
+/datum/happiness_event/banner_boost
+	description = "<span class='binfo'>I am proud to fight for my nation! This banner fills me with hope!</span>\n"
+	happiness = 16 // This only happens around the banner, and if your faction matches it.
+	timeout = 10 SECONDS // Yeah, this shouldn't last long outside of the banner's radius
+
 // Addiction Events
 
 /datum/happiness_event/addiction/withdrawal_small
