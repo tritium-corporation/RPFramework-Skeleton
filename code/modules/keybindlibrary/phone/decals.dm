@@ -1,6 +1,6 @@
 /obj/effect/phone_line
 	name = "Phone line"
-	desc = "A... huh.. I won't even comment on that.."
+	desc = "Who would even talk to each other here?"
 	anchored = TRUE
 	plane = ABOVE_TURF_PLANE
 	layer = BELOW_DOOR_LAYER

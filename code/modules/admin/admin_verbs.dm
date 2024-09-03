@@ -99,7 +99,8 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/ToggleCkeyWhitelist,
 	/datum/admins/proc/ReloadCkeyWhitelist,
 	/datum/admins/proc/toggle_panic_bunker,
-	/datum/admins/proc/force_aspect
+	/datum/admins/proc/force_aspect,
+	/client/proc/become_phone_operator
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
