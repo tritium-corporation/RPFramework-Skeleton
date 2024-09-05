@@ -40,14 +40,22 @@
 	appearance_flags = RESET_ALPHA | RESET_TRANSFORM | LONG_GLIDE | KEEP_APART  // We generally don't want the light being touched by the transform/alpha of the attached object.
 	var/scale_amount = 1
 
+
+
 /mob
 	var/tmp/obj/screen/plane_master/master_plane
 	var/tmp/obj/plane/darkness/darkness_plane
+
+/mob/proc/update_lighting()
+	client.screen.Remove(master_plane,darkness_plane)
+	darkness_plane = new()
+	client.screen.Add(master_plane,darkness_plane)
 
 /mob/Login()
 	..()
 	// First we create the two planes, then the light object.
 	// And throw the planes onto the screen
+
 	darkness_plane = new()
 	master_plane = new()
 	client.screen.Add(master_plane,darkness_plane)

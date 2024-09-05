@@ -1176,6 +1176,8 @@
 
 	add_teeth()
 
+	update_lighting() // warftwo change - children no longer see mat_fullbright 1
+
 	return 1
 
 /mob/living/carbon/human/proc/bloody_doodle()

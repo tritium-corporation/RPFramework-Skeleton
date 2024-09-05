@@ -52,8 +52,8 @@
 				I.showoff(src.mob)
 				return
 			*/
-		keyRelease(key as text) // TO-DO, figure out how to make it so we can check if we're holding shif whilst typing! ^v^
-			set instant = 1, hidden = 1
+	//	keyRelease(key as text) // TO-DO, figure out how to make it so we can check if we're holding shif whilst typing! ^v^
+	//		set instant = 1, hidden = 1
 			//to_chat(usr, "[ckey] -[key] up") //(DEBUG)
 
 // NOTE: RADIO USES A ATOM PROC!! HENCE WHY ITS NOT HERE!!
