@@ -22,17 +22,18 @@
 		..(P, def_zone)
 
 /obj/structure/curtain/attack_hand(mob/user)
-	playsound(get_turf(loc), "rustle", 15, 1, -5)
 	toggle()
 	..()
 
 /obj/structure/curtain/proc/toggle()
 	set_opacity(!opacity)
 	if(opacity)
+		playsound(get_turf(loc), 'sound/effects/teleretract3.ogg', 25, 1, -5)
 		icon_state = "closed"
 		plane = ABOVE_HUMAN_PLANE
 		layer = ABOVE_WINDOW_LAYER
 	else
+		playsound(get_turf(loc), 'sound/effects/teleextend4.ogg', 25, 1, -5)
 		icon_state = "open"
 		plane = ABOVE_HUMAN_PLANE
 		layer = ABOVE_HUMAN_LAYER

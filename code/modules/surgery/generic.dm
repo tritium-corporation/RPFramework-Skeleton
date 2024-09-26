@@ -281,6 +281,7 @@
 	var/datum/wound/cut/W = affected.get_incision()
 	user.visible_message("<span class='notice'>[user] cauterizes[W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool].</span>", \
 	"<span class='notice'>You cauterize[W ? " \a [W.desc] on" : ""] \the [target]'s [affected.name] with \the [tool].</span>")
+	playsound(get_turf(target), 'sound/effects/gore/sear.ogg', 75)
 	if(W)
 		W.close()
 	if(affected.is_stump())

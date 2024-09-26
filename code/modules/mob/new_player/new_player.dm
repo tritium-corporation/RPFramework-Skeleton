@@ -76,15 +76,15 @@
 
 	if(statpanel("Lobby") && ticker)
 		if(check_rights(R_INVESTIGATE, 0, src))
-			stat("Game Mode:", "[ticker.mode || master_mode][ticker.hide_mode ? " (Secret)" : ""]")
+			stat("<b>Game Mode:</b>", "[ticker.mode || master_mode][ticker.hide_mode ? " (Secret)" : ""]")
 		else
-			stat("Game Mode:", PUBLIC_GAME_MODE)
+			stat("<b>Game Mode:</b>", PUBLIC_GAME_MODE)
 		var/extra_antags = list2params(additional_antag_types)
-		stat("Added Antagonists:", extra_antags ? extra_antags : "None")
+		//stat("Added Antagonists:", extra_antags ? extra_antags : "None")
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
+			stat("<b>Time To Start:</b>", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+			stat("<b>Players:</b> [totalPlayers]", "")//"Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in GLOB.player_list)

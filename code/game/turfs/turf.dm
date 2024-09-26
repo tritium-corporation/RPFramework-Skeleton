@@ -322,20 +322,55 @@ var/const/enterloopsanity = 100
 			M.turf_collision(src, speed)
 
 /turf/proc/generate_splines()
-	for(var/direction in GLOB.cardinal)
-		var/turf/turf_to_check = get_step(src,direction)
-		if(istype(turf_to_check, /turf/simulated/open))
-			var/image/I = image('icons/turf/flooring/shadows.dmi', "spline", dir = turn(direction, 180))
-			I.turf_decal_layerise()
+    for(var/direction in GLOB.alldirs)
+        var/turf/turf_to_check = get_step(src,direction)
+        if(istype(turf_to_check, /turf/simulated/open))
 
-			switch(direction)
-				if(NORTH)
-					I.pixel_y += (world.icon_size)
-				if(SOUTH)
-					I.pixel_y -= (world.icon_size)
-				if(EAST)
-					I.pixel_x += (world.icon_size)
-				if(WEST)
-					I.pixel_x -= (world.icon_size)
+            var/obj/effect/spline/I = new()
+            var/matrix/M = matrix()
 
-			overlays += I
+            var/translate_x = 0
+            var/translate_y = 0
+            I.dir = reverse_direction(direction)
+
+            switch(direction)
+                if(NORTH)
+                    translate_y += (world.icon_size)
+                if(SOUTH)
+                    translate_y -= (world.icon_size)
+                if(EAST)
+                    translate_x += (world.icon_size)
+                if(WEST)
+                    translate_x -= (world.icon_size)
+                if(NORTHWEST)
+                    if(istype(get_step(src,NORTH), /turf/simulated/open) && istype(get_step(src,WEST), /turf/simulated/open))  //Ugly.
+                        translate_x -= (world.icon_size)
+                        translate_y += (world.icon_size)
+                if(SOUTHWEST)
+                    if(istype(get_step(src,SOUTH), /turf/simulated/open) && istype(get_step(src,WEST), /turf/simulated/open))  //Ugly.
+                        translate_x -= (world.icon_size)
+                        translate_y -= (world.icon_size)
+                if(NORTHEAST)
+                    if(istype(get_step(src,NORTH), /turf/simulated/open) && istype(get_step(src,EAST), /turf/simulated/open))  //Ugly.
+                        translate_x += (world.icon_size)
+                        translate_y += (world.icon_size)
+                if(SOUTHEAST)
+                    if(istype(get_step(src,SOUTH), /turf/simulated/open) && istype(get_step(src,EAST), /turf/simulated/open)) //Ugly.
+                        translate_x += (world.icon_size)
+                        translate_y -= (world.icon_size)
+                else
+                    continue
+            if(translate_x == 0 && translate_y == 0)
+                continue
+
+            vis_contents += I
+            M.Translate(translate_x, translate_y)
+            I.transform = M
+
+/obj/effect/spline
+    name = "spline"
+    icon = 'icons/turf/flooring/shadows.dmi'
+    icon_state = "spline"
+    plane = FLOAT_PLANE
+    layer = FLOAT_LAYER
+    vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID

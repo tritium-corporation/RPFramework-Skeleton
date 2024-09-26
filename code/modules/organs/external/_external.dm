@@ -765,7 +765,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
-			var/severed_sound = pick('sound/effects/gore/chop2.ogg', 'sound/effects/gore/chop3.ogg', 'sound/effects/gore/chop4.ogg')
+			var/severed_sound = pick('sound/effects/gore/chop.ogg','sound/effects/gore/chop2.ogg', 'sound/effects/gore/chop3.ogg', 'sound/effects/gore/chop4.ogg','sound/effects/gore/chop5.ogg','sound/effects/gore/chop6.ogg')
 			if(!clean)
 				var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "tortured metal" : "ripping tendons and flesh"]"
 				owner.visible_message(
@@ -775,7 +775,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				playsound(owner, severed_sound, 100, 0)
 
 			else
-				playsound(owner, 'sound/effects/gore/severed.ogg', 100, 0)
+				playsound(owner, severed_sound, 100, 0) // maybe a diff one?
 
 			if(owner.can_feel_pain() && prob(50))
 				owner.agony_scream()

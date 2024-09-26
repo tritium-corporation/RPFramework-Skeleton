@@ -19,7 +19,7 @@
 	force = 20
 	sharp = 1
 	attack_verb = list ("stabbed", "sliced")
-	hitsound = "stab_sound"
+	hitsound = "bayonet_stab"
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/bayonet/New()
 	..()
@@ -110,7 +110,7 @@
 	force = 20
 	sharp = 1
 	attack_verb = list ("stabbed", "sliced")
-	hitsound = "stab_sound"
+	hitsound = "bayonet_stab"
 
 /obj/item/gun/projectile/shotgun/pump/shitty/bayonet/New()
 	..()

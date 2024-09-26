@@ -124,7 +124,7 @@
 	randpixel = 0
 	var/projectile_type = /obj/item/projectile
 
-	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
+	var/list/mob_hit_sound = list('sound/effects/gore/bullethit1.ogg', 'sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg', 'sound/effects/gore/bullethit4.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
 	var/wall_hitsound = "hitwall"
 	var/list/armor_hit_sound = list('sound/effects/gore/armorhit1.ogg', 'sound/effects/gore/armorhit2.ogg','sound/effects/gore/armorhit3.ogg','sound/effects/gore/armorhit4.ogg')
 	var/list/helmet_hit_sound = list('sound/effects/gore/helmhit1.ogg', 'sound/effects/gore/helmhit2.ogg','sound/effects/gore/helmhit3.ogg','sound/effects/gore/helmhit4.ogg','sound/effects/gore/helmhit5.ogg')

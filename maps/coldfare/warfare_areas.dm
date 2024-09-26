@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 	if(istype(L) && !istype(A, /area/warfare/battlefield))
 		L.clear_fullscreen("fog")
 		L.clear_fullscreen("ash")
+		L.clear_fullscreen("ashparticle")
 
 /area/warfare/battlefield/no_mans_land
 	name = "\improper No Man\'s Land"

@@ -149,6 +149,12 @@
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
 
+/turf/simulated/floor/concrete
+	name = "concrete"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "concrete"
+	initial_flooring = /decl/flooring/concrete
+
 /turf/simulated/floor/reinforced/airless
 	initial_gas = null
 

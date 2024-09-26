@@ -654,7 +654,8 @@ meteor_act
 	kickdam *= strToDamageModifier(user.my_stats[STAT(str)].level)
 	user.adjustStaminaLoss(rand(10,15))//Kicking someone is a big deal.
 	if(kickdam)
-		playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
+		var/kicksound = pick('sound/effects/gore/smash1.ogg','sound/effects/gore/smash2.ogg','sound/effects/gore/smash3.ogg')
+		playsound(user.loc, kicksound, 65, 0.5)//playsound(user.loc, 'sound/weapons/kick.ogg', 50, 0)
 		apply_damage(kickdam, BRUTE, hit_zone, armour)
 		user.visible_message("<span class=danger>[user] kicks [src] in the [affecting.name]!<span>")
 		admin_attack_log(user, src, "Has kicked [src]", "Has been kicked by [user].")

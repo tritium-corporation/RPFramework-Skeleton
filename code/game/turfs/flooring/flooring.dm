@@ -255,3 +255,10 @@ var/list/flooring_types
 	icon = 'icons/turf/floors.dmi'
 	icon_base = "diona"
 	flags = TURF_ACID_IMMUNE | TURF_REMOVE_SHOVEL
+
+/decl/flooring/concrete
+	name = "concrete"
+	icon = 'icons/turf/floors.dmi'
+	icon_base = "concrete"
+	build_type = null
+	flags = TURF_ACID_IMMUNE

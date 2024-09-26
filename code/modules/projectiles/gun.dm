@@ -522,8 +522,13 @@
 
 	mouthshoot = 1
 	M.visible_message("<span class='danger'>[user] sticks their gun in their mouth, ready to pull the trigger...</span>")
-	if(!do_after(user, 40, progress=0))
+	if(!do_after(user, 40))
 		M.visible_message("<span class='notice'>[user] decided life was worth living</span>")
+		mouthshoot = 0
+		return
+	if(safety) // gotta put this here so it make the bullet fall out comedy-sketch-style lmao
+		handle_click_empty(user)
+		user.show_message("<span class = 'warning'>You feel rather silly, realizing just now that the safety was on..")
 		mouthshoot = 0
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()

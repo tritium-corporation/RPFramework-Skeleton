@@ -278,6 +278,30 @@
 	filling_states = "15;30;50;70;85;100"
 	base_icon = "pitcher"
 
+/obj/item/reagent_containers/food/drinks/leadpoisoning
+	name = "metallic teacup"
+	desc = "Everyone's best friend in the morning."
+	icon_state = "leadcup"
+	volume = 30
+	amount_per_transfer_from_this = 10
+	center_of_mass = "x=0;y=8"
+	filling_states = "50;100"
+	New()
+		..()
+		reagents.add_reagent(/datum/reagent/drink/tea, 30)
+
+/obj/item/reagent_containers/food/drinks/leadpoisoningalt
+	name = "metallic teacup"
+	desc = "Everyone's best friend in the morning."
+	icon_state = "leadcup_alt"
+	volume = 30
+	amount_per_transfer_from_this = 10
+	center_of_mass = "x=0;y=8"
+	filling_states = "50;100"
+	New()
+		..()
+		reagents.add_reagent(/datum/reagent/drink/tea, 30)
+
 /obj/item/reagent_containers/food/drinks/flask
 	name = "\improper Captain's flask"
 	desc = "A metal flask belonging to the captain."

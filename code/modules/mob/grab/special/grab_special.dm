@@ -73,7 +73,9 @@
 	var/obj/item/organ/external/O = G.get_targeted_organ()
 	var/mob/living/carbon/human/assailant = G.assailant
 	var/mob/living/carbon/human/affecting = G.affecting
-
+	assailant.doing_something = TRUE // can't spam use the bone breakage anymore.
+	if(assailant.doing_something)
+		return
 	if(!O)
 		to_chat(assailant, "<span class='warning'>[affecting] is missing that body part!</span>")
 		return
@@ -82,12 +84,14 @@
 		return
 
 	if(!do_after(assailant, 30, affecting))
+		assailant.doing_something = FALSE
 		return
 
 
 	if(!O.is_broken()) // The limb is broken and we're grabbing it in both hands.
 		assailant.visible_message("<span class='danger'>[assailant] tries to break [affecting]'s [O.name]!</span>")
 		var/break_chance = (assailant.STAT_LEVEL(str)*10) - 105 // We have to have a strength over 12 to really have a chance of breaking a limb.
+		assailant.doing_something = FALSE
 		if(break_chance <= 0)
 			break_chance = 10
 		if(prob(break_chance))

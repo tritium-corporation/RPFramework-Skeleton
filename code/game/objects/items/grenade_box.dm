@@ -5,9 +5,15 @@
 	icon = 'icons/obj/warfare.dmi'
 	icon_state = "grenade_box"
 	var/list/grenades = list()
+	var/obj/whitelisteditem
 	var/open = FALSE
+	w_class = ITEM_SIZE_LARGE
 
 ///INTERACTIONS///
+
+/obj/item/grenade_box/examine(mob/user, distance)
+	. = ..()
+	to_chat(user, "LEFT CLICK TO TAKE OUT WHATEVER IS INSIDE (IF OPEN) | ELSE, IF IT'S CLOSED, YOU'LL JUST PICK IT UP!\nRIGHT CLICK TO OPEN IT! ALLOWING YOU TO TAKE OUT WHATEVER IS INSIDE!")
 
 /obj/item/grenade_box/attackby(obj/item/G as obj, mob/user as mob) //PUTTING GRENADES IN
 	if(!open)
@@ -43,8 +49,10 @@
 			update_icon()
 
 /obj/item/grenade_box/proc/insert_grenade(obj/item/G as obj, mob/user as mob) //Putting in grenades
+	if(!istype(G,whitelisteditem))
+		to_chat(user,"The box won't fit that inside..")
 	if(grenades.len >= 5)
-		to_chat(user,"The box is full. I can't fit the grenade in.")
+		to_chat(user,"The box is full. I can't fit \the [G] in.")
 	else
 		grenades.Add(G)
 		to_chat(user,SPAN_NOTICE("You put the [G.name] into the box."))
@@ -74,13 +82,22 @@
 // There is likley a more efficent way to do these lists. However it is 22:32 and it simply eludes me. Do tell me if said efficent method does exist. - Stuff
 /obj/item/grenade_box/frags
 	grenades = list(new /obj/item/grenade/frag, new /obj/item/grenade/frag, new /obj/item/grenade/frag, new /obj/item/grenade/frag, new /obj/item/grenade/frag)
+	whitelisteditem = /obj/item/grenade/frag
 
 /obj/item/grenade_box/smoke
 	name = "Smoke Grenade Box"
 	grenades = list(new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb)
+	whitelisteditem = /obj/item/grenade/smokebomb
 
 /obj/item/grenade_box/supermatter //Spawn when admins want to Nixon all over the Wafare. - Stuff
 	name = "SUPERMATTER GRENADE BOX"
 	desc = "COURTESY OF PRESIDENT RICHARD. M. NIXON.<br>KEEP FIGHTING THE GOOD FIGHT!"
 	grenades = list(new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter)
+	whitelisteditem = /obj/item/grenade/supermatter
 
+/obj/item/grenade_box/trench_bridge //It's finally here, FINALLY
+	name = "TRENCH BRIDGE BOX"
+	desc = "COURTESY OF R.E.D. LUMBER"
+	grenades = list(new /obj/item/bridge, new /obj/item/bridge, new /obj/item/bridge, new /obj/item/bridge, new /obj/item/bridge)
+	whitelisteditem = /obj/item/bridge
+	w_class = ITEM_SIZE_HUGE

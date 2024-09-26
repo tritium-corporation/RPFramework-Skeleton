@@ -39,6 +39,24 @@
 	animate(src, alpha=0, time=10) //let's pretend there is no better way to do this shit
 	..()
 
+/obj/screenfilter/storm
+	mouse_opacity = 0
+	screen_loc = "CENTER"
+	particles = new/particles/storm
+
+/obj/screenfilter/storm/Fade()
+	animate(src, alpha=0, time=10)
+	..()
+
+/obj/screenfilter/raindrop
+	mouse_opacity = 0
+	screen_loc = "CENTER"
+	particles = new/particles/storm
+
+/obj/screenfilter/raindrop/Fade()
+	animate(src, alpha=0, time=10)
+	..()
+
 /obj/screenfilter/proc/Fade() //cool fading effect
 	qdel(src)
 

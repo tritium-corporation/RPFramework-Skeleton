@@ -921,31 +921,33 @@ default behaviour is:
 		. += 30
 
 /mob/living/proc/toggle_crouch()
+	var/mob/living/carbon/human/H = src
 	if(lying)//No crouching while you're lying down please.
 		return
 
 	if(!crouching)
 		to_chat(src, "<span class='binfo'>You crouch low.")
 		if(istype(loc, /turf/simulated/floor/trench))
-			pixel_y = -12
-			for(var/obj/effect/trench/mask/mask in vis_contents)
-				mask.pixel_y = -18
+			if(!locate(/obj/structure/bridge, get_turf(src)))
+				pixel_y = -12
+				for(var/obj/effect/trench/mask/mask in vis_contents)
+					mask.pixel_y = -18
 		if(zoomed)//Can't zoom in if you're crouching behind cover.
 			do_zoom()
-		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
-			H.add_crouching()
+		H.add_crouching()
 		crouching = TRUE
-
 	else
+		if(H.plane == LYING_HUMAN_PLANE && locate(/obj/structure/bridge, get_turf(src))) // Please do not stand up while you under bridge thank you.
+			var/obj/item/organ/external/head/head = H.get_organ("head")
+			playsound(src,pick(GLOB.swing_hit_sound), 100, 1)
+			H.custom_pain("[pick("OW", "OUCH", "DANG")]!!! You hit your head on the bridge!",rand(5, 15),affecting = head)
+			return
 		to_chat(src, "<span class='binfo'>You stand up.</span>")
 		if(istype(loc, /turf/simulated/floor/trench))
 			pixel_y = -8
 			for(var/obj/effect/trench/mask/mask in vis_contents)
 				mask.pixel_y = -21
-		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
-			H.remove_crouching()
+		H.remove_crouching()
 		crouching = FALSE
 
 /mob/living/verb/toggle_crouching()

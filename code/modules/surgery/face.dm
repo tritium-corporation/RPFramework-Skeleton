@@ -139,6 +139,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] cauterizes the incision on [target]'s face and neck with \the [tool].</span>", \
 	"<span class='notice'>You cauterize the incision on [target]'s face and neck with \the [tool].</span>")
+	playsound(get_turf(target), 'sound/effects/gore/sear.ogg', 75)
 	if (target.op_stage.face == 3)
 		var/obj/item/organ/external/head/h = affected
 		h.disfigured = 0

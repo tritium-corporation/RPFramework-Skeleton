@@ -30,6 +30,12 @@
 	desc = "Looks much stronger than a paper sheet."
 	integrity = 7500
 
+/turf/simulated/wall/concrete/strong/oldcrete
+	icon = 'icons/turf/oldcrete.dmi'
+
+/turf/simulated/wall/concrete/oldcrete
+	icon = 'icons/turf/oldcrete.dmi'
+
 /turf/simulated/wall/rust
 	desc = "An old rusty wall. It's definitely seen better days."
 	icon_state = "rust0"

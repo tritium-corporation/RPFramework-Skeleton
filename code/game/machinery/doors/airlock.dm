@@ -449,6 +449,26 @@
 	icon = 'icons/obj/doors/Doorgold.dmi'
 	mineral = "gold"
 
+/obj/machinery/door/airlock/bunker
+	name = "Door"
+	icon = 'icons/obj/doors/bunkerdoor_grey.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+
+/obj/machinery/door/airlock/bunker/red
+	name = "Door"
+	icon = 'icons/obj/doors/bunkerdoor_red.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+
+/obj/machinery/door/airlock/bunker/blue
+	name = "Door"
+	icon = 'icons/obj/doors/bunkerdoor.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+
+/obj/machinery/door/airlock/bunker/green
+	name = "Door"
+	icon = 'icons/obj/doors/bunkerdoor_green.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
+
 /obj/machinery/door/airlock/silver
 	name = "Silver Airlock"
 	icon = 'icons/obj/doors/Doorsilver.dmi'
@@ -746,8 +766,8 @@ About the new airlock wires panel:
 			overlays += image(icon, "sparks_damaged")
 	else
 		icon_state = "door_open"
-		if(src.arePowerSystemsOn())
-			set_light(2, 0.65, COLOR_LIME)
+		//if(src.arePowerSystemsOn()) // WARTWO edit
+		//	set_light(2, 0.65, COLOR_LIME)
 		if((stat & BROKEN) && !(stat & NOPOWER))
 			overlays += image(icon, "sparks_open")
 

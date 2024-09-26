@@ -1706,7 +1706,40 @@
 /mob
 	var/zoomed = FALSE
 
-/mob/proc/do_zoom()
+/atom/AltRightClick(var/mob/living/carbon/human/user)
+    ..()
+    if(!istype(user))
+        return
+    if(user.lying)
+        return
+    if(user.crouching)//If you're crouching, pop up.
+        user.toggle_crouch()
+
+    if(istype(user.loc, /turf/simulated/floor/trench))//We're in a trench.
+        if(user.zoomed)
+            user.do_zoom()
+            return
+        var/trench_check = 0 //We don't wanna be zooming unless we're up against a wall.
+        for(var/direction in GLOB.cardinal)
+            var/turf/turf_to_check = get_step(user.loc,direction)//So get all of the turfs around us.
+            if(istype(turf_to_check, /turf/simulated/floor/trench))//And if they're a trench, count it.
+                trench_check++
+        if(trench_check >= 4)//But, if we're surrounded on all sides by trench, we cannot zoom in.
+            to_chat(user, "<span class='warning'>I'm too far away from the side to peer over.</span>")
+            return //ez pz
+
+    visible_message("<span class='notice'>[user] peers into the distance.</span>")
+
+    // Calculate the direction to the clicked tile.
+    var/dx = src.x - user.x
+    var/dy = src.y - user.y
+    var/max_dist = max(abs(dx), abs(dy))
+    dx = dx / max_dist
+    dy = dy / max_dist
+
+    user.do_zoom(dx, dy)
+
+/mob/proc/do_zoom(var/dx, var/dy)
 	var/do_normal_zoom = TRUE
 	if(!zoomed)
 		if(lying)
@@ -1715,20 +1748,11 @@
 		if(istype(S))
 			do_normal_zoom = FALSE
 			S.toggle_scope(src, 2)
-			set_face_dir(dir)//Face what we're zoomed in on.
 
 		if(do_normal_zoom)
-			var/_x = 0
-			var/_y = 0
-			switch(dir)
-				if (NORTH)
-					_y = 7
-				if (EAST)
-					_x = 7
-				if (SOUTH)
-					_y = -7
-				if (WEST)
-					_x = -7
+			var/_x = dx * 7
+			var/_y = dy * 7
+
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
 				H.hide_cone()
@@ -1737,10 +1761,22 @@
 			else
 				client.pixel_x = world.icon_size*_x
 				client.pixel_y = world.icon_size*_y
-
 			client.zoomed_x = client.pixel_x
 			client.zoomed_y = client.pixel_y
-			set_face_dir(dir)//Face what we're zoomed in on.
+
+			var/facing_dir
+			if(abs(dx) > abs(dy))
+				if(dx > 0)
+					facing_dir = EAST
+				else
+					facing_dir = WEST
+			else
+				if(dy > 0)
+					facing_dir = NORTH
+				else
+					facing_dir = SOUTH
+
+			set_face_dir(facing_dir)
 
 		zoomed = TRUE
 
@@ -1774,7 +1810,7 @@
 
 			set_face_dir(FALSE)//Reset us back to normal.
 		zoomed = FALSE
-
+/*
 /atom/ShiftRightClick(var/mob/living/carbon/human/user)
 	..()
 	if(!istype(user))
@@ -1800,7 +1836,7 @@
 	visible_message("<span class='notice'>[user] peers into the distance.</span>")
 	user.face_atom(src)
 	user.do_zoom()
-
+*/
 /mob/living/carbon/human/melee_accuracy_mods()
 	. = ..()
 	for(var/obj/item/organ/external/org in organs)

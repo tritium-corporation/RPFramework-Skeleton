@@ -183,6 +183,7 @@
 
 // Addiction Events
 
+
 /datum/happiness_event/addiction/withdrawal_small
 	description = "<span class='danger'>I don't indulge in my addiction.</span>\n"
 	happiness = -3
