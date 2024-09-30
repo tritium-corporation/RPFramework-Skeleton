@@ -343,9 +343,6 @@ macro "macro"
 	elem
 		name = "Any"
 		command = "keyPress [[*]]"
-	elem
-		name = "Any+UP"
-		command = "keyRelease [[*]]"
 
 macro "hotkeymode"
 	elem
@@ -576,9 +573,6 @@ macro "hotkeymode"
 	elem
 		name = "Any"
 		command = "keyPress [[*]]"
-	elem
-		name = "Any+UP"
-		command = "keyRelease [[*]]"
 
 macro "borgmacro"
 	elem
