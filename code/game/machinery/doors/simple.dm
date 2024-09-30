@@ -116,6 +116,9 @@
 			if(prob(20))
 				take_damage(150)
 
+/obj/machinery/door/unpowered/simple/bumpopen(mob/user)
+	. = ..()
+	open()
 
 /obj/machinery/door/unpowered/simple/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user, 0, I)

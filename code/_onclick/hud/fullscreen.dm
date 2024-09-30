@@ -95,7 +95,7 @@
 /obj/screen/fullscreen/ashparticles
 	icon = 'icons/effects/weather.dmi'
 	icon_state = ""
-	alpha = 255
+	alpha = 180
 	particles = new/particles/dust
 	screen_loc = "CENTER,CENTER"
 
@@ -117,7 +117,7 @@
 	icon = 'icons/effects/weather.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "fog"
-	alpha = 30
+	alpha = 25
 
 /obj/screen/fullscreen/fallout
 	icon = 'icons/effects/weather.dmi'
@@ -135,7 +135,7 @@
 	icon = 'icons/effects/weather.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "ashfall_light"
-	alpha = 50
+	alpha = 25
 
 /obj/screen/fullscreen/blurry
 	icon = 'icons/mob/screen1.dmi'
@@ -177,6 +177,12 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "fade"
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
+	layer = HUD_ITEM_LAYER
+
+/obj/screen/fullscreen/fadewaketest
+	icon = 'icons/mob/screen_full.dmi'
+	icon_state = "fadewaketest"
+	screen_loc = "west, south"
 	layer = HUD_ITEM_LAYER
 
 /obj/screen/fullscreen/mood_dark

@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(warfare)
 		T.ChangeTurf(/turf/simulated/floor/trench)
 	for(var/area/warfare/A in world)// Cheeky breeky sneaky. Changes the ambience to be the ongoing war one..
 		if(!istype(A, /area/warfare/battlefield/trench_section/underground) || !istype(A, /area/warfare/homebase/blue) ||!istype(A, /area/warfare/homebase/red))
-			A.music = 'sound/ambience/distant_warfare.ogg'
+			A.forced_ambience = 'sound/ambience/distant_warfare.ogg'
 
 /datum/controller/subsystem/warfare/proc/check_completion()
 	if(red.left <= 0)

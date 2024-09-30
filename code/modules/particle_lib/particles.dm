@@ -221,6 +221,22 @@
 	particles = new/particles/heat
 //	render_target = HEAT_EFFECT_TARGET
 
+/obj/particle_emitter/firesmoke
+	particles = new/particles/fire_smoke
+	plane = EFFECTS_ABOVE_LIGHTING_PLANE
+	layer = ABOVE_HUMAN_LAYER
+
+/obj/particle_emitter/fire
+	particles = new/particles/newfire
+	plane = EFFECTS_ABOVE_LIGHTING_PLANE
+	layer = ABOVE_HUMAN_LAYER-1
+	var/fire_colour = "#FF3300"
+
+/obj/particle_emitter/fire/Initialize(mapload, time, _color)
+	. = ..()
+	filters += filter(type = "outline", size = 3,  color = fire_colour)
+	filters += filter(type = "bloom", threshold = rgb(255,128,255), size = 6, offset = 4, alpha = 255)
+
 /obj/particle_emitter/heat/Initialize()
 	. = ..()
 	filters += filter(type = "blur", size = 1)
@@ -306,7 +322,7 @@
 								   0, 0, 0,  1)
 	width = 500
 	height = 500
-	count = 3000
+	count = 250
 	spawning = 12
 	bound1 = list(-500,-256,-10)
 	bound2 = list(500,500,10)
@@ -320,3 +336,62 @@
 	gravity = list(-5 -1, 0.1)
 	drift = generator("circle", 0, 3) // Some random movement for variation
 	friction = 0.3  // shed 30% of velocity and drift every 0.1s
+
+
+//Baseline smoke particle edit this for objects that need the smoke
+/particles/fire_smoke
+	width = 500
+	height = 500
+	count = 250
+	spawning = 3
+	bound1 = list(-1000,0,-1000)
+	bound2 = list(1000,75,1000)
+	lifespan = 20
+	fade = 30
+	fadein = 5
+	velocity = list(0, 2)
+	//position = list(0, 8)
+	gravity = list(0, 1)
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = "smoke_3"
+	//position = generator("vector", list(-12,8,0), list(12,8,0))
+	position = generator(GEN_BOX, list(-32, -32), list(32, 32), NORMAL_RAND)
+	grow = list(0.3, 0.3)
+	friction = 0.2
+	drift = generator("vector", list(-0.16, -0.2), list(0.16, 0.2))
+	color = "white"
+
+///GENERIC FIRE EFEFCT
+/particles/newfire
+	width = 500
+	height = 500
+	count = 250
+	spawning = 10
+	lifespan = 10
+	fade = 6
+	velocity = list(0, 0)
+	//position = generator("vector", list(-9,3,0), list(9,3,0), NORMAL_RAND)
+	position = generator(GEN_BOX, list(-22, -22), list(22, 22), NORMAL_RAND)
+	drift = generator("vector", list(0, -0.2), list(0, 0.2))
+	gravity = list(0, 0.65)
+	color = "orange"
+
+/particles/fire_sparks
+	width = 500
+	height = 500
+	count = 3000
+	spawning = 1
+	lifespan = 40
+	fade = 20
+	position = generator(GEN_BOX, list(-32, -32), list(32, 32), NORMAL_RAND)
+	//position = 0
+	gravity = list(0, 1)
+
+	friction = 0.25
+	drift = generator("sphere", 0, 2)
+	gradient = list(0, "yellow", 1, "red")
+	color = "yellow"
+
+/obj/emitter/sparks/fire
+	alpha = 225
+	particles = new/particles/fire_sparks

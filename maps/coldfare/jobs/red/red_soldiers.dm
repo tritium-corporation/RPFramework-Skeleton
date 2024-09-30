@@ -298,14 +298,14 @@
 		r_pocket = /obj/item/ammo_box/shotgun
 	else if(prob(50))
 		suit_store = /obj/item/gun/projectile/automatic/m22/warmonger/fully_auto
-		backpack_contents = list(/obj/item/clothing/mask/gas/redgasmask = 1)
+		backpack_contents = list(/obj/item/clothing/mask/gas/ancient = 1)
 		r_pocket = /obj/item/grenade/smokebomb
 		//chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/red
 	else
 		suit_store =/obj/item/gun/projectile/automatic/m22/warmonger/m14
 		r_pocket = /obj/item/grenade/smokebomb
 		chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/red/sl
-		backpack_contents = list(/obj/item/clothing/mask/gas/redgasmask = 1)
+		backpack_contents = list(/obj/item/clothing/mask/gas/ancient = 1)
 
 	if(prob(50))//Give them an MRE. They're going to be out there a while.
 		backpack_contents += list(/obj/item/storage/box/mre = 1)

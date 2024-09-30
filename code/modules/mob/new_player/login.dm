@@ -1,5 +1,17 @@
 /var/obj/effect/lobby_image = new/obj/effect/lobby_image()
 
+/var/obj/effect/wip = new/obj/effect/workinprogress()
+
+/obj/effect/workinprogress
+	name = "Interstation12"
+	desc = "This shouldn't be read."
+	screen_loc = "WEST,NORTH-3"
+
+/obj/effect/workinprogress/Initialize()
+	icon = 'icons/workinprogress.dmi'
+	icon_state = "wip"
+	. = ..()
+
 /obj/effect/lobby_image
 	name = "Interstation12"
 	desc = "This shouldn't be read."
@@ -33,6 +45,7 @@
 
 	loc = null
 	client.screen += lobby_image
+	client.screen += wip
 	my_client = client
 	set_sight(sight|SEE_TURFS)
 	GLOB.player_list |= src

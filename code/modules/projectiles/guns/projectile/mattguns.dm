@@ -13,6 +13,7 @@
 	empty_icon = "boltaction-e"
 	far_fire_sound = "sniper_fire"
 	gun_type = GUN_BOLTIE //So engineers can't shoot this shit.
+	can_have_bayonet = TRUE
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/bayonet
 	name = "\improper Mark I Stormrider"
@@ -21,10 +22,21 @@
 	attack_verb = list ("stabbed", "sliced")
 	hitsound = "bayonet_stab"
 
+/obj/item/gun/
+	var/can_have_bayonet = FALSE
+
+/obj/item/gun/projectile/shotgun/pump/boltaction/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(istype(W, /obj/item/material/sword/combat_knife) && can_have_bayonet)
+		user.visible_message("[user] attaches a bayonet to the [src].","You attach a bayonet to the [src].")
+		user.remove_from_mob(W)
+		qdel(W)
+		add_bayonet()
+
+
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/bayonet/New()
 	..()
 	add_bayonet()
-	desc += " This one has a bayonet."
 
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/leverchester
@@ -39,6 +51,7 @@
 	backsound = 'sound/weapons/guns/interact/la_back.ogg'
 	forwardsound = 'sound/weapons/guns/interact/la_forward.ogg'
 	empty_icon = "leverchester-e"
+	can_have_bayonet = TRUE
 
 
 //Paryying.
@@ -83,7 +96,15 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 	one_hand_penalty = 20 //FIRE THIS THING WITH BOTH FUCKING HANDS AS WELL
 	empty_icon = "winchester-e"
+	can_have_bayonet = TRUE
 
+/obj/item/gun/projectile/shotgun/pump/shitty/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(istype(W, /obj/item/material/sword/combat_knife) && can_have_bayonet)
+		user.visible_message("[user] attaches a bayonet to the [src].","You attach a bayonet to the [src].")
+		user.remove_from_mob(W)
+		qdel(W)
+		add_bayonet()
 
 /obj/item/gun/projectile/shotgun/pump/shitty/sawn
 	name = "\improper Sawn Off WTX Frontier Special"
@@ -104,7 +125,6 @@
 	item_state = "smallshotty"
 	wielded_item_state = "smallshotty-wielded"
 	empty_icon = "smallshotty-e"
-
 
 /obj/item/gun/projectile/shotgun/pump/shitty/bayonet
 	force = 20
@@ -147,7 +167,16 @@
 	firemodes = list()
 	w_class = ITEM_SIZE_HUGE
 	gun_type = GUN_SEMIAUTO
+	//can_have_bayonet = TRUE
 
+
+/obj/item/gun/projectile/automatic/m22/warmonger/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(istype(W, /obj/item/material/sword/combat_knife) && can_have_bayonet)
+		user.visible_message("[user] attaches a bayonet to the [src].","You attach a bayonet to the [src].")
+		user.remove_from_mob(W)
+		qdel(W)
+		add_bayonet()
 
 /obj/item/gun/projectile/automatic/m22/warmonger/fully_auto
 	name = "Mk.5 Warmonger"
@@ -212,9 +241,18 @@
 	unloaded_icon = "semirifle-e"
 	unwielded_unloaded_icon = "semirifle-e"
 	wielded_unloaded_icon = "battlerifle-wielded-e"
+	can_have_bayonet = TRUE
 
 	magazine_type = /obj/item/ammo_magazine/a762/m14
 	allowed_magazines = /obj/item/ammo_magazine/a762/m14
+
+/obj/item/gun/projectile/automatic/m22/warmonger/m14/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(istype(W, /obj/item/material/sword/combat_knife) && can_have_bayonet)
+		user.visible_message("[user] attaches a bayonet to the [src].","You attach a bayonet to the [src].")
+		user.remove_from_mob(W)
+		qdel(W)
+		add_bayonet()
 
 /obj/item/ammo_magazine/a762/m14
 	name = "M41 magazine"
@@ -453,6 +491,7 @@
 	slot_flags = SLOT_BACK|SLOT_S_STORE
 	w_class = ITEM_SIZE_HUGE
 	condition = 250
+	can_have_bayonet = TRUE
 
 	fire_sound = 'sound/weapons/guns/fire/smg_fire.ogg'
 
@@ -467,6 +506,14 @@
 	wielded_unloaded_icon = "machinepistol-e"
 
 	gun_type = GUN_SMG
+
+/obj/item/gun/projectile/automatic/machinepistol/attackby(obj/item/W, mob/user)
+	. = ..()
+	if(istype(W, /obj/item/material/sword/combat_knife) && can_have_bayonet)
+		user.visible_message("[user] attaches a bayonet to the [src].","You attach a bayonet to the [src].")
+		user.remove_from_mob(W)
+		qdel(W)
+		add_bayonet()
 
 /obj/item/gun/projectile/automatic/machinepistol/set_gun_attachment_offsets()
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 24, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13, "special_x" = 28, "special_y" = 16)

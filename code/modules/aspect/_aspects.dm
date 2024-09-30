@@ -16,7 +16,7 @@ IT'S IMPORTANT TO REMEMBER THAT YES, ASPECTS HAVE THE HUGE POTENTIAL TO RUIN GAM
 
 //Global "chosen aspect" mainly used to affect stuff post game launch
 //The global list of aspects that can be chosen. Used in gameticker.dm
-var/list/possible_aspects = list()
+GLOBAL_LIST_INIT(possible_aspects, list(/datum/aspect/nightfare, /datum/aspect/clean_guns, /datum/aspect/extramoney, /datum/aspect/additional_troops, /datum/aspect/one_word))
 
 //Checks to see if the aspect chosen matches the argument. Useful for affecting stuff post round start.
 proc/aspect_chosen(var/datum/aspect/aspect)
@@ -38,6 +38,7 @@ proc/print_aspect()
 /datum/aspect
 	var/name = "Default Aspect"
 	var/desc = "Default description."
+	var/deactivated = "Default deactivation text."
 
 //The thing that does the thing roundstart.
 /datum/aspect/proc/activate()
@@ -47,10 +48,10 @@ proc/print_aspect()
 	display_deactivation_text()
 
 /datum/aspect/proc/display_activation_text()
-	to_world("<span class='binfo'><FONT size=3>Praise the atomic bomb! [desc]</FONT></span>")
+	to_world("<span class='danger'><FONT size=3>[desc]</FONT></span>")
 
 /datum/aspect/proc/display_deactivation_text()
-	to_world("<span class='binfo'><FONT size=3>Praise the atomic bomb! We will not battle under the curse of [name]</FONT></span>")
+	to_world("<span class='danger'><FONT size=3>[deactivated]</FONT></span>")
 
 
 //Test aspect
@@ -73,22 +74,56 @@ proc/print_aspect()
 /datum/aspect/clean_guns
 	name = "Well Oiled Machine"
 	desc = "Due to proper gun maintenance, guns will not jam this battle!"
+	deactivated = "Alas.. the mechanisms could not hold.."
 
 /datum/aspect/lone_rider
 	name = "Battlefield 1842"
 	desc = "All bolt action rifles have been replaced by their lever action variants this battle!"
 
+
 /datum/aspect/one_word
 	name = "Civil War"
 	desc = "Nothing seperates one side from the other. We all speak the same language this battle!"
+
 
 /datum/aspect/no_guns
 	name = "Slappers only!"
 	desc = "Due to poor gun maintenance, guns just don't work this battle."
 
+
 /datum/aspect/nightfare
 	name = "Nightfare"
 	desc = "Our worst fears have come true! The sun has gone out! There is no natural light on the battlefield!"
+	deactivated = "The sun has returned! Rejoice!"
+
+/datum/aspect/extramoney
+	name = "Extra Money"
+	desc = "High Command has granted us additional funding for our cargo machines! Glory!"
+	deactivated = "Brothers and sisters! High Command has deemed our performance unsatisfactory! The funding has been reallocated elsewhere!"
+
+/datum/aspect/additional_troops // Not sure
+	name = "Additional Reinforcements"
+	desc = "High Command has granted us additional reinforcements! Glory!"
+	deactivated = "Brothers and sisters! High Command has deemed our performance unsatisfactory! The reinforcements have been reallocated elsewhere!"
+
+/datum/aspect/additional_troops/activate()
+	. = ..()
+	SSwarfare.blue.left += 20
+	SSwarfare.red.left += 20
+
+
+/datum/aspect/extramoney/activate()
+	. = ..()
+	for(var/obj/machinery/kaos/cargo_machine/C)
+		C.credits += 500
+
+/datum/aspect/extramoney/deactivate()
+	. = ..()
+	for(var/obj/machinery/kaos/cargo_machine/C)
+		C.credits -= 500
+		if(C.credits < 0)
+			C.credits = 0 // augh i hate negative numbers
+
 
 /datum/aspect/nightfare/activate()
 	//Change lobby to a moon or something. Adjust lobby music?

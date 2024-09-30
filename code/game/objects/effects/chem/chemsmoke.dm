@@ -174,11 +174,11 @@
 
 	var/color = chemholder.reagents.get_color() //build smoke icon
 	var/icon/I
-	if(color)
-		I = icon('icons/effects/chemsmoke.dmi')
-		I += color
-	else
-		I = icon('icons/effects/96x96.dmi', "smoke")
+	//if(color)
+	//	I = icon('icons/effects/chemsmoke.dmi')
+	//else
+	I = icon('icons/effects/96x96.dmi', "smoke")
+	I += color
 
 	//Calculate smoke duration
 	var/smoke_duration = 150
@@ -212,7 +212,7 @@
 				continue
 			if(T in targetTurfs)
 				addtimer(CALLBACK(src, .proc/spawnSmoke,T, I, range), 0)
-					
+
 
 //------------------------------------------
 // Randomizes and spawns the smoke effect.

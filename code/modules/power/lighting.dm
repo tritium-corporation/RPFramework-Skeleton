@@ -158,6 +158,12 @@
 
 	var/current_mode = null
 
+/obj/machinery/light/caged
+	icon_state = "caged1"
+	base_state = "caged"
+	light_type = /obj/item/light/bulb
+	construct_type = /obj/machinery/light_construct/small
+
 // the smaller bulb light fixture
 /obj/machinery/light/small
 	icon_state = "bulb1"
@@ -585,6 +591,10 @@
 	lighting_modes = list(
 		LIGHTMODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#da0205"),
 		)
+
+/obj/item/light/bulb/powerful
+	brightness_range = 6
+	brightness_power = 5
 
 /obj/item/light/bulb/red
 	color = "#da0205"

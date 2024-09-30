@@ -230,7 +230,7 @@ var/list/gamemode_cache = list()
 	var/not_a_fucking_moron = ""
 
 	var/static/regex/ic_filter_regex
-	var/use_aspect_system = FALSE //This isn't actually on the box right now, so who cares.
+	var/use_aspect_system = TRUE //This isn't actually on the box right now, so who cares.
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -296,6 +296,9 @@ var/list/gamemode_cache = list()
 
 				if ("use_recursive_explosions")
 					use_recursive_explosions = 1
+
+				if("use_aspect_system")
+					config.use_aspect_system = 1
 
 				if ("log_ooc")
 					config.log_ooc = 1
@@ -814,8 +817,6 @@ var/list/gamemode_cache = list()
 					config.animal_delay = value
 				if("maximum_mushrooms")
 					config.maximum_mushrooms = value
-				if("use_aspect_system")
-					config.use_aspect_system = value
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
 

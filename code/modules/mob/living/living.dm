@@ -944,9 +944,10 @@ default behaviour is:
 			return
 		to_chat(src, "<span class='binfo'>You stand up.</span>")
 		if(istype(loc, /turf/simulated/floor/trench))
-			pixel_y = -8
-			for(var/obj/effect/trench/mask/mask in vis_contents)
-				mask.pixel_y = -21
+			if(H.in_trench && !locate(/obj/structure/bridge, get_turf(src))) // Please do not stand up while you under bridge thank you.
+				pixel_y = -8
+				for(var/obj/effect/trench/mask/mask in vis_contents)
+					mask.pixel_y = -21
 		H.remove_crouching()
 		crouching = FALSE
 

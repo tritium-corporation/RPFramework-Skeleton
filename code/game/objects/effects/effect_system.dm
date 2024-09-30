@@ -191,8 +191,9 @@ steam.start() -- spawns the effect
 			opacity = 1
 		pixel_step_size = 1 // this makes it glide nicer, it doesnt look like its taking a step
 		blend_mode = BLEND_OVERLAY // The redistani scientists claim that this makes it look better, unknown whether true
-		if(!color) // I gotta figure out making a seperate variant that can be colored, for now its disabled if the thing is colored
-			particles = new/particles/smokescreen
+		//if(!color) // I gotta figure out making a seperate variant that can be colored, for now its disabled if the thing is colored
+		particles = new/particles/smokescreen
+
 	if(fade_in_time) // YAY, WE CAN FADE IN NOW
 		var/tothisalpha = alpha
 		alpha = 0

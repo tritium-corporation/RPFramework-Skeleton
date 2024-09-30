@@ -46,6 +46,9 @@
 /mob/verb/mob_rest()
 	set hidden = 1
 	set name = "mob rest"
+	if(locate(/obj/structure/bridge, get_turf(src)))
+		if(!in_trench || !plane == LYING_HUMAN_PLANE) // WARTWO EDIT - hacky fix for a trench bridge issue..  best we can do till a full rework is make it so you can't abuse it on purpose..
+			return 0
 	if(resting && !stunned && !weakened)
 		var/turf/T = get_turf(src)
 		if(istype(T, /turf/simulated/floor/plating/n2floor))

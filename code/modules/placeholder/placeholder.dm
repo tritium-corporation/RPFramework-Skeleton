@@ -146,6 +146,7 @@
 			toof.amount--
 			src.credits += 5
 			playsound(user.loc, 'sound/machines/rpf/audiotapein.ogg', 50, 0.4) // it sounds nicer when its played from the person ngl
+			toof.update_icon()
 			if(toof.amount == 1) // fuck you..
 				qdel(toof)
 				return

@@ -141,7 +141,7 @@ obj/mortar/flare/blue
 
 /obj/item/grenade/frag/proc/on_explosion(var/turf/O)
 	if(explosion_size)
-		explosion(O, -1, -1, explosion_size, round(explosion_size/2), 0, particles = TRUE, large = FALSE, color = COLOR_BLACK)
+		explosion(O, -1, -1, explosion_size, round(explosion_size/2), 0, particles = TRUE, large = FALSE, color = COLOR_BLACK, autosize = FALSE, sizeofboom = 1, explosionsound = pick('sound/effects/mortarexplo1.ogg','sound/effects/mortarexplo2.ogg','sound/effects/mortarexplo3.ogg'), farexplosionsound = pick('sound/effects/farexplonewnew1.ogg','sound/effects/farexplonewnew2.ogg','sound/effects/farexplonewnew3.ogg'))
 
 /obj/item/grenade/frag/warfare
 	desc = "Throw it at THE ENEMEY!"

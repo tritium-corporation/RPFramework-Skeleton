@@ -192,6 +192,14 @@
 	plane = ABOVE_TURF_PLANE
 	layer = RUNE_LAYER
 
+/obj/structure/stairs/trenchstairs
+	icon = 'icons/turf/trenches_turfs.dmi'
+	icon_state = "trenchstairtest"
+
+/obj/structure/trenchstairs // the buildable version
+	icon = 'icons/turf/trenches_turfs.dmi'
+	icon_state = "trenchstairtest"
+
 /obj/structure/stairs/Initialize()
 	for(var/turf/turf in locs)
 		var/turf/simulated/open/above = GetAbove(turf)

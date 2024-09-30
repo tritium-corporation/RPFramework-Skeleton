@@ -14,10 +14,22 @@
 				return 0
 		else if(direction == UP)
 			return 0
+	if(locate(/obj/structure/bridge, src))
+		if(z == A.z)
+			if(direction == DOWN)
+				return 0
+		else if(direction == UP)
+			return 0
 	return 1
 
 /turf/space/CanZPass(atom/A, direction)
 	if(locate(/obj/structure/catwalk, src))
+		if(z == A.z)
+			if(direction == DOWN)
+				return 0
+		else if(direction == UP)
+			return 0
+	if(locate(/obj/structure/bridge, src))
 		if(z == A.z)
 			if(direction == DOWN)
 				return 0
@@ -42,7 +54,6 @@
 /turf/simulated/open/Initialize()
 	. = ..()
 	update()
-
 
 /turf/simulated/open/proc/update()
 	plane = OPENSPACE_PLANE //+ (src.z * PLANE_DIFFERENCE)
@@ -182,6 +193,8 @@
 /turf/simulated/open/attack_hand(mob/living/carbon/human/user as mob)
 	var/turf/below = GetBelow(src)//Get the turf below them.
 	if(!below)
+		return
+	if(locate(/obj/structure/bridge, src))
 		return
 	if(user.can_fall())//See if they can go down it.
 		user.visible_message("<span class='notice'>\The [user] begins to climb down.")

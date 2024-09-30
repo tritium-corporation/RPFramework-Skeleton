@@ -81,8 +81,8 @@
 /// Pre-made Grenade Boxes
 // There is likley a more efficent way to do these lists. However it is 22:32 and it simply eludes me. Do tell me if said efficent method does exist. - Stuff
 /obj/item/grenade_box/frags
-	grenades = list(new /obj/item/grenade/frag, new /obj/item/grenade/frag, new /obj/item/grenade/frag, new /obj/item/grenade/frag, new /obj/item/grenade/frag)
-	whitelisteditem = /obj/item/grenade/frag
+	grenades = list(new /obj/item/grenade/frag/warfare, new /obj/item/grenade/frag/warfare, new /obj/item/grenade/frag/warfare, new /obj/item/grenade/frag/warfare, new /obj/item/grenade/frag/warfare)
+	whitelisteditem = /obj/item/grenade/frag/warfare
 
 /obj/item/grenade_box/smoke
 	name = "Smoke Grenade Box"

@@ -36,6 +36,15 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/reset
 	name = "reset marker"
 
+/obj/effect/floor_decal/concrete
+	icon_state = "concrete_trim"
+	alpha = 50
+
+/obj/effect/floor_decal/trench
+	icon = 'icons/turf/trenches_turfs.dmi'
+	icon_state = "trench_flooring"
+	alpha = 200
+
 /obj/effect/floor_decal/reset/Initialize()
 	var/turf/T = get_turf(src)
 	T.remove_decals()

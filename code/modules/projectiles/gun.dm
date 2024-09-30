@@ -620,6 +620,8 @@
 		to_chat(user, "<span class='notice'>The safety is on.</span>")
 	else
 		to_chat(user, "<span class='notice'>The safety is off.</span>")
+	if(can_have_bayonet)
+		to_chat(user, "<i>I think I could maybe.. slot a bayonet into this..</i>")
 
 
 /obj/item/gun/proc/switch_firemodes()
@@ -826,7 +828,13 @@
 	var/image/I =  image('icons/obj/gun.dmi', "bayonett")
 	I.pixel_x += 5
 	src.overlays += I
-
+	hitsound = "bayonet_stab"
+	can_have_bayonet = FALSE
+	force = 20
+	sharp = 1
+	attack_verb = list ("stabbed", "sliced")
+	playsound(get_turf(src), 'sound/items/holster_knife.ogg', 65, 0.5)
+	desc += " This one has a bayonet."
 
 /obj/item/gun/proc/unload_ammo(mob/user, var/allow_dump=1)
 	return

@@ -284,7 +284,7 @@
 	icon_state = "leadcup"
 	volume = 30
 	amount_per_transfer_from_this = 10
-	center_of_mass = "x=0;y=8"
+	center_of_mass = "x=0;y=6"
 	filling_states = "50;100"
 	New()
 		..()
@@ -296,7 +296,7 @@
 	icon_state = "leadcup_alt"
 	volume = 30
 	amount_per_transfer_from_this = 10
-	center_of_mass = "x=0;y=8"
+	center_of_mass = "x=0;y=6"
 	filling_states = "50;100"
 	New()
 		..()

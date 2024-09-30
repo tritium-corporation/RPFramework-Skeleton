@@ -443,6 +443,8 @@ var/global/datum/controller/gameticker/ticker
 	round_end_stats += "Total friendly fire incidents: <span class='danger'><B>[GLOB.ff_incidents]</B></span>\n"
 	round_end_stats += "Total bloodshed: <span class='danger'><B>[GLOB.total_deaths] deaths</B></span>\n"
 
+	round_end_stats += "Total people sent through the hatch: <span class='danger'><B>[GLOB.hatched]</B></span>\n"
+
 	round_end_stats += "Total round Length: <span class='danger'><B>[roundduration2text()]</B></span>\n"
 
 	round_end_stats += "First victim: <B>[GLOB.first_death]</B>. Their last words were: <b>\"[GLOB.final_words]\"</b>\n "

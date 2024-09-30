@@ -70,6 +70,8 @@
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
+	if(locate(/obj/structure/bridge, get_turf(src)) && mover.in_trench && !in_trench && density) return 1
+	if(locate(/obj/structure/bridge, get_turf(src)) && !mover.in_trench && in_trench && density) return 1
 	return (!density)
 
 /obj/structure/closet/proc/can_open()

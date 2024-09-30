@@ -665,10 +665,10 @@
 			if(ishuman(firer) && ishuman(target_mob))
 				var/mob/living/carbon/human/attacker = firer
 				var/mob/living/carbon/human/victim = target_mob
-				if(attacker != victim && victim.stat != DEAD)
-					if(attacker?.warfare_faction == victim?.warfare_faction)
-						do_normal_check = FALSE
-						result = PROJECTILE_FORCE_MISS
+				//if(attacker != victim && victim.stat != DEAD) // TWOFARE EDIT -- Enable friendly fire again :)
+				//	if(attacker?.warfare_faction == victim?.warfare_faction)
+				//		do_normal_check = FALSE
+				//		result = PROJECTILE_FORCE_MISS
 
 			if(cover_checked)//We passed over cover at some point.
 				if(target_mob.crouching || target_mob.lying)//The person is lying down so don't hit them.

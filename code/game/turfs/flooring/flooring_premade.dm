@@ -153,7 +153,16 @@
 	name = "concrete"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "concrete"
-	initial_flooring = /decl/flooring/concrete
+
+/turf/simulated/floor/concrete/cracked
+	icon_state = "concrete_cracked"
+
+/turf/simulated/floor/concrete/New()
+	. = ..()
+	dir = pick(GLOB.alldirs)
+	if(prob(15))
+		var/turf/crackedcrete = new/turf/simulated/floor/concrete/cracked(src)
+		crackedcrete.dir = pick(GLOB.alldirs)
 
 /turf/simulated/floor/reinforced/airless
 	initial_gas = null

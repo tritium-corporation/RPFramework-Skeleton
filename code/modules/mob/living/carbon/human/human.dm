@@ -1075,6 +1075,39 @@
 		to_chat(src, "<span class='notice'>You can't look up right now.</span>")
 	return
 
+/mob/living/carbon/human/verb/lookdown()
+	set name = "Look Down"
+	set desc = "If you want to know what's below."
+	set category = "IC"
+
+	if(!is_physically_disabled())
+		var/fuckyou
+		var/turf/below // i don't wanna think of a better solution, grr
+		for(var/turf/simulated/open/down in view(src, 1))
+			if(isopenspace(below)) // just.. to make sure..
+				fuckyou = TRUE
+				below = down
+				break // no need to check the rest
+		if(!fuckyou) // this is probably such a fucking hacky way to do this and I hate it
+			return
+
+		if(shadow)
+			if(client.eye == shadow)
+				reset_view(0)
+				return
+			if(istype(below, /turf/simulated/open))
+				to_chat(src, "<span class='notice'>You look down.</span>")
+				if(client)
+					reset_view(shadow)
+				return
+		if(istype(below, /turf/space))
+			to_chat(src, "<span class='notice'>You can see empty space - wow.</span>")
+		else
+			to_chat(src, "<span class='notice'>There is nothing to see up there.</span>")
+	else
+		to_chat(src, "<span class='notice'>You can't look up right now.</span>")
+	return
+
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 	if(!dna)
 		if(!new_species)
@@ -1177,6 +1210,8 @@
 	add_teeth()
 
 	update_lighting() // warftwo change - children no longer see mat_fullbright 1
+	clear_fullscreen("fademob")
+	overlay_fullscreen("fademob", /obj/screen/fullscreen/fadewaketest)
 
 	return 1
 

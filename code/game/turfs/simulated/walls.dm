@@ -4,6 +4,7 @@
 	icon = 'icons/turf/wall.dmi'
 	icon_state = "metal0"
 	plane = WALL_PLANE
+	object_
 	opacity = 1
 	density = 1
 	blocks_air = 1

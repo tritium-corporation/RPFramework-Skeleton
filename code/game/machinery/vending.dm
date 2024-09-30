@@ -837,7 +837,6 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/combatpain = 2)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
-
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
 	name = "Toximate 3000"
@@ -1105,3 +1104,23 @@
 	prices = list(/obj/item/toy/blink = 3, /obj/item/toy/spinningtoy = 10, /obj/item/deck/tarot = 3, /obj/item/deck/cards = 3, /obj/item/pack/cardemon = 5, /obj/item/storage/pill_bottle/dice_nerd = 6, /obj/item/storage/pill_bottle/dice = 6, /obj/item/storage/box/checkers = 10, /obj/item/storage/box/checkers/chess/red = 10, /obj/item/storage/box/checkers/chess = 10)
 	premium = list(/obj/item/gun/projectile/revolver/capgun = 1, /obj/item/ammo_magazine/caps = 4)
 	contraband = list(/obj/item/reagent_containers/spray/waterflower = 2, /obj/item/storage/box/snappops = 3)
+
+/obj/machinery/vending/soldier
+	name = "Sold-o-mat"
+	desc = "A Redistanian vending machine powering their war machine."
+	product_slogans = "Go kill those other guys!"
+	icon_state = "soldiervend"
+	vend_delay = 6
+	vend_ready = 4
+	products = list(/obj/item/reagent_containers/food/snacks/donut/normal = 12, /obj/item/attachable/verticalgrip = 6,
+					/obj/item/attachable/holosight = 6, /obj/item/attachable/reddot = 6, /obj/item/attachable/lasersight = 6,
+					/obj/item/attachable/angledgrip = 6, /obj/item/material/sword/combat_knife = 4, /obj/item/melee/classic_baton/factionbanner = 1, /obj/item/storage/box/lights/bulbs = 2) // add weapon bayonets later please
+	icon_vend = "soldiervend-vend"
+	icon_deny = "soldiervend-off"
+	rand_amount = FALSE
+
+/obj/machinery/vending/soldier/blue
+	desc = "A Blusnian vending machine powering their war machine."
+	icon_state = "soldiervendblue"
+	icon_vend = "soldiervendblue-vend"
+	icon_deny = "soldiervendblue-off"

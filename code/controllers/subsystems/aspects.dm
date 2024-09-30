@@ -14,10 +14,10 @@ SUBSYSTEM_DEF(aspects)
 /datum/controller/subsystem/aspects/proc/get_or_set_aspect(var/datum/aspect/B = null)
 	if(!config.use_aspect_system)
 		return
-	//if(prob(75))//75% of not choosing an aspect at all. Not enough systems to keep this interesting at the moment.
-	//	return
+	if(prob(75))//75% of not choosing an aspect at all. Not enough systems to keep this interesting at the moment.
+		return
 
-	for(var/thing in subtypesof(/datum/aspect))//Populate possible aspects list.
+	for(var/thing in GLOB.possible_aspects)//Populate possible aspects list.
 		var/datum/aspect/A = thing
 		possible_aspects += A
 	if(!possible_aspects.len)//If there's nothing there afterwards return.
@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(aspects)
 	var/used_aspect
 	if(B != null)
 		used_aspect = B
-	else 
+	else
 		used_aspect = pick(possible_aspects)
 	if(chosen_aspect)
 		chosen_aspect.deactivate()
@@ -42,7 +42,6 @@ SUBSYSTEM_DEF(aspects)
 	set category = "Admin"
 	set name = "Force Aspect"
 	set desc = "Force an aspect from a list of all aspects."
-
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN))

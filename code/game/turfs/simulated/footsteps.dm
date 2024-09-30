@@ -10,8 +10,18 @@
 #define FOOTSTEP_REINFPLATING "reinforcedplating"
 #define FOOTSTEP_SNOW		"snow"
 #define FOOTSTEP_MUD 		"mud"
+#define FOOTSTEP_CONCRETE	"concrete"
+#define ARMOR_FOOTSTEP_CONCRETE "armorcrete"
+#define ARMOR_FOOTSTEP_CONCRETE_CROUCHING "armorcretecrouch"
+#define ARMOR_FOOTSTEP_WOOD "armorwood"
+#define ARMOR_FOOTSTEP_WOOD_CROUCHING "armorwoodcrouch"
+#define ARMOR_FOOTSTEP_DIRT "armordirtcrouch"
+#define ARMOR_FOOTSTEP_DIRT_CROUCHING "armordirtcrouch"
+#define ARMOR_FOOTSTEP_WATER "armorwatercrouch"
+#define ARMOR_FOOTSTEP_WATER_CROUCHING "armorwatercrouch"
 
-/turf/simulated/floor/var/global/list/footstep_sounds = list(
+
+/turf/simulated/var/global/list/footstep_sounds = list(
 	FOOTSTEP_WOOD = list(
 		'sound/effects/footstep/wood1.ogg',
 		'sound/effects/footstep/wood2.ogg',
@@ -73,8 +83,61 @@
 		'sound/effects/footstep/reinfplating3.ogg',
 		'sound/effects/footstep/reinfplating4.ogg',
 		'sound/effects/footstep/reinfplating5.ogg',
-		'sound/effects/footstep/reinfplating6.ogg')
-)
+		'sound/effects/footstep/reinfplating6.ogg'),
+	FOOTSTEP_CONCRETE = list(
+		'sound/effects/footsteps/concrete/crete1.ogg',
+		'sound/effects/footsteps/concrete/crete2.ogg',
+		'sound/effects/footsteps/concrete/crete3.ogg',
+		'sound/effects/footsteps/concrete/crete4.ogg',
+		'sound/effects/footsteps/concrete/crete5.ogg'),
+	ARMOR_FOOTSTEP_CONCRETE = list(
+		'sound/effects/footsteps/armor/concrete/step1.ogg',
+		'sound/effects/footsteps/armor/concrete/step2.ogg',
+		'sound/effects/footsteps/armor/concrete/step3.ogg',
+		'sound/effects/footsteps/armor/concrete/step4.ogg',
+		'sound/effects/footsteps/armor/concrete/step5.ogg'),
+	ARMOR_FOOTSTEP_CONCRETE_CROUCHING = list(
+		'sound/effects/footsteps/armor/concrete/crouch1.ogg',
+		'sound/effects/footsteps/armor/concrete/crouch2.ogg',
+		'sound/effects/footsteps/armor/concrete/crouch3.ogg',
+		'sound/effects/footsteps/armor/concrete/crouch4.ogg',
+		'sound/effects/footsteps/armor/concrete/crouch5.ogg'),
+	ARMOR_FOOTSTEP_BRIDGE = list(
+		'sound/effects/footsteps/armor/wood/step1.ogg',
+		'sound/effects/footsteps/armor/wood/step2.ogg',
+		'sound/effects/footsteps/armor/wood/step3.ogg',
+		'sound/effects/footsteps/armor/wood/step4.ogg',
+		'sound/effects/footsteps/armor/wood/step5.ogg'),
+	ARMOR_FOOTSTEP_BRIDGE_CROUCHING = list(
+		'sound/effects/footsteps/armor/wood/crouch1.ogg',
+		'sound/effects/footsteps/armor/wood/crouch2.ogg',
+		'sound/effects/footsteps/armor/wood/crouch3.ogg',
+		'sound/effects/footsteps/armor/wood/crouch4.ogg',
+		'sound/effects/footsteps/armor/wood/crouch5.ogg'),
+	ARMOR_FOOTSTEP_DIRT = list(
+		'sound/effects/footsteps/armor/dirt/step1.ogg',
+		'sound/effects/footsteps/armor/dirt/step2.ogg',
+		'sound/effects/footsteps/armor/dirt/step3.ogg',
+		'sound/effects/footsteps/armor/dirt/step4.ogg',
+		'sound/effects/footsteps/armor/dirt/step5.ogg'),
+	ARMOR_FOOTSTEP_DIRT_CROUCHING = list(
+		'sound/effects/footsteps/armor/dirt/crouch1.ogg',
+		'sound/effects/footsteps/armor/dirt/crouch2.ogg',
+		'sound/effects/footsteps/armor/dirt/crouch3.ogg',
+		'sound/effects/footsteps/armor/dirt/crouch4.ogg',
+		'sound/effects/footsteps/armor/dirt/crouch5.ogg'),
+	ARMOR_FOOTSTEP_WATER = list(
+		'sound/effects/footsteps/armor/water/step1.ogg',
+		'sound/effects/footsteps/armor/water/step2.ogg',
+		'sound/effects/footsteps/armor/water/step3.ogg',
+		'sound/effects/footsteps/armor/water/step4.ogg',
+		'sound/effects/footsteps/armor/water/step5.ogg'),
+	ARMOR_FOOTSTEP_WATER_CROUCHING = list(
+		'sound/effects/footsteps/armor/water/crouch1.ogg',
+		'sound/effects/footsteps/armor/water/crouch2.ogg',
+		'sound/effects/footsteps/armor/water/crouch3.ogg',
+		'sound/effects/footsteps/armor/water/crouch4.ogg',
+		'sound/effects/footsteps/armor/water/crouch5.ogg'))
 
 /decl/flooring/var/footstep_type
 /decl/flooring/footstep_type = FOOTSTEP_BLANK
@@ -84,7 +147,10 @@
 /decl/flooring/wood/footstep_type = FOOTSTEP_WOOD
 /decl/flooring/reinforced/footstep_type = FOOTSTEP_PLATING
 
-/turf/simulated/floor/proc/get_footstep_sound()
+/turf/simulated/proc/get_footstep_sound(var/crouching, var/armor)
+	return safepick(footstep_sounds[FOOTSTEP_PLATING])
+
+/turf/simulated/floor/get_footstep_sound(crouching, wearingarmor)
 	if(is_plating())
 		return safepick(footstep_sounds[FOOTSTEP_PLATING])
 	else if(!flooring || !flooring.footstep_type)
@@ -101,24 +167,55 @@
 /turf/simulated/floor/exoplanet/grass/get_footstep_sound()
 	return safepick(footstep_sounds[FOOTSTEP_GRASS])
 
-/turf/simulated/floor/exoplanet/water/shallow/get_footstep_sound()
+/turf/simulated/floor/exoplanet/water/shallow/get_footstep_sound(crouching, wearingarmor)
+	if(wearingarmor)
+		if(crouching)
+			return safepick(footstep_sounds[ARMOR_FOOTSTEP_WATER_CROUCHING])
+		return safepick(footstep_sounds[ARMOR_FOOTSTEP_WATER])
 	return safepick(footstep_sounds[FOOTSTEP_WATER])
 
-/turf/simulated/floor/fixed/get_footstep_sound()
+/turf/simulated/floor/fixed/get_footstep_sound(crouching, wearingarmor)
+	if(wearingarmor)
+		return "armorwalk"
 	return safepick(footstep_sounds[FOOTSTEP_PLATING])
 
-/turf/simulated/floor/plating/reinforced/get_footstep_sound()
+/turf/simulated/floor/plating/reinforced/get_footstep_sound(crouching, wearingarmor)
+	if(wearingarmor)
+		return "armorwalk"
 	return safepick(footstep_sounds[FOOTSTEP_REINFPLATING])
 
-/turf/simulated/floor/dirty/get_footstep_sound()
-	return safepick(footstep_sounds[FOOTSTEP_SNOW])
-
-/turf/simulated/floor/trench/get_footstep_sound()
+/turf/simulated/floor/trenches/get_footstep_sound(crouching, wearingarmor)
 	return safepick(footstep_sounds[FOOTSTEP_MUD])
 
+/turf/simulated/floor/dirty/get_footstep_sound(crouching, wearingarmor)
+	if(wearingarmor)
+		if(crouching)
+			return safepick(footstep_sounds[ARMOR_FOOTSTEP_DIRT_CROUCHING])
+		return safepick(footstep_sounds[ARMOR_FOOTSTEP_DIRT])
+	return safepick(footstep_sounds[FOOTSTEP_DIRT])
+
+/turf/simulated/floor/trench/get_footstep_sound(crouching, wearingarmor)
+	return safepick(footstep_sounds[FOOTSTEP_MUD])
+
+/turf/simulated/open/get_footstep_sound()
+	return safepick(footstep_sounds[FOOTSTEP_BLANK])
+
+/turf/simulated/floor/wood/get_footstep_sound(crouching, wearingarmor)
+	if(wearingarmor)
+		if(crouching)
+			return safepick(footstep_sounds[ARMOR_FOOTSTEP_WOOD_CROUCHING])
+		return safepick(footstep_sounds[ARMOR_FOOTSTEP_WOOD])
+	return safepick(footstep_sounds[FOOTSTEP_WOOD])
 
 
-/turf/simulated/floor/Entered(var/mob/living/carbon/human/H)
+/turf/simulated/floor/concrete/get_footstep_sound(crouching, wearingarmor)
+	if(wearingarmor)
+		if(crouching)
+			return safepick(footstep_sounds[ARMOR_FOOTSTEP_CONCRETE_CROUCHING])
+		return safepick(footstep_sounds[ARMOR_FOOTSTEP_CONCRETE])
+	return safepick(footstep_sounds[FOOTSTEP_CONCRETE])
+
+/turf/simulated/Entered(var/mob/living/carbon/human/H)
 	..()
 	if(istype(H))
 		H.handle_footsteps()
@@ -130,7 +227,7 @@
 /mob/living/carbon/human/var/step_count
 
 /mob/living/carbon/human/proc/handle_footsteps()
-	var/turf/simulated/floor/T = get_turf(src)
+	var/turf/simulated/T = get_turf(src)
 	if(!istype(T))
 		return
 
@@ -151,7 +248,11 @@
 	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
 		return //no feet no footsteps
 
-	var/S = T.get_footstep_sound()
+	var/wearingarmor = FALSE
+	if(istype(wear_suit,/obj/item/clothing/suit/armor) && shoes)
+		wearingarmor = TRUE
+
+	var/S = T.get_footstep_sound(src.crouching, wearingarmor)
 	if(S)
 		var/range = -(world.view - 2)
 		var/armor_range = -(world.view - 2)
@@ -162,16 +263,50 @@
 		if(!shoes)
 			volume -= 60
 			range -= 0.333
-		if(istype(wear_suit,/obj/item/clothing/suit/armor))
-			playsound(T, "armorwalk", 50, 1, armor_range)
 
-		playsound(T, S, volume, 1, range)
+
+			// SOMEONE PLEASE REMIND ME TO WRITE THIS SHITTY THING BELOW SOMEDAY
+		if(locate(/obj/structure/bridge, get_turf(src)) && !in_trench) // HERE BEGINS THE SHITTY FOOTSTEP OVERRIDE TO MAKE CERTAIN STRUCTURES & TURFS SOUND NICE WITH ARMOR!
+		// TO-DO: rewrite someday.
+		// Rewritten it enough.. I don't wanna fuckin bother with trench bridges anymore they're so fucking buggy and need an overall rewrite!!!
+			var/list/footstepsounds_temp = list('sound/effects/footstep/wood1.ogg',
+			'sound/effects/footstep/wood2.ogg',
+			'sound/effects/footstep/wood3.ogg',
+			'sound/effects/footstep/wood4.ogg',
+			'sound/effects/footstep/wood5.ogg')
+			if(istype(wear_suit,/obj/item/clothing/suit/armor) && shoes)
+				if(m_intent == "walk" && !crouching)
+					footstepsounds_temp = list('sound/effects/footsteps/armor/wood/step1.ogg',
+					'sound/effects/footsteps/armor/wood/step2.ogg',
+					'sound/effects/footsteps/armor/wood/step3.ogg',
+					'sound/effects/footsteps/armor/wood/step4.ogg',
+					'sound/effects/footsteps/armor/wood/step5.ogg',)
+					volume = 34
+				else if(m_intent == "run" && !crouching)
+					footstepsounds_temp = list('sound/effects/footsteps/armor/wood/run1.ogg',
+					'sound/effects/footsteps/armor/wood/run2.ogg',
+					'sound/effects/footsteps/armor/wood/run3.ogg',
+					'sound/effects/footsteps/armor/wood/run4.ogg',
+					'sound/effects/footsteps/armor/wood/run5.ogg',)
+					volume = 42 // slightly quieter.. its too loud..
+				if(crouching)
+					footstepsounds_temp = list('sound/effects/footsteps/armor/wood/crouch1.ogg',
+					'sound/effects/footsteps/armor/wood/crouch2.ogg',
+					'sound/effects/footsteps/armor/wood/crouch3.ogg',
+					'sound/effects/footsteps/armor/wood/crouch4.ogg',
+					'sound/effects/footsteps/armor/wood/crouch5.ogg',)
+					volume = 50
+				playsound(T, safepick(footstepsounds_temp), volume, 1, range)
+		else
+			playsound(T, S, volume, 1, range)
 
 		var/list/clients_to_show = list()
 
 		for(var/mob/living/carbon/human/H in view())
 			clients_to_show += H.get_client()
 		if(!length(clients_to_show))
+			return
+		if(crouching) // allows for sneaky gameplay..
 			return
 		clients_to_show -= src.get_client()
 		var/image/I = image('icons/effects/footstepsound.dmi', loc = T, icon_state = "default")

@@ -59,6 +59,8 @@
 	return TRUE
 
 /turf/simulated/floor/can_climb(var/mob/living/user, post_climb_check=0)
+	if(locate(/obj/structure/bridge, get_turf(user)))
+		return FALSE
 	if (!(atom_flags & ATOM_FLAG_CLIMBABLE) || !can_touch(user))
 		return FALSE
 
@@ -281,6 +283,8 @@
 	return TRUE
 
 /turf/simulated/floor/exoplanet/water/shallow/can_climb(var/mob/living/user, post_climb_check=0)
+	if(locate(/obj/structure/bridge, get_turf(user)))
+		return FALSE
 	if (!(atom_flags & ATOM_FLAG_CLIMBABLE) || !can_touch(user))
 		return FALSE
 

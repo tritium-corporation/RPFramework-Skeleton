@@ -719,8 +719,6 @@
 			return global.playable_species;
 		if("point_source_descriptions")
 			return global.point_source_descriptions;
-		if("possible_aspects")
-			return global.possible_aspects;
 		if("possible_cable_coil_colours")
 			return global.possible_cable_coil_colours;
 		if("possible_changeling_IDs")
@@ -1037,7 +1035,7 @@
 			return global.z_levels;
 		if("zone_blocked")
 			return global.zone_blocked;
-		
+
 /proc/writeglobal(which, newval)
 	switch(which)
 		if("ALL_ANTIGENS")
@@ -1758,8 +1756,6 @@
 			global.playable_species=newval;
 		if("point_source_descriptions")
 			global.point_source_descriptions=newval;
-		if("possible_aspects")
-			global.possible_aspects=newval;
 		if("possible_cable_coil_colours")
 			global.possible_cable_coil_colours=newval;
 		if("possible_changeling_IDs")
@@ -2076,7 +2072,7 @@
 			global.z_levels=newval;
 		if("zone_blocked")
 			global.zone_blocked=newval;
-		
+
 /var/list/_all_globals=list(
 	"ALL_ANTIGENS",
 	"ANTAG_FREQS",
@@ -2437,7 +2433,6 @@
 	"plant_seed_sprites",
 	"playable_species",
 	"point_source_descriptions",
-	"possible_aspects",
 	"possible_cable_coil_colours",
 	"possible_changeling_IDs",
 	"poster_designs",

@@ -254,7 +254,7 @@
 
 	suit_store = /obj/item/gun/projectile/automatic/m22/warmonger/fully_auto/nemesis
 	r_pocket = /obj/item/grenade/smokebomb
-	backpack_contents = list(/obj/item/clothing/mask/gas/blue = 1)
+	backpack_contents = list(/obj/item/clothing/mask/gas/ = 1)
 	chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/blue/soldier
 
 	if(prob(50))//Give them an MRE. They're going to be out there a while.
@@ -285,7 +285,7 @@
 		suit_store =/obj/item/gun/projectile/automatic/m22/warmonger/m14/battlerifle
 		r_pocket = /obj/item/ammo_magazine/a762/m14/battlerifle_mag
 		chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/blue/sl
-		backpack_contents = list(/obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/blue = 1)
+		backpack_contents = list(/obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/ = 1)
 
 	if(prob(50))//Give them an MRE. They're going to be out there a while.
 		backpack_contents += list(/obj/item/storage/box/mre = 1)
@@ -348,7 +348,7 @@
 /decl/hierarchy/outfit/job/bluesoldier/medic/equip()
 	suit_store = /obj/item/gun/projectile/automatic/m22/warmonger/allrounder
 	r_pocket = /obj/item/grenade/smokebomb
-	backpack_contents = list(/obj/item/clothing/mask/gas/blue = 1)
+	backpack_contents = list(/obj/item/clothing/mask/gas/ = 1)
 	if(prob(50))//Give them an MRE. They're going to be out there a while.
 		backpack_contents += list(/obj/item/storage/box/mre = 1)
 	else

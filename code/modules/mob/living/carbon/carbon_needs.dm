@@ -86,11 +86,11 @@
 			if(happiness_icon)
 				happiness_icon.icon_state = "mood1"
 
-	if(old_icon && old_icon != happiness_icon.icon_state)
-		if(old_happiness > happiness)
-			to_chat(src, "<span class='warning'>I have become more stressed.</span>")
-		else
-			to_chat(src, "<span class='info'>I have become less stressed.</span>")
+	//if(old_icon && old_icon != happiness_icon.icon_state) // WARTWO EDIT - A thing that I don't think we really.. NEED?
+	//	if(old_happiness > happiness)
+	//		to_chat(src, "<span class='warning'>I have become more stressed.</span>")
+	//	else
+	//		to_chat(src, "<span class='info'>I have become less stressed.</span>")
 
 /mob/proc/flash_sadness()
 	if(prob(2))

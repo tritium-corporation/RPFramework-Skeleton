@@ -6,7 +6,7 @@
 	throwpass = TRUE//we can throw grenades despite its density
 	anchored = TRUE
 	density = FALSE
-	color = "#6a6e81" // I Cba to resprite these rn so its just a recolor to make them blend in more. - Kas
+	color = "#8c90a7" // I Cba to resprite these rn so its just a recolor to make them blend in more. - Kas
 
 	plane = PLATING_PLANE
 	layer = BASE_ABOVE_OBJ_LAYER
@@ -45,8 +45,8 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.client)
-			H.fov_mask.screen_loc = "1,1.5"
-			H.fov.screen_loc = "1,1.5"
+			H.fov_mask.screen_loc = "1,1"
+			H.fov.screen_loc = "1,1"
 
 /obj/structure/dirt_wall/Uncrossed(var/mob/living/M as mob)
 	if(istype(M))
@@ -225,7 +225,8 @@
 /obj/structure/warfare/barricade/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
-
+	if(!SSwarfare.battle_time)
+		return
 	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
@@ -445,7 +446,7 @@
 /obj/structure/anti_tank/can_climb(var/mob/living/user, post_climb_check=0)
 	if(!iswarfare())
 		return TRUE
-
+/* // howd this get here?
 
 	if(istype(get_area(src), /area/warfare/battlefield/no_mans_land))//We're trying to go into no man's land?
 		if(locate(/obj/item/device/boombox) in user)//Locate the boombox.
@@ -461,7 +462,7 @@
 		return FALSE
 	return TRUE
 
-
+*/
 /obj/item/projectile/bullet/pellet/fragment/landmine
 	damage = 100
 	range_step = 2 //controls damage falloff with distance. projectiles lose a "pellet" each time they travel this distance. Can be a non-integer.
@@ -512,7 +513,6 @@
 	GLOB.mines_tripped++
 	fragmentate(get_turf(src), 20, 2, list(/obj/item/projectile/bullet/pellet/fragment/landmine))
 	qdel(src)
-
 
 /obj/structure/landmine/update_icon()
 	if(!can_be_armed)
@@ -656,6 +656,8 @@
 	var/currentfaction
 	var/sound_id
 	var/datum/sound_token/sound_token
+	var/range = 3
+	var/list/particleslist = list()
 
 /obj/structure/factionbanner/CanPass(atom/movable/mover, turf/target, height, air_group)
 	return TRUE
@@ -674,11 +676,34 @@
 	overlays.Cut()
 	if(progress == 4)
 		if(lastuser.warfare_faction == RED_TEAM)
+			for(var/turf/simulated/floor/T in range(range, src))
+				if(!istype(T, /turf/simulated/open))
+					set_light(4, 1, "#ee8080")
+					T.color = "#ffe7e7"
+					var/obj/particle_emitter/fire_sparks/fs = new(T)
+					fs.particles.count = 4
+					fs.particles.fade = 3
+					fs.particles.lifespan = 3
+					fs.particles.position = generator(GEN_BOX, list(-32, -32), list(32, 32), NORMAL_RAND)
+					particleslist |= fs
+
 			START_PROCESSING(SSprocessing, src)
 			sound_token = sound_player.PlayLoopingSound(src, sound_id, 'sound/ambience/space_loop.ogg', volume = 75, range = 4, falloff = 0.5, prefer_mute = TRUE, ignore_vis = TRUE)
 			overlays += "redbanner"
 			currentfaction = RED_TEAM
 		else
+			for(var/turf/simulated/floor/T in view(range, src))
+				if(!istype(T, /turf/simulated/open))
+					set_light(4, 1, "#80aeee")
+					T.color = "#e7f4ff"
+					var/obj/particle_emitter/fire_sparks/fs = new(T)
+					fs.particles.count = 4
+					fs.particles.fade = 3
+					fs.particles.lifespan = 3
+					fs.particles.position = generator(GEN_BOX, list(-32, -32), list(32, 32), NORMAL_RAND)
+					fs.particles.gradient = list(0, "cyan", 1, "blue")
+					fs.particles.color = "blue"
+					particleslist |= fs
 			START_PROCESSING(SSprocessing, src)
 			sound_token = sound_player.PlayLoopingSound(src, sound_id, 'sound/ambience/space_loop.ogg', volume = 75, range = 4, falloff = 0.5, prefer_mute = TRUE, ignore_vis = TRUE)
 			overlays += "bluebanner"
@@ -728,6 +753,12 @@
 				playsound(src.loc, "sound/effects/teleretract[progress].ogg", 85, 1)
 				lastuser = user
 				user.doing_something = FALSE
+				set_light(0, 0, 0)
+				for(var/turf/T in view(range, src))
+					if(!istype(T, /turf/simulated/open))
+						T.color = initial(T.color)
+				for(var/obj/particle_emitter/fire_sparks/fs in particleslist)
+					qdel(fs)
 				if(is_processing)
 					STOP_PROCESSING(SSprocessing, src)
 				return
@@ -738,15 +769,18 @@
 /obj/structure/factionbanner/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(user.warfare_faction == currentfaction)
-		to_chat(user, "This is your flag! Go [user.warfare_faction]!")
+		to_chat(user, "<h2>This is your flag! Go [user.warfare_faction]!</h2>")
 
 /obj/structure/factionbanner/Process()
-	for(var/mob/living/carbon/human/H in range(4, src))
-		to_chat(H, "You are in the radius")
+	if(locate(/obj/effect/effect/smoke, get_turf(src))) // if it got smokebombed, no worky 100%
+		return // whatever shitty way to do it
+	for(var/mob/living/carbon/human/H in view(world.view, src)) // for gameplay balance, smoke grenades disrupt the banner's effect.
 		if(H.warfare_faction == currentfaction)
-			to_chat(H, "faction good")
-			H.add_event("banner boost", /datum/happiness_event/banner_boost) // YOU ARE SAD, YOU ARE HAPPY, YOU ARE sad // Please fix.. i dont like the spam..
-			// if you cant fix it, stuff, make it give some other kind of boost maybe? idk.. like pain tolerance or smth?
+			if(get_dist(H, src) <= range)
+				H.add_event("banner boost", /datum/happiness_event/banner_boost) // YOU ARE SAD, YOU ARE HAPPY, YOU ARE sad // Please fix.. i dont like the spam..
+				// if you cant fix it, stuff, make it give some other kind of boost maybe? idk.. like pain tolerance or smth?
+		else
+			H.add_event("banner deboost", /datum/happiness_event/banner_deboost)
 
 /obj/item/melee/classic_baton/factionbanner
 	name = "Flagpole"
@@ -759,10 +793,12 @@
 
 /obj/item/melee/classic_baton/factionbanner/attack_self(mob/living/user)
 	if(CanPhysicallyInteract(user))
-		var/turf/T = get_step(user, user.dir)
+		var/turf/simulated/floor/T = get_step(user, user.dir)
 		if(T && !user.doing_something)
 			if(isopenspace(T))
 				return
+			/*if(!istype(get_area(T), /area/warfare/battlefield/no_mans_land))
+				to_chat(user, "<b>I should only place this in the no man's land!</b>")*/
 			if(turf_contains_dense_objects(T) || iswall(T)) //no 20 structures of barbed wire in one tile/in walls
 				to_chat(H, "There's already something there!")
 				return
@@ -776,3 +812,163 @@
 			else
 				user.doing_something = FALSE
 				return
+
+/obj/structure/warfare/thehatch
+	name = "the hatch"
+	desc = "\"The dead are to be put into this, as it is my decree.\"\n\"Then you are to knock on this here door.. twice.. no more, no less..\"\n\"And then, you shall wait for the confirmation..\""
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "hatchframe"
+	anchored = TRUE
+	plane = ABOVE_HUMAN_PLANE
+	layer = ABOVE_HUMAN_LAYER
+	var/open
+	var/busy
+	var/obj/structure/warfare/tray/tray // instead of deleting and adding it, we can re-use the same tray object :>
+	var/mob/inside
+	var/goredinside
+
+/obj/structure/warfare/thehatch/New()
+	update_icon()
+	tray = new(src)
+	//var/direction
+	//switch(dir)
+	//	if(NORTH)
+	//		direction = SOUTH
+	//	if(SOUTH)
+	//		direction = NORTH
+	//if(!direction)
+	//direction = dir
+	//tray.set_dir(direction)
+	tray.set_dir(dir)
+	tray.hatch = src
+
+/obj/structure/warfare/thehatch/update_icon()
+	. = ..()
+	overlays.Cut()
+	if(!open)
+		var/image/hatch = image(icon=src.icon,icon_state="hatch")
+		overlays += hatch
+
+/obj/structure/warfare/thehatch/attack_hand(mob/user)
+	if(CanPhysicallyInteract(user))
+		toggle()
+
+/obj/structure/warfare/thehatch/proc/toggle()
+	if(busy)
+		return
+	if(!open)
+		busy = TRUE
+		open = TRUE
+		update_icon()
+		playsound(src, 'sound/effects/thehatch.ogg', 75, 0.25)
+		sleep(3)
+		playsound(get_step(src, dir), 'sound/effects/thetray.ogg', 75, 0.25)
+		sleep(2)
+		tray.forceMove(get_step(src, dir))
+		if(inside)
+			inside.forceMove(get_turf(tray)) // aww..
+		if(goredinside)
+			new/obj/effect/gibspawner/human(get_turf(tray))
+			goredinside = FALSE
+		// sound 2
+		busy = FALSE
+	else
+		busy = TRUE
+		// sound1
+		var/list/people = list() // let's make it a fair lottery..
+		for(var/mob/living/carbon/human/H in get_turf(tray))
+			//if(H.stat == DEAD)
+			people |= H
+			continue
+		inside = safepick(shuffle(people)) // shuffle them around..
+		tray.forceMove(src)
+		playsound(get_turf(tray), 'sound/effects/thetrayin.ogg', 75, 0.25)
+		if(inside)
+			inside.forceMove(src) // yay you're going home!!
+		sleep(5)
+		playsound(src, 'sound/effects/thehatchin.ogg', 75, 0.25)
+		// sound 2
+		open = FALSE
+		busy = FALSE
+		update_icon()
+
+/obj/structure/warfare/thehatch/RightClick(mob/living/carbon/human/user)
+	if(busy)
+		return
+	if(open)
+		return
+	if(user == inside)
+		return
+	if(CanPhysicallyInteract(user))
+		busy = TRUE
+		if(do_after(user, 20))
+			if(istype(SSjobs.GetJobByTitle(user.job), /datum/job/fortress/red/practitioner) || istype(SSjobs.GetJobByTitle(user.job), /datum/job/fortress/blue/practitioner))
+				user.visible_message("[user] knocks on the door..", "You knock on the door..")
+				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+				sleep(3)
+				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+				if(inside)
+					if(inside.stat == DEAD)
+						sleep(rand(20,40))
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+						sleep(6)
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+						qdel(inside)
+						inside = null
+						GLOB.hatched++
+						busy = FALSE
+					else
+						sleep(rand(15,30))
+						playsound(get_turf(src), 'sound/effects/hatched.ogg', 90, 0, override_env = SEWER_PIPE)
+						sleep(110)
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+						sleep(6)
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+						inside.death()
+						inside.ghostize(FALSE)
+						qdel(inside)
+						inside = null
+						GLOB.hatched++
+						goredinside = TRUE
+						busy = FALSE
+			else
+				busy = FALSE
+				user.visible_message("[user] knocks on the door..", "You knock on the door..")
+				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+				sleep(3)
+				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+				sleep(3)
+				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+				sleep(30)
+				busy = FALSE
+
+
+/obj/structure/warfare/tray/
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "hatchtray"
+	density = TRUE
+	anchored = TRUE
+	var/obj/structure/warfare/thehatch/hatch
+
+/obj/structure/warfare/tray/attack_hand(mob/user)
+	. = ..()
+	hatch.toggle()
+
+/obj/structure/warfare/tray/MouseDrop_T(var/mob/target, var/mob/user)
+	if(!CanPhysicallyInteract(user))
+		return
+	if(target.loc == get_turf(src))
+		return // eugh
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/murderer
+	if(ishuman(user))
+		murderer = user
+		murderer.doing_something = TRUE
+	if(do_after(user, 30))
+		density = FALSE
+		step_towards(target, src)
+		density = TRUE
+		murderer.doing_something = FALSE
+	else
+		murderer.doing_something = FALSE

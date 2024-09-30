@@ -28,8 +28,19 @@
 
 
 /turf/simulated/floor/trenches/underground
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "trench"
 	is_underground = TRUE
+	color = "#b5acbcff"
 
+/turf/simulated/floor/trenches/underground/Initialize()
+	dir = pick(GLOB.alldirs)
+
+/turf/simulated/floor/trenches/underground/relativewall()
+	return
+
+/turf/simulated/floor/trenches/underground/relativewall_neighbours()
+	return
 
 /turf/simulated/floor/trenches/Initialize()
 	. = ..()
@@ -170,6 +181,35 @@
 	var/health = 100
 	pixel_x = -6
 
+/obj/structure/bridge/do_climb(mob/living/user, ignore_doafter)
+	if(!can_climb(user))
+		return
+
+	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	climbers |= user
+
+	if(!do_after(user,(issmall(user) ? 20 : 34)))
+		climbers -= user
+		return
+
+	if(!can_climb(user, post_climb_check=1))
+		climbers -= user
+		return
+
+	if(!neighbor_turf_passable())
+		to_chat(user, "<span class='danger'>You can't climb there, the way is blocked.</span>")
+		climbers -= user
+		return
+
+	if(get_turf(user) == get_turf(src))
+		usr.forceMove(get_step(src, src.dir))
+	else
+		usr.forceMove(get_turf(src))
+
+	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
+	climbers -= user
+
+
 /obj/item/bridge
 	name = "wooden bridge"
 	desc = "Place it above the trench"
@@ -193,6 +233,12 @@
 /obj/structure/bridge/mapping/large
 	icon = 'icons/obj/warfare.dmi'
 	icon_state = "trench_bridge_large"
+
+/obj/structure/bridge/mapping/bullet_act(var/obj/item/projectile/Proj)
+	return
+
+/obj/structure/bridge/mapping/ex_act(severity)
+	return
 
 /obj/structure/bridge/RightClick(mob/user)
 	if(!CanPhysicallyInteract(user))
@@ -310,8 +356,12 @@
 			return 0
 	else return 1
 
-/turf/simulated/floor/trench/Crossed(var/mob/living/carbon/human/M)
-	if(istype(M))
+/atom/
+	var/in_trench
+
+/turf/simulated/floor/trench/Crossed(var/io)
+	if(ishuman(io))
+		var/mob/living/carbon/human/M = io
 		if(M.plane == HUMAN_PLANE && locate(/obj/structure/bridge, get_turf(src)))
 			return
 		if(!M.throwing)
@@ -352,9 +402,17 @@
 			if(trench_check >= 4)//We're surrounded on all sides by trench. We unzoom.
 				if(M.zoomed)//If we're zoomed that is.
 					M.do_zoom()
-
-/turf/simulated/floor/trench/Uncrossed(var/mob/living/carbon/human/M)
-	if(istype(M))
+	if(istype(io,/obj))
+		var/obj/O = io
+		if(O.pulledby) // for pulling stuff...
+			O.in_trench = O.pulledby.in_trench
+		if(locate(/obj/structure/bridge, get_turf(src)) && !O.in_trench)
+			O.plane = HUMAN_PLANE
+			return
+		O.in_trench = TRUE
+/turf/simulated/floor/trench/Uncrossed(var/io)
+	if(ishuman(io))
+		var/mob/living/carbon/human/M = io
 		if(M.client)
 			M.fov_mask.screen_loc = "1,1"
 			M.fov.screen_loc = "1,1"
@@ -366,3 +424,7 @@
 			for(var/obj/effect/trench/mask/mask in M.vis_contents)
 				M.vis_contents -= mask
 				qdel(mask)
+	if(istype(io, /obj/))
+		var/obj/O = io
+		O.in_trench = FALSE
+		O.plane = initial(O.plane)

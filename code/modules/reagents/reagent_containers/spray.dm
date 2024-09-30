@@ -104,6 +104,9 @@
 	name = "trench cleaner"
 	desc = "Something has to get rid of the practitioner's leftovers."
 
+/obj/item/reagent_containers/spray/cleaner/warfare/red
+	icon_state = "cleaner_red"
+
 /obj/item/reagent_containers/spray/cleaner/New()
 	..()
 	reagents.add_reagent(/datum/reagent/space_cleaner, volume)

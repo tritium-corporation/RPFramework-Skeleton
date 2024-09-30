@@ -454,6 +454,7 @@ its easier to just keep the beam vertical.
 	if(occupied)
 		to_chat(user, "<span class='danger'>There's \a [occupied] in the way.</span>")
 		return 0
+
 	return 1
 
 /atom/proc/can_touch(var/mob/user)
