@@ -1384,6 +1384,12 @@
 		mask_sound = pick('sound/effects/gasmasks/gasmask1.ogg','sound/effects/gasmasks/gasmask2.ogg','sound/effects/gasmasks/gasmask3.ogg','sound/effects/gasmasks/gasmask4.ogg','sound/effects/gasmasks/gasmask5.ogg','sound/effects/gasmasks/gasmask6.ogg','sound/effects/gasmasks/gasmask7.ogg','sound/effects/gasmasks/gasmask8.ogg','sound/effects/gasmasks/gasmask9.ogg','sound/effects/gasmasks/gasmask10.ogg')
 		playsound(src, mask_sound, 50, FALSE)
 		return
+	else if(istype(wear_mask,/obj/item/clothing/mask/gas/sniper/officer))
+		if(breathe_tick>=rand(4,6))
+			breathe_tick = 0
+			mask_sound = 'sound/effects/gasmasks/hatch.ogg'
+			playsound(src, mask_sound, 45, FALSE)
+			return
 	else if(istype(wear_mask, /obj/item/clothing/mask/gas/sniper) || istype(wear_mask, /obj/item/clothing/mask/gas/prac_mask))
 		if(breathe_tick>=rand(4,6))
 			breathe_tick = 0

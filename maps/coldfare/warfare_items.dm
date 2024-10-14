@@ -891,3 +891,41 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "stick0"
 	force = 10
+
+/obj/item/clothing/suit/armor/officer
+	name = "morale officer robes"
+	desc = "Fit for <b>ONLY</b> you."
+	icon_state = "prac_robes"
+	item_state = "prac_robes"
+	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	canremove = FALSE
+
+/obj/item/clothing/mask/gas/sniper/officer
+	icon_state = "sniper"
+	item_state = "sniper"
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
+	body_parts_covered = FACE|EYES
+	helmet_vision = FALSE
+	worldicons = list("sniperworld")
+	canremove = FALSE
+
+/obj/item/clothing/head/moraleofficer
+	name = "Morale Officer\'s Cap"
+	desc = "Fit for you."
+	icon_state = "redcaptain"
+	item_state = "redcaptain"
+	worldicons = list("captainhatworld1","captainhatworld2")
+	canremove = FALSE
+
+/decl/hierarchy/outfit/moraleofficer
+	glasses = /obj/item/clothing/glasses/sunglasses
+	suit = /obj/item/clothing/suit/armor/officer
+	head = /obj/item/clothing/head/moraleofficer
+	mask = /obj/item/clothing/mask/gas/sniper/officer
+	l_ear = /obj/item/device/radio/headset/red_team/all
+	r_ear = /obj/item/device/radio/headset/blue_team/all
+	r_pocket = /obj/item/device/binoculars
+	chest_holster = null
+	backpack_contents = list(/obj/item/ammo_magazine/handful/revolver = 3, /obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/captaingasmask = 1)
+
