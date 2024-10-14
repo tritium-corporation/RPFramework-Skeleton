@@ -476,7 +476,6 @@ SUBSYSTEM_DEF(jobs)
 			G.prescription = 7
 
 	H.set_squad_huds()
-
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
@@ -616,14 +615,40 @@ SUBSYSTEM_DEF(jobs)
 #undef BE_ASSISTANT
 #undef RETURN_TO_LOBBY
 
+/mob/living/carbon/human/proc/set_team_huds()
+	spawn(10) // for some reason it tends to just assign enemy to your teammates.. should fix it?
+		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+			var/hud_state
+			if(H.warfare_faction == src.warfare_faction || H == src)
+				hud_state = "friendly"
+			else
+				hud_state = "enemy"
+			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/red/practitioner)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/blue/practitioner))
+				hud_state = "prac"
+			var/image/HUD_icon = image('icons/effects/team_indicator.dmi', H, hud_state)
+			//HUD_icon.filters += filter(type="bloom", size=0.15, offset=0.5, alpha=100) // looks like ass..
+			HUD_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+			//H.client?.images += HUD_icon
+			//if(H != src)//Don't add own icons twice
+			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/soldier/red_soldier/captain)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/soldier/blue_soldier/captain))
+				HUD_icon.pixel_y = -5
+				var/image/LEADER_icon = image('icons/effects/team_indicator.dmi', H, "leader") // captain
+				LEADER_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+				src.client?.images -= LEADER_icon
+				src.client?.images += LEADER_icon
+			src.client?.images -= HUD_icon//refresh..
+			src.client?.images += HUD_icon//Make sure we get their HUD icon too.
+
 
 /mob/living/carbon/human/proc/set_squad_huds()
 	var/image/HUD_icon = get_squad_hud()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(H.warfare_faction == src.warfare_faction)
 			if(istype(H.squad, src.squad))//IF they're in the same squad as us then they can see our icon. This includes us too.
+				H.client?.images -= HUD_icon // prevents it from stacking..
 				H.client?.images += HUD_icon
 				if(H != src)//Don't add own icons twice
+					src.client?.images -= H.get_squad_hud()
 					src.client?.images += H.get_squad_hud()//Make sure we get their HUD icon too.
 
 /mob/living/carbon/human/proc/get_squad_hud()

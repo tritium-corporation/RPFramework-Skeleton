@@ -9,7 +9,7 @@
 	else
 		hud_data = target.species.hud
 
-	ui_style = 'icons/mob/screen/screen_neo.dmi'//Set this to whatever you want. screen_neo looks best.
+	ui_style = 'icons/mob/screen/interhud.dmi'//Set this to whatever you want. screen_neo looks best.
 
 	src.adding = list()
 	src.other = list()
@@ -20,6 +20,27 @@
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
+	using = new /obj/screen() //hud hud hud hud
+	using.icon = 'icons/mob/screen/custom/interhud.dmi'
+	using.icon_state = "zionhud"
+	using.screen_loc = "WEST-3,SOUTH"
+	using.layer = HUD_ITEM_LAYER
+	adding += using
+
+	using = new /obj/screen() //hud hud hud hud
+	using.icon = ui_style
+	using.icon_state = "locked"
+	using.screen_loc = "NORTH-2.95,WEST-2.9"
+	using.layer = 0
+	adding += using
+
+	using = new /obj/screen() //hud hud hud hud
+	using.icon = ui_style
+	using.icon_state = "locked"
+	using.screen_loc = "NORTH-2.95,WEST-1.1"
+	using.layer = 0
+	adding += using
+
 	using = new /obj/screen() //Right hud bar
 	using.dir = SOUTH
 	using.icon = ui_style
@@ -27,7 +48,7 @@
 	using.screen_loc = "EAST+1,SOUTH to EAST+1,NORTH"
 	using.layer = UNDER_HUD_LAYER
 	adding += using
-
+/*
 	using = new /obj/screen() //Lower hud bar 1
 	using.dir = WEST
 	using.icon = ui_style
@@ -59,7 +80,7 @@
 	using.screen_loc = "EAST+1,NORTH-15"
 	using.layer = UNDER_HUD_LAYER
 	adding += using
-
+*/
 /*
 	//atk_intent icons?
 ///////////////////////////////
@@ -166,7 +187,9 @@
 	if(hud_data.has_a_intent)
 
 		using = new /obj/screen/intent()
-		using.icon = ui_style
+		//using.icon = ui_style
+		using.icon = 'icons/mob/screen/custom/intent.dmi'
+		using.layer = 2
 		src.adding += using
 		action_intent = using
 
@@ -180,6 +203,7 @@
 		using.screen_loc = ui_drop_throw // ui_movi
 		using.color = ui_color
 		using.alpha = ui_alpha
+		using.layer = 2
 		src.adding += using
 		move_intent = using
 
@@ -191,6 +215,7 @@
 		using.screen_loc = ui_dropbutton
 		using.color = ui_color
 		using.alpha = ui_alpha
+		using.layer = 2
 		src.hotkeybuttons += using
 
 	if(hud_data.has_hands)
@@ -268,6 +293,7 @@
 		using.screen_loc = ui_resist
 		using.color = ui_color
 		using.alpha = ui_alpha
+		using.layer = 2
 		src.hotkeybuttons += using
 
 	if(hud_data.has_throw)
@@ -278,6 +304,7 @@
 		mymob.throw_icon.screen_loc = ui_dropbutton
 		mymob.throw_icon.color = ui_color
 		mymob.throw_icon.alpha = ui_alpha
+		mymob.throw_icon.layer = 2
 		src.hotkeybuttons += mymob.throw_icon
 		hud_elements |= mymob.throw_icon
 
@@ -286,6 +313,7 @@
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
 		mymob.pullin.screen_loc = ui_pull
+		mymob.pullin.layer = 2
 		src.hotkeybuttons += mymob.pullin
 		hud_elements |= mymob.pullin
 
@@ -370,6 +398,7 @@
 	mymob.stamina_icon.icon_state = "stamina0"
 	mymob.stamina_icon.name = "stamina"
 	mymob.stamina_icon.screen_loc = ui_stamina
+	mymob.stamina_icon.layer = 2
 	hud_elements |= mymob.stamina_icon
 
 
@@ -378,6 +407,7 @@
 	mymob.rest.icon = ui_style
 	mymob.rest.icon_state = "rest[mymob.resting]"
 	mymob.rest.screen_loc =  ui_rest
+	mymob.rest.layer = 2
 	hud_elements |= mymob.rest
 	if (mymob.resting)
 		mymob.rest.icon_state = "rest1"
@@ -389,6 +419,7 @@
 	mymob.kick_icon.icon_state = "kick"
 	mymob.kick_icon.name = "kick"
 	mymob.kick_icon.screen_loc = ui_jmp_kck
+	mymob.kick_icon.layer = 2
 	hud_elements |= mymob.kick_icon
 
 	mymob.jump_icon = new /obj/screen()
@@ -396,6 +427,7 @@
 	mymob.jump_icon.icon_state = "jump"
 	mymob.jump_icon.name = "jump"
 	mymob.jump_icon.screen_loc = ui_jmp_kck
+	mymob.jump_icon.layer = 2
 	hud_elements |= mymob.jump_icon
 
 	mymob.wield_icon = new /obj/screen()
@@ -403,6 +435,7 @@
 	mymob.wield_icon.icon = ui_style
 	mymob.wield_icon.icon_state = "wield"
 	mymob.wield_icon.screen_loc = ui_jmp_kck
+	mymob.wield_icon.layer = 2
 	hud_elements |= mymob.wield_icon
 
 	mymob.fixeye = new /obj/screen()
@@ -443,6 +476,7 @@
 	mymob.combat_intent_icon.icon = ui_style
 	mymob.combat_intent_icon.icon_state = "dodge"
 	mymob.combat_intent_icon.screen_loc = ui_combat_intent
+	mymob.combat_intent_icon.layer = 2
 	hud_elements |= mymob.combat_intent_icon
 
 	mymob.surrender = new /obj/screen()

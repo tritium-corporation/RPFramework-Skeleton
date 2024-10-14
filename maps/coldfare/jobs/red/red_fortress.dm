@@ -54,7 +54,7 @@
 		H.say(";Practitioner reporting for duty!")
 
 /decl/hierarchy/outfit/job/medical/doctor/red
-	//uniform = /obj/item/clothing/under/red_uniform
+	uniform = /obj/item/clothing/under/prac_under
 	back = /obj/item/storage/backpack/satchel/warfare
 	gloves = /obj/item/clothing/gloves/prac_gloves
 	suit = /obj/item/clothing/suit/prac_arpon

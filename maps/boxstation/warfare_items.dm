@@ -420,6 +420,7 @@
 	item_state = "prac_mask"
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|EYES|HEAD
+	helmet_vision = FALSE
 
 /obj/item/clothing/shoes/prac_boots
 	name = "practioner boots"

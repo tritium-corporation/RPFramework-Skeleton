@@ -19,6 +19,9 @@
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	w_class = ITEM_SIZE_NORMAL
+	var/health = 100
+	var/can_be_damaged = FALSE
+	var/damaged_worldicons = list()
 	var/engraved = FALSE
 
 
@@ -37,8 +40,14 @@
 			return
 		return
 
-
-
+/obj/item/clothing/head/helmet/proc/take_damage(var/damage)
+	if(!can_be_damaged)
+		return
+	health -= damage
+	if(health <= 0)
+		can_be_damaged = FALSE
+		worldicons = damaged_worldicons
+		icon_state = "[icon_state]_dam"
 
 /obj/item/clothing/head/helmet/nt
 	name = "\improper corporate security helmet"

@@ -17,3 +17,39 @@
 
 /obj/structure/closet/secure_closet/slice_into_parts(obj/item/weldingtool/WT, mob/user)
 	to_chat(user, "<span class='notice'>\The [src] is too strong to be taken apart.</span>")
+
+/obj/structure/closet/secure_closet/warfare
+	icon_state = "intermetal"
+	icon_closed = "intermetal"
+	icon_opened = "intermetalopen"
+	icon_off = ""
+	icon_locked = ""
+	open_sound = 'sound/effects/locker_open1.ogg'
+	close_sound = 'sound/effects/locker_close1.ogg'
+	setup = 0
+	locked = FALSE
+	req_access = list()
+
+/obj/structure/closet/secure_closet/warfare/newver
+	icon_state = "intermetalnew"
+	icon_closed = "intermetalnew"
+	icon_opened = "intermetalnewopen"
+	icon_off = ""
+	icon_locked = ""
+	open_sound = 'sound/effects/locker_open1.ogg'
+	close_sound = 'sound/effects/locker_close1.ogg'
+	setup = 0
+	locked = FALSE
+	req_access = list()
+
+/obj/structure/closet/secure_closet/warfare/practicioner
+	icon_state = "prac"
+	icon_closed = "prac"
+	icon_opened = "pracopen"
+	icon_off = ""
+	icon_locked = ""
+	open_sound = 'sound/effects/lockerbig_open1.ogg'
+	close_sound = 'sound/effects/lockerbig_close1.ogg'
+	setup = 0
+	locked = FALSE
+	req_access = list()

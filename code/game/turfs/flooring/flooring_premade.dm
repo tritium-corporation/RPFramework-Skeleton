@@ -86,9 +86,16 @@
 
 /turf/simulated/floor/wood
 	name = "wooden floor"
-	icon = 'icons/turf/flooring/wood.dmi'
-	icon_state = "wood"
-	initial_flooring = /decl/flooring/wood
+	icon = 'icons/turf/interwar_trenches.dmi'
+	icon_state = "Wooden trench floor"
+
+/turf/simulated/floor/wood/New()
+	. = ..()
+	if(prob(15))
+		icon_state = "WT floor damaged 1"
+		return
+	if(prob(5))
+		icon_state = "WT floor damaged 2"
 
 /turf/simulated/floor/grass
 	name = "grass patch"
@@ -153,11 +160,55 @@
 	name = "concrete"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "concrete"
+	atom_flags = ATOM_FLAG_CLIMBABLE
+
+/turf/simulated/floor/concrete/can_climb(mob/living/user, post_climb_check)
+	if(locate(/obj/structure/bridge, get_turf(user)))
+		return FALSE
+	if (!(atom_flags & ATOM_FLAG_CLIMBABLE) || !can_touch(user))
+		return FALSE
+
+	if (!user.Adjacent(src))
+		to_chat(user, "<span class='danger'>You can't climb there, the way is blocked.</span>")
+		return FALSE
+
+	return TRUE
+
+
+
+/turf/simulated/floor/concrete/update_icon()
+	overlays.Cut()
+	for(var/direction in GLOB.cardinal)
+		var/turf/turf_to_check = get_step(src,direction)
+		if(istype(turf_to_check, /turf/simulated/floor/concrete/))
+			continue
+
+		else if(istype(turf_to_check, /turf/simulated))
+			var/image/dirt = image('icons/turf/flooring/decals.dmi', "concrete_trim", dir = turn(direction, 180))
+			dirt.plane = src.plane
+			dirt.layer = src.layer+2
+			//dirt.color = "#877a8b"
+			//dirt.alpha = 200
+
+			overlays += dirt
+
+
+
+
+
+/turf/simulated/floor/concrete/stones
+	icon = 'icons/turf/interwar_trenches.dmi'
+	icon_state = "stone trench floor"
+
+/turf/simulated/floor/concrete/stones/New()
+	. = ..()
+	if(prob(10))
+		icon_state = "stone trench floor damaged"
 
 /turf/simulated/floor/concrete/cracked
 	icon_state = "concrete_cracked"
 
-/turf/simulated/floor/concrete/New()
+/turf/simulated/floor/concrete/random/New()
 	. = ..()
 	dir = pick(GLOB.alldirs)
 	if(prob(15))

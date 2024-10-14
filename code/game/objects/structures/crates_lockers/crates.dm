@@ -5,8 +5,8 @@ obj/structure/closet/crate
 	icon_state = "crate"
 	icon_opened = "crateopen"
 	icon_closed = "crate"
-	open_sound = 'sound/effects/locker_open.ogg'
-	close_sound = 'sound/effects/locker_close.ogg'
+	open_sound = 'sound/effects/Custom_closetopen.ogg'
+	close_sound = 'sound/effects/Custom_closetclose.ogg'
 	atom_flags = ATOM_FLAG_CLIMBABLE
 	setup = 0
 

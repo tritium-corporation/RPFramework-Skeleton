@@ -101,7 +101,8 @@ GLOBAL_LIST_EMPTY(phone_list)
 
 /obj/structure/phone/examine(mob/user)
 	. = ..()
-	to_chat(user, "\The [src] has a small number plate on it, it reads [fullphonenumber].")
+	if(!isghost(user)) // fuck you ghosts peeking at the captain and admin phone numbers..
+		to_chat(user, "\The [src] has a small number plate on it, it reads [fullphonenumber].")
 
 /obj/structure/phone/attack_hand(mob/user)
 	. = ..()

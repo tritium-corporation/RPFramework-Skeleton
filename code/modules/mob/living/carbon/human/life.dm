@@ -913,8 +913,8 @@
 		spawn vomit(1, vomit_score, vomit_score/25)
 
 	var/area/A = get_area(src)
-	if(client && world.time >= client.played + 600)
-		A.play_ambience(src)
+	//if(client && world.time >= client.played + 600) // TWOFARE EDIT - This broke ambiences.. but in return.. it was our greatest hero.. random ambience noises.. we will miss you..
+	//	A.play_ambience(src)
 	if(stat == UNCONSCIOUS && world.time - l_move_time < 5 && prob(10))
 		to_chat(src,"<span class='notice'>You feel like you're [pick("moving","flying","floating","falling","hovering")].</span>")
 
@@ -1359,14 +1359,47 @@
 
 
 /mob/living/carbon/human/proc/handle_gas_mask_sound()
-	if(wear_mask)
-		remove_coldbreath()
+	if(!istype(wear_mask, /obj/item/clothing/mask/gas))
+		if(breathe_tick)
+			breathe_tick = 0
+		return
 	if(stat == DEAD)
 		return
-	if(istype(wear_mask, /obj/item/clothing/mask/gas))
-		var/mask_sound = pick('sound/effects/gasmask1.ogg','sound/effects/gasmask2.ogg','sound/effects/gasmask3.ogg','sound/effects/gasmask4.ogg','sound/effects/gasmask5.ogg','sound/effects/gasmask6.ogg','sound/effects/gasmask7.ogg','sound/effects/gasmask8.ogg','sound/effects/gasmask9.ogg','sound/effects/gasmask10.ogg')
+	remove_coldbreath()
+	breathe_tick++
+	var/mask_sound
+	if(istype(wear_mask, /obj/item/clothing/mask/gas/red))
+		if(breathe_tick>=rand(3,5))
+			breathe_tick = 0
+			mask_sound = pick('sound/effects/gasmasks/red1.ogg','sound/effects/gasmasks/red2.ogg','sound/effects/gasmasks/red3.ogg','sound/effects/gasmasks/red4.ogg','sound/effects/gasmasks/red5.ogg','sound/effects/gasmasks/red6.ogg','sound/effects/gasmasks/red7.ogg','sound/effects/gasmasks/red8.ogg','sound/effects/gasmasks/red9.ogg','sound/effects/gasmasks/red10.ogg','sound/effects/gasmasks/red11.ogg')
+			playsound(src, mask_sound, 50, FALSE)
+			return
+	else if(istype(wear_mask, /obj/item/clothing/mask/gas/blue))
+		if(breathe_tick>=rand(3,5))
+			breathe_tick = 0
+			mask_sound = pick('sound/effects/gasmasks/blue1.ogg','sound/effects/gasmasks/blue2.ogg','sound/effects/gasmasks/blue3.ogg','sound/effects/gasmasks/blue4.ogg','sound/effects/gasmasks/blue5.ogg','sound/effects/gasmasks/blue6.ogg','sound/effects/gasmasks/blue7.ogg','sound/effects/gasmasks/blue8.ogg','sound/effects/gasmasks/blue9.ogg','sound/effects/gasmasks/blue10.ogg','sound/effects/gasmasks/blue11.ogg')
+			playsound(src, mask_sound, 50, FALSE)
+			return
+	else if(istype(wear_mask, /obj/item/clothing/mask/gas/captaingasmask))
+		mask_sound = pick('sound/effects/gasmasks/gasmask1.ogg','sound/effects/gasmasks/gasmask2.ogg','sound/effects/gasmasks/gasmask3.ogg','sound/effects/gasmasks/gasmask4.ogg','sound/effects/gasmasks/gasmask5.ogg','sound/effects/gasmasks/gasmask6.ogg','sound/effects/gasmasks/gasmask7.ogg','sound/effects/gasmasks/gasmask8.ogg','sound/effects/gasmasks/gasmask9.ogg','sound/effects/gasmasks/gasmask10.ogg')
+		playsound(src, mask_sound, 50, FALSE)
+		return
+	else if(istype(wear_mask, /obj/item/clothing/mask/gas/sniper) || istype(wear_mask, /obj/item/clothing/mask/gas/prac_mask))
+		if(breathe_tick>=rand(4,6))
+			breathe_tick = 0
+			mask_sound = pick('sound/effects/gasmasks/sniper1.ogg','sound/effects/gasmasks/sniper2.ogg')
+			playsound(src, mask_sound, 35, FALSE)
+			return
+	else if(istype(wear_mask, /obj/item/clothing/mask/gas/flamer))
+		if(breathe_tick>=rand(3,5))
+			breathe_tick = 0
+			mask_sound = pick('sound/effects/gasmasks/flamer1.ogg','sound/effects/gasmasks/flamer2.ogg')
+			playsound(src, mask_sound, 35, FALSE)
+			return
+	else if(istype(wear_mask, /obj/item/clothing/mask/gas))
+		mask_sound = pick('sound/effects/gasmasks/gasmask1.ogg','sound/effects/gasmasks/gasmask2.ogg','sound/effects/gasmasks/gasmask3.ogg','sound/effects/gasmasks/gasmask4.ogg','sound/effects/gasmasks/gasmask5.ogg','sound/effects/gasmasks/gasmask6.ogg','sound/effects/gasmasks/gasmask7.ogg','sound/effects/gasmasks/gasmask8.ogg','sound/effects/gasmasks/gasmask9.ogg','sound/effects/gasmasks/gasmask10.ogg')
 		playsound(src, mask_sound, 50, 1)
-
+		return
 
 /mob/living/carbon/human/proc/handle_diagonostic_signs()
 	// runs an update to check if we've become jaundiced, pale or low on oxygen resulting in icon changes

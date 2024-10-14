@@ -54,3 +54,8 @@
 	can_plate = 0
 	can_reinforce = 0
 	flipped = -1
+
+/obj/structure/table/rack/shelf/red
+	name = "shelf"
+	desc = "You can put things on it, actually."
+	icon_state = "shelfred"

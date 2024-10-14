@@ -8,7 +8,7 @@
 	slot_flags = SLOT_BACK
 	w_class = 4
 	force = 15
-//	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
+	//fire_sound = "combust"
 //	ammo_type = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 5
 	var/lit = 0 //Turn the flamer on/off

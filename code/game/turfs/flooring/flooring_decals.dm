@@ -40,10 +40,28 @@ var/list/floor_decals = list()
 	icon_state = "concrete_trim"
 	alpha = 50
 
+/obj/effect/floor_decal/stones
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "stonesandsticksmaybreakmybones"
+
 /obj/effect/floor_decal/trench
 	icon = 'icons/turf/trenches_turfs.dmi'
 	icon_state = "trench_flooring"
 	alpha = 200
+
+/obj/effect/floor_decal/trench/New()
+	. = ..()
+	if(prob(65))
+		icon_state = "trench_flooring_alt"
+
+/obj/effect/floor_decal/trench/fixed
+	icon_state = "trench_flooring_alt"
+
+/obj/effect/floor_decal/trench/sides
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "underground_trench"
+	alpha = 255
+	mouse_opacity = FALSE
 
 /obj/effect/floor_decal/reset/Initialize()
 	var/turf/T = get_turf(src)

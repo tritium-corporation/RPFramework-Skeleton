@@ -26,15 +26,15 @@
 #define ui_inventory "SOUTH-1,4"
 
 //Lower center, persistant menu
-#define ui_sstore1 "SOUTH-1,13"
-#define ui_id "SOUTH-2,1"
-#define ui_belt "SOUTH-2,3"
-#define ui_back "SOUTH-1,6"
-#define ui_rhand "SOUTH-1,1"
-#define ui_lhand "SOUTH-1,3"
+#define ui_sstore1 "NORTH-6.6, WEST-1.1"
+#define ui_id "NORTH-4.75,WEST-2.9"
+#define ui_belt "NORTH-5.625, WEST-2.9"
+#define ui_back "NORTH-6.6, WEST-2.9"
+#define ui_rhand "SOUTH+5.35,WEST-2.5"
+#define ui_lhand "SOUTH+5.35,WEST-1.525"
 #define ui_swaphand2 "8:16,2:5"
-#define ui_storage1 "SOUTH-2,4"
-#define ui_storage2 "SOUTH-2,5"
+#define ui_storage1 "NORTH-7.5, WEST-2.9"
+#define ui_storage2 "NORTH-7.5, WEST-1.1"
 
 #define ui_alien_head "CENTER-3:12,SOUTH:5"		//aliens
 #define ui_alien_oclothing "CENTER-2:14,SOUTH:5"//aliens
@@ -46,19 +46,19 @@
 */
 
 //Lower right, persistant menu
-#define ui_swaphand1 "SOUTH-2,7"
-#define ui_chest_slot "SOUTH-2,6"
-#define ui_dropbutton "SOUTH-2,8"
-#define ui_drop_throw "SOUTH-2,13"
-#define ui_pull "SOUTH-2,11"
-#define ui_jmp_kck "SOUTH-2, 10"
+#define ui_swaphand1 "SOUTH+4.76,WEST-2"
+#define ui_chest_slot "NORTH-4.75, WEST-2"
+#define ui_dropbutton "SOUTH+3,WEST-3"
+#define ui_drop_throw "SOUTH+2,WEST-2"
+#define ui_pull "SOUTH+2,WEST-3"
+#define ui_jmp_kck "SOUTH+3,WEST-1"
 #define ui_atk "SOUTH-1, 14"//atk_intents
-#define ui_resist "EAST+1,SOUTH-2"
-#define ui_acti "SOUTH-2,9"
+#define ui_resist "SOUTH+2,WEST-1"
+#define ui_acti "SOUTH+3,WEST-3"
 #define ui_combat "SOUTH-2,14"//COMBAT MODE!
-#define ui_combat_intent "SOUTH-2, 9" // parry/dodge
-#define ui_intent "SOUTH-2, 12"
-#define ui_movi "EAST,SOUTH-2"
+#define ui_combat_intent "SOUTH+3,WEST-2" // parry/dodge
+#define ui_intent "SOUTH+4.35, WEST-2.9"
+#define ui_movi "SOUTH+3,WEST-3"
 #define ui_zonesel "EAST+1, NORTH-2"
 #define ui_acti_alt "SOUTH-2,9" //alternative intent switcher for when the interface is hidden (F12)
 
@@ -106,7 +106,7 @@
 #define ui_alien_oxygen "14:28,11:25"
 
 //Middle right (status indicators)
-#define ui_stamina "EAST+1, NORTH-14"
+#define ui_stamina "SOUTH+1,WEST-3"
 #define ui_temp "EAST+1, NORTH-12"
 #define ui_health "EAST+1, NORTH-13"
 #define ui_happiness "EAST+1, NORTH-4"
@@ -117,19 +117,19 @@
 #define ui_alien_health "EAST-1:28,CENTER-1:13" //aliens have the health display where humans have the pressure damage indicator.
 
 //Pop-up inventory
-#define ui_shoes "SOUTH-1,7"
+#define ui_shoes "NORTH-7.5, WEST-2"
 
-#define ui_iclothing "SOUTH-2,2"
-#define ui_oclothing "SOUTH-1,2"
-#define ui_gloves "SOUTH-1,8"
+#define ui_iclothing "NORTH-6.6, WEST-2"
+#define ui_oclothing "NORTH-5.625, WEST-2"
+#define ui_gloves "NORTH-5.625, WEST-1.1"
 
-#define ui_glasses "SOUTH-1,12"
-#define ui_mask "SOUTH-1,4"
-#define ui_l_ear "SOUTH-1,10"
-#define ui_r_ear "SOUTH-1,11"
-#define ui_neck "SOUTH-1,9"
+#define ui_glasses "NORTH-2.95,WEST-1.1"
+#define ui_mask "NORTH-3.875,WEST-2"
+#define ui_l_ear "NORTH-3.875,WEST-2.9"
+#define ui_r_ear "NORTH-3.875,WEST-1.1"
+#define ui_neck "NORTH-4.75,WEST-1.1"
 
-#define ui_head "SOUTH-1,5"
+#define ui_head "NORTH-2.95,WEST-2"
 
 //Attack intent
 #define ui_att_int "SOUTH-2,9"
@@ -139,7 +139,7 @@
 //#define ui_headset "SOUTH-1,8"
 #define ui_hstore1 "5,5"
 #define ui_sleep "EAST+1, NORTH-14"
-#define ui_rest "EAST+1, NORTH-15"
+#define ui_rest "EAST+1, NORTH-14"
 
 
 #define ui_iarrowleft "SOUTH-2,11"

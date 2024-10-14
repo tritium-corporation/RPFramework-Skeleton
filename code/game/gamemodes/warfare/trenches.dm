@@ -9,11 +9,41 @@
 	movement_delay = 0.5
 
 /obj/structure/trench_wall
-	name = "trench wall"
-	icon = 'icons/turf/trenches_turfs.dmi'
-	icon_state = "trench"
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "underground_trench"
+	plane = ABOVE_TURF_PLANE
+	layer = BELOW_OBJ_LAYER
+	alpha = 255
+	mouse_opacity = FALSE
 	density = FALSE
+	anchored = TRUE
 
+/obj/structure/trench_wall/attackby(obj/item/O, mob/user)
+	return
+
+/obj/structure/trench_wall/bullet_act(obj/item/projectile/P, def_zone)
+	return
+
+/obj/structure/trench_wall/ex_act(severity)
+	return
+
+/obj/structure/trench_wall/sequel
+	icon_state = "underground_trench_sequel"
+
+/obj/structure/trench_wall/innercorners
+	icon_state = "underground_trench_sequel_sequel"
+
+/obj/effect/structure/trench/sides
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "underground_trench"
+	alpha = 255
+	mouse_opacity = FALSE
+
+/obj/effect/floor_decal/trench/sides/sequel
+	icon_state = "underground_trench_sequel"
+
+/obj/effect/floor_decal/trench/sides/innercorners
+	icon_state = "underground_trench_sequel_sequel"
 
 
 /turf/simulated/floor/trenches/relativewall()
@@ -29,7 +59,7 @@
 
 /turf/simulated/floor/trenches/underground
 	icon = 'icons/obj/warfare.dmi'
-	icon_state = "trench"
+	icon_state = "trench_old"
 	is_underground = TRUE
 	color = "#b5acbcff"
 
@@ -79,6 +109,31 @@
 	dir = pick(GLOB.alldirs)
 	update_icon()
 
+///turf/simulated/floor/trench/attackby(obj/O, mob/living/user)
+//	to_chat(user, "Init")
+//	if(!CanPhysicallyInteract(user))
+//		..()
+//		return
+//	var/obj/item/concretesack/C = user.get_active_hand()
+//	if(!istype(C))
+//		..()
+//		return
+//	to_chat(user, "type passed")
+//	if(user.doing_something)
+//		return
+//	if(!can_be_dug)//No escaping to mid early.
+//		return
+//	playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
+//	visible_message("[user] begins filling in the trench!")
+//	user.doing_something = TRUE
+//	if(do_after(user, backwards_skill_scale(user.SKILL_LEVEL(engineering)) * 5))
+//		ChangeTurf(/turf/simulated/floor/concrete)
+//		update_trench_shit()
+//		visible_message("[user] finishes filling in trench with concrete.")
+//		playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
+//		user.doing_something = FALSE
+//	else
+//		user.doing_something = FALSE
 
 /turf/simulated/floor/trench/RightClick(mob/living/user)
 	if(!CanPhysicallyInteract(user))
@@ -87,6 +142,8 @@
 	var/obj/item/shovel/S = user.get_active_hand()
 	if(!istype(S))
 		..()
+		return
+	if(user.doing_something)
 		return
 	if(!can_be_dug)//No escaping to mid early.
 		return
@@ -97,17 +154,20 @@
 			to_chat(user, "There are things in the way.")
 			return
 	playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
-	visible_message("[user] begins fill in the trench!")
+	visible_message("[user] begins filling in the trench!")
+	user.doing_something = TRUE
 	if(do_after(user, backwards_skill_scale(user.SKILL_LEVEL(engineering)) * 5))
 		for(var/mob/M in src)
 			if(ishuman(M))
 				M.pixel_y = 0
+		user.doing_something = FALSE
 		ChangeTurf(/turf/simulated/floor/dirty)
 		update_trench_shit()
 		visible_message("[user] finishes filling in trench.")
 		playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
 
 	else
+		user.doing_something = FALSE
 		to_chat(user, "You're already digging.")
 
 
@@ -157,6 +217,9 @@
 	vis_flags = VIS_UNDERLAY
 	pixel_y = -21
 
+/obj/effect/trench/mask/water
+	icon_state = "watermask_temp"
+	pixel_y = -19
 
 /turf/simulated/floor/trench/update_icon()
 	update_trench_shit()
@@ -364,10 +427,13 @@
 		var/mob/living/carbon/human/M = io
 		if(M.plane == HUMAN_PLANE && locate(/obj/structure/bridge, get_turf(src)))
 			return
+		if(locate(/obj/structure/trenchstairs, get_turf(src)))
+			M.pixel_y = -4
+			return
 		if(!M.throwing)
-			if(M.client)
-				M.fov_mask.screen_loc = "1,0.8"
-				M.fov.screen_loc = "1,0.8"
+			//if(M.client)
+			//	M.fov_mask.screen_loc = "1,0.8"
+			//	M.fov.screen_loc = "1,0.8"
 			if(M.crouching)
 				M.pixel_y = -12
 			else
@@ -428,3 +494,9 @@
 		var/obj/O = io
 		O.in_trench = FALSE
 		O.plane = initial(O.plane)
+
+/obj/item/concretesack
+	name = "quickcrete mix"
+	desc = "Mix, pour & wait!"
+	icon = 'icons/obj/trash.dmi'
+	icon_state = "trashbag2"

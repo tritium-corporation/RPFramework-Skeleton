@@ -259,26 +259,39 @@
 	name = "intent"
 	icon_state = "intent_help"
 	screen_loc = ui_intent // ui_drop_throw
+	layer = 2
 	var/intent = I_HELP
 
 /obj/screen/intent/Click(var/location, var/control, var/params)
 	var/list/P = params2list(params)
 	var/icon_x = text2num(P["icon-x"])
-	var/icon_y = text2num(P["icon-y"])
-	intent = I_DISARM
-	if(icon_x <= world.icon_size/2)
-		if(icon_y <= world.icon_size/2)
-			intent = I_HURT
-		else
-			intent = I_HELP
-	else if(icon_y <= world.icon_size/2)
+	//var/icon_y = text2num(P["icon-y"])
+
+
+//	var/width_section = world.icon_size / 4
+
+	var/total_width = world.icon_size
+	var/green_end = total_width * 0.75
+	var/blue_end = green_end + (total_width * 0.7)
+	var/yellow_end = blue_end + (total_width * 0.7)
+
+	if(icon_x < green_end)
+		intent = I_HELP
+	else if(icon_x < blue_end)
+		intent = I_DISARM
+	else if(icon_x < yellow_end)
 		intent = I_GRAB
+	else
+		intent = I_HURT
+
+	sound_to(usr, sound('sound/effects/tag_snap.ogg', volume = 12))
+
 	update_icon()
 	usr.a_intent = intent
 
 /obj/screen/intent/update_icon()
 	icon_state = "intent_[intent]"
-
+	
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
 	var/list/modifiers = params2list(params)

@@ -21,40 +21,59 @@
 	siemens_coefficient = 0.7
 	can_hold_knife = 1
 	cold_protection = FEET
+	var/initialicon
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	var/obj/item/material/sword/combat_knife/knife = null
+	worldicons = list("redbootsworld")
 
 /obj/item/clothing/shoes/jackboots/New()
 	..()
-	knife = new
-	update_icon()
+	if(can_hold_knife)
+		if(prob(75))
+			knife = new
+			update_icon()
 
 /obj/item/clothing/shoes/jackboots/attackby(obj/item/I, mob/user)
 	. = ..()
-	if(istype(I, /obj/item/material/sword/combat_knife))
-		if(knife)//We've already got a knife in there, no need for another.
-			return
-		user.drop_from_inventory(I)
-		I.forceMove(src)
-		knife = I
-		update_icon()
-		playsound(src, 'sound/items/holster_knife.ogg', 50, 0, -1)
+	if(can_hold_knife)
+		if(istype(I, /obj/item/material/sword/combat_knife))
+			if(knife)//We've already got a knife in there, no need for another.
+				return
+			user.drop_from_inventory(I)
+			I.forceMove(src)
+			knife = I
+			if(!isworld(user))
+				update_icon()
+			playsound(src, 'sound/items/holster_knife.ogg', 50, 0, -1)
 
 /obj/item/clothing/shoes/jackboots/attack_hand(mob/living/user)
 	if(knife)
 		user.put_in_active_hand(knife)
 		knife = null
-		update_icon()
+		if(!isworld(user))
+			update_icon()
 		return
 	..()
 
 /obj/item/clothing/shoes/jackboots/update_icon()
 	..()
-	if(knife)
-		icon_state = "[initial(icon_state)]_knife"
+	if(can_hold_knife)
+		if(knife)
+			if(!isworld(loc))
+				icon_state = "[initial(icon_state)]_strap_knife"
+				initialicon = icon_state
+				return
+			else
+				initialicon = "[initial(icon_state)]_strap_knife"
+		else
+			if(!isworld(loc))
+				initialicon = "[initial(icon_state)]_strap"
+				icon_state = "[initial(icon_state)]_strap"
+			else
+				initialicon = "[initial(icon_state)]_strap"
 	else
+		initialicon = initial(icon_state)
 		icon_state = initial(icon_state)
-
 /*
 /obj/item/clothing/shoes/jackboots/update_icon()
 	..()//I am aware this breaks the blood overlay, however I'm not particularly worried about that. We can fix that later. - Matt

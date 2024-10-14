@@ -36,14 +36,16 @@
 	)
 
 /obj/structure/closet/secure_closet/medical1/warfare
-	icon_state = "warfarecloset"
-	icon_closed = "warfarecloset"
-	icon_opened = "warfareclosetopen"
+	icon_state = "prac"
+	icon_closed = "prac"
+	icon_opened = "pracopen"
 	icon_off = ""
 	icon_locked = ""
 	setup = 0
 	locked = FALSE
 	req_access = list()
+	open_sound = 'sound/effects/lockerbig_open1.ogg'
+	close_sound = 'sound/effects/lockerbig_close1.ogg'
 
 /obj/structure/closet/secure_closet/medical2
 	name = "anesthetics closet"

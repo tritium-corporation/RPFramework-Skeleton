@@ -721,6 +721,8 @@
 		if(istype(L.wear_suit, /obj/item/clothing/suit/armor) && parse_zone(def_zone) == BP_CHEST)
 			playsound(L,pick(armor_hit_sound), 100, 1)
 		if(istype(L.head, /obj/item/clothing/head/helmet) && parse_zone(def_zone) == BP_HEAD)
+			var/obj/item/clothing/head/helmet/helm = L.head
+			helm.take_damage(damage)
 			playsound(L, pick(helmet_hit_sound), 80, 1)
 		if(ishuman(firer))//Stuff that isn't a mob doesn't play well with achievements.
 			if(parse_zone(def_zone) == BP_HEAD)//Boom headshot bitch.

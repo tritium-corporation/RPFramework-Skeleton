@@ -257,3 +257,16 @@
 	desc = "A strange chair, not from around here."
 	base_icon = "bogchair"
 	icon_state = "bogchair_preview"
+
+/obj/structure/bed/chair/red
+	icon_state = "greenchair_preview"
+	color = "#FFFFFF"
+	base_icon = "greenchair"
+/obj/structure/bed/chair/blue
+	icon_state = "bluechair_preview"
+	color = "#FFFFFF"
+	base_icon = "bluechair"
+/obj/structure/bed/chair/gray
+	icon_state = "metalchair_preview"
+	color = "#FFFFFF"
+	base_icon = "metalchair"

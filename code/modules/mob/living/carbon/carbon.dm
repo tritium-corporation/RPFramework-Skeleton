@@ -168,6 +168,7 @@
 			selhand = 1
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
+	//if(M.lying && !(src.warfare_faction == M.warfare_faction)) // TWOFARE EDIT - Snap off dogtags! Reconsider moving this to disarm? + a do_after?
 	if(!is_asystole())
 		if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

@@ -640,6 +640,9 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_hud()	//TODO: do away with this if possible
 	if(client)
 		client.screen |= contents
+		//client.images.Cut()
+		set_squad_huds()
+		set_team_huds()
 		if(hud_used)
 			hud_used.hidden_inventory_update() 	//Updates the screenloc of the items on the 'other' inventory bar
 
@@ -726,6 +729,10 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/add_crouching(var/update_icons=1)
 	overlays_standing[CROUCHING_LAYER] = null
 	var/image/standing = overlay_image('icons/mob/hud.dmi', "crouching")
+	var/matrix/M = matrix()
+	M.Scale(-1,1)
+	M.Translate(0,-6)
+	standing.transform = M
 	overlays_standing[CROUCHING_LAYER] = standing
 	if(update_icons)	update_icons()
 

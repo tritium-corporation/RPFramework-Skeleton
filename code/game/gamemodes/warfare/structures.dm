@@ -1,13 +1,12 @@
 /obj/structure/dirt_wall
 	name = "dirt barricade"
 	desc = "Be crouching behind this will stop you from getting shot by bullets!"
-	icon = 'icons/obj/sandbags.dmi'
+	icon = 'icons/obj/mounds_new.dmi'
 	icon_state = "brustwehr_0"
 	throwpass = TRUE//we can throw grenades despite its density
 	anchored = TRUE
 	density = FALSE
-	color = "#8c90a7" // I Cba to resprite these rn so its just a recolor to make them blend in more. - Kas
-
+	color = "#bfc0cf"// I Cba to resprite these rn so its just a recolor to make them blend in more. - Kas
 	plane = PLATING_PLANE
 	layer = BASE_ABOVE_OBJ_LAYER
 	 // Crates kept getting hidden under these. // Edit: cannot do that. It fucks up the turf smoothing overlays.
@@ -98,7 +97,9 @@
 			if(prob(50))
 				qdel(src)
 
-
+/obj/structure/dirt_wall/Destroy()
+	update_nearby_icons()
+	. = ..()
 
 /obj/structure/dirt_wall/attack_generic(var/mob/user, var/damage)
 	return FALSE

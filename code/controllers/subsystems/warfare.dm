@@ -82,9 +82,7 @@ SUBSYSTEM_DEF(warfare)
 		F.ChangeTurf(/turf/simulated/floor/dirty)
 	for(var/turf/simulated/floor/trench/fake/T in world)//Make all the fake trenches into real ones.
 		T.ChangeTurf(/turf/simulated/floor/trench)
-	for(var/area/warfare/A in world)// Cheeky breeky sneaky. Changes the ambience to be the ongoing war one..
-		if(!istype(A, /area/warfare/battlefield/trench_section/underground) || !istype(A, /area/warfare/homebase/blue) ||!istype(A, /area/warfare/homebase/red))
-			A.forced_ambience = 'sound/ambience/distant_warfare.ogg'
+	sound_to(world, sound('sound/ambience/distant_warfare.ogg', repeat = 1))
 
 /datum/controller/subsystem/warfare/proc/check_completion()
 	if(red.left <= 0)

@@ -146,7 +146,11 @@ obj/mortar/flare/blue
 /obj/item/grenade/frag/warfare
 	desc = "Throw it at THE ENEMEY!"
 	icon_state = "warfare_grenade"
+	arm_sound = "arm"
 
+/obj/item/grenade/frag/warfare/activate(mob/user)
+	. = ..()
+	layer = BASE_ABOVE_OBJ_LAYER+1 // just so it showsu p above dirt barricades
 
 /obj/item/grenade/frag/ex_act(severity)
 	. = ..()

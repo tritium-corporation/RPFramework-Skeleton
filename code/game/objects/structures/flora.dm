@@ -9,6 +9,71 @@
 	plane = EFFECTS_BELOW_LIGHTING_PLANE
 	layer = BELOW_PROJECTILE_LAYER
 
+/obj/structure/flora/wasteland/
+	name = null
+	desc = null
+	mouse_opacity = FALSE
+
+/obj/structure/flora/wasteland/New()
+	..()
+
+/obj/structure/flora/wasteland/rock
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "flora"
+	anchored = TRUE
+
+/obj/structure/flora/wasteland/misc
+	icon = 'icons/obj/32x64.dmi'
+	icon_state = "floraspawn"
+	anchored = TRUE
+	plane = ABOVE_HUMAN_PLANE
+
+/obj/structure/dirt_wall/mushroom
+	name = "mushroom"
+	desc = "seems large enough to stand on.. and use as cover.."
+	icon = 'icons/obj/32x64.dmi'
+	icon_state = "red2"
+
+/obj/structure/flora/wasteland/misc/New()
+	..()
+	if(prob(50))
+		icon_state = safepick(list("yel1","yel2","yel3"))
+		return
+	else if(prob(35))
+		icon_state = safepick(list("red1","red3"))
+		density = TRUE
+		return
+	else if(prob(15)) // biiig shroom
+		icon_state = safepick(list("bro1","bro2","bro3","dead"))
+		density = TRUE
+		return
+	else if(prob(20))
+		new /obj/structure/dirt_wall/mushroom(get_turf(src))
+		qdel(src)
+		return
+	else
+		qdel(src) // rip
+
+/obj/structure/dirt_wall/mushroom/update_nearby_icons()
+	return
+
+/obj/structure/dirt_wall/mushroom/update_icon()
+	return
+
+/obj/structure/flora/wasteland/tree
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "tree"
+	anchored = TRUE
+	//density = TRUE
+
+/obj/structure/flora/wasteland/rock/New()
+	..()
+	dir = pick(GLOB.alldirs)
+
+/obj/structure/flora/wasteland/tree/New()
+	..()
+	dir = pick(GLOB.alldirs)
+
 /obj/structure/flora/tree/CanPass(atom/A, turf/T)
 	if(ishuman(A))
 		return FALSE

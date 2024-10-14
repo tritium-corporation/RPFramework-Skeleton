@@ -230,6 +230,8 @@
 		reagents.add_reagent(/datum/reagent/tramadol/morphine, 100)
 
 /obj/item/reagent_containers/glass/ampule/attackby(obj/item/W, mob/user as mob)
+	if(closed)
+		return
 	if(istype(W, /obj/item/reagent_containers/hypospray/autoinjector))
 		var/obj/item/reagent_containers/hypospray/autoinjector/A = W
 		if(src.reagents)

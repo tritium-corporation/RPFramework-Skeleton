@@ -543,7 +543,7 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 		return 100
 	if(appearance_flags & HAS_SKIN_TONE_SPCR)
 		return 165
-	return 220
+	return 130
 
 /datum/species/proc/get_hair_styles()
 	var/list/L = LAZYACCESS(hair_styles, type)

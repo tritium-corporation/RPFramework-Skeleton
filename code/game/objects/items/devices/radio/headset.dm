@@ -2,8 +2,9 @@
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	var/radio_desc = ""
-	icon_state = "headset"
-	item_state = "headset"
+	icon_state = "newradio"
+	item_state = "newradio"
+	worldicons = list("radioworld")
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away

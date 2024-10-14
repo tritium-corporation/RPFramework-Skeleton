@@ -60,3 +60,10 @@
 	icon_state = ""
 	density = FALSE
 	anchored = TRUE
+
+/obj/machinery/door/airlock/multi_tile/metal/maintenance/red
+	name = "Airlock"
+	icon = 'icons/obj/doors/Doordoublesecglass1x2.dmi'
+	opacity = 1
+	glass = 0
+	assembly_type = /obj/structure/door_assembly/multi_tile/maintenance

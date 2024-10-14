@@ -9,15 +9,33 @@
 
 	material = DEFAULT_TABLE_MATERIAL
 
+/obj/structure/table/rack/nosmooth/wood
+	name = "wood table"
+	desc = "Different from the Middle Ages version."
+	icon = 'icons/obj/tables.dmi'
+	icon_state = "wood1"
+
+	material = DEFAULT_TABLE_MATERIAL
+
+/obj/structure/table/rack/nosmooth/wood/alt
+	icon_state = "wood2"
+
 /obj/structure/table/rack/nosmooth/dismantle(obj/item/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 
+/obj/structure/table/rack/nosmooth/metal
+	name = "metal table"
+	desc = "Different from the Middle Ages version."
+	icon = 'icons/obj/tables.dmi'
+	icon_state = "metallic"
+
+	material = DEFAULT_TABLE_MATERIAL
 
 // I feel bad about copy and pasting this.
 
 // NOTE: Figure out a cleaner way to do this, since currently you can't walk from table to table.
-/obj/structure/table/rack/nosmooth/auto_align(var/obj/item/W, click_params)
+/obj/structure/table/rack/nosmooth/auto_align(obj/item/W, click_params)
 	if (!W.center_of_mass) // Clothing, material stacks, generally items with large sprites where exact placement would be unhandy.
 		W.pixel_x = rand(-W.randpixel, W.randpixel)
 		W.pixel_y = rand(-W.randpixel, W.randpixel)

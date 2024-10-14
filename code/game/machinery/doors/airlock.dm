@@ -1236,9 +1236,9 @@ About the new airlock wires panel:
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	if(arePowerSystemsOn())
-		playsound(src.loc, open_sound_powered, 100, 1)
+		playsound(src.loc, open_sound_powered, 100, 0)
 	else
-		playsound(src.loc, open_sound_unpowered, 100, 1)
+		playsound(src.loc, open_sound_unpowered, 100, 0)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1289,9 +1289,9 @@ About the new airlock wires panel:
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(arePowerSystemsOn())
-		playsound(src.loc, close_sound_powered, 100, 1)
+		playsound(src.loc, close_sound_powered, 100, 0)
 	else
-		playsound(src.loc, close_sound_unpowered, 100, 1)
+		playsound(src.loc, close_sound_unpowered, 100, 0)
 
 	..()
 

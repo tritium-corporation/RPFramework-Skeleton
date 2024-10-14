@@ -90,10 +90,10 @@
 		else
 			stat("Stance:", "Standing")
 
-		stat("[my_stats[STAT(str)].shorthand]:", "[STAT_LEVEL(str)]")//Stats!
-		stat("[my_stats[STAT(dex)].shorthand]:", "[STAT_LEVEL(dex)]")
-		stat("[my_stats[STAT(end)].shorthand]:", "[STAT_LEVEL(end)]")
-		stat("[my_stats[STAT(int)].shorthand]:", "[STAT_LEVEL(int)]")
+		//stat("[my_stats[STAT(str)].shorthand]:", "[STAT_LEVEL(str)]")//Stats! // TWOFARE / INTERWAR EDIT : REMOVE THESE FROM STAT PANEL, REDUNDANT
+		//stat("[my_stats[STAT(dex)].shorthand]:", "[STAT_LEVEL(dex)]")
+		//stat("[my_stats[STAT(end)].shorthand]:", "[STAT_LEVEL(end)]")
+		//stat("[my_stats[STAT(int)].shorthand]:", "[STAT_LEVEL(int)]")
 
 		//if(evacuation_controller)
 		//	var/eta_status = evacuation_controller.get_status_panel_eta()
@@ -773,11 +773,11 @@
 		b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		update_eyes()
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
+	var/new_tone = input("Please select skin tone level: 1-180 (1=albino, 35=caucasian, 150=black)", "Character Generation", "[35-s_tone]")  as text
 
 	if (!new_tone)
 		new_tone = 35
-	s_tone = max(min(round(text2num(new_tone)), 220), 1)
+	s_tone = max(min(round(text2num(new_tone)), 180), 1)
 	s_tone =  -s_tone + 35
 
 	// hair
@@ -1068,39 +1068,6 @@
 					reset_view(shadow)
 				return
 		if(istype(above, /turf/space))
-			to_chat(src, "<span class='notice'>You can see empty space - wow.</span>")
-		else
-			to_chat(src, "<span class='notice'>There is nothing to see up there.</span>")
-	else
-		to_chat(src, "<span class='notice'>You can't look up right now.</span>")
-	return
-
-/mob/living/carbon/human/verb/lookdown()
-	set name = "Look Down"
-	set desc = "If you want to know what's below."
-	set category = "IC"
-
-	if(!is_physically_disabled())
-		var/fuckyou
-		var/turf/below // i don't wanna think of a better solution, grr
-		for(var/turf/simulated/open/down in view(src, 1))
-			if(isopenspace(below)) // just.. to make sure..
-				fuckyou = TRUE
-				below = down
-				break // no need to check the rest
-		if(!fuckyou) // this is probably such a fucking hacky way to do this and I hate it
-			return
-
-		if(shadow)
-			if(client.eye == shadow)
-				reset_view(0)
-				return
-			if(istype(below, /turf/simulated/open))
-				to_chat(src, "<span class='notice'>You look down.</span>")
-				if(client)
-					reset_view(shadow)
-				return
-		if(istype(below, /turf/space))
 			to_chat(src, "<span class='notice'>You can see empty space - wow.</span>")
 		else
 			to_chat(src, "<span class='notice'>There is nothing to see up there.</span>")

@@ -9,6 +9,9 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
+	use_sound = "military_rustle"
+	close_sound = "military_rustle_light_close"
+	drop_sound = "military_drop"
 
 /obj/item/storage/belt/verb/toggle_layer()
 	set name = "Switch Belt Layer"

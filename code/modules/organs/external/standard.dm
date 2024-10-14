@@ -58,6 +58,7 @@
 	organ_tag = BP_L_ARM
 	name = "left arm"
 	icon_name = "l_arm"
+	gendered_icon = 1
 	max_damage = 50
 	min_broken_damage = 30
 	w_class = ITEM_SIZE_NORMAL
@@ -108,7 +109,7 @@
 	min_broken_damage = 50
 	w_class = ITEM_SIZE_NORMAL
 	body_part = LEG_LEFT
-	icon_position = LEFT
+	//icon_position = LEFT
 	parent_organ = BP_GROIN
 	joint = "left knee"
 	amputation_point = "left hip"
@@ -116,6 +117,7 @@
 	has_tendon = TRUE
 	tendon_name = "cruciate ligament"
 	artery_name = "femoral artery"
+	gendered_icon = 1
 	arterial_bleed_severity = 0.75
 	gibbable = FALSE
 
@@ -138,7 +140,7 @@
 	name = "right leg"
 	icon_name = "r_leg"
 	body_part = LEG_RIGHT
-	icon_position = RIGHT
+	//icon_position = RIGHT
 	joint = "right knee"
 	amputation_point = "right hip"
 
@@ -156,7 +158,8 @@
 	min_broken_damage = 50
 	w_class = ITEM_SIZE_SMALL
 	body_part = FOOT_LEFT
-	icon_position = LEFT
+	gendered_icon = 1
+	//icon_position = LEFT
 	parent_organ = BP_L_LEG
 	joint = "left ankle"
 	amputation_point = "left ankle"
@@ -188,7 +191,7 @@
 	name = "right foot"
 	icon_name = "r_foot"
 	body_part = FOOT_RIGHT
-	icon_position = RIGHT
+	//icon_position = RIGHT
 	parent_organ = BP_R_LEG
 	joint = "right ankle"
 	amputation_point = "right ankle"
@@ -209,6 +212,7 @@
 	body_part = HAND_LEFT
 	parent_organ = BP_L_ARM
 	joint = "left wrist"
+	gendered_icon = 1
 	amputation_point = "left wrist"
 	can_grasp = 1
 	has_tendon = TRUE

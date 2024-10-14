@@ -215,8 +215,10 @@
 	slot_flags = SLOT_BACK|SLOT_S_STORE//In your back or your second back slot. Backpacks can only go in the main one though.
 	is_satchel = TRUE
 	open_delay = 10
-	use_sound = 'sound/effects/storage/satchel_open.ogg'
-	close_sound = 'sound/effects/storage/satchel_close.ogg'
+	use_sound = "military_rustle"
+	//close_sound = 'sound/effects/storage/satchel_close.ogg'
+	close_sound = "military_rustle_light_close"
+	drop_sound = "military_drop"
 
 /obj/item/storage/backpack/satchel/warfare
 	desc = "Fit for war, and not much else."

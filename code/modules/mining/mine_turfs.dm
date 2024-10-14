@@ -423,7 +423,6 @@ var/list/mining_floors = list()
 	mineralChance = 100 //25
 	mineralSpawnChanceList = list("Uranium" = 10, "Platinum" = 10, "Iron" = 20, "Carbon" = 20, "Diamond" = 2, "Gold" = 10, "Silver" = 10, "Phoron" = 20)
 
-
 /**********************Asteroid**************************/
 
 // Setting icon/icon_state initially will use these values when the turf is built on/replaced.

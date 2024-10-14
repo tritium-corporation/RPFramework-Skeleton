@@ -266,7 +266,7 @@
 
 
 			// SOMEONE PLEASE REMIND ME TO WRITE THIS SHITTY THING BELOW SOMEDAY
-		if(locate(/obj/structure/bridge, get_turf(src)) && !in_trench) // HERE BEGINS THE SHITTY FOOTSTEP OVERRIDE TO MAKE CERTAIN STRUCTURES & TURFS SOUND NICE WITH ARMOR!
+		if(locate(/obj/structure/bridge, get_turf(src)) && !in_trench || istype(get_turf(src),/turf/simulated/floor/wood)) // HERE BEGINS THE SHITTY FOOTSTEP OVERRIDE TO MAKE CERTAIN STRUCTURES & TURFS SOUND NICE WITH ARMOR!
 		// TO-DO: rewrite someday.
 		// Rewritten it enough.. I don't wanna fuckin bother with trench bridges anymore they're so fucking buggy and need an overall rewrite!!!
 			var/list/footstepsounds_temp = list('sound/effects/footstep/wood1.ogg',
@@ -298,8 +298,9 @@
 					volume = 50
 				playsound(T, safepick(footstepsounds_temp), volume, 1, range)
 		else
+			if(iswater(get_turf(src)) && wearingarmor) // this just makes it sound cooler..
+				playsound(T, safepick(T.footstep_sounds[FOOTSTEP_WATER]), volume, 1, range)
 			playsound(T, S, volume, 1, range)
-
 		var/list/clients_to_show = list()
 
 		for(var/mob/living/carbon/human/H in view())

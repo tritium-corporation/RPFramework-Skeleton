@@ -17,6 +17,10 @@
 	plane = ABOVE_HUMAN_PLANE
 	integrity = 500 //Tough bois
 
+/turf/simulated/wall/concrete/New()
+	. = ..()
+	dir = set_dir(pick(GLOB.alldirs))
+
 /turf/simulated/wall/concrete/ex_act(severity)
 	. = ..()
 	if(1)

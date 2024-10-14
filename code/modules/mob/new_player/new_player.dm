@@ -403,6 +403,7 @@
 		var/area/Area = get_area(character)
 		if(isarea(Area))
 			Area.change_zone_ambience(character)
+			Area.play_ambience(character)
 
 	qdel(src)
 

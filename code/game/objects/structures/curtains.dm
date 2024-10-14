@@ -66,3 +66,6 @@
 /obj/structure/curtain/open/shower/security
 	color = "#aa0000"
 
+/obj/structure/curtain/tarp
+	name = "tarp"
+	icon = 'icons/obj/tarp.dmi'

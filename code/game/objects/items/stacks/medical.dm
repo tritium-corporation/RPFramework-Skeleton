@@ -62,7 +62,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(TECH_BIO = 1)
 	animal_heal = 5
-	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
+	apply_sounds = list('sound/effects/rip3.ogg','sound/effects/rip4.ogg')
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/living/carbon/human/user as mob)
 	if(..())
@@ -151,7 +151,7 @@
 	heal_brute = 0
 	origin_tech = list(TECH_BIO = 1)
 	animal_heal = 12
-	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
+	apply_sounds = list('sound/effects/rip3.ogg','sound/effects/rip4.ogg')
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())

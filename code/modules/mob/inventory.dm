@@ -276,7 +276,7 @@ var/list/slot_equipment_priority = list( \
 			I.forceMove(target)
 		else
 			I.dropInto(loc)
-		I.dropped(src)
+		I.dropped(src, 0)
 	if(hud_used)
 		hud_used.add_inventory_overlay()
 	return 1

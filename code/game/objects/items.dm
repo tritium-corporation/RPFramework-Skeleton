@@ -67,6 +67,9 @@
 	// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons
 
+	var/list/worldicons
+	var/originalstate
+
 	//** These specify item/icon overrides for _species_
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
@@ -102,12 +105,14 @@
 	var/time_to_unequip = 0
 	var/bag_place_sound = "rustle"
 	var/bag_pickup_sound = null
+	var/world_icons = list()
 
 	var/table_pickup_sound = null //Sound it makes when you take something off a table.
 
 
 /obj/item/New()
 	..()
+	originalstate = icon_state
 	if(!swing_sound)
 		if(sharp || edge)
 			swing_sound = "swing_sound"
@@ -426,7 +431,9 @@
 			user.l_hand.update_twohanding()
 		if(user.r_hand)
 			user.r_hand.update_twohanding()
-
+	if(LAZYLEN(worldicons))
+		originalstate = icon_state
+		icon_state = safepick(worldicons)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -445,6 +452,9 @@
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	if(bag_place_sound)
 		playsound(src, bag_place_sound, 50)
+	if(worldicons)
+		icon_state = originalstate
+		originalstate = icon_state
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -479,7 +489,8 @@
 
 	if(wielded)
 		unwield(user)
-
+	if(LAZYLEN(worldicons))
+		icon_state = originalstate
 
 
 //Defines which slots correspond to which slot flags
@@ -899,9 +910,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/spritesheet = FALSE
 	if(icon_override)
 		mob_icon = icon_override
-		if(slot == 	slot_l_hand_str || slot == slot_l_ear_str)
+		if(slot == 	slot_l_hand_str)
 			mob_state = "[mob_state]_l"
-		if(slot == 	slot_r_hand_str || slot == slot_r_ear_str)
+		if(slot == 	slot_r_hand_str)
 			mob_state = "[mob_state]_r"
 	else if(use_spritesheet(bodytype, slot, mob_state))
 		if(slot == slot_l_ear)
@@ -916,6 +927,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		mob_icon = default_onmob_icons[slot]
 
 	var/image/ret_overlay = overlay_image(mob_icon,mob_state,color)//,RESET_COLOR)
+	if(slot == slot_r_ear_str)
+		var/matrix/M = matrix(transform)
+		M.Scale(-1,1)
+		M.Translate(-1,0)
+		ret_overlay.transform = M
+		switch(user_human.dir)
+			if(WEST)	ret_overlay.dir = NORTH
+			if(EAST)	ret_overlay.dir = WEST
 	if(user_human && user_human.species && user_human.species.equip_adjust.len && !spritesheet)
 		var/list/equip_adjusts = user_human.species.equip_adjust
 		if(equip_adjusts[slot])
@@ -961,6 +980,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	..()
 	if(drop_sound)
 		playsound(src, drop_sound, 50, 0)
+	//if(LAZYLEN(worldicons))
+	//	originalstate = icon_state
+	//	icon_state = safepick(worldicons)
 
 
 /obj/item/proc/grab_sound(mob/user)

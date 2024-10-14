@@ -22,6 +22,12 @@
 	var/can_generate_water = TRUE
 	var/can_be_dug = TRUE
 
+/turf/simulated/floor/dirty/alt
+	name = "dirt" //"snowy dirt"
+	//icon = 'icons/turf/snow.dmi'
+	//icon_state = "snow_3"
+	icon_state = "dirt"
+
 /turf/simulated/floor/dirty/fake
 	atom_flags = null
 	can_generate_water = FALSE
@@ -145,7 +151,7 @@
 
 /turf/simulated/floor/dirty/New()
 	..()
-	temperature = T0C - 60
+	//temperature = T0C - 60
 	//icon_state = pick("snow[rand(1,12)]","snow0")
 	dir = pick(GLOB.alldirs)
 	if(!(locate(/obj/effect/lighting_dummy/daylight) in src) && has_light)
@@ -174,6 +180,24 @@
 							return
 						possible_water.ChangeTurf(/turf/simulated/floor/exoplanet/water/shallow)
 						waters += possible_water
+/turf/simulated/floor/dirty/Initialize()
+	. = ..()
+	var/FUCKYOU
+	for(var/obj/structure/object in contents)
+		if(object)
+			FUCKYOU=TRUE
+			return
+	if(prob(35))
+		icon_state = "dirt1"
+		dir = pick(GLOB.alldirs)
+
+	if(prob(45) && !density && !FUCKYOU)
+		if(prob(85))
+			new /obj/structure/flora/wasteland/rock(src)
+		else if(prob(75))
+			new /obj/structure/flora/wasteland/misc(src)
+		else if(prob(65))
+			new /obj/structure/flora/wasteland/tree(src)
 
 /turf/simulated/floor/dirty/attackby(obj/O as obj, mob/living/user as mob)
 	if(istype(O, /obj/item/shovel))
@@ -267,6 +291,7 @@
 	has_coldbreath = TRUE
 	var/has_light = TRUE
 	atom_flags = ATOM_FLAG_CLIMBABLE
+	add_mask = TRUE
 
 /turf/simulated/floor/exoplanet/water/shallow/update_dirt()
 	return
@@ -333,15 +358,44 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		L.ExtinguishMob()
+	if(ishuman(A))
+		var/mob/living/carbon/human/M = A
+		if(add_mask)
+			M.vis_contents += new /obj/effect/trench/mask/water
+			M.has_trench_overlay = TRUE
+
+		else if(!add_mask)
+			if(M.has_trench_overlay)
+				for(var/obj/effect/trench/mask/mask in M.vis_contents)
+					M.vis_contents -= mask
+					qdel(mask)
+				M.has_trench_overlay = FALSE
+
+/turf/simulated/floor/exoplanet/water/shallow/Uncross(O)
+	. = ..()
+	if(ishuman(O))
+		var/mob/living/carbon/human/M = O
+		if(M.has_trench_overlay)
+			for(var/obj/effect/trench/mask/mask in M.vis_contents)
+				M.vis_contents -= mask
+				qdel(mask)
 
 /turf/simulated/floor/exoplanet/water/shallow/lightless
 	has_light = FALSE
 
 /turf/simulated/floor/exoplanet/water/shallow/New()
 	..()
+	if(locate(/obj/structure) in src)
+		for(var/obj/structure/fuck in src)
+			if(istype(fuck, /obj/structure/landmine))
+				qdel(fuck)
+			else if(istype(fuck, /obj/structure/barbwire))
+				qdel(fuck)
 	if((!locate(/obj/effect/lighting_dummy/daylight) in src) && has_light)
 		new /obj/effect/lighting_dummy/daylight(src)
-	temperature = T0C - 80
+	//temperature = T0C - 80
+
+	/*
 	for(var/obj/effect/water/bottom/B in src)
 		if(B)
 			qdel(B)
@@ -351,6 +405,9 @@
 
 	new /obj/effect/water/bottom(src)//Put it right on top of the water so that they look like they're the same.
 	new /obj/effect/water/top(src)
+	*/
+	new /obj/effect/water(src)
+
 	spawn(5)
 		update_icon()
 		for(var/turf/simulated/floor/exoplanet/water/shallow/T in range(1))
@@ -366,8 +423,8 @@
 
 		else if(istype(turf_to_check, /turf/simulated))
 			var/image/water_side = image('icons/obj/warfare.dmi', "over_water1", dir = direction)//turn(direction, 180))
-			water_side.plane = PLATING_PLANE
-			water_side.layer = ABOVE_OBJ_PLANE
+			water_side.plane = src.plane
+			water_side.layer = src.layer+2
 			water_side.color = "#877a8b"
 
 			overlays += water_side
@@ -413,6 +470,15 @@
 	for(var/turf/simulated/floor/exoplanet/water/shallow/S in range(1))
 		S.update_icon()
 
+/obj/effect/water/
+	name = "water"
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "trench_full"
+	plane = PLATING_PLANE
+	layer = 2
+	density = FALSE
+	anchored = TRUE
+	mouse_opacity = FALSE
 
 /obj/effect/water/top//This one appears over objects but under mobs.
 	name = "water"

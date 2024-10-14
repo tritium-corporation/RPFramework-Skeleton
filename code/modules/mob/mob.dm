@@ -1019,6 +1019,71 @@ mob/proc/yank_out_object()
 		return
 	set_face_dir()
 
+/mob/proc/set_hud_stats(var/delay) // very shitty hardcodey shitcodey stat number display
+	spawn(delay)
+		var/num_ui_style = 'icons/mob/screen/custom/interhud_num.dmi' // just for myself..
+		var/obj/screen/using
+		var/adding = list()
+		var/i
+		var/lvl
+		var/shift
+		i = 0
+		lvl = num2text(STAT_LEVEL(str))
+		shift = 0
+		for(i = 1, i <= 2, i++)
+			if(length(lvl) == 1)
+				lvl = "0[lvl]"
+			using = new /obj/screen() // Create a new HUD element
+			using.icon = num_ui_style
+			using.icon_state = copytext(lvl, i, i+1) // Set the icon state to the charactert
+			using.screen_loc = "NORTH+0.375,WEST-2.8+[shift]"
+			shift += 0.15
+			using.layer = HUD_ABOVE_ITEM_LAYER
+			adding += using
+		i = 0
+		lvl = num2text(STAT_LEVEL(dex))
+		shift = 0
+		for(i = 1, i <= 2, i++)
+			if(length(lvl) == 1)
+				lvl = "0[lvl]"
+			using = new /obj/screen() // Create a new HUD element
+			using.icon = num_ui_style
+			using.icon_state = copytext(lvl, i, i+1) // Set the icon state to the charactert
+			using.screen_loc = "NORTH-0.15,WEST-2.8+[shift]"
+			shift += 0.15
+			using.layer = HUD_ABOVE_ITEM_LAYER
+			adding += using
+		i = 0
+		lvl = num2text(STAT_LEVEL(end))
+		shift = 0
+		for(i = 1, i <= 2, i++)
+			if(length(lvl) == 1)
+				lvl = "0[lvl]"
+			using = new /obj/screen() // Create a new HUD element
+			using.icon = num_ui_style
+			using.icon_state = copytext(lvl, i, i+1) // Set the icon state to the charactert
+			using.screen_loc = "NORTH-0.69,WEST-2.8+[shift]"
+			shift += 0.15
+			using.layer = HUD_ABOVE_ITEM_LAYER
+			adding += using
+		i = 0
+		lvl = num2text(STAT_LEVEL(int))
+		shift = 0
+		for(i = 1, i <= 2, i++)
+			if(length(lvl) == 1)
+				lvl = "0[lvl]"
+			using = new /obj/screen() // Create a new HUD element
+			using.icon = num_ui_style
+			using.icon_state = copytext(lvl, i, i+1) // Set the icon state to the charactert
+			using.screen_loc = "NORTH-1.225,WEST-2.8+[shift]"
+			shift += 0.15
+			using.layer = HUD_ABOVE_ITEM_LAYER
+			adding += using
+		for(var/obj/A in adding)
+			A.alpha = 0
+			spawn(1 SECOND)
+				animate(A, rand(0.15,0.5) SECONDS, easing = BOUNCE_EASING|ELASTIC_EASING, alpha=255)
+		client.screen += adding
 
 /mob/proc/set_face_dir(var/newdir)
 	if(newdir == FALSE)

@@ -18,12 +18,6 @@
 	//if(prob(1))
 	//	new /obj/random/mining_hostile(T)
 
-	if(prob(10))
-		new /obj/structure/flora/ash(T)
-
-	else if(prob(10))
-		new /obj/structure/flora/ash/mushrooms(T)
-
 	else if(prob(10))
 		new /obj/structure/flora/rocks(T)
 
@@ -72,17 +66,20 @@
 	//if(prob(1)) //Rats are lagging I'm pretty sure.
 	//	new /mob/living/simple_animal/hostile/retaliate/rat(T)
 
-	else if(prob(10))
-		new /obj/structure/flora/ash(T)
+	//else if(prob(10))
+	//	new /obj/structure/flora/ash(T)
 
-	else if(prob(15))
+	else if(prob(12))
 		new /obj/structure/barbwire(T)
 
 	else if(prob(5))
 		new /obj/structure/anti_tank(T)
 
 	else if(prob(5))//Please no landmines under dirt mounds thank you.
+		// please no landmines on fucking water thank you
 		for(var/obj/structure/object in T.contents)
 			if(object)
 				return
+		if(istype(T,/turf/simulated/floor/exoplanet/water/shallow))
+			return
 		new /obj/structure/landmine(T)

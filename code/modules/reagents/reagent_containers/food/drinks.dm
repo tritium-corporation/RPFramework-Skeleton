@@ -134,11 +134,39 @@
 	icon_state = "canteen"
 	center_of_mass = "x=16;y=9"
 	volume = 50
+	var/state
+	var/rolledstate
 	slot_flags = SLOT_TIE
+
+/obj/item/reagent_containers/food/drinks/canteen/attack(mob/M, mob/user, def_zone)
+	if(!state)
+		return
+	..()
+
+/obj/item/reagent_containers/food/drinks/canteen/attack_self(mob/user)
+	if(!state)
+		state = TRUE
+		update_icon()
+		playsound(get_turf(src), 'sound/effects/canteen_off.ogg', 50, 0.5)
+		return
+	if(state)
+		state = FALSE
+		update_icon()
+		playsound(get_turf(src), 'sound/effects/canteen_on.ogg', 50, 0.5)
+		return
+
+/obj/item/reagent_containers/food/drinks/canteen/update_icon()
+	. = ..()
+	if(state)
+		icon_state = "[rolledstate]_open"
+	else
+		icon_state = rolledstate
 
 /obj/item/reagent_containers/food/drinks/canteen/New()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/water, 50)
+	icon_state = pick("flask_1","flask_2")
+	rolledstate = icon_state
 
 /obj/item/reagent_containers/food/drinks/milk
 	name = "milk carton"

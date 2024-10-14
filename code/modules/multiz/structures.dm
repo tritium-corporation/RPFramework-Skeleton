@@ -193,12 +193,13 @@
 	layer = RUNE_LAYER
 
 /obj/structure/stairs/trenchstairs
-	icon = 'icons/turf/trenches_turfs.dmi'
-	icon_state = "trenchstairtest"
+	icon_state = "thetrenchescall"
 
 /obj/structure/trenchstairs // the buildable version
-	icon = 'icons/turf/trenches_turfs.dmi'
-	icon_state = "trenchstairtest"
+	icon = 'icons/obj/sstairs.dmi'
+	icon_state = "thetrenchescall"
+	anchored = TRUE
+	mouse_opacity = FALSE
 
 /obj/structure/stairs/Initialize()
 	for(var/turf/turf in locs)

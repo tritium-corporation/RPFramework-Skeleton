@@ -541,7 +541,7 @@
 	caliber = "flamer"
 	one_hand_penalty = 50
 	str_requirement = 18
-	fire_sound = 'sound/effects/fire01.ogg'
+	fire_sound = "combust"
 	casingsound = null//No eject sound for you.
 	firemodes = list()
 	automatic = 0.1

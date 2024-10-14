@@ -341,6 +341,19 @@
 			receive_damage()
 
 		if(I_DISARM)
+			if(lying && !(warfare_faction == M.warfare_faction))
+				if(istype(get_equipped_item(slot_wear_id), /obj/item/card/id/dog_tag/) && M.zone_sel.selecting == BP_THROAT)
+					M.doing_something = TRUE
+					if(do_after(M, 20))
+						var/obj/item/card/id/dog_tag/tag = get_equipped_item(slot_wear_id)
+						if(tag.halfed)
+							return
+						tag.split(M)
+						M.visible_message("[src] snaps off half of [M]'s dogtag.", "You snap off half of [M]'s dogtag")
+						M.doing_something = FALSE
+						return
+					else
+						M.doing_something = FALSE
 			M.adjustStaminaLoss(rand(2,5))//No more spamming disarm without consequence!
 			if(attempt_dodge())
 				return

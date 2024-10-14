@@ -25,6 +25,7 @@
 		H.assign_random_quirk()
 		if(announced)
 			H.say(";Soldier reporting for duty!")
+		H.set_hud_stats()
 
 /datum/job/soldier/red_soldier/sgt
 	title = "Red Squad Leader"
@@ -375,12 +376,12 @@
 
 /decl/hierarchy/outfit/job/redsoldier/sniper
 	l_ear = /obj/item/device/radio/headset/red_team/all
-	suit = /obj/item/clothing/suit/armor/redcoat/sniper
-	head = /obj/item/clothing/head/helmet/redhelmet/sniper
+	suit = /obj/item/clothing/suit/armor/sniper
+	head = null
 	suit_store = /obj/item/gun/projectile/heavysniper
 	belt = /obj/item/gun/projectile/revolver //Backup weapon.
 	r_pocket = /obj/item/ammo_box/ptsd
-	backpack_contents = list(/obj/item/grenade/smokebomb = 1)
+	backpack_contents = list(/obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/sniper = 1)
 	chest_holster = null
 
 /decl/hierarchy/outfit/job/redsoldier/sniper/equip()
@@ -427,7 +428,7 @@
 	belt = /obj/item/gun/projectile/revolver/cpt
 	r_pocket = /obj/item/device/binoculars
 	chest_holster = null
-	backpack_contents = list(/obj/item/ammo_magazine/handful/revolver = 2, /obj/item/grenade/smokebomb = 1)
+	backpack_contents = list(/obj/item/ammo_magazine/handful/revolver = 2, /obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/captaingasmask = 1)
 
 /decl/hierarchy/outfit/job/redsoldier/leader/equip()
 	if(prob(50))//Give them an MRE. They're going to be out there a while.

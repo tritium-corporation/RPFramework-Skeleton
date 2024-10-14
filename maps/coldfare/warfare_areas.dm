@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 	requires_power = FALSE
 
 /area/warfare/battlefield
-	forced_ambience = list('sound/ambience/cold_outside2.ogg' )
+	//forced_ambience = list('sound/ambience/cold_outside2.ogg' )
 	name = "\improper Battlefield"
 	var/captured = null
 	turf_initializer = /decl/turf_initializer/oldfare // /decl/turf_initializer/warfare
@@ -220,9 +220,9 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 				to_chat(H, "I can't bring this with me onto the battlefield. Wouldn't want to lose it.")
 				return
 
-		if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress) && captured != H.warfare_faction)
-			to_chat(H, "<big>I need to stay home!</big>")
-			return FALSE
+		//if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress) && captured != H.warfare_faction) // WARTWO EDIT : We're allowing pracs outside now.
+		//	to_chat(H, "<big>I need to stay home!</big>")
+		//	return FALSE
 
 		if(!SSwarfare.battle_time && captured != H.warfare_faction)//So people can enter their own trenches.
 			to_chat(H, "<big>I am not ready to die yet!</big>")
@@ -242,6 +242,8 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 	name = "\improper Red Base"
 	icon_state = "security"
 
+/area/warfare/homebase/red/div
+
 /area/warfare/homebase/red/Enter(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
@@ -254,6 +256,8 @@ GLOBAL_LIST_EMPTY(mortar_areas) // = list()
 /area/warfare/homebase/blue
 	name = "\improper Blue Base"
 	icon_state = "showroom"
+
+/area/warfare/homebase/blue/div
 
 /area/warfare/homebase/blue/Enter(atom/movable/AM)
 	if(ishuman(AM))

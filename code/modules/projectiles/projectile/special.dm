@@ -129,7 +129,7 @@
 	..()
 	if(istype(loc, /turf/simulated/floor/exoplanet/water/shallow))//No catching the water on fire.
 		qdel(src)
-	playsound(src, "sound/effects/fire.ogg", 50, FALSE)
+	playsound(src, "combust", 50, FALSE)
 	//var/obj/fire = new/obj/particle_emitter/fire(get_turf(src))
 	//var/obj/smoke = new/obj/particle_emitter/firesmoke(get_turf(src))
 	//var/obj/embers = new/obj/emitter/sparks/fire(get_turf(src))

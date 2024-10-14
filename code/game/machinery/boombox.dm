@@ -1,12 +1,13 @@
 /obj/item/device/boombox
 	name = "Boombox"
 	icon = 'icons/obj/boombox.dmi'
-	icon_state = "boombox"
+	icon_state = "cdplayer"
 	desc = "A smuggled in boombox used with smuggled in cassette tapes to listen to smuggled in tunes."
 	var/obj/item/device/cassette/casseta = null
 	var/datum/sound_token/sound_token
 	var/playing = 0
 	var/sound_id
+	worldicons = list("cdplayerworld")
 	w_class = ITEM_SIZE_NO_CONTAINER
 
 /obj/item/device/boombox/attack_hand(mob/user as mob)
@@ -30,8 +31,9 @@
 			return
 		I.forceMove(src)
 		casseta = I
-		visible_message("<span class='notice'>[user] insert cassette into [src].</span>")
+		visible_message("<span class='notice'>[user] inserts a cassette into [src].</span>")
 		playsound(get_turf(src), 'sound/machines/bominside.ogg', 50, 1)
+		update_icon()
 		return
 	..()
 
@@ -65,6 +67,7 @@
 	playsound(get_turf(src), 'sound/machines/bominside.ogg', 50, 1)
 	usr.put_in_hands(casseta)
 	casseta = null
+	update_icon()
 
 /obj/item/device/boombox/attack_self(mob/user)
 	if(playing)
@@ -90,6 +93,22 @@
 	sound_token = sound_player.PlayLoopingSound(src, sound_id, casseta.sound_inside, volume = 50, range = 9, falloff = 3, prefer_mute = TRUE, ignore_vis = TRUE)
 	playing = 1
 
+/obj/item/device/boombox/update_icon()
+	. = ..()
+	if(isworld(loc))
+		if(casseta)
+			worldicons = list("cdplayerworld")
+			originalstate = "cdplayer"
+		else
+			worldicons = list("cdplayerworld_open")
+			originalstate = "cdplayer_open"
+	if(!isworld(loc))
+		if(casseta)
+			icon_state = "cdplayer"
+			worldicons = list("cdplayerworld")
+		else
+			icon_state = "cdplayer_open"
+			worldicons = list("cdplayerworld_open")
 /obj/item/device/cassette
 	name = "cassette tape"
 	desc = "A tape smuggled in from somewhere in the outside world. Contains some bumping tunes on it."

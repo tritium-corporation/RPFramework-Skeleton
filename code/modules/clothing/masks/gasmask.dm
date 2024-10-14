@@ -12,6 +12,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+	equipsound = 'sound/effects/gasmasks/gasmask_on.ogg'
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("phoron", "sleeping_agent")
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 75, rad = 0)
@@ -31,6 +32,12 @@
 	return filtered
 
 /obj/item/clothing/mask/gas/redgasmask
+	helmet_vision = TRUE
+
+/obj/item/clothing/mask/gas/captaingasmask
+	icon_state = "captaingasmask"
+	item_state = "captaingasmask"
+	worldicons = list("captaingasmaskworld")
 	helmet_vision = TRUE
 
 /obj/item/clothing/mask/gas/ancient
