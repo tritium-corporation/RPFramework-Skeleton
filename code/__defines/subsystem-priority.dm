@@ -43,6 +43,7 @@
 #define INIT_ORDER_MAPPING   12
 #define INIT_ORDER_ATOMS     11
 #define INIT_ORDER_MACHINES   9
+#define INIT_ORDER_MAPGEN     6
 #define INIT_ORDER_AO         5
 #define INIT_ORDER_SHUTTLE    3
 #define INIT_ORDER_TIMER      1

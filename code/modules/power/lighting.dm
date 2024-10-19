@@ -145,7 +145,7 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	appearance_flags = 0
+	appearance_flags = TILE_BOUND
 
 	var/on = 0					// 1 if on, 0 if off
 	var/flickering = 0
@@ -163,6 +163,15 @@
 	base_state = "caged"
 	light_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/small
+
+/obj/machinery/light/small/bunker
+	icon_state = "bunkerlight1"
+	base_state = "bunkerlight"
+	desc = "A small lighting fixture."
+	light_type = /obj/item/light/bulb
+	construct_type = /obj/machinery/light_construct/small
+	idle_power_usage = 1
+	active_power_usage = 10
 
 // the smaller bulb light fixture
 /obj/machinery/light/small

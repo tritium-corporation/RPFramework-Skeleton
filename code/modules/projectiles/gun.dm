@@ -458,18 +458,9 @@
 	user.dispersion_mouse_display_number = P.dispersion
 	//to_chat(world, "[P.dispersion]") //Debug.
 	if(user.dispersion_mouse_display_number > 0 && user.dispersion_mouse_display_number < 2)// else
-		user.client.mouse_pointer_icon = 'icons/effects/standard/standard2.dmi'//'icons/misc/aim.dmi'
-	else if(user.dispersion_mouse_display_number >= 2 && user.dispersion_mouse_display_number < 4)
-		user.client.mouse_pointer_icon = 'icons/effects/standard/standard3.dmi'
-	else if(user.dispersion_mouse_display_number >= 4 && user.dispersion_mouse_display_number < 6)
-		user.client.mouse_pointer_icon = 'icons/effects/standard/standard4.dmi'
-	else if(user.dispersion_mouse_display_number >= 6 && user.dispersion_mouse_display_number < 10)
-		user.client.mouse_pointer_icon = 'icons/effects/standard/standard5.dmi'
-	else if(user.dispersion_mouse_display_number >= 10)
-		user.client.mouse_pointer_icon = 'icons/effects/standard/standard6.dmi'
-	else
-		user.client.mouse_pointer_icon = 'icons/effects/standard/standard1.dmi'
-
+		user.client.mouse_pointer_icon = 'icons/effects/standard/weapon_pointer_auto.dmi'//'icons/misc/aim.dmi'
+	else if(user.dispersion_mouse_display_number >= 2 && user.dispersion_mouse_display_number >= 4)
+		user.client.mouse_pointer_icon = 'icons/effects/standard/weapon_pointer_fuck.dmi'
 
 
 
@@ -765,7 +756,7 @@
 /obj/item/gun/pickup(mob/user)
 	if(user.client)
 		if(!safety)
-			user.client.mouse_pointer_icon = 'icons/effects/standard/standard2.dmi'
+			user.client.mouse_pointer_icon = 'icons/effects/standard/weapon_pointer_auto.dmi'
 	update_icon()
 	..()
 /obj/item/gun/dropped(mob/user)
@@ -787,42 +778,7 @@
 /mob/living/carbon/human/swap_hand()
 	..()
 	unready_weapon()
-	update_aim_icon()
-
-/mob/proc/update_aim_icon()
-	if(!client)
-		return
-
-	var/obj/item/gun/G = get_active_hand()
-
-	if(istype(G) && !G.safety)
-		if(dispersion_mouse_display_number > 0 && dispersion_mouse_display_number < 2)
-			client.mouse_pointer_icon = 'icons/effects/standard/standard2.dmi'
-		else if(dispersion_mouse_display_number >= 2 && dispersion_mouse_display_number < 4)
-			client.mouse_pointer_icon = 'icons/effects/standard/standard3.dmi'
-		else if(dispersion_mouse_display_number >= 4 && dispersion_mouse_display_number < 6)
-			client.mouse_pointer_icon = 'icons/effects/standard/standard4.dmi'
-		else if(dispersion_mouse_display_number >= 6 && dispersion_mouse_display_number < 10)
-			client.mouse_pointer_icon = 'icons/effects/standard/standard5.dmi'
-		else if(dispersion_mouse_display_number >= 10)
-			client.mouse_pointer_icon = 'icons/effects/standard/standard6.dmi'
-		else
-			if(weapon_readied)
-				client.mouse_pointer_icon = 'icons/effects/standard/standard1.dmi'
-			else
-				client.mouse_pointer_icon = 'icons/effects/standard/standard2.dmi'
-		if(dispersion_mouse_display_number > 20)
-			dispersion_mouse_display_number = 20
-			recoil = 20
-		if(dispersion_mouse_display_number <= 0)
-			dispersion_mouse_display_number = 0
-			recoil = 0
-		dispersion_mouse_display_number -= 10
-
-	else
-		if(client)
-			client.mouse_pointer_icon = 'icons/misc/pointer_cursor.dmi'
-
+	client?.update_cursor(client?.hovered_obj)
 
 /obj/item/gun/proc/add_bayonet()
 	var/image/I =  image('icons/obj/gun.dmi', "bayonett")
@@ -848,7 +804,7 @@
 	weapon_readied = TRUE
 	var/obj/item/gun/G = get_active_hand()
 	if(istype(G) && !G.safety)
-		client.mouse_pointer_icon = 'icons/effects/standard/standard1.dmi'
+		client.mouse_pointer_icon = 'icons/effects/standard/weapon_pointer.dmi'
 		sound_to(src, 'sound/effects/ironsight_on.ogg')
 		recoil -= 5
 		if(recoil <= 0)//So we don't get negative recoil.
@@ -861,7 +817,7 @@
 	weapon_readied = FALSE
 	var/obj/item/gun/G = get_active_hand()
 	if(istype(G) && !G.safety)
-		client.mouse_pointer_icon = 'icons/effects/standard/standard2.dmi'
+		client.mouse_pointer_icon = 'icons/effects/standard/weapon_pointer_auto.dmi'
 		sound_to(src,'sound/effects/ironsight_off.ogg')
 
 

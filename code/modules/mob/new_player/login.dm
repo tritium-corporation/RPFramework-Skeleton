@@ -6,6 +6,7 @@
 	name = "Interstation12"
 	desc = "This shouldn't be read."
 	screen_loc = "WEST,NORTH-3"
+	mouse_opacity = FALSE
 
 /obj/effect/workinprogress/Initialize()
 	icon = 'icons/workinprogress.dmi'
@@ -16,6 +17,7 @@
 	name = "Interstation12"
 	desc = "This shouldn't be read."
 	screen_loc = "WEST,SOUTH"
+	mouse_opacity = FALSE
 
 /obj/effect/lobby_image/Initialize()
 	icon = GLOB.using_map.lobby_icon

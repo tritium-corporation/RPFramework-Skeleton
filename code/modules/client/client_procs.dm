@@ -214,6 +214,8 @@
 	var/obj/hovered_obj = null
 
 /client/MouseEntered(atom/object, location, control, params)
+	if(mob && object)
+		update_cursor(object)
 	if (tooltip)
 		screen |= tooltip
 		tooltip.maptext = ""
@@ -471,15 +473,12 @@ client/proc/MayRespawn()
 	else
 		to_chat(src, "You will no longer face the direction your mouse points when in combat mode.")
 
-
 /atom/proc/onMouseMove(object, location, control, params)
 	return
 
-
-/mob/living/carbon/onMouseMove(object, location, control, params)
-	if(!combat_mode)
-		return
-	face_atom(object)
+/mob/living/carbon/onMouseMove(var/atom/object, location, control, params)
+	if(combat_mode)
+		face_atom(object)
 
 
 /client/verb/fit_viewport()

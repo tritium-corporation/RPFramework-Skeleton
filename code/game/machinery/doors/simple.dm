@@ -259,6 +259,17 @@
 	icon_base = "woodendoor"
 	color = null
 
+/obj/machinery/door/unpowered/simple/wood/captain
+	icon_base = "door"
+	icon = 'icons/obj/doors/captaindoor.dmi'
+	icon_state = "captaindoor"
+	icon_base = "captaindoor"
+	color = null
+
+/obj/machinery/door/unpowered/simple/wood/captain/New(var/newloc,var/material_name,var/complexity)
+	..(newloc, "wood", complexity)
+	color = null
+
 /obj/machinery/door/unpowered/simple/wood/home/New(var/newloc,var/material_name,var/complexity)
 	..(newloc, "wood", complexity)
 	color = null

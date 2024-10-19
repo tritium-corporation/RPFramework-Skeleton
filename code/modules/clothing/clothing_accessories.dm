@@ -45,7 +45,7 @@
 
 	//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
 	if (!(src.loc == usr))
-		return
+		return . = ..()
 
 	if (usr.incapacitated(INCAPACITATION_STUNNED|INCAPACITATION_RESTRAINED|INCAPACITATION_KNOCKOUT))
 		return
@@ -59,6 +59,7 @@
 		if("l_hand")
 			usr.put_in_l_hand(src)
 	src.add_fingerprint(usr)
+
 /*
 /obj/item/clothing/examine(var/mob/user)
 	. = ..(user)

@@ -34,6 +34,15 @@
 	desc = "Looks much stronger than a paper sheet."
 	integrity = 7500
 
+/turf/simulated/wall/perspecticrete
+	name = "concrete wall"
+	desc = "An old concrete wall. For when metal just isn't good enough."
+	icon_state = "perspecticrete0"
+	walltype = "perspecticrete"
+	mineral = "rust"
+	plane = ABOVE_HUMAN_PLANE
+	integrity = 500 //Tough bois
+
 /turf/simulated/wall/concrete/strong/oldcrete
 	icon = 'icons/turf/oldcrete.dmi'
 

@@ -155,8 +155,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 		default_pixel_x = mob.default_pixel_x
 		default_pixel_y = mob.default_pixel_y
 
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2, easing = SINE_EASING)
+	animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2, easing = SINE_EASING)
 
 /mob/do_attack_animation(atom/A)
 	..()
@@ -241,4 +241,4 @@ note dizziness decrements automatically in the mob's Life() proc.
 		return
 	animate(L, pixel_z = 4, time = 0)
 	animate(pixel_z = 0, transform = turn(matrix(), pick(-12, 0, 12)), time=2)
-	animate(pixel_z = 0, transform = matrix(), time = 0) 
+	animate(pixel_z = 0, transform = matrix(), time = 0)

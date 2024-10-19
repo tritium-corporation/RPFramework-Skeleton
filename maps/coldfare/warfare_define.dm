@@ -13,7 +13,7 @@
 	system_name = "hell"
 
 	lobby_icon = 'maps/coldfare/fullscreen.dmi'
-	lobby_screens = list("lobby1","lobby2")
+	lobby_screens = list("lobby")
 
 	station_levels = list(1,2)
 	contact_levels = list(1)

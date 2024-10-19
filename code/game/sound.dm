@@ -116,7 +116,8 @@ GLOBAL_LIST_INIT(far_sniper,list('sound/effects/weapons/gun/rifle_farfire1.ogg',
 GLOBAL_LIST_INIT(far_rifle,list('sound/effects/weapons/gun/semi_farfire1.ogg','sound/effects/weapons/gun/semi_farfire2.ogg','sound/effects/weapons/gun/semi_farfire3.ogg', 'sound/effects/weapons/gun/semi_farfire4.ogg'))
 GLOBAL_LIST_INIT(eat_food, list('sound/effects/eating/eat1.ogg', 'sound/effects/eating/eat2.ogg', 'sound/effects/eating/eat3.ogg', 'sound/effects/eating/eat4.ogg', 'sound/effects/eating/eat5.ogg'))
 GLOBAL_LIST_INIT(drink_sound, list('sound/effects/eating/drink1.ogg','sound/effects/eating/drink2.ogg','sound/effects/eating/drink3.ogg','sound/effects/eating/drink4.ogg','sound/effects/eating/drink5.ogg'))
-
+GLOBAL_LIST_INIT(revolver_fire, list('sound/weapons/gunshot/revolverfire1.ogg','sound/weapons/gunshot/revolverfire2.ogg','sound/weapons/gunshot/revolverfire3.ogg'))
+GLOBAL_LIST_INIT(concrete_metal_scrape, list('sound/effects/metalconcrete1.ogg','sound/effects/metalconcrete2.ogg','sound/effects/metalconcrete3.ogg'))
 
 
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet)
@@ -299,6 +300,8 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("rifle_fire") soundin = pick(GLOB.far_rifle)
 			if ("eat") soundin = pick(GLOB.eat_food)
 			if ("drink") soundin = pick(GLOB.drink_sound)
+			if ("revolver_fire") soundin = pick(GLOB.revolver_fire)
+			if ("concrete_metal_scrape") soundin = pick(GLOB.concrete_metal_scrape)
 	return soundin
 
 

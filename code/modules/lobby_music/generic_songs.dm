@@ -27,8 +27,10 @@
 	song = 'sound/music/lobby8.ogg'
 */
 /lobby_music/lobby1
-	song = 'sound/music/twofare_lobby.ogg'
+	song = 'sound/music/twofare_lobby.ogg' // Credit to MechaDH for composing this
 /lobby_music/lobby2
-	song = 'sound/music/suns.ogg'
+	song = 'sound/music/suns.ogg' // Credit to MechaDH for composing this
 /lobby_music/lobby3
-	song = 'sound/music/lightingbugs.ogg'
+	song = 'sound/music/lightingbugs.ogg' // Credit to MechaDH for composing this
+/lobby_music/lobby4
+	song = 'sound/music/deathloopnovocals.ogg' // Credit to MechaDH for composing this

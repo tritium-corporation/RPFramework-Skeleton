@@ -37,7 +37,6 @@
 	if(light_range)
 		if(!(light_new in src:vis_contents))
 			light_new = new()
-
 			if(directional)
 				var/matrix/M = matrix()
 				M.Scale(20)
@@ -61,7 +60,6 @@
 				var/matrix/M = matrix()
 				M.Scale(4)
 				light_new.transform = M
-
 			src:vis_contents += light_new
 
 	if(light_range == 0)//No range, no light. However you can have negative range, which will make your light really small, so it's best just check for 0 instead.

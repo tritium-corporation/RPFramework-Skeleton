@@ -26,10 +26,10 @@
 #define ui_inventory "SOUTH-1,4"
 
 //Lower center, persistant menu
-#define ui_sstore1 "NORTH-6.6, WEST-1.1"
-#define ui_id "NORTH-4.75,WEST-2.9"
-#define ui_belt "NORTH-5.625, WEST-2.9"
-#define ui_back "NORTH-6.6, WEST-2.9"
+#define ui_sstore1 "NORTH-6.55, WEST-1.125"
+#define ui_id "NORTH-4.775,WEST-2.9"
+#define ui_belt "NORTH-5.7, WEST-2.9"
+#define ui_back "NORTH-6.55, WEST-2.9"
 #define ui_rhand "SOUTH+5.35,WEST-2.5"
 #define ui_lhand "SOUTH+5.35,WEST-1.525"
 #define ui_swaphand2 "8:16,2:5"
@@ -47,7 +47,7 @@
 
 //Lower right, persistant menu
 #define ui_swaphand1 "SOUTH+4.76,WEST-2"
-#define ui_chest_slot "NORTH-4.75, WEST-2"
+#define ui_chest_slot "NORTH-4.775, WEST-2"
 #define ui_dropbutton "SOUTH+3,WEST-3"
 #define ui_drop_throw "SOUTH+2,WEST-2"
 #define ui_pull "SOUTH+2,WEST-3"
@@ -120,16 +120,16 @@
 #define ui_shoes "NORTH-7.5, WEST-2"
 
 #define ui_iclothing "NORTH-6.6, WEST-2"
-#define ui_oclothing "NORTH-5.625, WEST-2"
-#define ui_gloves "NORTH-5.625, WEST-1.1"
+#define ui_oclothing "NORTH-5.7, WEST-2"
+#define ui_gloves "NORTH-5.7, WEST-1.1"
 
-#define ui_glasses "NORTH-2.95,WEST-1.1"
+#define ui_glasses "NORTH-3,WEST-1.1"
 #define ui_mask "NORTH-3.875,WEST-2"
 #define ui_l_ear "NORTH-3.875,WEST-2.9"
 #define ui_r_ear "NORTH-3.875,WEST-1.1"
-#define ui_neck "NORTH-4.75,WEST-1.1"
+#define ui_neck "NORTH-4.775,WEST-1.1"
 
-#define ui_head "NORTH-2.95,WEST-2"
+#define ui_head "NORTH-3,WEST-2"
 
 //Attack intent
 #define ui_att_int "SOUTH-2,9"

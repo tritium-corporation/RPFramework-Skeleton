@@ -349,7 +349,7 @@
 						if(tag.halfed)
 							return
 						tag.split(M)
-						M.visible_message("[src] snaps off half of [M]'s dogtag.", "You snap off half of [M]'s dogtag")
+						M.visible_message("[M] snaps off half of [src]'s dogtag.", "You snap off half of [M]'s dogtag")
 						M.doing_something = FALSE
 						return
 					else
