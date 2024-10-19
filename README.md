@@ -1,3 +1,5 @@
+![image](https://file.garden/YPiIQQczOTYxCpqM/TBZI6TR.png)
+
 ## Credits
 
 Original IS12 build and idea belongs to Matt (@mattmatterson111)
@@ -6,14 +8,12 @@ IS12 Discord link http://discord.gg/FVRctMD
 
 Original IS12-Warfare github link https://github.com/Project-IS12/IS12-Warfare
 
-![image](https://github.com/Cosmic-Overlord/IS12-Coldfare/assets/100090741/e2261e17-b754-4ff3-a0cc-0fd7efd3e693)
 
-
-## Interstation12: Warfare
+## Interstation12: Interwar
 
 **Website:** http://is12wiki.xyz/index.php/Main_Page
 
-**Main source code:** https://github.com/Project-IS12/IS12-Warfare
+**Main source code:** https://github.com/mattmatterson111/IS12-Warfare-Two
 
 **Discord:**  https://discord.gg/FVRctMD
 
