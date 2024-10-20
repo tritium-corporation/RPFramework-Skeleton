@@ -15,7 +15,7 @@ Original IS12-Warfare github link https://github.com/Project-IS12/IS12-Warfare
 
 **Main source code:** https://github.com/mattmatterson111/IS12-Warfare-Two
 
-**Discord:**  https://discord.gg/JXqg48z4FK
+**Discord:**  https://discord.gg/FVRctMD
 
 ## Terms of service
 
