@@ -1,8 +1,8 @@
 /obj/structure/announcementmicrophone
 	name = "captain's microphone"
 	desc = "Should work right as rain.."
-	icon = 'icons/obj/radio.dmi'
-	icon_state = "radioworld"
+	icon = 'icons/obj/device.dmi'
+	icon_state = "mic"
 	anchored = TRUE
 	var/id = 0 // This is for the ID system, it allows us to have multiple of these in a map.
 	// IMPORTANT VARS GO UP HERE ^^
@@ -50,6 +50,7 @@
 					s.overlays.Cut()
 					soundoverlay(s, newplane = EFFECTS_ABOVE_LIGHTING_PLANE)
 		playsound(src.loc, "button", 75, 1)
+	update_icon()
 
 /obj/structure/announcementmicrophone/RightClick(mob/user)
 	. = ..()
@@ -59,6 +60,7 @@
 		else
 			listening = TRUE
 		playsound(src.loc, "button", 75, 1)
+		update_icon()
 
 /obj/structure/announcementmicrophone/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
 	if(broadcasting)
@@ -130,6 +132,14 @@
 	spawn(delay)
 		if(cooldown)
 			cooldown = 0
+
+/obj/structure/announcementmicrophone/update_icon()
+	. = ..()
+	overlays.Cut()
+	if(broadcasting && !listening)
+		overlays += image(icon=src.icon, icon_state = "mic_silent")
+	else if(broadcasting && listening)
+		overlays += image(icon=src.icon, icon_state = "mic_on")
 
 /obj/structure/announcementspeaker/
 	name = "Loudspeaker"

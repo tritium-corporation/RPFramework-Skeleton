@@ -786,7 +786,8 @@
 /obj/item/melee/classic_baton/factionbanner
 	name = "Flagpole"
 	desc = "Use it to place your faction's flagpole in front of you. Show them what you're really fighting for!<br>Also doubles as a melee weapon, cool!"
-	icon_state = "metal-rod"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "flagpole"
 	item_state = "telebaton_0"
 	w_class = ITEM_SIZE_NORMAL // It's foldable.. but still!
 	force = 7

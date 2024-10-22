@@ -46,6 +46,10 @@
 			return 'icons/misc/sword_cursor.dmi'
 	return . = ..()
 
+/obj/structure/factionbanner/getCursor(mob/user, hand)
+	if(CanPhysicallyInteract(user) && !hand)
+		return 'icons/misc/interactive_cursor.dmi'
+
 /mob/getCursor(mob/user, hand)
 	if(CanPhysicallyInteract(user))
 		if(user.a_intent == I_HURT)
@@ -54,8 +58,11 @@
 			else
 				return 'icons/misc/drop_cursor.dmi'
 		else if(user.a_intent == I_HELP)
-			if(user == src && !hand)
-				return 'icons/misc/examine_cursor.dmi'
+			if(!hand)
+				if(user == src)
+					return 'icons/misc/examine_cursor.dmi'
+				else
+					return 'icons/misc/interactive_cursor.dmi'
 		else if(user.a_intent == I_GRAB || user.a_intent == I_DISARM)
 			if(user != src && !hand)
 				return 'icons/misc/interactive_cursor.dmi'
