@@ -623,7 +623,7 @@ SUBSYSTEM_DEF(jobs)
 				hud_state = "friendly"
 			else
 				hud_state = "enemy"
-			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/red/practitioner)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/blue/practitioner))
+			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/red/practitioner)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/blue/practitioner) || H.warfare_faction == null)
 				hud_state = "prac"
 			var/image/HUD_icon = image('icons/effects/team_indicator.dmi', H, hud_state)
 			//HUD_icon.filters += filter(type="bloom", size=0.15, offset=0.5, alpha=100) // looks like ass..

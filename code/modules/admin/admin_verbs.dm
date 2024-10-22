@@ -969,7 +969,8 @@ var/list/admin_verbs_mentor = list(
 /mob/living/carbon/human/morale_officer
 	name = "Morale Officer"
 
-mob/living/carbon/human/morale_officer/Initialize()
+/mob/living/carbon/human/morale_officer/Initialize()
+	. = ..()
 	src.fully_replace_character_name("Morale Officer #[rand(100,5000)]")
 	to_chat(src,"[src.name]")
 	var/decl/hierarchy/outfit/equip_this = outfit_by_type(/decl/hierarchy/outfit/moraleofficer)

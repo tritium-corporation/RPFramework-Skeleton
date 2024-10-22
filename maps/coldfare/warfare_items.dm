@@ -905,8 +905,10 @@
 	reagents.add_reagent(/datum/reagent/blood, 30, list("donor" = null, "blood_DNA" = null, "blood_type" = "O-", "trace_chem" = null, "virus2" = list(), "antibodies" = list()))
 /obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper/examine(mob/user)
 	. = ..()
+	if(get_dist(user, src) > 1)
+		return
 	to_chat(user,SPAN_BOLD("You notice a set of instructions on the label:"))
-	to_chat(user,SPAN_WARNING("USE TO QUICKLY STABALISE YOUR FELLOW TROOPER. AFTER INJECTION, URGE THEM TO PERFORM SELF SURGERY, OR REUQUEST A PRACTITIONER. THEY WILL ONLY HAVE 30 SECONDS TO ACT."))
+	to_chat(user,SPAN_WARNING("USE TO QUICKLY STABALISE YOUR FELLOW TROOPER. AFTER INJECTION, URGE THEM TO PERFORM SELF SURGERY, OR REQUEST A PRACTITIONER. THEY WILL ONLY HAVE 30 SECONDS TO ACT."))
 	to_chat(user,SPAN_WARNING("<u>YOU ONLY HAVE ONE. USE IT WITH GREAT CONSIDERATION AND THE AIM TO MINIMIZE FRIENDLY CASUALTIES. DO NOT USE IT ON YOURSELF UNLESS THE SITUATION IS DIRE.</u>"))
 	to_chat(user,SPAN_BOLD("<small>Bland Corp. does not bear any responsibility in the case of any deaths or harm caused by their products. All products have been approved by the Powers That Be. Any attempt at a civil suit will be null and void.</b>"))
 
@@ -1003,8 +1005,8 @@
 	name = "Little Black Book"
 	desc = "A sweet little black book. The names within have a bright future ahead of them."
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "paper"
-	item_state = "paper"
+	icon_state = "blackbook"
+	item_state = "blackbook"
 	w_class = ITEM_SIZE_TINY
 	var/list/listed_people = list()
 
@@ -1048,6 +1050,7 @@
 						break
 					else
 						add_name(fella,user)
+						playsound(get_turf(src), "sound/effects/paper/sign[rand(1,4)].ogg", 75, 0.25)
 						break
 
 
@@ -1059,6 +1062,7 @@
 		if(confirmation == "Yes")
 			target.add_event("booked",/datum/happiness_event/booked)
 			add_name(target,user)
+			playsound(get_turf(src), "sound/effects/paper/sign[rand(1,4)].ogg", 75, 0.25)
 		else
 			user.visible_message(SPAN_WARNING("[user.name] slams the [name] shut, their gaze shooting towards [target.name] for a split second."))
 

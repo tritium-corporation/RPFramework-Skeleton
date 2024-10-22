@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(all_observable_events)
 
-GLOBAL_LIST_INIT(font_resources, list('fonts/Shage/Shage.ttf'))
+GLOBAL_LIST_INIT(font_resources, list('fonts/Shage/Shage.ttf', 'fonts/PhotographSignature/PhotographSignature.ttf'))
 
 GLOBAL_VAR_INIT(shit_left, 0)
 GLOBAL_VAR_INIT(piss_left, 0)

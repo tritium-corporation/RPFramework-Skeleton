@@ -33,6 +33,8 @@
 	var/rigged = 0
 	var/spam_flag = 0
 
+	var/paperbg = "paper.png"
+
 	var/const/deffont = "Verdana"
 	var/const/signfont = "Times New Roman"
 	var/const/crayonfont = "Comic Sans MS"
@@ -76,7 +78,7 @@
 	if(!forceshow && istype(user,/mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = user
 		can_read = get_dist(src, AI.camera) < 2
-	user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[can_read ? info : stars(info)][stamps]</BODY></HTML>", "window=[name]")
+	user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]' style='background-image:url([paperbg])';>[can_read ? info : stars(info)][stamps]</BODY></HTML>", "window=[name]")
 	onclose(user, "[name]")
 
 /obj/item/paper/verb/rename()
@@ -306,8 +308,9 @@
 			updateinfolinks()
 
 		update_space(t)
+		playsound(get_turf(src), "sound/effects/paper/sign[rand(1,4)].ogg", 75, 0.25)
 
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]' style='background-image:url([paperbg])';>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
 
 		update_icon()
 
@@ -357,7 +360,7 @@
 		if ( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
 		else
-			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]' style='background-image:url([paperbg])'>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
 	else if(istype(P, /obj/item/stamp) || istype(P, /obj/item/clothing/ring/seal))
