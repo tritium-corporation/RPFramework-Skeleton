@@ -225,3 +225,9 @@
 	description = "<span class='binfo'>Alcohol makes the pain go away.</span>\n"
 	happiness = 10
 	timeout = 2400
+
+//Being written down in the little black book
+/datum/happiness_event/booked
+	description = "<span class='danger'>Why was that officer looking at me as he wrote in his book? Did I do something wrong?\n"
+	happiness = -10
+	timeout = 3000

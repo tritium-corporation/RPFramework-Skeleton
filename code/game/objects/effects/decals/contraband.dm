@@ -200,3 +200,8 @@
 /obj/structure/poster/blue/New()
 	..()
 	icon_state = pick("blue1", "blue2", "blue3")
+
+/obj/structure/poster/nixon
+	name = "Richard Milhous Nixon, The One, The Only One"
+	desc = "Praise Be"
+	icon_state = "nixon"

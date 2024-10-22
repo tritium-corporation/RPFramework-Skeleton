@@ -100,7 +100,8 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/ReloadCkeyWhitelist,
 	/datum/admins/proc/toggle_panic_bunker,
 	/datum/admins/proc/force_aspect,
-	/client/proc/become_phone_operator
+	/client/proc/become_phone_operator,
+	/client/proc/become_morale_oficer
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -941,3 +942,38 @@ var/list/admin_verbs_mentor = list(
 	T.add_spell(new S)
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_and_message_admins("gave [key_name(T)] the spell [S].")
+
+/client/proc/become_morale_oficer()
+	set name = "Become Morale Officer"
+	set category = "Special Verbs"
+	if(!holder)
+		to_chat(usr, "<span class='danger'>Only administrators may use this command.</span>")
+		return
+	if(!ticker)
+		to_chat(usr, "<span class='danger'>The game hasn't started yet!</span>")
+		return
+	if(ticker.current_state == 1)
+		to_chat(usr, "<span class='danger'>The round hasn't started yet!</span>")
+		return
+
+	var/confirm = alert("Are you sure you want to become a Morale Officer?", "No politic here", "Yes", "No")
+	if(confirm == "Yes")
+		log_and_message_admins("[src] became a morale officer.", src)
+		for(var/obj/effect/landmark/start/morale_officer/spawnpoint in world)
+			var/turf/T = get_turf(spawnpoint)
+			var/mob/living/carbon/human/deployed_officer = new/mob/living/carbon/human/morale_officer(T)
+			deployed_officer.ckey = src.ckey
+			to_chat(deployed_officer,SPAN_WARNING("YOU ARE A MORALE OFFICER.\n\nGOAL:\n\nBE MYSTERIOUS AND SCARE THE TEAM OF YOUR CHOICE. WRITE PEOPLE UP IN THE BOOK FOR FUNSIES\n\nYOU ARE BILINGUAL. CHECK THE LANGUAGES PANEL.\n\nYOU ARE ALSO NEARLY IMMORTAL\n\n HAVE FUN!"))
+			to_chat(deployed_officer,SPAN_WARNING("(If you mess up Richard Nixon will come for you. This is FACT.)"))
+
+/mob/living/carbon/human/morale_officer
+	name = "Morale Officer"
+
+mob/living/carbon/human/morale_officer/Initialize()
+	src.fully_replace_character_name("Morale Officer #[rand(100,5000)]")
+	to_chat(src,"[src.name]")
+	var/decl/hierarchy/outfit/equip_this = outfit_by_type(/decl/hierarchy/outfit/moraleofficer)
+	equip_this.equip(src)
+	src.add_language(LANGUAGE_BLUE)
+	src.add_language(LANGUAGE_RED)
+

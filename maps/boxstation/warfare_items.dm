@@ -520,7 +520,7 @@
 	icon_state = "ifak"
 	startswith = list(/obj/item/bandage_pack, /obj/item/tourniquet, /obj/item/reagent_containers/hypospray/autoinjector/morphine)
 	w_class = ITEM_SIZE_SMALL
-	max_storage_space = 6
+	max_storage_space = 10
 
 /obj/item/storage/box/ifak/attack_hand(var/mob/living/carbon/human/user)
 	if(!istype(user))
