@@ -691,10 +691,10 @@
 	name = "IFAK"
 	desc = "An Individual First Aid Kit, used to keep you alive until a medic can patch you up proper."
 	icon_state = "ifak"
-	startswith = list(/obj/item/bandage_pack, /obj/item/tourniquet, /obj/item/reagent_containers/hypospray/autoinjector/morphine)
+	startswith = list(/obj/item/bandage_pack, /obj/item/tourniquet, /obj/item/reagent_containers/hypospray/autoinjector/morphine,/obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper)
 	w_class = ITEM_SIZE_SMALL
 	worldicons = list("ifakworld")
-	max_storage_space = 6
+	max_storage_space = 8
 	use_sound = "military_rustle_light"
 	close_sound = "military_rustle_light_close"
 	drop_sound = 'sound/effects/ifak_drop.ogg'
@@ -892,14 +892,40 @@
 	icon_state = "stick0"
 	force = 10
 
+//IFAK Autoinjector
+/obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper
+	name = "Bland Corp. 'Second Wind' Autoinjector"
+	desc = "An autoinjector issued to frontline troops, allows them to quickly revive their comrades for a brief window of time."
+	starts_with = list(/datum/reagent/tramadol/morphine = 5, /datum/reagent/atepoine = 10)
+	volume = 50
+	amount_per_transfer_from_this = 50
+
+/obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper/New()
+	..()
+	reagents.add_reagent(/datum/reagent/blood, 30, list("donor" = null, "blood_DNA" = null, "blood_type" = "O-", "trace_chem" = null, "virus2" = list(), "antibodies" = list()))
+/obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper/examine(mob/user)
+	. = ..()
+	to_chat(user,SPAN_BOLD("You notice a set of instructions on the label:"))
+	to_chat(user,SPAN_WARNING("USE TO QUICKLY STABALISE YOUR FELLOW TROOPER. AFTER INJECTION, URGE THEM TO PERFORM SELF SURGERY, OR REUQUEST A PRACTITIONER. THEY WILL ONLY HAVE 30 SECONDS TO ACT."))
+	to_chat(user,SPAN_WARNING("<u>YOU ONLY HAVE ONE. USE IT WITH GREAT CONSIDERATION AND THE AIM TO MINIMIZE FRIENDLY CASUALTIES. DO NOT USE IT ON YOURSELF UNLESS THE SITUATION IS DIRE.</u>"))
+	to_chat(user,SPAN_BOLD("<small>Bland Corp. does not bear any responsibility in the case of any deaths or harm caused by their products. All products have been approved by the Powers That Be. Any attempt at a civil suit will be null and void.</b>"))
+
+
+
+
+
+
+//MORALE OFFICER ITEMS
 /obj/item/clothing/suit/armor/officer
-	name = "morale officer robes"
+	name = "morale officer's uniform"
 	desc = "Fit for <b>ONLY</b> you."
 	icon_state = "prac_robes"
 	item_state = "prac_robes"
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
+	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	canremove = FALSE
+	armor = list(melee = 9999, bullet = 9999, laser = 9999, energy = 9999, bomb = 9999, bio = 9999, rad = 9999)
 
 /obj/item/clothing/mask/gas/sniper/officer
 	icon_state = "sniper"
@@ -918,14 +944,128 @@
 	worldicons = list("captainhatworld1","captainhatworld2")
 	canremove = FALSE
 
+/obj/item/clothing/under/moraleofficer
+	name = "Morale Officer's Suit"
+	desc = "A serious uniform. Ignore the piss stains and brown skid marks at the back."
+	icon_state = "redgrunt"
+	worn_state = "redgrunt"
+	item_state = "redgrunt"
+	canremove = FALSE
+
+/obj/item/clothing/shoes/moraleofficer
+	name = "Morale Officer's Boots"
+	icon_state = "prac_boots"
+	item_state = "prac_boots"
+	canremove = FALSE
+
+/obj/item/clothing/gloves/moraleofficer
+	name = "Morale Officer's Gloves"
+	desc = "They're gloves. You need gloves in the cold. Unfortunately the Powers That Be gave you these fake ones."
+	icon_state = "prac_gloves"
+	item_state = "prac_gloves"
+	canremove = FALSE
+	armor = list(melee = 9999, bullet = 9999, laser = 9999, energy = 9999, bomb = 9999, bio = 9999, rad = 9999)
+
+/obj/item/device/radio/headset/moraleofficer
+	name = "PTB-CMMD '23 headset"
+	desc = "For those who shall hear all."
+	origin_tech = list(TECH_ILLEGAL = 2)
+	syndie = 1
+	ks1type = /obj/item/device/encryptionkey/moraleofficer
+
+/obj/item/device/encryptionkey/moraleofficer
+	name = "EVIL encryption key"
+	desc = "Encyrption key but <span class = 'phobia'>EVIL!!!!</span>"
+	icon_state = "morale_cypherkey" //Who even has a screwdriver in warfare? Exactly, nobody.
+	channels = list("Blue" = 1, "Blue Alpha" = 1, "Blue Bravo" = 1, "Blue Charlie" = 1, "Blue Delta" = 1,"Red" = 1, "Red Alpha" = 1, "Red Bravo" = 1, "Red Charlie" = 1, "Red Delta" = 1)
+	origin_tech = list(TECH_ILLEGAL = 3)
+	syndie = 1
+
+
 /decl/hierarchy/outfit/moraleofficer
+	gloves = /obj/item/clothing/gloves/moraleofficer
 	glasses = /obj/item/clothing/glasses/sunglasses
 	suit = /obj/item/clothing/suit/armor/officer
 	head = /obj/item/clothing/head/moraleofficer
 	mask = /obj/item/clothing/mask/gas/sniper/officer
-	l_ear = /obj/item/device/radio/headset/red_team/all
-	r_ear = /obj/item/device/radio/headset/blue_team/all
+	shoes = /obj/item/clothing/shoes/moraleofficer
+	l_ear = /obj/item/device/radio/headset/moraleofficer
+	r_ear = /obj/item/pen
 	r_pocket = /obj/item/device/binoculars
+	l_pocket = /obj/item/black_book
+	back = /obj/item/storage/backpack/satchel
 	chest_holster = null
-	backpack_contents = list(/obj/item/ammo_magazine/handful/revolver = 3, /obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/captaingasmask = 1)
+	uniform = /obj/item/clothing/under/moraleofficer
 
+
+//MORALE OFFICER'S BLACK BOOK
+/obj/item/black_book
+	name = "Little Black Book"
+	desc = "A sweet little black book. The names within have a bright future ahead of them."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "paper"
+	item_state = "paper"
+	w_class = ITEM_SIZE_TINY
+	var/list/listed_people = list()
+
+//Examining for names
+/obj/item/black_book/examine(mob/user) //NOTE - WHEN I ADD THE OFFICER, MAKE THIS EXCLUSIVE TO THE OFFICER
+	. = ..()
+	to_chat(user,SPAN_WARNING("There are [listed_people.len] names in the book."))
+
+//Adding names to the book
+/obj/item/black_book/proc/add_name(mob/target as mob, mob/user as mob) //Adding people to the book
+	listed_people.Add(target)
+	to_chat(user,SPAN_NOTICE("You add [target.name] to the lists of the book."))
+	user.visible_message(SPAN_WARNING("[user.name] writes down something in their little black book..."))
+
+//Checking for duplicates - causes a whole heap of shitcode issues if done outside of a proc
+/obj/item/black_book/proc/check_for_duplicate(mob/target as mob, mob/user as mob)
+	if(target in listed_people)
+		to_chat(user,SPAN_WARNING("They're already destined for a bright future. To add them again would be pointless."))
+		return 1
+	return 0
+
+//Checking for a pen. Putting this here to stop the click code from getting any more cluttered
+/obj/item/black_book/proc/check_for_the_pen(mob/user as mob)
+	var/obj/item/i = user.get_inactive_hand()
+	if(istype(i,/obj/item/pen))
+		return 1
+	to_chat(user,SPAN_WARNING("You'll need a pen in your other hand."))
+	return 0
+
+//Interaction with a pen
+/obj/item/black_book/attackby(obj/item/P as obj, mob/user as mob)
+	if(istype(P,/obj/item/pen))
+		user.visible_message(SPAN_WARNING("[user.name] begins to open and flip through the pages of the [name]"))
+		var/luckcyFella = input(user,"Who would you like to write down in the book?","Political Morale Duties") as null|text
+		if(!luckcyFella)
+			return
+		else
+			for(var/mob/fella in SSmobs.mob_list)
+				if(fella.name == luckcyFella) //if they're in the mob list
+					if(check_for_duplicate(fella,user)) //tiny bit shitcody, however if it's outside the above if statement, it'll loop endlessly and break
+						break
+					else
+						add_name(fella,user)
+						break
+
+
+//CLicking on peopple from a distance to add to the book
+/obj/item/black_book/afterattack(mob/living/carbon/human/target, mob/user)
+	if((istype(target,/mob/living/carbon/human)) && !check_for_duplicate(target,user) && check_for_the_pen(user))
+		user.visible_message(SPAN_WARNING("[user.name] begins to open and flip through the pages of the [name]"))
+		var/confirmation = alert("Are you sure [target.name] should be added to the book?", "Political Morale Duties", "Yes", "No")
+		if(confirmation == "Yes")
+			target.add_event("booked",/datum/happiness_event/booked)
+			add_name(target,user)
+		else
+			user.visible_message(SPAN_WARNING("[user.name] slams the [name] shut, their gaze shooting towards [target.name] for a split second."))
+
+
+//BLACK BOOK END
+
+
+//Morale Officer Spawn
+/obj/effect/landmark/start/morale_officer
+	name = "Morale Officer"
