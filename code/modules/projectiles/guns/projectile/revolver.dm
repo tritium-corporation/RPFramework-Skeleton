@@ -14,7 +14,6 @@
 	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
 	fire_sound = "revolver_fire"
-	fire_delay = 0
 
 /obj/item/gun/projectile/revolver/cpt
 	name = "Captain's Special"
@@ -27,7 +26,7 @@
 
 /obj/item/gun/projectile/revolver/attack_self(mob/user)
 	. = ..()
-	unload_ammo(user, allow_dump=TRUE)
+	unload_ammo(usr, allow_dump=TRUE)
 
 /obj/item/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
@@ -141,6 +140,10 @@
 /obj/item/gun/projectile/revolver/manual/
 	var/primed = FALSE
 	var/open = FALSE
+	safety = FALSE // never.
+	can_jam = FALSE
+	fire_delay = 0
+	burst_delay = 0 // just incase..
 
 /obj/item/gun/projectile/revolver/manual/load_ammo(obj/item/A, mob/user)
 	if(!open)
@@ -172,8 +175,16 @@
 	if(!open)
 		open(usr)
 		return
-	. = ..() // WHY WONT YOU FUCKING UNL OAD D? ? ? ? ? ? ??!!!? WHAT???
+	//. = ..() // WHY WONT YOU FUCKING UNL OAD D? ? ? ? ? ? ??!!!? WHAT???
 		//unload_ammo(usr, allow_dump=TRUE)
+
+/obj/item/gun/projectile/revolver/manual/RightClick(mob/user)
+	if(open)
+		unload_ammo(usr, allow_dump=TRUE)
+
+/obj/item/gun/projectile/revolver/manual/toggle_safety(mob/user)
+	if(open)
+		unload_ammo(usr, allow_dump=TRUE)
 
 /obj/item/gun/projectile/revolver/manual/update_icon()
 	. = ..()
@@ -182,7 +193,9 @@
 	else
 		icon_state = initial(icon_state)
 */
-/obj/item/gun/projectile/revolver/manual/proc/prime(mob/user, var/fast)
+/obj/item/gun/projectile/revolver/manual/proc/prime(mob/user, var/fast) // unprime to force it
+	if(open)
+		return // dummy
 	if(!primed)
 		playsound(get_turf(src), 'sound/weapons/guns/interact/revolver_prime.ogg', 100, 1)
 		user.show_message(SPAN_DANGER("You cock the hammer."))
@@ -204,10 +217,21 @@
 		close(user)
 
 // CHANGING THE /ATTACK CODE DOESNT WORK SO I HAVE TO PUT IT HERE?? WHAT THE FUCK?!!
-/obj/item/gun/projectile/revolver/manual/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
-	if(!primed)
+/obj/item/gun/projectile/revolver/manual/special_check(mob/user)
+	if(open)
+		// add smth here??
+		return FALSE
+	else if(!primed)
 		handle_dryfire(user)
-		return
-	else
+		return FALSE
+	else // jamming, safety etc tho safety wont even happen
 		. = ..()
-		primed = FALSE
+
+/obj/item/gun/projectile/revolver/manual/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
+	. = ..()
+	primed = FALSE
+
+/obj/item/gun/projectile/revolver/manual/check_gun_safety(mob/user)
+	if(!primed || open)
+		return FALSE
+	. = ..()
