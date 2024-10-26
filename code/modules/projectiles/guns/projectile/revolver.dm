@@ -10,9 +10,9 @@
 	fire_delay = 6.75 //Revolvers are naturally slower-firing
 	ammo_type = /obj/item/ammo_casing/a357
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round
-	unload_sound 	= 'sound/weapons/guns/interact/rev_magout.ogg'
+	unload_sound 	= 'sound/weapons/guns/interact/rev_newempty.ogg'//'sound/weapons/guns/interact/rev_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
-	bulletinsert_sound 	= 'sound/weapons/guns/interact/rev_magin.ogg'
+	bulletinsert_sound 	= "revolver_reload"//'sound/weapons/guns/interact/rev_magin.ogg'
 	fire_sound = "revolver_fire"
 
 /obj/item/gun/projectile/revolver/cpt
@@ -144,13 +144,14 @@
 	can_jam = FALSE
 	fire_delay = 0
 	burst_delay = 0 // just incase..
+	load_delay = 2.5
 
 /obj/item/gun/projectile/revolver/manual/load_ammo(obj/item/A, mob/user)
 	if(!open)
 		return
 	. = ..()
 
-/obj/item/gun/projectile/revolver/manual/unload_ammo(obj/item/A, mob/user)
+/obj/item/gun/projectile/revolver/manual/unload_ammo(mob/user, allow_dump = TRUE, quickunload = FALSE)
 	if(!open)
 		return
 	. = ..()
@@ -159,6 +160,8 @@
 	if(!open)
 		open = TRUE
 		playsound(get_turf(src), 'sound/weapons/guns/interact/revolver_open.ogg', 85, 1)
+		if(primed)
+			prime(user)
 	update_icon()
 
 /obj/item/gun/projectile/revolver/manual/proc/close(mob/user)
@@ -193,26 +196,43 @@
 	else
 		icon_state = initial(icon_state)
 */
-/obj/item/gun/projectile/revolver/manual/proc/prime(mob/user, var/fast) // unprime to force it
+/obj/item/gun/projectile/revolver/manual/proc/prime(mob/user) // unprime to force it
 	if(open)
 		return // dummy
-	if(!primed)
-		playsound(get_turf(src), 'sound/weapons/guns/interact/revolver_prime.ogg', 100, 1)
-		user.show_message(SPAN_DANGER("You cock the hammer."))
-		primed = TRUE
+	var/time = 0.25 SECONDS
+	var/fast = FALSE
+	switch(user.a_intent)
+		if(I_DISARM)
+			time=0
+			fast=TRUE
+		if(I_HURT)
+			time=0
+			fast=TRUE
+	user.doing_something = TRUE
+	if(do_after(user, time))
+		if(!primed)
+			if(fast && ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(prob(25) && H.STAT_LEVEL(dex) <= 8) // generous..
+					H.flash_weakest_pain()
+					H.custom_pain(SPAN_DANGER("MY FINGER- AGH!"),15)
+					H.show_message(SPAN_BNOTICE("Your finger gets caught on the hammer.."))
+			playsound(get_turf(src), 'sound/weapons/guns/interact/revolver_prime.ogg', 100, 1)
+			user.show_message(SPAN_DANGER("You cock the hammer."))
+			primed = TRUE
+		else
+			playsound(get_turf(src), 'sound/weapons/guns/interact/revolver_unprime.ogg', 100, 1)
+			user.show_message(SPAN_NOTICE("You uncock the hammer."))
+			primed = FALSE
+		user.doing_something = FALSE
 	else
-		playsound(get_turf(src), 'sound/weapons/guns/interact/revolver_unprime.ogg', 100, 1)
-		user.show_message(SPAN_NOTICE("You uncock the hammer."))
-		primed = FALSE
+		user.doing_something = TRUE
 
-/obj/item/gun/projectile/revolver/manual/attack_self(mob/user, var/fast)
-	if(!fast) // for fanning action down the line B)
-		switch(user.a_intent)
-			if(I_DISARM) fast = TRUE
-			else if(I_HURT) fast = TRUE
-			else fast = FALSE
+/obj/item/gun/projectile/revolver/manual/attack_self(mob/user)
+	var/time
+	// for fanning action down the line B)
 	if(!open)
-		prime(user, fast)
+		prime(user)
 	else
 		close(user)
 
