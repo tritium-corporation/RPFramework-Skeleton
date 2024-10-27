@@ -140,6 +140,8 @@
 /obj/item/gun/projectile/revolver/manual/
 	var/primed = FALSE
 	var/open = FALSE
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "manualver"
 	safety = FALSE // never.
 	can_jam = FALSE
 	fire_delay = 0
@@ -191,11 +193,11 @@
 
 /obj/item/gun/projectile/revolver/manual/update_icon()
 	. = ..()
-	/*if(open)
+	if(open)
 		icon_state = "[icon_state]_open"
 	else
 		icon_state = initial(icon_state)
-*/
+
 /obj/item/gun/projectile/revolver/manual/proc/prime(mob/user) // unprime to force it
 	if(open)
 		return // dummy
@@ -229,7 +231,6 @@
 		user.doing_something = TRUE
 
 /obj/item/gun/projectile/revolver/manual/attack_self(mob/user)
-	var/time
 	// for fanning action down the line B)
 	if(!open)
 		prime(user)
