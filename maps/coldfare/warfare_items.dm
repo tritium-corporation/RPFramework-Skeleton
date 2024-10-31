@@ -1157,7 +1157,7 @@
 
 /obj/item/device/flashlight/lamp/captain/examine(mob/user, distance)
 	. = ..()
-	if(user.stats.cooldown_finished("hurt_eyes") && prob(25) && !examined)
+	if(user.stats.cooldown_finished("hurt_eyes") && prob(25) && !examined && on)
 		var/datum/roll_result/result = user.stat_roll(12, /datum/rpg_skill/handicraft)
 		user.stats.set_cooldown("hurt_eyes", INFINITY) // only once
 		examined = TRUE
