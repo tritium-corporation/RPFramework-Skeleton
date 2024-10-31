@@ -8,10 +8,10 @@
 	// IMPORTANT VARS GO UP HERE ^^
 
 	var/broadcast_start_sound = 'sound/effects/broadcasttest.ogg'
-	var/broadcast_start_sound_volume = 85
+	var/broadcast_start_sound_volume = 50
 
 	var/broadcast_end_sound = 'sound/effects/broadcasttestend.ogg' //"feedbacknoise"
-	var/broadcast_end_sound_volume = 85
+	var/broadcast_end_sound_volume = 50
 
 	var/list/additional_talk_sound = list('sound/effects/red_loudspeaker_01.ogg','sound/effects/red_loudspeaker_02.ogg','sound/effects/red_loudspeaker_03.ogg','sound/effects/red_loudspeaker_04.ogg','sound/effects/red_loudspeaker_05.ogg','sound/effects/red_loudspeaker_06.ogg')//list('sound/effects/megaphone_03.ogg','sound/effects/megaphone_04.ogg')
 	var/additional_talk_sound_vary = 0
