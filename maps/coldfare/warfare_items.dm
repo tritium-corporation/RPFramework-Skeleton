@@ -1159,8 +1159,8 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(user.stats.cooldown_finished("hurt_eyes") && prob(25) && !examined && on)
-		var/datum/roll_result/result = user.stat_roll(12, /datum/rpg_skill/handicraft)
+	if(user.stats.cooldown_finished("hurt_eyes") && prob(15) && !examined && on)
+		var/datum/roll_result/result = user.stat_roll(6, /datum/rpg_skill/handicraft)
 		user.stats.set_cooldown("hurt_eyes", INFINITY) // only once
 		examined = TRUE
 		// never again, noone will believe you
@@ -1168,11 +1168,15 @@
 			if(FAILURE)
 				sound_to(user, sound('sound/effects/skill/interface-diceroll-fail-02-01.ogg', volume = 100))
 				sleep(10)
-				to_chat(user, result.create_tooltip("Looking at it hurts your eyes.."))
+				to_chat(user, result.create_tooltip("You immediately closed your eyes, it is as if a laser struck your retinas and hit the nerves within your very brain. You recoil, your eyes searing in pain."))
 			if(SUCCESS)
 				sound_to(user, sound('sound/effects/skill/interface-diceroll-success-02-01.ogg', volume = 100))
 				sleep(10)
-				to_chat(user, result.create_tooltip("You feel fine... but.. it's a bit <b>TOO</b> bright.."))
+				to_chat(user, result.create_tooltip("Ugh- that light is a bit too bright for you to look at, isn't it? You managed to look away- but your eyes still hurt.."))
+			if(CRIT_SUCCESS)
+				sound_to(user, sound('sound/effects/skill/interface-diceroll-success-02-01.ogg', volume = 100))
+				sleep(10)
+				to_chat(user, result.create_tooltip("You look away just in time, your eyes are saved from the wrath of a thousand suns."))
 
 /obj/item/device/flashlight/lamp/captain/attack_hand(mob/user)
 	if(CanPhysicallyInteract(user))
@@ -1180,4 +1184,4 @@
 		if(activation_sound)
 			playsound(src.loc, activation_sound, 75, 1)
 		update_icon()
-		return 1
+		return

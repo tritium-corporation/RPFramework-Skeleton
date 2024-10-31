@@ -355,6 +355,11 @@ h1.alert, h2.alert		{color: #ffffff;}
   font-style: italic;
 }
 
+.headSpeak	{
+	color: #c086d1;
+	font-style: italic;
+	text-shadow: 0 0 0.1em #8a8888;}
+
 
 /* Languages */
 

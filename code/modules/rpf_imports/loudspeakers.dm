@@ -37,7 +37,7 @@
 			set_cooldown(6 SECONDS)
 			for(var/obj/structure/announcementspeaker/s in world)
 				if(id == s.id)
-					soundoverlay(s, newplane = EFFECTS_ABOVE_LIGHTING_PLANE)
+					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 					playsound(s.loc, broadcast_start_sound, broadcast_start_sound_volume, 0)
 					//s.overlays += image('icons/obj/structures.dmi', icon_state = "rpfsafe") // call a proc on the speakers in the future to update icon?
 					// dunno if we wanna make it update icon at all
@@ -50,7 +50,7 @@
 				if(id == s.id)
 					playsound(s.loc, broadcast_end_sound, broadcast_end_sound_volume, 0)
 					s.overlays.Cut()
-					soundoverlay(s, newplane = EFFECTS_ABOVE_LIGHTING_PLANE)
+					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 		playsound(src.loc, "button", 75, 1)
 	update_icon()
 
@@ -110,7 +110,7 @@
 			for(var/mob/living/carbon/m in view(world.view + broadcast_range, get_turf(s)))
 				if(!m.stat == UNCONSCIOUS || !m.is_deaf() || !m.stat == DEAD)
 					mobstosendto |= m
-					soundoverlay(s, newplane = EFFECTS_ABOVE_LIGHTING_PLANE)
+					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 					if(m.client)
 						clients |= m.client
 			// it got annoying REALLY FAST having them all being different..
@@ -126,7 +126,7 @@
 			for(var/mob/living/carbon/m in view(world.view + broadcast_range, get_turf(s)))
 				if(!m.stat == UNCONSCIOUS || !m.is_deaf() || !m.stat == DEAD)
 					mobstosendto |= m
-					soundoverlay(s, newplane = EFFECTS_ABOVE_LIGHTING_PLANE)
+					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 	for(var/mob/living/carbon/m in mobstosendto)
 		to_chat(m,"<h2><span class='[speakerstyle]'>[spkrname] [emote]</h2>")
 
@@ -146,9 +146,13 @@
 	. = ..()
 	overlays.Cut()
 	if(broadcasting && !listening)
-		overlays += image(icon=src.icon, icon_state = "mic_silent")
+		var/image/I = image(icon=src.icon, icon_state = "mic_silent")
+		I.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+		overlays += I
 	else if(broadcasting && listening)
-		overlays += image(icon=src.icon, icon_state = "mic_on")
+		var/image/I = image(icon=src.icon, icon_state = "mic_on")
+		I.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+		overlays += I
 
 /obj/structure/announcementspeaker/
 	name = "Loudspeaker"

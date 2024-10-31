@@ -844,7 +844,6 @@
 "VQ" = (/obj/item/flame/candle,/obj/item/storage/firstaid/regular,/obj/structure/table/rack/nosmooth/wood/alt{dir = 4},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
 "VR" = (/obj/structure/announcementspeaker/blue{pixel_y = 32},/turf/simulated/floor/concrete/random,/area/warfare/homebase/blue)
 "VS" = (/obj/item/flame/candle,/obj/item/storage/firstaid/surgery,/obj/structure/table/rack/nosmooth/wood/alt{dir = 5},/turf/simulated/floor/concrete/random,/area/warfare/homebase/blue)
-"VW" = (/obj/effect/lighting_dummy/daylight,/turf/space,/area/warfare/battlefield/trench_section)
 "We" = (/obj/structure/trench_wall{dir = 1},/turf/simulated/mineral,/area/warfare/battlefield/trench_section)
 "Wi" = (/obj/hammereditor/sound_probe/basement,/turf/simulated/floor/concrete/random,/area/warfare/homebase/blue)
 "Wl" = (/obj/effect/floor_decal/trench{dir = 5},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/red/two)
@@ -1194,7 +1193,7 @@ aaaaaaaaaaaaaaaaaaaaaaEsLcgibibibjkHbibigigigigcgegegcgigigibibibjkHbibiLcgiaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsgiLcgiSRoJoJSRgigigifMgcgegegcfMgigigiSRoJoJSRgigiLcaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsqaqagjgjCyCygjgjgjgjglgkgegegkglgjgjgjgjCyCygjgjqaqaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsFRqWgjgjCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCygjgjFRqWaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaEsqaqaqWXjCyCyCyCyCyCyCyCyVWCyCyCyCyCyCyCyCyCygjqWXjqaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaEsqaqaqWXjCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCygjqWXjqaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsqWFRXjgjCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyCyFRXjgjFRaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsFRgjgjgjCyCygjgjgjgjglgkgmgmgkglgjgjgjgjCyCygjgjFRgjaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsjCKIgnvNdVdVSOvRgngnfDgogmgmgofDgngnvRSOdVdVSOgnjCKIaaaaaaaaaaaaaaaaaaaaaaaa

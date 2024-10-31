@@ -590,6 +590,7 @@
 	var/obj/screen/plane_master/vision_cone/primary/lyingmob = new//ditto
 	var/obj/screen/plane_master/vision_cone/primary/human = new//ditto
 	var/obj/screen/plane_master/vision_cone/primary/lyinghuman = new//ditto
+	var/obj/screen/plane_master/vision_cone/primary/effectsabove = new//ditto
 	//var/obj/screen/plane_master/vision_cone/primary
 	//var/obj/screen/plane_master/vision_cone/primary/aboveturf = new
 	var/obj/screen/plane_master/vision_cone/inverted/footsteps = new//This master specifically makes it so the footstep stuff ONLY appears where it can't be seen.
@@ -601,6 +602,7 @@
 	lyinghuman.plane =LYING_HUMAN_PLANE
 	//aboveturf.plane = ABOVE_TURF_PLANE
 	footsteps.plane = FOOTSTEP_ALERT_PLANE
+	effectsabove.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 
 	client.screen += VC // Is this necessary? Yes.
 	client.screen += mob
@@ -609,3 +611,4 @@
 	client.screen += lyinghuman
 	//client.screen += aboveturf //Comment this out if you don't like it
 	client.screen += footsteps
+	client.screen += effectsabove
