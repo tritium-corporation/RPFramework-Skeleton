@@ -98,7 +98,7 @@
 
 /datum/job/soldier/blue_soldier/sniper
 	title = "Blue Sniper"
-	total_positions = 0
+	total_positions = 2
 	outfit_type = /decl/hierarchy/outfit/job/bluesoldier/sniper
 	auto_rifle_skill = 3
 	semi_rifle_skill = 3
