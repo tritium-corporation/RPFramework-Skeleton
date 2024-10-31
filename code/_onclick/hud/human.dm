@@ -288,7 +288,7 @@
 	if(hud_data.has_resist)
 		using = new /obj/screen()
 		using.name = "resist"
-		using.icon = ui_style
+		using.icon = 'icons/mob/screen/custom/resist.dmi'//ui_style
 		using.icon_state = "act_resist"
 		using.screen_loc = ui_resist
 		using.color = ui_color
@@ -394,11 +394,11 @@
 		hud_elements |= mymob.hydration_icon
 
 	mymob.stamina_icon = new /obj/screen()//STAMINA
-	mymob.stamina_icon.icon = ui_style
+	mymob.stamina_icon.icon = 'icons/mob/screen/custom/interhud_energy.dmi'//ui_style
 	mymob.stamina_icon.icon_state = "stamina0"
 	mymob.stamina_icon.name = "stamina"
 	mymob.stamina_icon.screen_loc = ui_stamina
-	mymob.stamina_icon.layer = 2
+	mymob.stamina_icon.layer = 3
 	hud_elements |= mymob.stamina_icon
 
 

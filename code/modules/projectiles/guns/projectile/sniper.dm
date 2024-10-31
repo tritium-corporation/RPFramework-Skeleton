@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/heavysniper
 	name = "PTSD 41"
-	desc = "A portable anti-armour rifle fitted with a scope. Completely useless at close range, marginally less useless at high ranges."
+	desc = "Every time I see this thing, I can’t help but wonder why it exists. A massive scope and an elongated barrel with a high caliber bore it turns heads to mush and limbs into paste. Sure, it’s got armor piercing capabilities, but we don’t wear armor, and neither does the enemy. I doubt I can even shoot without looking through the scope. But what’s the point? It feels like this weapon is meant for a fight that shouldn’t be happening at all. What am I really supposed to do with this?"
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
 	w_class = ITEM_SIZE_HUGE

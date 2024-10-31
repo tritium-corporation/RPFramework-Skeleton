@@ -677,7 +677,7 @@
 	overlays.Cut()
 	if(progress == 4)
 		if(lastuser.warfare_faction == RED_TEAM)
-			for(var/turf/simulated/floor/T in range(range, src))
+			for(var/turf/simulated/floor/T in view(range, src))
 				if(!istype(T, /turf/simulated/open))
 					set_light(4, 1, "#ee8080")
 					T.color = "#ffe7e7"
@@ -933,6 +933,9 @@
 						GLOB.hatched++
 						goredinside = TRUE
 						busy = FALSE
+				else
+					busy = FALSE
+					return
 			else
 				busy = FALSE
 				user.visible_message("[user] knocks on the door..", "You knock on the door..")
@@ -943,6 +946,8 @@
 				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
 				sleep(30)
 				busy = FALSE
+		else
+			busy = FALSE
 
 
 /obj/structure/warfare/tray/

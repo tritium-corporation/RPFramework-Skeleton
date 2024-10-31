@@ -381,7 +381,7 @@
 	suit = /obj/item/clothing/suit/armor/sniper
 	head = null
 	suit_store = /obj/item/gun/projectile/heavysniper
-	belt = /obj/item/gun/projectile/revolver //Backup weapon.
+	belt = /obj/item/gun/projectile/revolver/manual //Backup weapon.
 	r_pocket = /obj/item/ammo_box/ptsd
 	backpack_contents = list(/obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/sniper = 1)
 	chest_holster = null
@@ -427,7 +427,7 @@
 	suit = /obj/item/clothing/suit/armor/redcoat/leader
 	head = /obj/item/clothing/head/warfare_officer/redofficer
 	l_ear = /obj/item/device/radio/headset/red_team/all
-	belt = /obj/item/gun/projectile/revolver/cpt
+	belt = /obj/item/gun/projectile/revolver/manual
 	r_pocket = /obj/item/device/binoculars
 	chest_holster = null
 	backpack_contents = list(/obj/item/ammo_magazine/handful/revolver = 2, /obj/item/grenade/smokebomb = 1, /obj/item/clothing/mask/gas/captaingasmask = 1)
