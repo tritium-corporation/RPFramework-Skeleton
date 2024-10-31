@@ -129,11 +129,11 @@
 
 /obj/item/clothing/under/child_jumpsuit/warfare/red
 	warfare_team = RED_TEAM
-	icon_state = "bluegrunt_child"
+	icon_state = "redgrunt_child"
 
 /obj/item/clothing/under/child_jumpsuit/warfare/blue
 	warfare_team = BLUE_TEAM
-	icon_state = "redgrunt_child"
+	icon_state = "bluegrunt_child"
 
 //Red shit
 /obj/item/clothing/suit/armor/redcoat
