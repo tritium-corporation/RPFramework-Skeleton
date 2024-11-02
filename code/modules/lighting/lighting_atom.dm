@@ -165,10 +165,11 @@ if(loc != old_loc) {\
 
 /mob/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	..()
-	for(W.light_new in vis_contents)//We have no light already, so get rid of it.
-		vis_contents -= W.light_new
-		qdel(W.light_new)
-		update_light()
+	if(W && W.light_new)
+		for(W.light_new in src.vis_contents)//We have no light already, so get rid of it.
+			src.vis_contents -= W.light_new
+			qdel(W.light_new)
+			update_light()
 /*
 /obj/item/dropped(mob/user)
 	. = ..()
