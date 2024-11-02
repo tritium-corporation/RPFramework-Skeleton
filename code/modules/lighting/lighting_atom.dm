@@ -129,10 +129,12 @@ if(loc != old_loc) {\
 	if(istype(loc, /atom/movable))
 		var/atom/movable/M = loc
 		if(light_range)
+			if(light_new in M.vis_contents)//Redundant.
+				M.vis_contents -= light_new
 			M.vis_contents |= light_new
 			//vis_contents.Cut()
 		else
-			//M.vis_contents.Cut()
+			vis_contents.Cut()
 			M.update_light()
 
 
@@ -141,26 +143,38 @@ if(loc != old_loc) {\
 	for(var/obj/item/A in src)
 		if(A.light_range)
 			vis_contents |= A.light_new
+		else
+			vis_contents -= A.light_new
+
 
 /obj/item/equipped(mob/user)
 	. = ..()
-	if((light_new in vis_contents))//We have no light already, so get rid of it.
+	if((light_new in user.vis_contents))//We have no light already, so get rid of it.
 		vis_contents -= light_new
 		qdel(light_new)
 		//user.vis_contents.Cut()
 		user.update_light()
-	//update_light()
 
 
 /obj/item/pickup(mob/user)
 	. = ..()
-	if((light_new in vis_contents))//We have no light already, so get rid of it.
+	if((light_new in vis_contents))
 		user.vis_contents |= light_new
 		user.update_light()
-	// update_light()
 
+
+/mob/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+	..()
+	for(W.light_new in vis_contents)//We have no light already, so get rid of it.
+		vis_contents -= W.light_new
+		qdel(W.light_new)
+		update_light()
+/*
 /obj/item/dropped(mob/user)
 	. = ..()
-	//user.vis_contents.Cut()
-	user.update_light()
+	for(light_new in user.vis_contents)//We have no light already, so get rid of it.
+		user.vis_contents -= light_new
+		qdel(light_new)
+		user.update_light()
 	update_light()
+*/
