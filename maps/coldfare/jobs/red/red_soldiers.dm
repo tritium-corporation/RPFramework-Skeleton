@@ -293,7 +293,6 @@
 	..()
 
 /decl/hierarchy/outfit/job/redsoldier/sgt
-	suit = /obj/item/clothing/suit/armor/redcoat/sl
 
 /decl/hierarchy/outfit/job/redsoldier/sgt/equip()
 	if(prob(1))
