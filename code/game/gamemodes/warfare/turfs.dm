@@ -226,6 +226,10 @@
 			to_chat(user, "You're already digging.")
 
 /turf/simulated/floor/dirty/RightClick(mob/living/user)
+	var/obj/item/gun/G = user.get_active_hand()//Please let me aim, thanks.
+	if(istype(G) && !G.safety)
+		..()
+		return
 	if(!CanPhysicallyInteract(user))
 		return
 	var/obj/item/shovel/S = user.get_active_hand()
