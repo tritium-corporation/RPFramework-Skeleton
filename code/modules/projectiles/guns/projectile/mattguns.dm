@@ -681,7 +681,7 @@
 
 /obj/item/ammo_casing/grenade/frag
 	name = "40mm \"Ripper\" Round"
-	desc = "A 40mm frag grenade casing detonates on impact its pretty greasy."
+	desc = "This shell is warm to the touch, coated in a layer of grime The metal is scratched and dented, with a very small heart crudely carved into the side. \nI’ve seen what this thing can do to a man, let alone a whole room. The integrity of the shell is questionable; it looks like it could either explode in a glorious fireball or just fizzle out in disappointment. \nEither way, I wouldn't want to be anywhere near it when it goes off."
 	caliber = "a40mm"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
 	icon_state = "grenade_frag"
