@@ -92,12 +92,11 @@
 /obj/item/ammo_casing/shotgun/pellet
 	name = "shotgun shell"
 	desc = "A 12 gauge shell."
-	icon_state = "g1"
+	icon_state = "gshell"
 	spent_icon = "gshell-spent"
 	projectile_type = /obj/item/projectile/bullet/pellet/shotgun
 	ammo_stack = /obj/item/ammo_magazine/handful/shotgun/shotgun_handful/two
 	matter = list(DEFAULT_WALL_MATERIAL = 360)
-
 
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
@@ -118,7 +117,7 @@
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag shell"
 	desc = "A beanbag shell."
-	icon_state = "sg1"
+	icon_state = "bshell"
 	spent_icon = "bshell-spent"
 	projectile_type = /obj/item/projectile/bullet/shotgun/beanbag
 	matter = list(DEFAULT_WALL_MATERIAL = 180)
