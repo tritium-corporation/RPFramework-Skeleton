@@ -509,6 +509,9 @@
 	..()
 	if(prob(15))
 		desc = "This mushroom is not for picking."
+	update_icon()
+	if(istype(src.loc, /turf/simulated/floor/exoplanet/water/shallow))
+		qdel(src)
 
 /obj/structure/landmine/proc/blow()
 	GLOB.mines_tripped++
@@ -516,7 +519,12 @@
 	qdel(src)
 
 /obj/structure/landmine/update_icon()
+	overlays.Cut()
+	var/image/I = image(icon=src.icon, icon_state="mine_glow")
+	I.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+	overlays += I
 	if(!can_be_armed)
+		overlays.Cut()
 		icon_state = "mine_disarmed"
 
 
