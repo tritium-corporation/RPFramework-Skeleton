@@ -40,7 +40,7 @@
 /obj/item/ammo_magazine/handful/shotgun/shotgun_handful
 	name = "\improper handful of shells"
 	desc = "A handful of shotgun shells for your shotgun."
-	icon_state = "gshell"
+	icon_state = "g"
 	item_state = "shotgun_handful"
 	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
@@ -59,7 +59,7 @@
 /obj/item/ammo_magazine/handful/shotgun/beanbag_handful
 	name = "\improper handful of shells"
 	desc = "A handful of shotgun shells for your shotgun."
-	icon_state = "bshell"
+	icon_state = "sg"
 	caliber = "shotgun"
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
