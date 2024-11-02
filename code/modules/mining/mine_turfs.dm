@@ -100,14 +100,15 @@ var/list/mining_floors = list()
 		overlays += archaeo_overlay
 
 /turf/simulated/mineral/ex_act(severity)
-	switch(severity)
+	return FALSE
+	/*switch(severity)
 		if(2.0)
 			if (prob(70))
 				mined_ore = 1 //some of the stuff gets blown up
 				GetDrilled()
 		if(1.0)
 			mined_ore = 2 //some of the stuff gets blown up
-			GetDrilled()
+			GetDrilled()*/
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 
