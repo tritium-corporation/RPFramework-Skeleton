@@ -795,7 +795,7 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(mob/user, var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+/obj/item/proc/mob/user, var/tileoffset = 14) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user.client)
 		return
 
@@ -821,7 +821,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!zoom && !cannotzoom)
 		//if(user.hud_used.hud_shown)
 		//	user.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		user.client.view = viewsize
 		zoom = 1
 
 		var/tilesize = 32
@@ -851,7 +850,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(user.zoomed)
 			user.zoomed = FALSE
 			user.set_face_dir(FALSE)//Reset our facing direction.
-		user.client.view = world.view
 		//if(!user.hud_used.hud_shown)
 		//	user.toggle_zoom_hud()
 		zoom = 0
