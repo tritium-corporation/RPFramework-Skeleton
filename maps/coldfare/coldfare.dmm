@@ -348,7 +348,6 @@
 "iB" = (/obj/machinery/sleeper{dir = 1; icon_state = "sleeper_0"},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
 "iD" = (/obj/structure/bed/roller,/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
 "iE" = (/obj/effect/landmark/map_data{height = 2},/turf/simulated/mineral,/area/warfare/homebase/red)
-"iH" = (/obj/item/key{key_data = "red"; icon_state = "key3"; pixel_x = 0; pixel_y = 0},/turf/simulated/mineral,/area/warfare/homebase/red)
 "iQ" = (/obj/structure/closet/crate,/obj/random/canned_food,/obj/random/canned_food,/obj/machinery/light/small/bunker{pixel_x = 0; pixel_y = 32},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red)
 "iU" = (/obj/machinery/light/caged{dir = 4; pixel_x = -19; pixel_y = 0},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/blue/one)
 "iV" = (/obj/effect/floor_decal/trench{dir = 6},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/trench_section/underground)
@@ -510,7 +509,6 @@
 "um" = (/obj/structure/trench_wall/innercorners{dir = 1; pixel_x = 32; pixel_y = 31},/obj/structure/trench_wall{dir = 8; pixel_x = 32; pixel_y = 0},/obj/structure/stairs/trenchstairs{dir = 1},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/red/two)
 "ur" = (/obj/structure/toilet{dir = 4; icon_state = "toilet00"},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red)
 "us" = (/obj/machinery/light/small/bunker,/turf/simulated/wall/perspecticrete,/area/warfare/homebase/blue)
-"uw" = (/obj/structure/announcementspeaker/red{pixel_x = 0; dir = 1},/turf/simulated/mineral,/area/warfare/homebase/red)
 "uz" = (/obj/structure/trench_wall,/turf/simulated/mineral,/area/warfare/battlefield/capture_point/blue/two)
 "uA" = (/obj/item/flame/candle,/obj/item/storage/firstaid/surgery,/obj/structure/table/rack/nosmooth/wood/alt{dir = 5},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
 "uB" = (/obj/structure/bed/chair,/obj/effect/landmark/start{name = "Blue Soldier"},/obj/machinery/light/small/bunker{dir = 4},/turf/simulated/floor/concrete/random,/area/warfare/homebase/blue)
@@ -542,7 +540,6 @@
 "vY" = (/obj/structure/closet/secure_closet/medical1/warfare,/obj/machinery/light/small/bunker{dir = 1},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
 "wc" = (/obj/structure/banner/red/small{pixel_y = 32},/obj/effect/floor_decal/trench{dir = 6},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/blue/one)
 "wq" = (/obj/effect/floor_decal/trench{dir = 5},/obj/machinery/light/caged{pixel_y = -14; dir = 1; pixel_x = 0},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/red/two)
-"ws" = (/obj/item/device/cassette/tape3,/turf/simulated/mineral,/area/warfare/homebase/red)
 "wt" = (/obj/machinery/sleeper,/obj/structure/trench_wall/innercorners{dir = 8; pixel_x = 32; pixel_y = -32},/obj/structure/trench_wall{dir = 9; pixel_x = 32; pixel_y = 0; layer = 28},/turf/simulated/floor/wood,/area/warfare/battlefield/trench_section)
 "wu" = (/obj/structure/table/rack/nosmooth/metal,/obj/item/folder/envelope{name = "Dictates"; desc = "To pass thy dictates to thy chosen envoys. Or to dispatch reward."},/turf/simulated/floor/wood,/area/warfare/battlefield/trench_section/underground)
 "wz" = (/obj/machinery/light/small/bunker{pixel_x = 0; pixel_y = 32},/turf/simulated/floor/concrete/stones,/area/warfare/homebase/red)
@@ -622,7 +619,6 @@
 "CQ" = (/obj/structure/bed/chair/red{dir = 1; pixel_x = 0; pixel_y = 11; buckle_pixel_shift = "x=0;y=11"},/turf/simulated/floor/wood,/area/warfare/homebase/red/div)
 "CR" = (/obj/structure/banner/blue/small{pixel_y = 32},/obj/machinery/light/caged{pixel_y = 30; pixel_x = 0},/turf/simulated/floor/concrete/random,/area/warfare/homebase/blue)
 "CT" = (/obj/structure/table/rack/nosmooth/capleft{dir = 4},/obj/effect/phone_line,/turf/simulated/floor/concrete/random,/area/warfare/battlefield/trench_section/underground)
-"CX" = (/obj/item/device/flashlight/lamp{pixel_x = 0},/turf/simulated/mineral,/area/warfare/homebase/red)
 "CY" = (/obj/structure/closet/secure_closet/warfare/newver,/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/trench_section/underground)
 "Dc" = (/obj/structure/trench_wall/innercorners,/turf/simulated/mineral,/area/space)
 "Dd" = (/obj/structure/dirt_wall,/obj/machinery/light/caged{dir = 8; pixel_x = 14; pixel_y = 0},/turf/simulated/floor/dirty/indestructable,/area/warfare/battlefield/capture_point/red/two)
@@ -657,7 +653,6 @@
 "Fq" = (/obj/structure/banner/blue{pixel_y = 32},/obj/item/paper/crumpled/bloody{info = "NIXON '24, KILL THE BASTARDS"; name = "Campaign Ad"},/turf/simulated/floor/concrete/random,/area/warfare/battlefield/trench_section/underground)
 "Fr" = (/turf/simulated/wall/perspecticrete,/area/warfare/homebase/red/div)
 "Fy" = (/obj/item/flame/candle,/obj/item/storage/fancy/cigarettes/carcinomas,/obj/item/ammo_box/rifle,/obj/structure/table/rack/nosmooth/wood/alt{dir = 5},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
-"FD" = (/obj/structure/announcementspeaker/red{pixel_x = 0; dir = 1},/obj/machinery/light/small/bunker{pixel_x = 0; pixel_y = 32},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red)
 "FE" = (/obj/effect/floor_decal/trench{dir = 6},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/blue/two)
 "FG" = (/obj/effect/landmark/start{name = "Red Soldier"},/obj/structure/bed/chair/red{dir = 1; pixel_x = 0; pixel_y = 11; buckle_pixel_shift = "x=0;y=11"},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
 "FP" = (/obj/item/spacecash/bundle/c10,/obj/structure/storage/cabinet{dir = 1; pixel_x = 6; pixel_y = 4},/obj/item/spacecash/bundle/c10,/obj/item/spacecash/bundle/c10,/obj/item/clothing/mask/gas/captaingasmask,/turf/simulated/floor/wood,/area/warfare/homebase/red/div)
@@ -1122,7 +1117,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababbgababaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabadaeIhqLabaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadYabababblbmafcqabababababababababababababaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadYabiQbqJLdndnJLbqvhababBibuFDJLJXGOdndnabaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadYabiQbqJLdndnJLbqvhababBibuGOJLJXGOdndnabaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadYabBidndndndndndnBcababBibudnjTdndndndnabaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadYabohmfdnzBzBdnmfIXababohmfdnzBzBdnmfIXabaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadYabHTbCdnababdnyBQlababpdbFdnababdnpdbGabaaaa
@@ -1370,8 +1365,8 @@ aadYdYdYdYdYdYdYdYdYdYgTNJgRgRyRgRgRgRgRgRNJyRgWgNgNgXyRNJgRgRgRgRyRgRgRgRNJtjgV
 aadYdYdYdYdYdYdYdYababababgYababababababababababgZhaababababgYgYbgabababababababgYgYababababdYdYdYaa
 aadYdYdYdYdYdYdYdYabhdhchdtkhetkrFababFPByzJababhldnabbbLRhnhohodLtkYWababbbTuhndLdLdLlutkabdYdYdYaa
 aadYdYdYdYdYdYdYdYabXntktktkhptktkabDDDDrarqDDabCednabbbLRtkhthttktkzOabbgbbLRhotktkhotktkbgdYdYdYaa
-aadYdYCXdYuwdYdYdYabeYtkZxZxtktktkabDDoGBMcDDDabdndnabBjZxtkhxhxtkZxOjababChQhtktktktkZxOjabdYdYdYaa
-aadYdYiHdYwsdYdYdYabXnhysnYlhAtkrFabDDDDCQDDDDabdnZIabKKVQtkQNtktktCkrbgabWNhCtkQNtktkWNNsabdYdYdYaa
+aadYdYdYdYdYdYdYdYabeYtkZxZxtktktkabDDoGBMcDDDabdndnabBjZxtkhxhxtkZxOjababChQhtktktktkZxOjabdYdYdYaa
+aadYdYdYdYdYdYdYdYabXnhysnYlhAtkrFabDDDDCQDDDDabdnZIabKKVQtkQNtktktCkrbgabWNhCtkQNtktkWNNsabdYdYdYaa
 aadYdYdYdYdYdYdYdYbgtkhyhzGHhAtktkabsGDDDDZQsGabCednabuABarFFrFrXnFylAababIVElrFFrFrtkTXRibgdYdYdYaa
 aadYdYdYdYdYdYdYdYabXnhyAUaEhAtkrFabababxSabababdndnabUGFGtktktktkFGuIabbgUGFGtktktktkFGuIabdYdYdYaa
 aadYdYdYdYdYdYdYdYabtktkFGNItktktktktklutklutkabdntNabtktktktktktkwGqkbgabtktktktktktktkqkabdYdYdYaa
