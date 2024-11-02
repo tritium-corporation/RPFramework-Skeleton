@@ -110,7 +110,7 @@
 			//soundoverlay(user, newplane = EFFECTS_ABOVE_LIGHTING_PLANE)
 			playsound(src,"loudspeaker",100,0)
 			//playsound(src,'sound/effects/broadcasttest.ogg',75,0)
-			INVOKE_ASYNC(user, /atom/movable/proc/animate_chat, "<fon	t size='3' color='[message_color]'><b>[message]", lang, 0, rec, 5 SECONDS, 1)
+			INVOKE_ASYNC(user, /atom/movable/proc/animate_chat, "<font size='3' color='[message_color]'><b>[message]", lang, 0, rec, 5 SECONDS, 1)
 
 		spamcheck = 1
 		spawn(30) // 3 second cooldown seams reasonable
