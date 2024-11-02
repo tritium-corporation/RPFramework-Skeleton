@@ -129,10 +129,8 @@ if(loc != old_loc) {\
 	if(istype(loc, /atom/movable))
 		var/atom/movable/M = loc
 		if(light_range)
-			if(light_new in M.vis_contents)//Redundant.
-				M.vis_contents -= light_new
 			M.vis_contents |= light_new
-			//vis_contents.Cut()
+			vis_contents.Cut()
 		else
 			vis_contents.Cut()
 			M.update_light()
@@ -162,7 +160,7 @@ if(loc != old_loc) {\
 		user.vis_contents |= light_new
 		user.update_light()
 
-
+/*
 /mob/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	..()
 	if(W && W.light_new)
@@ -170,6 +168,7 @@ if(loc != old_loc) {\
 			src.vis_contents -= W.light_new
 			qdel(W.light_new)
 			update_light()
+*/
 /*
 /obj/item/dropped(mob/user)
 	. = ..()
