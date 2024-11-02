@@ -673,8 +673,7 @@
 	desc = "A 40mm frag grenade casing detonates on impact its pretty greasy."
 	caliber = "a40mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
-	icon_state = "rifle-casing"
-	spent_icon = "rifle-casing-spent"
+	icon_state = "grenade_frag"
 
 
 /obj/item/projectile/bullet/grenade
