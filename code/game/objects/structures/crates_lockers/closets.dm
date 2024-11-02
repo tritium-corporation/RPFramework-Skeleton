@@ -389,7 +389,11 @@
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
-/obj/structure/closet/RightClick(mob/user)
+/obj/structure/closet/RightClick(mob/living/user)
+	var/obj/item/gun/G = user.get_active_hand()//Please let me aim, thanks.
+	if(istype(G) && !G.safety)
+		..()
+		return
 	if(CanPhysicallyInteract(user))
 		verb_toggleopen()
 

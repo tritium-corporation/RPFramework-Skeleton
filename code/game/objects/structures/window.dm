@@ -282,7 +282,11 @@
 	update_nearby_tiles(need_rebuild=1)
 	return
 
-/obj/structure/window/RightClick(mob/user)
+/obj/structure/window/RightClick(mob/living/user)
+	var/obj/item/gun/G = user.get_active_hand()//Please let me aim, thanks.
+	if(istype(G) && !G.safety)
+		..()
+		return
 	if(CanPhysicallyInteract(user))
 		rotate()
 

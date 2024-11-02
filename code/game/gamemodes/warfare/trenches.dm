@@ -136,6 +136,11 @@
 //		user.doing_something = FALSE
 
 /turf/simulated/floor/trench/RightClick(mob/living/user)
+	var/obj/item/gun/G = user.get_active_hand()//Please let me aim, thanks.
+	if(istype(G) && !G.safety)
+		..()
+		return
+
 	if(!CanPhysicallyInteract(user))
 		..()
 		return
