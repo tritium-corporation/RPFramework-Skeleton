@@ -3,6 +3,8 @@
 
 	// PENDING COMPLETE REWORK SOMETIME AFTER 9/26/2024 TO USE CARGO CODE DATUMS FOR STUFF :SOB:
 
+// this code is fucking retarded I will rewrite it someday but not today 11/2/2024
+
 /obj/structure/closet/crate/scuffedcargo/
 	name = "TEST CRATE #1"
 	icon = 'icons/obj/storage.dmi'
