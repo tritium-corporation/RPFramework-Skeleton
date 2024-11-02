@@ -29,6 +29,13 @@
 	var/cooldown // Cooldown for inputs
 
 	var/list/mobstosendto = list()
+	var/list/speakers = list()
+
+/obj/structure/announcementmicrophone/Initialize()
+	. = ..()
+	for(var/obj/structure/announcementspeaker/s in world)
+		if(s.id == src.id)
+			speakers |= s
 
 /obj/structure/announcementmicrophone/attack_hand(mob/user)
 	. = ..()
@@ -37,8 +44,8 @@
 			broadcasting = TRUE
 			listening = TRUE
 			set_cooldown(6 SECONDS)
-			for(var/obj/structure/announcementspeaker/s in world)
-				if(id == s.id)
+			for(var/obj/structure/announcementspeaker/s in speakers)
+				if(id == s.id) // gotta make sure
 					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 					playsound(s.loc, broadcast_start_sound, broadcast_start_sound_volume, 0)
 					//s.overlays += image('icons/obj/structures.dmi', icon_state = "rpfsafe") // call a proc on the speakers in the future to update icon?
@@ -48,7 +55,7 @@
 			broadcasting = FALSE
 			listening = FALSE
 			set_cooldown(20 SECONDS)
-			for(var/obj/structure/announcementspeaker/s in world)
+			for(var/obj/structure/announcementspeaker/s in speakers)
 				if(id == s.id)
 					playsound(s.loc, broadcast_end_sound, broadcast_end_sound_volume, 0)
 					s.overlays.Cut()
@@ -107,7 +114,7 @@
 	mobstosendto.Cut()
 	if(additional_talk_sound)
 		this_sound = pick(shuffle(additional_talk_sound))
-	for(var/obj/structure/announcementspeaker/s in world)
+	for(var/obj/structure/announcementspeaker/s in speakers)
 		if(id == s.id)
 			for(var/mob/living/carbon/H in get_area(s))
 				mobstosendto |= H
