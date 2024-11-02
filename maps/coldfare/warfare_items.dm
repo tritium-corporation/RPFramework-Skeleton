@@ -938,8 +938,8 @@
 
 //IFAK Autoinjector
 /obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper
-	name = "Bland Corp. 'Second Wind' Autoinjector"
-	desc = "An autoinjector issued to frontline troops, allows them to quickly revive their comrades for a brief window of time."
+	name = "Bland Corp. 'Second Wind' Injectable"
+	desc = "An injectable syrette issued to frontline troops, allows them to quickly revive their comrades for a brief window of time."
 	starts_with = list(/datum/reagent/tramadol/morphine = 5, /datum/reagent/atepoine = 10)
 	volume = 50
 	amount_per_transfer_from_this = 50
