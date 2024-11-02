@@ -660,43 +660,94 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "zof"
 	wielded_item_state = "autorifle-wielded"
-	fire_sound = 'sound/weapons/gunshot/gunshot_arifle.ogg'
+	fire_sound = "launcher_fire"
 	loaded_icon = "zof"
 	ammo_type = /obj/item/ammo_casing/grenade
-	max_shells = 2
+	max_shells = 1
 	caliber = "a40mm"
 	condition = 75
 	fire_delay = 0
+	one_hand_penalty = 50
+	str_requirement = 8
+	slowdown_general = 0.25
+	reload_sound 		= 'sound/weapons/guns/interact/launcher_insert.ogg'
+	bulletinsert_sound 	= 'sound/weapons/guns/interact/launcher_insert.ogg'
+	forwardsound 		= 'sound/weapons/guns/interact/launcher_rack.ogg'
+	pumpsound			= 'sound/weapons/guns/interact/launcher_rack.ogg'
+	unload_sound = null
+	casingsound = null
 
+/obj/item/ammo_casing/grenade/ // BASE ITEM
 
 /obj/item/ammo_casing/grenade/frag
+	name = "40mm \"Ripper\" Round"
 	desc = "A 40mm frag grenade casing detonates on impact its pretty greasy."
 	caliber = "a40mm"
-	projectile_type = /obj/item/projectile/bullet/grenade
+	projectile_type = /obj/item/projectile/bullet/grenade/frag
 	icon_state = "grenade_frag"
+	spent_icon = "null"
+
+/obj/item/ammo_casing/grenade/smoke
+	name = "40mm Peacekeeping Pacification Round"
+	desc = "This shell is cold to the touch, its markings faded and worn away from a millennia of neglect. I know The Authority is particularly fond of using these things to disperse crowds, but the name won’t fool me. They’ve been issued to our unit as well, and safe to say, this isn’t rubber balls that’s for damn sure."
+	caliber = "a40mm"
+	projectile_type = /obj/item/projectile/bullet/grenade/smoke
+	icon_state = "grenade_smoke"
 
 /obj/item/projectile/bullet/grenade
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "frag_fired"
-	fire_sound = 'sound/weapons/gunshot/gunshot2.ogg'
-	damage = 65
-	armor_penetration = 30
+	fire_sound = null
+	damage = 25
+	armor_penetration = 5
+	embed = 0
+	sharp = 0
 	hitscan = FALSE
-	speed = 2
+	speed = 0.4
 	var/num_fragments = 200
 	var/explosion_size = 3
 	var/spread_range = 7 //leave as is, for some reason setting this higher makes the spread pattern have gaps close to the epicenter
 	var/list/fragment_types = list(/obj/item/projectile/bullet/pellet/fragment = 1)
 
-/obj/item/projectile/bullet/grenade/proc/on_explosion()
-	var/turf/O = get_turf(src)
+/obj/item/projectile/bullet/grenade/proc/on_explosion(var/O)
+	O = get_turf(src)
 	if(!O) return
 	if(explosion_size)
 		explosion(O, -1, -1, explosion_size, round(explosion_size/2), 0, particles = TRUE, large = FALSE, color = COLOR_BLACK, autosize = FALSE, sizeofboom = 1, explosionsound = pick('sound/effects/mortarexplo1.ogg','sound/effects/mortarexplo2.ogg','sound/effects/mortarexplo3.ogg'), farexplosionsound = pick('sound/effects/farexplonewnew1.ogg','sound/effects/farexplonewnew2.ogg','sound/effects/farexplonewnew3.ogg'))
 
 /obj/item/projectile/bullet/grenade/on_impact(var/atom/target, var/blocked = 0)
-	var/turf/O = get_turf(src)
-	if(!O) return
+	return FALSE
+
+/obj/item/projectile/bullet/grenade/on_hit(atom/target)
+    on_explosion()
+
+/obj/item/projectile/bullet/grenade/frag/on_explosion(O)
+	. = ..()
 	src.fragmentate(O, num_fragments, spread_range, fragment_types)
-	on_explosion()
+
+/obj/effect/abstract/smoke/New()
+	var/datum/effect/effect/system/smoke_spread/smoke
+	smoke = new /datum/effect/effect/system/smoke_spread()
+	smoke.attach(src)
+	playsound(src.loc, 'sound/effects/smoke.ogg', 50)
+	smoke.set_up(10, 0, src.loc)
+	spawn(0)
+		smoke.start()
+		sleep(10)
+		smoke.start()
+		sleep(10)
+		smoke.start()
+		sleep(10)
+		smoke.start()
+	sleep(80)
+	qdel(smoke)
+	smoke = null
 	qdel(src)
+
+/obj/item/projectile/bullet/grenade/smoke/
+	icon_state = "smoke_fired"
+
+/obj/item/projectile/bullet/grenade/smoke/on_explosion()
+	var/turf/T = src.loc
+	qdel(src)
+	new/obj/effect/abstract/smoke(T)
