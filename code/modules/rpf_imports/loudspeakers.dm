@@ -28,6 +28,8 @@
 
 	var/cooldown // Cooldown for inputs
 
+	var/list/mobstosendto = list()
+
 /obj/structure/announcementmicrophone/attack_hand(mob/user)
 	. = ..()
 	if(!cooldown)
@@ -100,25 +102,27 @@
 				return
 */
 /obj/structure/announcementmicrophone/proc/transmitmessage(spkrname, msg, var/verbtxt)
-	var/list/mobstosendto = list()
-	var/list/clients = list()
+	//var/list/clients = list()
 	var/this_sound = null
+	mobstosendto.Cut()
 	if(additional_talk_sound)
 		this_sound = pick(shuffle(additional_talk_sound))
 	for(var/obj/structure/announcementspeaker/s in world)
 		if(id == s.id)
-			for(var/mob/living/carbon/m in view(world.view + broadcast_range, get_turf(s)))
-				if(!m.stat == UNCONSCIOUS || !m.is_deaf() || !m.stat == DEAD)
-					mobstosendto |= m
-					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
-					if(m.client)
-						clients |= m.client
+			for(var/mob/living/carbon/H in get_area(s))
+				mobstosendto |= H
+			//for(var/mob/living/carbon/m in view(world.view + broadcast_range, get_turf(s)))
+				//if(!m.stat == UNCONSCIOUS || !m.is_deaf() || !m.stat == DEAD)
+				//	mobstosendto |= m
+				//	soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
+				//	//if(m.client)
+				//	//	clients |= m.client
 			// it got annoying REALLY FAST having them all being different..
 			playsound(get_turf(s),this_sound , additional_talk_sound_volume, additional_talk_sound_vary, ignore_walls = FALSE, extrarange = 4)
-			INVOKE_ASYNC(s, /atom/movable/proc/animate_chat, "<font color='[rune_color]'><b>[msg]", null, 0, clients, 5 SECONDS, 1)
+			//INVOKE_ASYNC(s, /atom/movable/proc/animate_chat, "<font color='[rune_color]'><b>[msg]", null, 0, clients, 5 SECONDS, 1)
 	for(var/mob/living/carbon/m in mobstosendto)
 		to_chat(m,"<h2><span class='[speakerstyle]'>[spkrname] [verbtxt], \"<span class='[textstyle]'>[msg]</span>\"</span></h2>")
-
+/*
 /obj/structure/announcementmicrophone/proc/transmitemote(spkrname, emote)
 	var/list/mobstosendto = list()
 	for(var/obj/structure/announcementspeaker/s in world)
@@ -129,7 +133,7 @@
 					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 	for(var/mob/living/carbon/m in mobstosendto)
 		to_chat(m,"<h2><span class='[speakerstyle]'>[spkrname] [emote]</h2>")
-
+*/
 /*
 /obj/structure/announcementmicrophone/proc/speakmessage(var/text)
 	var/turf/die = get_turf(handset)
