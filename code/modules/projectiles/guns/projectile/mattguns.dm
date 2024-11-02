@@ -674,6 +674,7 @@
 	bulletinsert_sound 	= 'sound/weapons/guns/interact/launcher_insert.ogg'
 	forwardsound 		= 'sound/weapons/guns/interact/launcher_rack.ogg'
 	pumpsound			= 'sound/weapons/guns/interact/launcher_rack.ogg'
+	starts_loaded = FALSE
 	unload_sound = null
 	casingsound = null
 
