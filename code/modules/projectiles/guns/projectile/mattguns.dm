@@ -653,3 +653,31 @@
 	caliber = ".45"
 	max_ammo = 7
 	multiple_sprites = 1
+
+/obj/item/gun/projectile/shotgun/pump/boltaction/grenadelauncher
+	name = "GRA Pubtrator"
+	desc = " dont look at me for now"
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "zof"
+	wielded_item_state = "autorifle-wielded"
+	fire_sound = 'sound/weapons/gunshot/gunshot_arifle.ogg'
+	loaded_icon = "zof"
+	ammo_type = /obj/item/ammo_casing/grenade
+	max_shells = 2
+	caliber = "a40mm"
+	condition = 75
+	fire_delay = 0
+
+
+/obj/item/ammo_casing/grenade/frag
+	desc = "A 40mm frag grenade casing detonates on impact its pretty greasy."
+	caliber = "a40mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/a762
+	icon_state = "rifle-casing"
+	spent_icon = "rifle-casing-spent"
+
+
+/obj/item/projectile/bullet/grenade
+	fire_sound = 'sound/weapons/gunshot/gunshot2.ogg'
+	damage = 65
+	armor_penetration = 30
