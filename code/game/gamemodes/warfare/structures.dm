@@ -952,14 +952,14 @@
 						sleep(rand(15,30))
 						playsound(get_turf(src), 'sound/effects/hatched.ogg', 90, 0, override_env = SEWER_PIPE)
 						sleep(110)
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
-						sleep(6)
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
 						inside.death()
 						inside.ghostize(FALSE)
 						qdel(inside)
 						inside = null
 						goredinside = TRUE
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+						sleep(6)
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
 						busy = FALSE
 				else
 					busy = FALSE
