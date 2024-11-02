@@ -141,8 +141,8 @@ if(loc != old_loc) {\
 	for(var/obj/item/A in src)
 		if(A.light_range)
 			vis_contents |= A.light_new
-		else
-			vis_contents -= A.light_new
+		//else
+		//	vis_contents -= A.light_new
 
 
 /obj/item/equipped(mob/user)
