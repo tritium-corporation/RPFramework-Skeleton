@@ -155,8 +155,8 @@
 	if(src.density)
 		return
 	for(var/obj/structure/object in contents)
-		if(object)
-			to_chat(user, "There are things in the way.")
+		if(istype(object, /obj/structure/landmine) || istype(object, /obj/structure/barbwire) || istype(object, /obj/structure/anti_tank))
+			to_chat(user, "There are structures or landmines in the way.")
 			return
 	playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
 	visible_message("[user] begins filling in the trench!")
@@ -168,6 +168,8 @@
 		user.doing_something = FALSE
 		ChangeTurf(/turf/simulated/floor/dirty)
 		update_trench_shit()
+		for(var/obj/structure/O in contents)
+			qdel(O)
 		visible_message("[user] finishes filling in trench.")
 		playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
 
