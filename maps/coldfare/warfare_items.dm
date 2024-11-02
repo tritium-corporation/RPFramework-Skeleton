@@ -1103,6 +1103,8 @@
 
 //CLicking on peopple from a distance to add to the book
 /obj/item/black_book/afterattack(mob/living/carbon/human/target, mob/user)
+	if(!ishuman(user))
+		return
 	if(user.a_intent == I_HURT && user.Adjacent(target) && user.zone_sel.selecting == BP_HEAD)
 		playsound(get_turf(src), 'sound/effects/slap.ogg', 100, 1)
 		target.ear_deaf += 15

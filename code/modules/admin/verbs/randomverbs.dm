@@ -87,6 +87,8 @@
 					if("good_stat") to_chat(M,  SPAN_STATSGOOD(msg))
 					if("mind_voice") to_chat(M,  SPAN_MINDVOICE(msg))
 				sound_to(M,the_sound)
+				if(M != usr)
+					sound_to(usr,the_sound)
 
 	log_and_message_staff(" - SubtleMessage -> [key_name_admin(M)] : [msg]")
 	feedback_add_details("admin_verb","DISCO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
