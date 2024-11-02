@@ -656,7 +656,7 @@
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/grenadelauncher
 	name = "GRA Pubtrator"
-	desc = " dont look at me for now"
+	desc = "These wooden grips feel like they could splinter at any moment, clinging to a skeletal metal frame of low grade tubes.\n It’s got an over under barrel setup nothing fancy. We load it with whatever fits: chlorine gas, fragmentation grenades, and even the occasional smoke round.\n It’s cheap metal, so the barrels heat up too fast, and the grip breaks apart sometimes. I struggle to hold it together.\n That’s the General’s genius; he knows exactly what he’s doing. He doesn’t care if the thing falls apart mid fight; he’s already cashed the check."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "zof"
 	wielded_item_state = "autorifle-wielded"
@@ -675,15 +675,14 @@
 	projectile_type = /obj/item/projectile/bullet/grenade
 	icon_state = "grenade_frag"
 
-
 /obj/item/projectile/bullet/grenade
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "grenade_frag"
+	icon_state = "frag_fired"
 	fire_sound = 'sound/weapons/gunshot/gunshot2.ogg'
 	damage = 65
 	armor_penetration = 30
 	hitscan = FALSE
-	speed = 0.1
+	speed = 2
 	var/num_fragments = 200
 	var/explosion_size = 3
 	var/spread_range = 7 //leave as is, for some reason setting this higher makes the spread pattern have gaps close to the epicenter
