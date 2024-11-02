@@ -207,8 +207,8 @@
 				user.doing_something = FALSE
 				return
 			for(var/obj/structure/object in contents)
-				if(object)
-					to_chat(user, "There are things in the way.")
+				if(istype(object, /obj/structure/landmine) || istype(object, /obj/structure/barbwire) || istype(object, /obj/structure/anti_tank))
+					to_chat(user, "There are structures or landmines in the way.")
 					user.doing_something = FALSE
 					return
 			playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
@@ -243,8 +243,8 @@
 			user.doing_something = FALSE
 			return
 		for(var/obj/structure/object in contents)
-			if(object)
-				to_chat(user, "There are things in the way.")
+			if(istype(object, /obj/structure/landmine) || istype(object, /obj/structure/barbwire) || istype(object, /obj/structure/anti_tank))
+				to_chat(user, "There are structures or landmines in the way.")
 				user.doing_something = FALSE
 				return
 		playsound(src, 'sound/effects/dig_shovel.ogg', 50, 0)
@@ -254,6 +254,8 @@
 			visible_message("[user] finishes digging the trench.")
 			playsound(src, 'sound/effects/empty_shovel.ogg', 50, 0)
 			user.doing_something = FALSE
+			for(var/obj/structure/O in contents)
+				qdel(O)//Get rid of whatever stupid shit is there.
 
 		user.doing_something = FALSE
 
