@@ -509,6 +509,9 @@
 	..()
 	if(prob(15))
 		desc = "This mushroom is not for picking."
+	update_icon()
+	if(istype(src.loc, /turf/simulated/floor/exoplanet/water/shallow))
+		qdel(src)
 
 /obj/structure/landmine/proc/blow()
 	GLOB.mines_tripped++
@@ -516,7 +519,12 @@
 	qdel(src)
 
 /obj/structure/landmine/update_icon()
+	overlays.Cut()
+	var/image/I = image(icon=src.icon, icon_state="mine_glow")
+	I.plane = EFFECTS_ABOVE_LIGHTING_PLANE
+	overlays += I
 	if(!can_be_armed)
+		overlays.Cut()
 		icon_state = "mine_disarmed"
 
 
@@ -944,14 +952,14 @@
 						sleep(rand(15,30))
 						playsound(get_turf(src), 'sound/effects/hatched.ogg', 90, 0, override_env = SEWER_PIPE)
 						sleep(110)
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
-						sleep(6)
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
 						inside.death()
 						inside.ghostize(FALSE)
 						qdel(inside)
 						inside = null
 						goredinside = TRUE
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+						sleep(6)
+						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
 						busy = FALSE
 				else
 					busy = FALSE

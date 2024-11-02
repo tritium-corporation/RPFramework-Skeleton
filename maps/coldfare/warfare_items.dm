@@ -817,6 +817,10 @@
 
 
 //RED STORAGE ITEMS
+
+/obj/item/storage/backpack/satchel/warfare/prac
+	icon_state = "satchel_firstaid"
+
 /obj/item/storage/backpack/satchel/warfare/red
 	icon_state = "redsatchel"
 
