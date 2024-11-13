@@ -184,7 +184,7 @@
 	name = "\improper modern rifle bullets box"
 	desc = "You get 556 rifle bullets out of this one."
 	handful_type = /obj/item/ammo_magazine/handful/modernrifle
-	max_stacks = 40
+	max_stacks = 50
 	handful_verb = "round"
 
 
