@@ -51,7 +51,8 @@
 	icon_state = "mosin2"
 	item_state = "boltaction"
 	wielded_item_state = "boltaction-wielded"
-	condition = 85
+	condition = 100
+	screen_shake = 0.5
 	fire_sound = 'sound/weapons/guns/fire/bar_fire.ogg'
 	max_shells = 9
 	caliber = "a556"
