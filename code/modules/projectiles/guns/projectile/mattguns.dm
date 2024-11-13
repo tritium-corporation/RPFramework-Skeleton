@@ -42,6 +42,26 @@
 	..()
 	add_bayonet()
 
+//Now THIS is real gun, rare 5 in 100 gun spawn as soldier
+/obj/item/gun/projectile/shotgun/pump/boltaction/good
+	name = "\improper Mark II Cloudrider"
+	desc = "This is the updated and revised version of the Mk. I Stormrider, complete with a new powerful caliber, higher mag capacity, sleek handguard and a straight bolt that makes it hard to shove multiple rounds at a time."
+	icon = 'icons/obj/gun.dmi'
+	condition_icon = 'icons/obj/gun.dmi'
+	icon_state = "mosin2"
+	item_state = "boltaction"
+	wielded_item_state = "boltaction-wielded"
+	condition = 85
+	fire_sound = 'sound/weapons/guns/fire/bar_fire.ogg'
+	max_shells = 8
+	caliber = "a556"
+	ammo_type = /obj/item/ammo_casing/brifle
+	one_hand_penalty = 30 //higher caliber means harder control
+	empty_icon = "karabiner_empty"
+	far_fire_sound = "sniper_fire"
+	gun_type = GUN_BOLTIE //So engineers can't shoot this shit.
+	can_have_bayonet = FALSE
+
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/leverchester
 	name = "\improper Mark I Snapper"

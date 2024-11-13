@@ -84,6 +84,14 @@
 	max_ammo = 1
 	caliber = "14.5mm"
 
+/obj/item/ammo_magazine/handful/modernrifle
+	name = "modern rifle round"
+	desc = "Very modern round that doesn't fit in speedloaders or a hand. Wow."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "brifle"
+	ammo_type = /obj/item/ammo_casing/a556
+	max_ammo = 1
+	caliber = "a556"
 
 /*
  * AMMO BOXES
@@ -171,6 +179,13 @@
 	name = "\improper rifle bullets box"
 	desc = "You get rifle bullets out of this one."
 	handful_type = /obj/item/ammo_magazine/handful/brifle_handful
+
+/obj/item/ammo_box/rifle/modern
+	name = "\improper modern rifle bullets box"
+	desc = "You get 556 rifle bullets out of this one."
+	handful_type = /obj/item/ammo_magazine/handful/modernrifle
+	max_stacks = 40
+	handful_verb = "round"
 
 
 //Box of handfuls of shotgun ammo.
