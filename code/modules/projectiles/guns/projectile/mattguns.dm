@@ -44,8 +44,8 @@
 
 //Now THIS is real gun, rare 5 in 100 gun spawn as soldier
 /obj/item/gun/projectile/shotgun/pump/boltaction/good
-	name = "\improper Mark II Cloudrider"
-	desc = "This is the updated and revised version of the Mk. I Stormrider, complete with a new powerful caliber, higher mag capacity, sleek handguard and a straight bolt that makes it hard to shove multiple rounds at a time."
+	name = "\improper Mark II Glider"
+	desc = "This is the updated and revised version of the Mk. I Stormrider, complete with a more manageable caliber, higher mag capacity, sleek handguard and a straight bolt that makes it hard to shove multiple rounds at a time."
 	icon = 'icons/obj/gun.dmi'
 	condition_icon = 'icons/obj/gun.dmi'
 	icon_state = "mosin2"
