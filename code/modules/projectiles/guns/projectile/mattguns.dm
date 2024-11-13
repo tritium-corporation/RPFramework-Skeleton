@@ -53,7 +53,7 @@
 	wielded_item_state = "boltaction-wielded"
 	condition = 100
 	screen_shake = 0.5
-	fire_sound = 'sound/weapons/guns/fire/bar_fire.ogg'
+	fire_sound = 'sound/weapons/gunshot/splitter.ogg'
 	max_shells = 9
 	load_delay = 10
 	caliber = "a556"
