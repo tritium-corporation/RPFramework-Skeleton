@@ -55,6 +55,7 @@
 	screen_shake = 0.5
 	fire_sound = 'sound/weapons/guns/fire/bar_fire.ogg'
 	max_shells = 9
+	load_delay = 10
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/brifle
 	one_hand_penalty = 30 //higher caliber means harder control
