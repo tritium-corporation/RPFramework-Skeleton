@@ -85,12 +85,12 @@
 	caliber = "14.5mm"
 
 /obj/item/ammo_magazine/handful/modernrifle
-	name = "modern rifle round"
-	desc = "Very modern round that doesn't fit in speedloaders or a hand. Wow."
+	name = "modern rifle handful"
+	desc = "Very modern handful of ammo that doesn't fit in speedloaders. Wow."
 	icon = 'icons/obj/ammo.dmi'
-	icon_state = "brifle"
+	icon_state = "ar"
 	ammo_type = /obj/item/ammo_casing/a556
-	max_ammo = 1
+	max_ammo = 5
 	caliber = "a556"
 
 /*
@@ -184,8 +184,7 @@
 	name = "\improper modern rifle bullets box"
 	desc = "You get 556 rifle bullets out of this one."
 	handful_type = /obj/item/ammo_magazine/handful/modernrifle
-	max_stacks = 50
-	handful_verb = "round"
+	max_stacks = 10
 
 
 //Box of handfuls of shotgun ammo.

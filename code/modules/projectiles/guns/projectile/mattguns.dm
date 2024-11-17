@@ -57,7 +57,7 @@
 	max_shells = 9
 	load_delay = 15
 	caliber = "a556"
-	ammo_type = /obj/item/ammo_casing/brifle
+	ammo_type = /obj/item/ammo_casing/a556
 	one_hand_penalty = 30 //higher caliber means harder control
 	empty_icon = "karabiner_empty"
 	far_fire_sound = "sniper_fire"
