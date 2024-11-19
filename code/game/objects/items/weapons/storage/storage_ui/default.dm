@@ -1,6 +1,8 @@
 /datum/storage_ui/default
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 
+	var/icon_override = null
+
 	var/obj/screen/storage/boxes
 	var/obj/screen/storage/storage_start //storage UI
 	var/obj/screen/storage/storage_continue
@@ -61,6 +63,16 @@
 	closer.icon_state = "hudclose"
 	closer.plane = HUD_PLANE
 	closer.layer = HUD_BASE_LAYER
+
+	if(icon_override)
+		boxes.icon = icon_override
+		storage_start.icon = icon_override //storage UI
+		storage_continue.icon = icon_override
+		storage_end.icon = icon_override
+		stored_start.icon = icon_override
+		stored_continue.icon = icon_override
+		stored_end.icon = icon_override
+		closer.icon = icon_override
 
 /datum/storage_ui/default/Destroy()
 	close_all()

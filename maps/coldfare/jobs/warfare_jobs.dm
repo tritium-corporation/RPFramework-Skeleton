@@ -12,6 +12,7 @@
 	/datum/job/soldier/red_soldier/flame_trooper,
     /datum/job/soldier/red_soldier,
 	/datum/job/soldier/red_soldier/scout,
+	/datum/job/soldier/red_soldier/sentry,
 	/datum/job/fortress/red/practitioner,
 
     /datum/job/soldier/blue_soldier/captain,
@@ -22,6 +23,7 @@
 	/datum/job/soldier/blue_soldier/flame_trooper,
     /datum/job/soldier/blue_soldier,
  	/datum/job/soldier/blue_soldier/scout,
+	/datum/job/soldier/blue_soldier/sentry,
 	/datum/job/fortress/blue/practitioner
 	)
 

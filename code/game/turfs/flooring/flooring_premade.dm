@@ -180,10 +180,10 @@
 	overlays.Cut()
 	for(var/direction in GLOB.cardinal)
 		var/turf/turf_to_check = get_step(src,direction)
-		if(istype(turf_to_check, /turf/simulated/floor/concrete/))
+		if(istype(turf_to_check, src))
 			continue
 
-		else if(istype(turf_to_check, /turf/simulated))
+		else
 			var/image/dirt = image('icons/turf/flooring/decals.dmi', "concrete_trim", dir = turn(direction, 180))
 			dirt.plane = src.plane
 			dirt.layer = src.layer+2
@@ -196,24 +196,22 @@
 
 
 
-/turf/simulated/floor/concrete/stones
+/turf/simulated/floor/stones
 	icon = 'icons/turf/interwar_trenches.dmi'
 	icon_state = "stone trench floor"
 
-/turf/simulated/floor/concrete/stones/New()
+/turf/simulated/floor/stones/New()
 	. = ..()
 	if(prob(10))
 		icon_state = "stone trench floor damaged"
 
-/turf/simulated/floor/concrete/cracked
-	icon_state = "concrete_cracked"
-
 /turf/simulated/floor/concrete/random/New()
 	. = ..()
 	dir = pick(GLOB.alldirs)
+	var/turf/crackedcrete = new/turf/simulated/floor/concrete/(src)
 	if(prob(15))
-		var/turf/crackedcrete = new/turf/simulated/floor/concrete/cracked(src)
-		crackedcrete.dir = pick(GLOB.alldirs)
+		crackedcrete.icon_state = "concrete_cracked"
+	crackedcrete.dir = pick(GLOB.alldirs)
 
 /turf/simulated/floor/reinforced/airless
 	initial_gas = null

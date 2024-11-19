@@ -1172,7 +1172,10 @@
 	for(var/slot in slot_first to slot_last)
 		var/obj/item/clothing/C = get_equipped_item(slot)
 		if(istype(C) && !C.mob_can_equip(src, slot, 1))
-			unEquip(C)
+			C.update_clothing_icon()
+			C.update_icon()
+			//remove_from_mob(C)
+			//equip_to_appropriate_slot(C)
 
 	add_teeth()
 

@@ -332,3 +332,54 @@
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	..()
+
+/obj/item/projectile/bullet/shotgunBuckshot
+	name = "12 Gauge buck pellet"
+	range = 10
+	damage = 25
+	/// Wheter we are the initial buckshot pellet that should create the rest or not
+	var/isInitial = TRUE
+	/// Amount of pellets to create / replicate
+	var/pelletCount = 12
+	/// Minimum/maximum angle offset when firing.
+	var/angleOffset = 60
+	/// the projectile will lose a fragment of its damage each time it travels this distance. Scales exponentially.
+	/// /// This decreases how much it loses-
+	var/falloff = 2
+
+/obj/item/projectile/bullet/shotgunBuckshot/nospread
+	angleOffset = 0
+
+/obj/item/projectile/bullet/shotgunBuckshot/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+	if(!isInitial)
+		return ..()
+	else while(pelletCount)
+		pelletCount--
+		var/obj/item/projectile/bullet/shotgunBuckshot/fellowPellet = new(get_turf(src))
+		fellowPellet.isInitial = FALSE
+		fellowPellet.firer = src.firer
+		fellowPellet.silenced = TRUE
+		fellowPellet.def_zone = ran_zone(def_zone)
+		forced_spread = rand(-angleOffset,angleOffset) // eh fuck it
+		fellowPellet.preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
+		fellowPellet.launch_projectile(target, target_zone, user, params, angle_override, forced_spread)
+	..()
+
+/obj/item/projectile/bullet/shotgunBuckshot/proc/get_pellets(var/distance)
+	var/pellet_loss = round((distance - 1)/falloff) //damage lost due to distance
+	return max(pelletCount - pellet_loss, 1)
+
+/obj/item/projectile/bullet/shotgunBuckshot/get_structure_damage()
+	var/distance = get_dist(loc, starting)
+	return ..() * get_pellets(distance)
+
+/obj/item/projectile/bullet/shotgunBuckshot/on_impact(atom/A)
+	var/use_falloff = FALSE
+	if(falloff>0)
+		use_falloff = TRUE
+	if(use_falloff)
+		var/distance = get_dist(loc, starting)
+		var/amount = distance/falloff
+		damage = round(damage/amount)
+	. = ..()
+	to_chat(world, "--[damage] dealt to [A]")

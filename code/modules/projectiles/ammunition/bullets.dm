@@ -229,3 +229,23 @@
 	spent_icon = "null"
 	caliber = "flamer"
 	projectile_type = /obj/item/projectile/flamer
+
+/obj/item/ammo_casing/shotgun/newshot
+	name = "shotgun slug"
+	desc = "A 12 gauge slug."
+	icon_state = "slshell"
+	spent_icon = "slshell-spent"
+	caliber = "shotgun"
+	drop_sound = 'sound/weapons/guns/misc/shotgun_fall.ogg'
+	projectile_type = /obj/item/projectile/bullet/shotgunBuckshot
+	matter = list(DEFAULT_WALL_MATERIAL = 360)
+
+/obj/item/ammo_casing/shotgun/newshot/nospread
+	name = "shotgun slug"
+	desc = "A 12 gauge slug."
+	icon_state = "slshell"
+	spent_icon = "slshell-spent"
+	caliber = "shotgun"
+	drop_sound = 'sound/weapons/guns/misc/shotgun_fall.ogg'
+	projectile_type = /obj/item/projectile/bullet/shotgunBuckshot/nospread
+	matter = list(DEFAULT_WALL_MATERIAL = 360)

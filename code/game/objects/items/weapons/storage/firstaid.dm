@@ -119,6 +119,8 @@
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = null
 
+	storage_ui = /datum/storage_ui/default/metal
+
 	can_hold = list(
 		/obj/item/bonesetter,
 		/obj/item/cautery,

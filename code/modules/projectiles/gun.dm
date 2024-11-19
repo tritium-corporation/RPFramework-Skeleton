@@ -71,6 +71,7 @@
 	var/automatic = 0  //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds
 	var/move_delay = 1
 	var/fire_sound = null//'sound/weapons/gunshot/gunshot.ogg' //No fire sound by default so we use the bullet's fire sound.
+	var/fire_volume = 50
 	var/fire_sound_text = "gunshot"
 	var/far_fire_sound = null
 	var/gun_vary = TRUE
@@ -499,7 +500,7 @@
 	if(silenced)
 		playsound(user, shot_sound, 10, 1)
 	else//If the mobs are far away, then play the far away shot sound instead.
-		playsound(user, shot_sound, 50, gun_vary)
+		playsound(user, shot_sound, fire_volume, gun_vary)
 		var/list/mob/mobs = view(world.view, user)
 		var/list/mob/far_mobs = (orange(world.view * 3, user) - mobs)
 		for(var/mob/living/carbon/human/M in far_mobs)

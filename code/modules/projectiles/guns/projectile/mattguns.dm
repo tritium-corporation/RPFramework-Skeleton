@@ -436,7 +436,8 @@
 	allowed_magazines = /obj/item/ammo_magazine/box/a556/mg08
 	one_hand_penalty = 50
 	wielded_item_state = "hmg-wielded"
-	fire_sound = 'sound/weapons/gunshot/harbinger.ogg'
+	fire_sound = 'sound/weapons/gunshot/harbinger.ogg'//fire_sound = 'sound/weapons/gunshot/hmg.ogg'
+	fire_volume = 55 // BIIG EVIL FUCKING GUUN
 	unload_sound 	= 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound 	= 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cock_sound 		= 'sound/weapons/guns/interact/ltrifle_cock.ogg'
@@ -534,14 +535,14 @@
 /obj/item/gun/projectile/automatic/machinepistol/wooden
 	name = "Mk.1 Soulburn SMG"
 	desc = "A prototype of what? I have no clue. It feels relatively new, and I’ve been told its high fire rate puts rounds downrange faster than any machine gun. those early production parts are practically exposed. I'm not an engineer but  I think this thing is going to malfunction."
-	icon = 'icons/obj/gun32x64.dmi'
-	condition_icon = 'icons/obj/gun32x64.dmi'
-	icon_state = "auto1"
-	loaded_icon = "auto1"
-	unloaded_icon = "auto1"
-	bayonet_icon ='icons/obj/gun32x64.dmi'
-	//icon_state = "schmeiser"
-	//item_state = "schmeiser"
+	icon = 'icons/obj/gun.dmi'
+	//condition_icon = 'icons/obj/gun32x64.dmi'
+	//icon_state = "auto1"
+	//loaded_icon = "auto1"
+	//unloaded_icon = "auto1"
+	//bayonet_icon ='icons/obj/gun32x64.dmi'
+	icon_state = "schmeiser"
+	item_state = "schmeiser"
 	wielded_item_state = "schmeiser-wielded"
 
 	//loaded_icon = "schmeiser"
@@ -591,7 +592,7 @@
 	allowed_magazines = /obj/item/ammo_magazine/autoshotty
 	caliber = "shotgun"
 	fire_sound = 'sound/weapons/guns/fire/autoshotty_fire.ogg'
-	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_type = /obj/item/ammo_casing/shotgun/newshot
 	reload_sound = 'sound/weapons/guns/interact/autoshotty_magin.ogg'
 	unload_sound = 'sound/weapons/guns/interact/autoshotty_magout.ogg'
 	cock_sound = 'sound/weapons/guns/interact/autoshotty_cock.ogg'
@@ -617,7 +618,7 @@
 	icon_state = "autoshotty"
 	caliber = "shotgun"
 	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	ammo_type = /obj/item/ammo_casing/shotgun/newshot
 	max_ammo = 6
 	multiple_sprites = 1
 

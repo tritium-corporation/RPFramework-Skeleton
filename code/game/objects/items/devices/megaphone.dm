@@ -5,7 +5,7 @@
 	item_state = "radio"
 	w_class = ITEM_SIZE_SMALL
 	obj_flags = OBJ_FLAG_CONDUCTIBLE
-	worldicons = list("megaphone_world")
+	worldicons = "megaphone_world"
 
 	var/spamcheck = 0
 	var/emagged = 0

@@ -22,6 +22,22 @@
 	var/can_generate_water = TRUE
 	var/can_be_dug = TRUE
 
+/turf/simulated/floor/dirty/update_icon()
+	overlays.Cut()
+	for(var/direction in GLOB.cardinal)
+		var/turf/turf_to_check = get_step(src,direction)
+		if(istype(turf_to_check, /turf/simulated/floor/dirty) || istype(turf_to_check, /turf/simulated/floor/exoplanet/water/shallow))
+			continue
+
+		else
+			var/image/dirt = image('icons/turf/blending_overlays.dmi', "dirt_edge_yay", dir = direction)
+			dirt.plane = src.plane
+			dirt.layer = src.layer+2
+			//dirt.color = "#877a8b"
+			//dirt.alpha = 200
+
+			overlays += dirt
+
 /turf/simulated/floor/dirty/alt
 	name = "dirt" //"snowy dirt"
 	//icon = 'icons/turf/snow.dmi'

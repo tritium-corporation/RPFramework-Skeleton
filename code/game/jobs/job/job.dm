@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(family_blacklist)
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title, var/datum/mil_branch/branch, var/datum/mil_rank/grade)
 	if(child_role)
-		H.set_species("Child")//Actually makes them a child.
+		H.set_species(SPECIES_CHILD)//Actually makes them a child.
 		H.unlock_achievement(new/datum/achievement/kid())
 
 	if(social_class)
