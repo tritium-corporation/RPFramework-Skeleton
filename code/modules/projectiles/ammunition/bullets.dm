@@ -150,7 +150,7 @@
 	desc = "A 5.56mm bullet casing."
 	caliber = "a556"
 	projectile_type = /obj/item/projectile/bullet/rifle/a556
-	icon_state = "rifle-casing"
+	icon_state = "ar1"
 	spent_icon = "rifle-casing-spent"
 
 /obj/item/ammo_casing/a145

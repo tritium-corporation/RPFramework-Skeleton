@@ -947,14 +947,14 @@
 	starts_with = list(/datum/reagent/tramadol/morphine = 5, /datum/reagent/atepoine = 10)
 	volume = 50
 	amount_per_transfer_from_this = 50
-	icon_state = "syrette_closed"
+	icon_state = "syrette_closedalt"
 	inject_sound = 'sound/items/syrette_inject.ogg'
 
 /obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper/update_icon()
 	if(reagents.total_volume > 0)
-		icon_state = "syrette_closed"
+		icon_state = "syrette_closedalt"
 	else
-		icon_state = "syrette_open"
+		icon_state = "syrette_openalt"
 
 /obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper/New()
 	..()
