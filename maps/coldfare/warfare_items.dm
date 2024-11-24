@@ -785,7 +785,7 @@
 
 /obj/item/storage/belt/autoshotty
 	name = "ammo belt"
-	desc = "Great for holding ammo! This one starts with smg ammo."
+	desc = "Great for holding ammo! This one starts with MS Warcrime magazines."
 	icon_state = "warfare_belt"
 	item_state = "warfare_belt"
 	can_hold = list(
