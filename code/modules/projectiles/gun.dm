@@ -341,9 +341,11 @@
 					to_chat(user, "<span class='warning'>Your aim wavers as you fire \the [src] with just one hand.</span>")
 				if(3)
 					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
-				if(4 to INFINITY)
+				if(4)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
-
+				if(5 to INFINITY)
+					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
+					user.remove_from_mob(src)
 	if(screen_shake)
 		spawn()
 			shake_camera(user, screen_shake+1, screen_shake)

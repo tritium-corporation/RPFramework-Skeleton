@@ -342,7 +342,7 @@
 	/// Amount of pellets to create / replicate
 	var/pelletCount = 12
 	/// Minimum/maximum angle offset when firing.
-	var/angleOffset = 60
+	var/angleOffset = 35
 	/// the projectile will lose a fragment of its damage each time it travels this distance. Scales exponentially.
 	/// /// This decreases how much it loses-
 	var/falloff = 2
@@ -359,7 +359,7 @@
 		fellowPellet.isInitial = FALSE
 		fellowPellet.firer = src.firer
 		fellowPellet.silenced = TRUE
-		fellowPellet.def_zone = ran_zone(def_zone)
+		fellowPellet.def_zone = ran_zone(def_zone, get_dist(firer,target))
 		forced_spread = rand(-angleOffset,angleOffset) // eh fuck it
 		fellowPellet.preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
 		fellowPellet.launch_projectile(target, target_zone, user, params, angle_override, forced_spread)
@@ -374,12 +374,8 @@
 	return ..() * get_pellets(distance)
 
 /obj/item/projectile/bullet/shotgunBuckshot/on_impact(atom/A)
-	var/use_falloff = FALSE
 	if(falloff>0)
-		use_falloff = TRUE
-	if(use_falloff)
 		var/distance = get_dist(loc, starting)
 		var/amount = distance/falloff
 		damage = round(damage/amount)
 	. = ..()
-	to_chat(world, "--[damage] dealt to [A]")
