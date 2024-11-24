@@ -370,6 +370,7 @@
 				M.visible_message("<span class='danger'>[M] struggle to free themselves from the barbed wire!</span>")
 				var/mob/living/carbon/human/H = M
 				playsound(loc, "stab_sound", 50, TRUE)
+				M.receive_damage()
 				var/obj/item/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot", "l_leg", "r_leg"))
 				if (affecting.status & ORGAN_ROBOT)
 					return
