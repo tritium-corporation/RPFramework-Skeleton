@@ -7,8 +7,8 @@
 /datum/storage_ui/default/slotted_alt
 	icon_override = 'icons/mob/screen/storage/slotted_alt.dmi'
 
-/datum/storage_ui/default/wood
-	icon_override = 'icons/mob/screen/storage/wood.dmi'
-
 /datum/storage_ui/default/metal
 	icon_override = 'icons/mob/screen/storage/metal.dmi'
+
+/datum/storage_ui/default/hud_metal
+	icon_override = 'icons/mob/screen/storage/hud_metal.dmi'
