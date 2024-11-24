@@ -679,7 +679,7 @@
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/grenadelauncher
 	name = "GRA Pubtrator"
-	desc = "These wooden grips feel like they could splinter at any moment, clinging to a skeletal metal frame of low grade tubes.\n It’s got an over under barrel setup nothing fancy. We load it with whatever fits: chlorine gas, fragmentation grenades, and even the occasional smoke round.\n It’s cheap metal, so the barrels heat up too fast, and the grip breaks apart sometimes. I struggle to hold it together.\n That’s the General’s genius; he knows exactly what he’s doing. He doesn’t care if the thing falls apart mid fight; he’s already cashed the check."
+	desc = "These wooden grips feel like they could splinter at any moment, clinging to a skeletal metal frame of low grade tubes.\n It’s got an over-under barrel setup, nothing fancy. We load it with whatever fits: chlorine gas, fragmentation grenades, and even the occasional smoke round.\n It’s cheap metal, so the barrel heat up too fast, and the grip breaks apart sometimes. I struggle to hold it together.\n That’s the General’s genius; he knows exactly what he’s doing. He doesn’t care if the thing falls apart mid fight; he’s already cashed the check."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "zof"
 	wielded_item_state = "autorifle-wielded"
@@ -705,7 +705,7 @@
 
 /obj/item/ammo_casing/grenade/frag
 	name = "40mm \"Ripper\" Round"
-	desc = "This shell is warm to the touch, coated in a layer of grime The metal is scratched and dented, with a very small heart crudely carved into the side. \nI’ve seen what this thing can do to a man, let alone a whole room. The integrity of the shell is questionable; it looks like it could either explode in a glorious fireball or just fizzle out in disappointment. \nEither way, I wouldn't want to be anywhere near it when it goes off."
+	desc = "This shell is warm to the touch, coated in a layer of grime.\n The metal is scratched and dented, with a very small heart crudely carved into the side.\n I’ve seen what this thing can do to a man, let alone a whole room. The integrity of the shell is questionable; it looks like it could either explode in a glorious fireball or just fizzle out in disappointment.\n Either way, I wouldn't want to be anywhere near it when it goes off."
 	caliber = "a40mm"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag
 	icon_state = "grenade_frag"
@@ -713,7 +713,7 @@
 
 /obj/item/ammo_casing/grenade/smoke
 	name = "40mm Peacekeeping Pacification Round"
-	desc = "This shell is cold to the touch, its markings faded and worn away from a millennia of neglect. I know The Authority is particularly fond of using these things to disperse crowds, but the name won’t fool me. They’ve been issued to our unit as well, and safe to say, this isn’t rubber balls that’s for damn sure."
+	desc = "This shell is cold to the touch, its markings faded and worn away from a millennia of neglect. I know The Authority is particularly fond of using these things to disperse crowds, but the name won’t fool me. They’ve been issued to our unit as well, and safe to say, these aren't rubber balls, that’s for damn sure."
 	caliber = "a40mm"
 	projectile_type = /obj/item/projectile/bullet/grenade/smoke
 	icon_state = "grenade_smoke"
