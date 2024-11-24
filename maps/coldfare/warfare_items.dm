@@ -35,8 +35,8 @@
 
 
 /obj/item/clothing/suit/child_coat
-	name = "scav coat"
-	desc = "Fitted just for scavs."
+	name = "child coat"
+	desc = "Small enough for a child to wear it."
 	icon_state = "child_redcoat"
 	can_be_worn_by_child = TRUE
 	child_exclusive = TRUE
@@ -785,7 +785,7 @@
 
 /obj/item/storage/belt/autoshotty
 	name = "ammo belt"
-	desc = "Great for holding ammo! This one starts with MS Warcrime magazines."
+	desc = "Great for holding ammo! This one starts with Warcrime magazines."
 	icon_state = "warfare_belt"
 	item_state = "warfare_belt"
 	can_hold = list(
@@ -801,7 +801,7 @@
 
 /obj/item/storage/belt/armageddon
 	name = "ammo belt"
-	desc = "Great for holding ammo! This one starts with Armageddon ammo."
+	desc = "Great for holding ammo! This one starts with Armageddon magazines."
 	icon_state = "warfare_belt"
 	item_state = "warfare_belt"
 	can_hold = list(
@@ -817,7 +817,7 @@
 
 /obj/item/storage/box/ifak
 	name = "IFAK"
-	desc = "An Individual First Aid Kit, used to keep you alive until a medic can patch you up proper."
+	desc = "An Individual First Aid Kit, used to keep you alive until a medic can patch you up properly."
 	icon_state = "ifak"
 	startswith = list(/obj/item/bandage_pack, /obj/item/tourniquet, /obj/item/reagent_containers/hypospray/autoinjector/morphine,/obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper)
 	w_class = ITEM_SIZE_SMALL
@@ -842,7 +842,7 @@
 
 /obj/item/bandage_pack
 	name = "Bandage Pack"
-	desc = "Holds a bandage. One time use. You can't put the bandage back don't try."
+	desc = "Holds a bandage. One time use. You can't put the bandage back, don't try."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "bandage_pack1"
 	w_class = ITEM_SIZE_SMALL
@@ -1029,7 +1029,7 @@
 //IFAK Autoinjector
 /obj/item/reagent_containers/hypospray/autoinjector/warfare/trooper
 	name = "Bland Corp. 'Second Wind' Injectable"
-	desc = "An injectable syrette issued to frontline troops, allows them to quickly revive their comrades for a brief window of time."
+	desc = "An injectable syrette issued to frontline troops. It allows them to quickly revive their comrades for a brief window of time."
 	starts_with = list(/datum/reagent/tramadol/morphine = 5, /datum/reagent/atepoine = 10)
 	volume = 50
 	amount_per_transfer_from_this = 50
@@ -1051,9 +1051,9 @@
 	if(get_dist(user, src) > 1)
 		return
 	to_chat(user,SPAN_BOLD("You notice a set of instructions on the label:"))
-	to_chat(user,SPAN_WARNING("USE TO QUICKLY STABALISE YOUR FELLOW TROOPER. AFTER INJECTION, URGE THEM TO PERFORM SELF SURGERY, OR REQUEST A PRACTITIONER. THEY WILL ONLY HAVE 30 SECONDS TO ACT."))
+	to_chat(user,SPAN_WARNING("USE TO QUICKLY STABILISE YOUR FELLOW TROOPER. AFTER INJECTION, URGE THEM TO PERFORM SELF SURGERY, OR REQUEST A PRACTITIONER. THEY WILL ONLY HAVE 30 SECONDS TO ACT."))
 	to_chat(user,SPAN_WARNING("<u>YOU ONLY HAVE ONE. USE IT WITH GREAT CONSIDERATION AND THE AIM TO MINIMIZE FRIENDLY CASUALTIES. DO NOT USE IT ON YOURSELF UNLESS THE SITUATION IS DIRE.</u>"))
-	to_chat(user,SPAN_BOLD("<small>Bland Corp. does not bear any responsibility in the case of any deaths or harm caused by their products. All products have been approved by the Powers That Be. Any attempt at a civil suit will be null and void.</b>"))
+	to_chat(user,SPAN_BOLD("<small>Bland Corp. does not bear any responsibility in the case of any deaths or harm caused by our products. All products have been approved by the Powers That Be. Any attempt at a civil suit will be null and void.</b>"))
 
 
 
@@ -1091,7 +1091,7 @@
 
 /obj/item/clothing/under/moraleofficer
 	name = "Morale Officer's Suit"
-	desc = "A serious uniform. Ignore the piss stains and brown skid marks at the back."
+	desc = "A serious uniform. Ignore the piss stains and brown skid marks on the back."
 	icon_state = "redgrunt"
 	worn_state = "redgrunt"
 	item_state = "redgrunt"
