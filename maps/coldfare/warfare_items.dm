@@ -1,18 +1,3 @@
-// This is so stupid. need a better way to do this.
-/obj/item/var/use_child_inhands = FALSE
-
-// THIS IS SPECIFIC TO ONLY THIS MAP/GAMEMODE BECAUSE AGHH ITS SO BAD!!
-/obj/item/equipped(mob/living/carbon/human/user)
-	. = ..()
-	if(use_child_inhands)
-		if(user.isChild())
-			item_icons[slot_l_hand_str] = 'icons/mob/species/child/inhands/lefthand.dmi'
-			item_icons[slot_r_hand_str] = 'icons/mob/species/child/inhands/righthand.dmi'
-			//item_icons[slot_l_hand_str] = 'icons/mob/species/child/inhands/lefthand.dmi'
-			//item_icons[slot_r_hand_str] = 'icons/mob/species/child/inhands/righthand.dmi'
-		else
-			item_icons = initial(item_icons)
-
 /obj/item/clothing/head/helmet/hard_had
 	name = "Mining Helmet"
 	desc = "Protects you head from rocks and other hazards."
@@ -192,7 +177,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	worldicons = list("redcoatworld1","redcoatworld2","redcoatworld3")
 	sprite_sheets = list(SPECIES_CHILD = 'icons/mob/species/child/mask.dmi')
-	use_child_inhands = TRUE
+
 	item_state_slots = list(
 		slot_l_hand_str = "cloth",
 		slot_r_hand_str = "cloth",
@@ -383,7 +368,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	worldicons = list("bluecoatworld1","bluecoatworld2","bluecoatworld3")
 	sprite_sheets = list(SPECIES_CHILD = 'icons/mob/species/child/mask.dmi')
-	use_child_inhands = TRUE
+
 	item_state_slots = list(
 		slot_l_hand_str = "cloth",
 		slot_r_hand_str = "cloth",
@@ -422,7 +407,7 @@
 	icon_state = "captaincoat"
 	//item_state = "captaincoat"
 	worldicons = list("captaincoatworld1","captaincoatworld2","captaincoatworld3")
-	use_child_inhands = TRUE
+
 	item_state_slots = list(
 		slot_l_hand_str = "cloth",
 		slot_r_hand_str = "cloth",
@@ -513,7 +498,7 @@
 	body_parts_covered = FACE|EYES
 	helmet_vision = TRUE
 	sprite_sheets = list(SPECIES_CHILD = 'icons/mob/species/child/mask.dmi')
-	use_child_inhands = TRUE
+
 	item_state_slots = list(
 		slot_l_hand_str = "gasmask",
 		slot_r_hand_str = "gasmask",
