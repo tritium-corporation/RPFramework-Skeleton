@@ -344,7 +344,7 @@
 				if(4)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
 				if(5 to INFINITY)
-					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
+					to_chat(user, "<span class='warning'>You struggle to keep \the [src] in your hand</span>")
 					user.remove_from_mob(src)
 	if(screen_shake)
 		spawn()
