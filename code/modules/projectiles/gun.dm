@@ -347,7 +347,7 @@
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] in your hand-</span>")
 					user.remove_from_mob(src)
 					if(prob(25))
-						throw_at(get_turf(target), rand(1,3), 10)
+						throw_at(get_turf(target), 1, 10)
 						to_chat(user, "<span class='warning'>\the [src] flies out of your hand and towards [target]!</span>")
 					else
 						to_chat(user, "<span class='warning'>\the [src] flies out of your hand and falls to the ground!</span>")
