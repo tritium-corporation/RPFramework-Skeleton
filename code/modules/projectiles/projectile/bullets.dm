@@ -348,6 +348,7 @@
 	pixel_y = rand(-10,10)
 	..()
 
+//let's not use this for now.
 /obj/item/projectile/bullet/shotgunBuckshot
 	name = "12 Gauge buck pellet"
 	range = 10
