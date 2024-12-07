@@ -699,6 +699,7 @@
 "JU" = (/obj/machinery/optable{dir = 1},/turf/simulated/floor/wood,/area/warfare/battlefield/trench_section/underground)
 "JX" = (/obj/effect/landmark/start{name = "Red Soldier"},/obj/structure/announcementspeaker/red{pixel_y = 32},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red)
 "Kg" = (/obj/effect/floor_decal/trench{dir = 8},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/red/one)
+"Kn" = (/obj/effect/lighting_dummy/daylight,/turf/simulated/floor/dirty/tough,/area/warfare/battlefield/capture_point/blue/two)
 "Kp" = (/obj/structure/curtain/tarp{dir = 8},/turf/simulated/floor/wood,/area/warfare/battlefield/trench_section/underground)
 "Ku" = (/obj/structure/trench_wall{dir = 4},/turf/simulated/mineral,/area/warfare/battlefield/capture_point/red/one)
 "Kv" = (/obj/structure/closet/secure_closet/warfare/practicioner,/obj/item/clothing/suit/surgeon_apron,/obj/item/clothing/suit/surgeon_apron,/obj/item/clothing/gloves/latex,/obj/item/clothing/gloves/latex,/obj/item/clothing/mask/surgical,/obj/item/clothing/mask/surgical,/obj/item/storage/backpack/satchel/warfare/prac,/turf/simulated/floor/wood,/area/warfare/battlefield/trench_section/underground)
@@ -786,6 +787,7 @@
 "Rc" = (/obj/structure/stairs/trenchstairs{dir = 1},/obj/structure/announcementspeaker/blue{pixel_y = 32},/turf/simulated/floor/trenches/underground{icon_state = "trench"; color = "#ffffff"},/area/warfare/battlefield/capture_point/blue/two)
 "Rg" = (/obj/machinery/light/small/bunker{dir = 4},/turf/simulated/floor/concrete/random,/area/warfare/battlefield/capture_point/blue/one)
 "Ri" = (/obj/item/flame/candle,/obj/item/wirecutters,/obj/item/storage/firstaid/regular,/obj/structure/table/rack/nosmooth/wood/alt{dir = 6},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
+"Rn" = (/obj/effect/lighting_dummy/daylight,/turf/simulated/floor/dirty/tough,/area/warfare/battlefield/capture_point/red/two)
 "Rx" = (/obj/item/storage/belt/medical/full,/obj/item/storage/belt/medical/full,/obj/item/storage/belt/medical/full,/obj/item/storage/belt/medical/full,/obj/item/storage/belt/medical/full,/obj/machinery/light/caged{pixel_y = 30; pixel_x = 0},/obj/structure/trench_wall/innercorners{pixel_x = -32; pixel_y = 31},/obj/structure/trench_wall{dir = 5; pixel_x = -32; layer = 28},/obj/structure/table/rack/shelf/red,/turf/simulated/floor/wood,/area/warfare/battlefield/trench_section)
 "RC" = (/obj/machinery/door/airlock/multi_tile/metal/maintenance/red,/turf/simulated/floor/concrete/random,/area/warfare/battlefield/capture_point/red/one)
 "RK" = (/obj/structure/bed/chair/wheelchair,/obj/machinery/light/small/bunker{pixel_x = 0; pixel_y = 32},/turf/simulated/floor/concrete/random,/area/warfare/homebase/red/div)
@@ -1176,7 +1178,7 @@ aaaaaaaaaaaaaaaaaaaaaaEsfWfWfWfWfWfWfWfWfWfWfWfWxexefWfWfWfWfWfWfWfWfWfWfWfWaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsfXfXfXfXfXfXfXfXfXfXfXfXxexefXfXfXfXfXfXfXfXfXfXfXfXaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsfYfYfYfYfYfYfYfYfYfYfYfZxexefZfYfYfYfYfYfYfYfYfYfYfYaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsxexexexexexexexexexexexexexexexexexexexexexexexexexeaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaEsoJoJgbgbgbgbgbgbgbgbgbgboJoJgbgbgbgbgbgbgbgbgbgboJoJaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaEsoJoJgbgbgbgbgbgbgbgbgbgbKnKngbgbgbgbgbgbgbgbgbgboJoJaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsVcVcVcVcgcgcgcgcgcgcgcgcgdgdgcgcgcgcgcgcgcgcgcgcVcVcaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdgdaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsgegegegegegegegegegegcgdgdgdgdgcgegegegegegegegegegeaaaaaaaaaaaaaaaaaaaaaaaa
@@ -1357,7 +1359,7 @@ aaaaaaaaaaaaaaaaaaaaaaEsgGgGgGvUgGgGvUgGgGgGgJgLgLgLgLgJgGgGgGvUgGgGvUgGgGgGaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsgGgGgGgGgGgGgGgGgGgGgJgLgLgLgLgJgGgGgGgGgGgGgGgGgGgGaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLgLaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaEsbRbRbRgJgJgJgJgJgJgJgJgJgLgLgJgJgJgJgJgJgJgJgJgJgJgJaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaEsGfGfgMgMgMgMgMgMgMgMgMgMGfGfgMgMgMgMgMgMgMgMgMgMGfGfaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaEsGfGfgMgMgMgMgMgMgMgMgMgMRnRngMgMgMgMgMgMgMgMgMgMGfGfaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaadYdYdYdYdYdYdYVPgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNgNdYdYdYdYdYdYdYdYaaaaaaaa
 aaaaaaaadYdYdYdYdYdYdYVPgOgOgOgOgOgOgOgOgOgOgOgPgNgNgPgOgOgOgOgOgOgOgOgOgOgOdYdYdYdYdYdYdYdYaaaaaaaa
 aaaaaaaadYdYdYdYdYdYdYVPgQgQgQgQgQgQgQgQgQgQgQgQgNgNgQgQgQgQgQgQgQgQgQgQgQgQdYdYdYdYdYdYdYdYaaaaaaaa
