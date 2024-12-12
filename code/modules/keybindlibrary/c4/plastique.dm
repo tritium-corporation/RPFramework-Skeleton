@@ -18,7 +18,7 @@
 /obj/structure/key_relay/plastique
 	name = "plastic explosives"
 	desc = "You've got a bad feeling about this.." // icky VV..
-	plane = BELOW_PROJECTILE_LAYER
+	plane = ABOVE_OBJ_PLANE
 	layer = ABOVE_DOOR_LAYER
 	var/obj/item/plastique/keypad/host = null
 	var/target
