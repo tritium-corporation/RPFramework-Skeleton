@@ -1485,6 +1485,7 @@
 #include "code\modules\item_worth\Value_procs\obj\machinery.dm"
 #include "code\modules\item_worth\Value_procs\obj\structures.dm"
 #include "code\modules\keybindlibrary\library.dm"
+#include "code\modules\keybindlibrary\c4\plastique.dm"
 #include "code\modules\keybindlibrary\phone\adminphone.dm"
 #include "code\modules\keybindlibrary\phone\decals.dm"
 #include "code\modules\keybindlibrary\phone\items.dm"
