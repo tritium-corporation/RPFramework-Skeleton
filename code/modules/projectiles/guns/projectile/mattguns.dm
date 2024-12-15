@@ -49,8 +49,8 @@
 	icon = 'icons/obj/gun.dmi'
 	condition_icon = 'icons/obj/gun.dmi'
 	icon_state = "mosin2"
-	item_state = "boltaction"
-	wielded_item_state = "boltaction-wielded"
+	item_state = "mosin2"
+	wielded_item_state = "mosin2-wielded"
 	condition = 100
 	screen_shake = 0.5
 	fire_sound = 'sound/weapons/gunshot/splitter.ogg'
@@ -58,7 +58,7 @@
 	load_delay = 15
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
-	one_hand_penalty = 30 //higher caliber means harder control
+	one_hand_penalty = 15 //lower caliber means better control
 	empty_icon = "karabiner_empty"
 	far_fire_sound = "sniper_fire"
 	gun_type = GUN_BOLTIE //So engineers can't shoot this shit.
