@@ -49,8 +49,8 @@
 	icon = 'icons/obj/gun.dmi'
 	condition_icon = 'icons/obj/gun.dmi'
 	icon_state = "mosin2"
-	item_state = "boltaction"
-	wielded_item_state = "boltaction-wielded"
+	item_state = "mosin2"
+	wielded_item_state = "mosin2-wielded"
 	condition = 100
 	screen_shake = 0.5
 	fire_sound = 'sound/weapons/gunshot/splitter.ogg'
@@ -58,7 +58,7 @@
 	load_delay = 15
 	caliber = "a556"
 	ammo_type = /obj/item/ammo_casing/a556
-	one_hand_penalty = 30 //higher caliber means harder control
+	one_hand_penalty = 15 //lower caliber means better control
 	empty_icon = "karabiner_empty"
 	far_fire_sound = "sniper_fire"
 	gun_type = GUN_BOLTIE //So engineers can't shoot this shit.
@@ -297,9 +297,9 @@
 /obj/item/gun/projectile/automatic/m22/warmonger/fully_auto/oldlmg
 	name = "Mk.4 Warmonger"
 	desc = "This is the cousin of the Mk.5 Warmonger. It was designed to cut costs from equipment issuing but ultimately ended up being used less than the Mk.5 Warmonger due to its weird design. It's often called the Trench Sweeper due to its very tight spread and fast firerate."
-	icon_state = "lmg-old-e"
-	item_state = "lmg-old-u"
-	wielded_item_state = "lmg-old-h"
+	icon_state = "lmg-old"
+	item_state = "lmg-old"
+	wielded_item_state = "lmg-old-wielded"
 	fire_sound = 'sound/weapons/guns/fire/old_lmg.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak_magin.ogg'
@@ -308,11 +308,11 @@
 	condition = 150
 
 	loaded_icon = "lmg-old"
-	unwielded_loaded_icon = "lmg-old-u"
-	wielded_loaded_icon = "lmg-old-h"
+	unwielded_loaded_icon = "lmg-old"
+	wielded_loaded_icon = "lmg-old-wielded"
 	unloaded_icon = "lmg-old-e"
-	unwielded_unloaded_icon = "lmg-old-u"
-	wielded_unloaded_icon = "lmg-old-h"
+	unwielded_unloaded_icon = "lmg-old"
+	wielded_unloaded_icon = "lmg-old-wielded"
 
 	magazine_type = /obj/item/ammo_magazine/c45rifle/flat
 	allowed_magazines = /obj/item/ammo_magazine/c45rifle/flat
