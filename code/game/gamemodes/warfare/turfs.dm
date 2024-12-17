@@ -125,6 +125,9 @@
 	if(!can_climb(user))
 		return
 
+	if(locate(/obj/structure/barbwire, get_turf(user))) // fuck you asshole, stop abusing climb to get out of barbed wire
+		return
+
 	if(istype(get_area(src), /area/warfare))//We're trying to go?
 		if(locate(/obj/item/gun/projectile/automatic/mg08) in user)//Locate the mg.
 			if(istype(usr.l_hand, /obj/item/gun/projectile/automatic/mg08) || istype(usr.r_hand, /obj/item/gun/projectile/automatic/mg08))
