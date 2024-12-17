@@ -541,18 +541,13 @@
 		deploy_mg(user)//Otherwise, deploy that motherfucker.
 
 /obj/item/gun/projectile/automatic/mg08/proc/deploy_mg(mob/user)
-	if(user.doing_something)
-		return
 	for(var/obj/structure/mg08_structure/M in user.loc)//If there's already an mg there then don't deploy it. Dunno how that's possible but stranger things have happened.
 		if(M)
 			to_chat(user, "There is already an LMG here.")
 			return
 	user.visible_message("[user] starts to deploy the [src]")
-	user.doing_something = TRUE
 	if(!do_after(user,30))
-		user.doing_something = FALSE
 		return
-	user.doing_something = FALSE
 	var/obj/structure/mg08_structure/M = new(get_turf(user)) //Make a new one here.
 	M.dir = user.dir
 	switch(M.dir)
@@ -603,14 +598,48 @@
 
 /obj/structure/mg08/CanPass(atom/movable/mover, turf/target, height, air_group)//Humans cannot pass cross this thing in any way shape or form.
 	if(ishuman(mover))
-		return FALSE
+		var/mob/living/carbon/human/H = mover
+		if(locate(/obj/item/gun/projectile/automatic/mg08) in H)//Locate the mg.
+			if(istype(H.l_hand, /obj/item/gun/projectile/automatic/mg08))
+				var/obj/item/gun/projectile/automatic/mg08/gun = H.l_hand
+				switch(gun.deployed)
+					if(TRUE) return FALSE
+					if(FALSE)
+						qdel(src)
+						return TRUE
+			if(istype(H.r_hand, /obj/item/gun/projectile/automatic/mg08))
+				var/obj/item/gun/projectile/automatic/mg08/gun = H.r_hand
+				switch(gun.deployed)
+					if(TRUE) return FALSE
+					if(FALSE)
+						qdel(src)
+						return TRUE
+		qdel(src)
+		return TRUE
 	else
 		return TRUE
 
 
 /obj/structure/mg08_structure/CheckExit(atom/movable/O, turf/target)//Humans can't leave this thing either.
 	if(ishuman(O))
-		return FALSE
+		var/mob/living/carbon/human/H = O
+		if(locate(/obj/item/gun/projectile/automatic/mg08) in H)//Locate the mg.
+			if(istype(H.l_hand, /obj/item/gun/projectile/automatic/mg08))
+				var/obj/item/gun/projectile/automatic/mg08/gun = H.l_hand
+				switch(gun.deployed)
+					if(TRUE) return FALSE
+					if(FALSE)
+						qdel(src)
+						return TRUE
+			if(istype(H.r_hand, /obj/item/gun/projectile/automatic/mg08))
+				var/obj/item/gun/projectile/automatic/mg08/gun = H.r_hand
+				switch(gun.deployed)
+					if(TRUE) return FALSE
+					if(FALSE)
+						qdel(src)
+						return TRUE
+		qdel(src)
+		return TRUE
 	else
 		return TRUE
 
