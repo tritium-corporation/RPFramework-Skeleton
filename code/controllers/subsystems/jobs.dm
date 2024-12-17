@@ -476,9 +476,9 @@ SUBSYSTEM_DEF(jobs)
 			G.prescription = 7
 	if(job.possible_backstories.len && H.client.prefs.backstory)
 		pick_backstory(job.possible_backstories, H)
-
-	H.set_squad_huds()
-	H.set_team_huds()
+	if(SSwarfare.battle_time)
+		H.set_squad_huds()
+		H.set_team_huds()
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
@@ -634,7 +634,7 @@ SUBSYSTEM_DEF(jobs)
 			HUD_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
 			src.client?.images += HUD_icon//Make sure we get their HUD icon too.
 
-/*
+/* // DANGEROUS SHITCODE
 	spawn(10) // for some reason it tends to just assign enemy to your teammates.. should fix it?
 		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 			var/hud_state
