@@ -541,13 +541,17 @@
 		deploy_mg(user)//Otherwise, deploy that motherfucker.
 
 /obj/item/gun/projectile/automatic/mg08/proc/deploy_mg(mob/user)
+	if(user.doing_something)
+		return
 	for(var/obj/structure/mg08_structure/M in user.loc)//If there's already an mg there then don't deploy it. Dunno how that's possible but stranger things have happened.
 		if(M)
 			to_chat(user, "There is already an LMG here.")
 			return
 	user.visible_message("[user] starts to deploy the [src]")
+	user.doing_something = TRUE
 	if(!do_after(user,30))
 		return
+	user.doing_something = FALSE
 	var/obj/structure/mg08_structure/M = new(get_turf(user)) //Make a new one here.
 	M.dir = user.dir
 	switch(M.dir)
