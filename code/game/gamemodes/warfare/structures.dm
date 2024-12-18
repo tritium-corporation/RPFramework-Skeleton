@@ -564,7 +564,7 @@
 			return
 		if(!armed && can_be_armed)
 			if(M.throwing)
-				sleep(2)
+				sleep(3)
 				if(!locate(M) in src.loc)
 					return FALSE
 				to_chat(M, "<span class='danger'>You hear a sickening click!</span>")
