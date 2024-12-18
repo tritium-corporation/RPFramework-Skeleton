@@ -36,7 +36,7 @@
 
 // NOTE: Figure out a cleaner way to do this, since currently you can't walk from table to table.
 /obj/structure/table/rack/nosmooth/auto_align(obj/item/W, click_params) //You broke something here Kas. It runtimes like crazy. I'll fix it later.
-	if(W?)
+	if(W)
 		if(!W.center_of_mass) // Clothing, material stacks, generally items with large sprites where exact placement would be unhandy.
 			W.pixel_x = rand(-W.randpixel, W.randpixel)
 			W.pixel_y = rand(-W.randpixel, W.randpixel)
