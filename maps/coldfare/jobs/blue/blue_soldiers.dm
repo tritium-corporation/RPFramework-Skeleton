@@ -319,12 +319,12 @@
 		r_pocket = /obj/item/grenade/smokebomb
 		chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/blue/sl
 		backpack_contents = list(/obj/item/clothing/mask/gas/ancient = 1)
-
+/*
 	if(prob(50))//Give them an MRE. They're going to be out there a while.
 		backpack_contents += list(/obj/item/storage/box/mre = 1)
 	else
 		backpack_contents += list(/obj/item/storage/box/mre/var1 = 1)
-
+*/
 	if(aspect_chosen(/datum/aspect/nightfare))
 		backpack_contents += list(/obj/item/ammo_box/flares/blue = 1, /obj/item/torch/self_lit = 1)
 	..()
@@ -443,10 +443,12 @@
 	backpack_contents = list(/obj/item/ammo_magazine/handful/revolver = 2, /obj/item/grenade/smokebomb = 1)
 
 /decl/hierarchy/outfit/job/bluesoldier/leader/equip()
+/*
 	if(prob(50))//Give them an MRE. They're going to be out there a while.
 		backpack_contents += list(/obj/item/storage/box/mre = 1)
 	else
 		backpack_contents += list(/obj/item/storage/box/mre/var1 = 1)
+*/
 	if(aspect_chosen(/datum/aspect/nightfare))
 		backpack_contents += list(/obj/item/ammo_box/flares/blue = 1 , /obj/item/torch/self_lit = 1)
 	..()
