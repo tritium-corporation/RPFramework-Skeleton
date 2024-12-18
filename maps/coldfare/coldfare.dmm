@@ -184,7 +184,7 @@
 	pixel_y = -21
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "aA" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start{
@@ -948,7 +948,7 @@
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "cE" = (
 /obj/machinery/light/caged{
 	pixel_y = 28;
@@ -1586,7 +1586,7 @@
 	},
 /obj/item/device/megaphone/blue,
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "eh" = (
 /obj/machinery/optable,
 /obj/machinery/light/small/bunker{
@@ -2836,7 +2836,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "jt" = (
 /obj/structure/table/rack/nosmooth/capright{
 	dir = 8
@@ -2933,6 +2933,9 @@
 "kH" = (
 /turf/simulated/floor/trenches,
 /area/warfare/battlefield/capture_point/blue/two)
+"kK" = (
+/turf/simulated/floor/wood,
+/area/warfare/homebase/red/div)
 "kS" = (
 /obj/structure/toilet{
 	dir = 8;
@@ -3410,7 +3413,7 @@
 /obj/item/spacecash/bundle/c10,
 /obj/item/clothing/mask/gas/captaingasmask,
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "oE" = (
 /obj/machinery/light/caged{
 	dir = 4;
@@ -3435,7 +3438,7 @@
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "oJ" = (
 /obj/effect/lighting_dummy/daylight,
 /turf/simulated/floor/concrete/random,
@@ -3749,7 +3752,7 @@
 	name = "Red Captain"
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "rd" = (
 /obj/effect/landmark/start{
 	name = "Red Soldier"
@@ -3812,7 +3815,7 @@
 "rq" = (
 /obj/effect/phone_line,
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "rs" = (
 /obj/structure/announcementspeaker/red{
 	pixel_x = 0;
@@ -3885,7 +3888,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "sK" = (
 /obj/machinery/light/small/bunker{
 	pixel_x = 0;
@@ -4077,7 +4080,7 @@
 /turf/simulated/mineral,
 /area/warfare/battlefield/capture_point/blue/two)
 "uA" = (
-/obj/hammereditor/sound_probe/crematory,
+/obj/hammereditor/sound_probe/basement,
 /turf/simulated/floor/concrete/random,
 /area/warfare/homebase/blue/div)
 "uB" = (
@@ -4132,7 +4135,7 @@
 	pixel_y = 4
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "uN" = (
 /obj/structure/trench_wall{
 	dir = 1
@@ -4619,7 +4622,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "zf" = (
 /obj/structure/trench_wall/innercorners,
 /turf/simulated/mineral,
@@ -4685,7 +4688,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "zO" = (
 /obj/structure/closet/crate,
 /obj/item/ammo_magazine/mc9mmt/machinepistol,
@@ -4868,7 +4871,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "BD" = (
 /obj/structure/trench_wall{
 	dir = 6
@@ -4900,7 +4903,7 @@
 	pixel_y = 4
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "BR" = (
 /obj/machinery/light/small/bunker{
 	dir = 8
@@ -5037,7 +5040,7 @@
 	buckle_pixel_shift = "x=0;y=11"
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "CR" = (
 /obj/structure/banner/blue/small{
 	pixel_y = 32
@@ -5309,7 +5312,7 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "Fb" = (
 /obj/machinery/sleeper{
 	dir = 1;
@@ -5359,7 +5362,7 @@
 /obj/item/spacecash/bundle/c10,
 /obj/item/clothing/mask/gas/captaingasmask,
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "FR" = (
 /obj/effect/floor_decal/stones,
 /turf/simulated/floor/dirty/indestructable,
@@ -5942,7 +5945,7 @@
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "MW" = (
 /obj/machinery/light/small/bunker{
 	dir = 1
@@ -6565,11 +6568,7 @@
 /turf/simulated/floor/stones,
 /area/warfare/homebase/red)
 "Tq" = (
-/obj/machinery/body_scanconsole{
-	dir = 4;
-	icon_state = "body_scannerconsole"
-	},
-/obj/hammereditor/sound_probe/crematory,
+/obj/hammereditor/sound_probe/basement,
 /turf/simulated/floor/concrete/random,
 /area/warfare/homebase/red/div)
 "Tt" = (
@@ -6585,7 +6584,7 @@
 	pixel_y = 16
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "Tu" = (
 /obj/structure/closet/crate,
 /obj/item/wirecutters,
@@ -6649,7 +6648,7 @@
 	name = "Blue Captain"
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "TW" = (
 /turf/simulated/floor/wood,
 /area/warfare/battlefield/capture_point/red/two)
@@ -7012,7 +7011,7 @@
 	buckle_pixel_shift = "x=0;y=11"
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "XK" = (
 /obj/structure/curtain/tarp{
 	dir = 4
@@ -7040,6 +7039,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/warfare/battlefield/trench_section/underground)
+"XX" = (
+/turf/simulated/floor/wood,
+/area/warfare/homebase/blue/div)
 "Yb" = (
 /obj/effect/floor_decal/stones{
 	dir = 1
@@ -7192,7 +7194,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/blue)
+/area/warfare/homebase/blue/div)
 "ZP" = (
 /obj/machinery/light/caged{
 	pixel_y = 30;
@@ -7206,7 +7208,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/warfare/homebase/red)
+/area/warfare/homebase/red/div)
 "ZY" = (
 /obj/item/flame/candle,
 /obj/item/storage/box/matches,
@@ -24370,10 +24372,10 @@ eB
 eB
 cH
 ag
-ag
-mw
-mw
-mw
+bb
+XX
+XX
+XX
 jo
 ag
 VR
@@ -24580,10 +24582,10 @@ gS
 gR
 gR
 ab
-ab
-DD
-DD
-DD
+Fr
+kK
+kK
+kK
 sG
 ab
 dn
@@ -24623,10 +24625,10 @@ wG
 wG
 ai
 oD
-mw
+XX
 Tt
-mw
-mw
+XX
+XX
 ag
 Oa
 av
@@ -24833,10 +24835,10 @@ gR
 gR
 ab
 FP
-DD
+kK
 oG
-DD
-DD
+kK
+kK
 ab
 GO
 dn
@@ -24851,7 +24853,7 @@ RK
 tk
 Xn
 tk
-Tq
+iu
 tk
 iu
 iD
@@ -24878,7 +24880,7 @@ ze
 TP
 uL
 XH
-mw
+XX
 Zm
 av
 av
@@ -25088,7 +25090,7 @@ By
 ra
 BM
 CQ
-DD
+kK
 xS
 dn
 dn
@@ -25104,7 +25106,7 @@ tk
 tk
 tk
 iv
-tk
+Tq
 iv
 iD
 Fr
@@ -25129,7 +25131,7 @@ ai
 eg
 az
 MS
-mw
+XX
 ZM
 ag
 Oa
@@ -25339,7 +25341,7 @@ ab
 zJ
 rq
 cD
-DD
+kK
 ZQ
 ab
 GO
@@ -25378,10 +25380,10 @@ WN
 eI
 WN
 ag
-ag
+bb
 EV
-mw
-mw
+XX
+XX
 jo
 ag
 av
@@ -25588,10 +25590,10 @@ gS
 gR
 yR
 ab
-ab
-DD
-DD
-DD
+Fr
+kK
+kK
+kK
 sG
 ab
 dn
