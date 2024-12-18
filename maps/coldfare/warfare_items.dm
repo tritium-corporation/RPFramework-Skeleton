@@ -920,12 +920,7 @@
 	icon_state = "redpack"
 
 /obj/item/storage/backpack/satchel/warfare/chestrig/red
-	icon_state = "redchestrig"
-
-	New()
-		icon_state = pick("redchestrig", "redchestrigalt")
-		item_state = icon_state
-		..()
+	icon_state = "chestrig"
 
 /obj/item/storage/backpack/satchel/warfare/chestrig/red/medic
 	New()
@@ -981,7 +976,7 @@
 	icon_state = "blue_backpack"
 
 /obj/item/storage/backpack/satchel/warfare/chestrig/blue
-	icon_state = "blue_chestrig"
+	icon_state = "chestrig"
 
 /obj/item/storage/backpack/satchel/warfare/chestrig/blue/soldier
 	New()
@@ -990,7 +985,7 @@
 			new /obj/item/ammo_magazine/c45rifle/akarabiner(src)
 
 /obj/item/storage/backpack/satchel/warfare/chestrig/blue/medical
-	icon_state = "medic_chestrigblue"
+	icon_state = "chestrig"
 
 	New()
 		..()
