@@ -3,7 +3,7 @@
 /obj/structure/key_relay
 	name = "/obj/structure/key_relay"
 	desc = "Not supposed to see this."
-	var/obj/host = null
+	var/obj/host = null// ???????
 
 /obj/structure/key_relay/New(var/obj/owner)
 	. = ..()
@@ -20,7 +20,7 @@
 	desc = "You've got a bad feeling about this.." // icky VV..
 	plane = ABOVE_OBJ_PLANE
 	layer = ABOVE_DOOR_LAYER
-	var/obj/item/plastique/keypad/host = null
+	var/obj/item/plastique/keypad/plastic_explosive = null //?????????????
 	var/target
 
 /obj/structure/key_relay/plastique/proc/add_glow()
@@ -31,18 +31,18 @@
 	return TRUE
 
 /obj/structure/key_relay/plastique/keyPress(key, mob/user)
-	if(host.active)
+	if(plastic_explosive.active)
 		if(user.Adjacent(target))
 			if(!CanPhysicallyInteract(user))
 				return FALSE
-			return host.keyPress(key, user)
+			return plastic_explosive.keyPress(key, user)
 
 /obj/structure/key_relay/plastique/attack_hand(mob/user)
-	if(!host.active)
+	if(!plastic_explosive.active)
 		if(do_after(user,5 SECONDS))
-			user.put_in_active_hand(host)
-			host.relay = null
-			host = null
+			user.put_in_active_hand(plastic_explosive)
+			plastic_explosive.relay = null
+			plastic_explosive = null
 			qdel(src)
 			return TRUE
 		else
