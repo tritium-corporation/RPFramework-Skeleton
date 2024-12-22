@@ -123,7 +123,12 @@
 	var/usefov = TRUE
 	var/decaylevel = 0 //For rotting bodies
 	var/branded = null	//For whether or not they've been branded, and what they've been branded with.
-	var/banished = FALSE //For whether or not they've been banished by the magistrate.
+	//var/banished = FALSE //For whether or not they've been banished by the magistrate.
+
 	var/is_anonymous = FALSE //Used when examined and speaking for whether or not they're anonymous
+	var/anonymous_text_override = null //Changes the text on examining them when anonymous
+	var/anonymous_voice_override = null //Changes their voice when anonymous
+	var/blur_anonymous = FALSE //Blurs their visage if anonymous
+
 	var/coldbreath = FALSE //dumb snowflake bullshit for coldbreath don't worry about it g
 	var/last_words = null
