@@ -6280,10 +6280,6 @@
 	color = "#ffffff"
 	},
 /area/warfare/battlefield/capture_point/red/two)
-"QC" = (
-/obj/machinery/computer/diseasesplicer,
-/turf/simulated/floor/wood,
-/area/warfare/battlefield/trench_section/underground)
 "QD" = (
 /obj/structure/dirt_wall,
 /obj/structure/announcementspeaker/blue{
@@ -14829,7 +14825,7 @@ cn
 cn
 np
 Ek
-QC
+EO
 Tv
 hY
 cK
