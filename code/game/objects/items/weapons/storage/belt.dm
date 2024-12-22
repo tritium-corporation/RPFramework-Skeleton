@@ -128,6 +128,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/revive(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/morphine(src)
 	new /obj/item/reagent_containers/glass/ampule/morphine(src)
+	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/suture(src)
 	new /obj/item/wirecutters(src)
 	new /obj/item/device/healthanalyzer(src)
