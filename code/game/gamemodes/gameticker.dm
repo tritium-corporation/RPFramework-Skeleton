@@ -290,11 +290,15 @@ var/global/datum/controller/gameticker/ticker
 				SSjobs.EquipRank(player, player.mind.assigned_role, 0)
 				equip_custom_items(player)
 
-//				var/obj/effect/fake_lobby_image = DuplicateObject(lobby_image) // RPF edit: just a lobby screen fadeout
-//				player.client.screen += fake_lobby_image
-//				animate(fake_lobby_image, time = 7 SECONDS, alpha = 0)
-//				QDEL_IN(fake_lobby_image, 7 SECONDS)
-//
+				var/obj/effect/fake_lobby_image = DuplicateObject(lobby_image) // RPF edit: just a lobby screen fadeout, really hacky
+				fake_lobby_image.plane = HUD_PLANE
+				fake_lobby_image.mouse_opacity = 0
+				player.client.screen += fake_lobby_image
+				animate(fake_lobby_image, time = 7 SECONDS, alpha = 0)
+				spawn(7 SECONDS)
+					player.client.screen -= fake_lobby_image
+					qdel(fake_lobby_image)
+
 /datum/controller/gameticker/proc/process()
 	if(current_state != GAME_STATE_PLAYING)
 		return 0
