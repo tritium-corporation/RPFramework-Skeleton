@@ -6,31 +6,23 @@
 /obj/effect/landmark/test/safe_turf,
 /turf/unsimulated/map,
 /area/roleplay)
-"g" = (
-/obj/effect/landmark/start{
-	name = "Base Occupation"
-	},
-/turf/unsimulated/map/edge,
-/area/roleplay)
 "k" = (
 /obj/effect/landmark/map_data,
 /turf/unsimulated/map,
 /area/roleplay)
-"p" = (
-/obj/effect/landmark/start{
-	name = "Base Occupation"
+"l" = (
+/obj/effect/landmark/start/base_occupation{
+	name = "Base Occupation Second"
 	},
+/turf/unsimulated/map,
+/area/roleplay)
+"p" = (
 /obj/effect/lighting_dummy/daylight,
-/turf/unsimulated/floor/hammereditor/dev2,
+/obj/effect/landmark/start/base_occupation,
+/turf/unsimulated/map,
 /area/roleplay)
 "q" = (
 /obj/effect/landmark/start,
-/turf/unsimulated/map,
-/area/roleplay)
-"u" = (
-/obj/effect/landmark/start{
-	name = "Base Occupation"
-	},
 /turf/unsimulated/map,
 /area/roleplay)
 "x" = (
@@ -74,14 +66,14 @@ F
 F
 F
 F
-g
-g
-g
-g
-g
-g
-g
-g
+a
+a
+a
+a
+a
+a
+a
+a
 F
 F
 F
@@ -108,14 +100,14 @@ a
 a
 a
 a
-u
-u
-u
-u
-u
-u
-u
-u
+a
+a
+a
+a
+a
+a
+a
+a
 k
 a
 q
@@ -142,14 +134,14 @@ a
 a
 a
 a
-u
-u
-u
-u
-u
-u
-u
-u
+a
+a
+a
+a
+a
+a
+a
+a
 a
 a
 e
@@ -176,14 +168,14 @@ a
 a
 a
 a
-u
-u
-u
+a
+a
+a
 p
 p
 p
-u
-u
+l
+l
 a
 a
 L
@@ -210,14 +202,14 @@ a
 a
 a
 a
-u
-u
-u
+a
+a
+a
 p
 p
 p
-u
-u
+l
+l
 a
 a
 a
@@ -244,14 +236,14 @@ a
 a
 a
 a
-u
-u
-u
+a
+a
+a
 p
 p
 p
-u
-u
+l
+l
 x
 x
 x
@@ -278,14 +270,14 @@ a
 a
 a
 a
-u
-u
-u
-u
-u
-u
-u
-u
+a
+a
+a
+a
+a
+a
+a
+a
 x
 x
 x
@@ -312,14 +304,14 @@ a
 a
 a
 a
-u
-u
-u
-u
-u
-u
-u
-u
+a
+a
+a
+a
+a
+a
+a
+a
 x
 x
 x
@@ -346,14 +338,14 @@ a
 a
 a
 a
-u
-u
-u
-u
-u
-u
-u
-u
+a
+a
+a
+a
+a
+a
+a
+a
 T
 T
 T

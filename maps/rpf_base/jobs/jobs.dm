@@ -25,7 +25,34 @@
 	lmg_skill = 10
 	smg_skill = 10
 
-	// EXAMPLE VV
+/datum/job/basesecond
+	title = "Base Occupation Second"
+	department = "Security"
+	department_flag = SEC
+	total_positions = -1
+	create_record = FALSE
+	account_allowed = FALSE
+	social_class = SOCIAL_CLASS_MIN
+	has_email = FALSE
+	latejoin_at_spawnpoints = TRUE
+	can_be_in_squad = TRUE
+	announced = TRUE
+
+	//Baseline skill defines
+	medical_skill = 10
+	surgery_skill = 10
+	ranged_skill = 10
+	engineering_skill = 10
+	melee_skill = 10
+	//Gun skills
+	auto_rifle_skill = 10
+	semi_rifle_skill = 10
+	sniper_skill = 10
+	shotgun_skill = 10
+	lmg_skill = 10
+	smg_skill = 10
+
+	// EXAMPLE of an on-equip VV
 /*
 	equip(var/mob/living/carbon/human/H)
 		..()
@@ -37,6 +64,10 @@
 			H.say(";Soldier reporting for duty!")
 		H.set_hud_stats()
 */
+
+// Landmark start example
+/obj/effect/landmark/start/base_occupation
+	name = "Base Occupation"
 
 /mob/proc/voice_in_head(message)
 	to_chat(src, "<i>...[message]</i>")
