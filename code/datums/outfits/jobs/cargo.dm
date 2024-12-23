@@ -38,7 +38,7 @@
 
 /decl/hierarchy/outfit/job/cargo/mining/explorer
 	name = OUTFIT_JOB_NAME("Salvage Miner")
-	head = /obj/item/clothing/head/helmet/hard_had
+//	head = /obj/item/clothing/head/helmet/hard_had
 	mask = /obj/item/clothing/mask/gas/explorer
 	uniform = /obj/item/clothing/under/rank/explorer
 	back = /obj/item/storage/backpack/industrial

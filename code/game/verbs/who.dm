@@ -44,10 +44,6 @@
 
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
-			if(C.warfare_faction == RED_TEAM)
-				entry += " - <b><span class='red_team'>[RED_TEAM]</span></b>"
-			else if(C.warfare_faction == BLUE_TEAM)
-				entry += " - <b><span class='blue_team'>[BLUE_TEAM]</span></b>"
 			if(C.is_afk())
 				entry += " (AFK - [C.inactivity2text()])"
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"

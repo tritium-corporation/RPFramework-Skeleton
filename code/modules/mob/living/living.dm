@@ -22,6 +22,8 @@
 
 	return
 
+
+/atom/var/point_color = "#F00"
 //mob verbs are faster than object verbs. See above.
 /mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(src.stat || src.restrained()) //!src.canmove
@@ -32,13 +34,6 @@
 		return 0
 
 	if(!isturf(A))
-		var/point_color = "#F00"
-		if(ishuman(A))
-			var/mob/living/carbon/human/H = A
-			if(H.warfare_faction == RED_TEAM)
-				point_color = "#b27676"
-			else
-				point_color = "#76abb2"
 		var/pointglow = filter(type = "drop_shadow", x = 0, y = -1, offset = 2, size = 1, color = point_color)
 		remove_filter(A, pointglow)
 		LAZYADD(A.filters, pointglow)
@@ -106,7 +101,7 @@ default behaviour is:
 				status_flags &= ~LEAPING
 				now_pushing = 0
 				return
-
+/*
 			if(tmob.in_trench && plane == HUMAN_PLANE) // If we bump into mob in trench - we moving in. This means that we don't swap our location with trench-mob loc.
 				forceMove(tmob.loc)
 				now_pushing = 0
@@ -116,7 +111,7 @@ default behaviour is:
 				forceMove(tmob.loc)
 				now_pushing = 0
 				return
-
+*/
 			if(can_swap_with(tmob)) // mutual brohugs all around!
 				var/turf/oldloc = loc
 				forceMove(tmob.loc)
@@ -925,17 +920,20 @@ default behaviour is:
 		. += 30
 
 /mob/living/proc/toggle_crouch()
+/*
 	var/mob/living/carbon/human/H = src
 	if(lying)//No crouching while you're lying down please.
 		return
 
 	if(!crouching)
 		to_chat(src, "<span class='binfo'>You crouch low.")
+/*
 		if(istype(loc, /turf/simulated/floor/trench))
 			if(!locate(/obj/structure/bridge, get_turf(src)))
 				pixel_y = -12
 				for(var/obj/effect/trench/mask/mask in vis_contents)
 					mask.pixel_y = -18
+*/
 		if(zoomed)//Can't zoom in if you're crouching behind cover.
 			do_zoom()
 		H.add_crouching()
@@ -954,7 +952,7 @@ default behaviour is:
 					mask.pixel_y = -21
 		H.remove_crouching()
 		crouching = FALSE
-
+*/
 /mob/living/verb/toggle_crouching()
 	set name = ".toggle_crouching"
 	set hidden = TRUE

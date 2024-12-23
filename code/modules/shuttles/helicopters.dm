@@ -44,10 +44,6 @@
 	anchored = TRUE
 
 /obj/machinery/button/test_heli/activate(mob/living/user)
-	if(!SSwarfare.battle_time)
-		to_chat(user, "It's not time to leave base yet.")
-		return
-
 	if(locked)
 		to_chat(user, "Helicopter is already on course. Don't fuck with the controls now.")
 		return

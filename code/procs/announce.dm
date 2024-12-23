@@ -144,11 +144,6 @@
 
 /proc/get_announcement_frequency(var/datum/job/job)
 
-	if(job.is_red_team)
-		return "Red"
-	if(job.is_blue_team)
-		return "Blue"
-
 	// During red alert all jobs are announced on main frequency.
 	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.using_map.security_state)
 	if (security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level))

@@ -291,5 +291,6 @@ proc/do_small_ruin_generation(list/z_levels = null, list/templates = null, amoun
 	for(var/T in feature_types)
 		var/datum/map_template/ruin/exoplanet/ruin = new T
 		templates[ruin.id] = ruin
-
+/* // RPF edit, revisit someday?
 	seedRuins(z_levels, amount, /area/warfare/battlefield/no_mans_land, templates)
+*/

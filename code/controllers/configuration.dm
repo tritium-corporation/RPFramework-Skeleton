@@ -185,9 +185,7 @@ var/list/gamemode_cache = list()
 	// 15, 45, 70 minutes respectively
 	var/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
 
-	var/warfare_start_time = 2
-	var/warfare_respawn_time = 2
-	var/trench_capture_points = 2
+	var/respawn_time = 2
 	var/warfare_end_time = 1
 
 	var/aliens_allowed = 0
@@ -660,17 +658,8 @@ var/list/gamemode_cache = list()
 				if("expected_round_length")
 					config.expected_round_length = MinutesToTicks(text2num(value))
 
-				if("warfare_start_time")
-					config.warfare_start_time = text2num(value)
-
-				if("warfare_end_time")
-					config.warfare_end_time = text2num(value)
-
-				if("warfare_respawn_time")
-					config.warfare_respawn_time = text2num(value)
-
-				if("trench_capture_points")
-					config.trench_capture_points = text2num(value)
+				if("respawn_time")
+					config.respawn_time = text2num(value)
 
 				if("usepopcap")
 					config.usepopcap = TRUE

@@ -100,8 +100,6 @@
 
 		handle_diagonostic_signs()
 
-		handle_warfare_life()
-
 		handle_gas_mask_sound()//Was in breathing, but people don't breathe anymore.
 
 		handle_blood_pools()
@@ -1251,10 +1249,6 @@
 	restore_blood()
 	full_prosthetic = null
 	shock_stage = 0
-	if(SSjobs.GetJobByTitle(job)?.is_blue_team && !(src in SSwarfare.blue.team))
-		SSwarfare.blue.team.Add(src)
-	if(SSjobs.GetJobByTitle(job)?.is_red_team && !(src in SSwarfare.red.team))
-		SSwarfare.red.team.Add(src)
 	..()
 
 /mob/living/carbon/human/reset_view(atom/A)
@@ -1369,15 +1363,21 @@
 		return
 	if(stat == DEAD)
 		return
+	var/obj/item/clothing/mask/gas/gasmask = wear_mask
 	remove_coldbreath()
 	breathe_tick++
-	var/mask_sound
-	if(istype(wear_mask, /obj/item/clothing/mask/gas/red))
-		if(breathe_tick>=rand(3,5))
-			breathe_tick = 0
-			mask_sound = pick('sound/effects/gasmasks/red1.ogg','sound/effects/gasmasks/red2.ogg','sound/effects/gasmasks/red3.ogg','sound/effects/gasmasks/red4.ogg','sound/effects/gasmasks/red5.ogg','sound/effects/gasmasks/red6.ogg','sound/effects/gasmasks/red7.ogg','sound/effects/gasmasks/red8.ogg','sound/effects/gasmasks/red9.ogg','sound/effects/gasmasks/red10.ogg','sound/effects/gasmasks/red11.ogg')
-			playsound(src, mask_sound, 50, FALSE)
-			return
+	if(breathe_tick>=rand(gasmask.sound_min,gasmask.sound_max))
+		breathe_tick = 0
+		var/mask_sound = null
+		if(gasmask.soundfx)
+			if(islist(gasmask.soundfx))
+				mask_sound = safepick(gasmask.soundfx)
+			else
+				mask_sound = gasmask.soundfx
+		//pick('sound/effects/gasmasks/red1.ogg','sound/effects/gasmasks/red2.ogg','sound/effects/gasmasks/red3.ogg','sound/effects/gasmasks/red4.ogg','sound/effects/gasmasks/red5.ogg','sound/effects/gasmasks/red6.ogg','sound/effects/gasmasks/red7.ogg','sound/effects/gasmasks/red8.ogg','sound/effects/gasmasks/red9.ogg','sound/effects/gasmasks/red10.ogg','sound/effects/gasmasks/red11.ogg')
+		playsound(src, mask_sound, 50, FALSE)
+		return
+	/*
 	else if(istype(wear_mask, /obj/item/clothing/mask/gas/blue))
 		if(breathe_tick>=rand(3,5))
 			breathe_tick = 0
@@ -1410,7 +1410,7 @@
 		mask_sound = pick('sound/effects/gasmasks/gasmask1.ogg','sound/effects/gasmasks/gasmask2.ogg','sound/effects/gasmasks/gasmask3.ogg','sound/effects/gasmasks/gasmask4.ogg','sound/effects/gasmasks/gasmask5.ogg','sound/effects/gasmasks/gasmask6.ogg','sound/effects/gasmasks/gasmask7.ogg','sound/effects/gasmasks/gasmask8.ogg','sound/effects/gasmasks/gasmask9.ogg','sound/effects/gasmasks/gasmask10.ogg')
 		playsound(src, mask_sound, 50, 1)
 		return
-
+*/
 /mob/living/carbon/human/proc/handle_diagonostic_signs()
 	// runs an update to check if we've become jaundiced, pale or low on oxygen resulting in icon changes
 	if(stat != DEAD && !(life_tick % 15)) // don't want to do this too often. update_body() also won't do anything if nothing has changed

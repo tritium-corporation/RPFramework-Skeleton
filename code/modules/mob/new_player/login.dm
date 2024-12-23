@@ -64,23 +64,7 @@
 		if(client)
 			client.playtitlemusic()
 			maybe_send_staffwarns("connected as new player")
-			to_lobby( "[key] has joined.")
-			if(!client.warfare_faction)
-				//Autobalance them by client, not by mob. This does mean that whoever joins first will always be red team, but that shouldn't be an issue.
-				if(issiegefare())
-					if(SSwarfare.blue.team_clients.len*1.5 < SSwarfare.red.team_clients.len)
-						client.warfare_faction = BLUE_TEAM
-						SSwarfare.blue.team_clients += src.client
-					else
-						client.warfare_faction = RED_TEAM
-						SSwarfare.red.team_clients += src.client
-				else
-					if(SSwarfare.blue.team_clients.len < SSwarfare.red.team_clients.len)
-						client.warfare_faction = BLUE_TEAM
-						SSwarfare.blue.team_clients += src.client
-					else
-						client.warfare_faction = RED_TEAM
-						SSwarfare.red.team_clients += src.client
+			to_lobby( "[key] has connected.")
 
 	if(!has_connected(ckey(client.key)))//If they've never played before show them the beginners guide.
 		show_new_information()

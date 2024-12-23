@@ -85,7 +85,6 @@
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
 	for(var/datum/job/job in SSjobs.occupations)
-
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
@@ -95,17 +94,14 @@
 					. += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
-
+		if(job.hide_at_roundstart)
+			continue
 		. += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		var/rank = job.title
 		lastJob = job
 		if(job.total_positions == 0 && job.spawn_positions == 0)
 			. += "<del><span class='job_class'>[rank]</span></del></td><td><b> \[UNAVAILABLE]</b></td></tr>"
 			continue
-		if(job.is_blue_team && user.client.warfare_faction == RED_TEAM)
-			. += "<del><span class='job_class'>[rank]</span></del></td><td><b> \[UNAVAILABLE]</b></td></tr>"
-		if(job.is_red_team && user.client.warfare_faction == BLUE_TEAM)
-			. += "<del><span class='job_class'>[rank]</span></del></td><td><b> \[UNAVAILABLE]</b></td></tr>"
 		if(jobban_isbanned(user, rank))
 			. += "<del><span class='job_class'>[rank]</span></del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
@@ -141,7 +137,7 @@
 		if(("Assistant" in pref.job_low) && (rank != "Assistant"))
 			. += "<font color=black>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
+		if(job.bold_name)//Bold head jobs
 			. += "<b><span class='job_class'>[rank]</span></b>"
 		else
 			. += "<span class='job_class'>[rank]</span>"
@@ -173,7 +169,7 @@
 	. += "</center></table><center>"
 	var/datum/job/high_job = SSjobs.GetJob(pref.job_high)
 	if(high_job)
-		. += "<br> <center>Role Description: <br>[high_job.role_desc]</center>"
+		. += "<br> <center>Role Description: <br>[high_job.role_desc_lobby]</center>"
 	//. += "<b>Choose your harmful desire</b><br>Unavailable desires are crossed out.<br>"
 	//switch(pref.alternate_option)
 	//	if(GET_RANDOM_JOB)

@@ -168,7 +168,6 @@
 			selhand = 1
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	//if(M.lying && !(src.warfare_faction == M.warfare_faction)) // TWOFARE EDIT - Snap off dogtags! Reconsider moving this to disarm? + a do_after?
 	if(!is_asystole())
 		if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -315,7 +314,6 @@
 		//actually throw it!
 		src.visible_message("<span class='warning'>[src] has thrown [item].</span>", range = min(itemsize*2,world.view))
 		playsound(src, 'sound/effects/throw.ogg', 50, 1)
-		item.in_trench = src.in_trench
 
 		if(!src.lastarea)
 			src.lastarea = get_area(src.loc)

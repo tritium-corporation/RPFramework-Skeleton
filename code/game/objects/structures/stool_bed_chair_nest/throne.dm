@@ -15,6 +15,7 @@
 	return
 
 //Like an announcement only exclusively for Magistrates.
+/* // RPF edit
 /obj/structure/bed/chair/throne/verb/decree()
 	set name = "Make A Decree"
 	set category = "Throne"
@@ -155,3 +156,4 @@
 	var/obj/O = get_equipped_item(slot_head)
 	if(istype(O, /obj/item/clothing/head/crown))
 		return TRUE
+*/

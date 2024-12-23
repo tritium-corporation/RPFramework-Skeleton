@@ -964,12 +964,10 @@ var/list/admin_verbs_mentor = list(
 	var/confirm = alert("Are you sure you want to become a Morale Officer?", "No politic here", "Yes", "No")
 	if(confirm == "Yes")
 		log_and_message_admins("[src] became a morale officer.", src)
-		for(var/obj/effect/landmark/start/morale_officer/spawnpoint in world)
-			var/turf/T = get_turf(spawnpoint)
-			var/mob/living/carbon/human/deployed_officer = new/mob/living/carbon/human/morale_officer(T)
-			deployed_officer.ckey = src.ckey
-			to_chat(deployed_officer,SPAN_WARNING("YOU ARE A MORALE OFFICER.\n\nGOAL:\n\nBE MYSTERIOUS AND SCARE THE TEAM OF YOUR CHOICE. WRITE PEOPLE UP IN THE BOOK FOR FUNSIES\n\nYOU ARE BILINGUAL. CHECK THE LANGUAGES PANEL.\n\nYOU ARE ALSO NEARLY IMMORTAL\n\n HAVE FUN!"))
-			to_chat(deployed_officer,SPAN_WARNING("(If you mess up Richard Nixon will come for you. This is FACT.)"))
+		var/turf/T = get_turf(src)
+		var/mob/living/carbon/human/deployed_officer = new/mob/living/carbon/human/morale_officer(T)
+		deployed_officer.ckey = src.ckey
+		to_chat(deployed_officer,SPAN_WARNING("YOU ARE A MORALE OFFICER.\n\nGOAL:\n\nBE MYSTERIOUS AND SCARE THE TEAM OF YOUR CHOICE. WRITE PEOPLE UP IN THE BOOK FOR FUNSIES\n\nYOU ARE BILINGUAL. CHECK THE LANGUAGES PANEL.\n\nYOU ARE ALSO NEARLY IMMORTAL\n\n HAVE FUN!"))
 
 /mob/living/carbon/human/morale_officer
 	name = "Morale Officer"
@@ -978,8 +976,10 @@ var/list/admin_verbs_mentor = list(
 	. = ..()
 	src.fully_replace_character_name("Morale Officer #[rand(100,5000)]")
 	to_chat(src,"[src.name]")
+	/*
 	var/decl/hierarchy/outfit/equip_this = outfit_by_type(/decl/hierarchy/outfit/moraleofficer)
 	equip_this.equip(src)
+	*/
 	src.add_language(LANGUAGE_BLUE)
 	src.add_language(LANGUAGE_RED)
 

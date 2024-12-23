@@ -224,8 +224,6 @@
 /obj/structure/warfare/barricade/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
-	if(!SSwarfare.battle_time)
-		return
 	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
@@ -444,8 +442,6 @@
 	atom_flags = ATOM_FLAG_CLIMBABLE
 
 /obj/structure/anti_tank/can_climb(var/mob/living/user, post_climb_check=0)
-	if(!iswarfare())
-		return TRUE
 /* // howd this get here?
 
 	if(istype(get_area(src), /area/warfare/battlefield/no_mans_land))//We're trying to go into no man's land?
@@ -584,7 +580,7 @@
 				blow()
 
 
-
+/*
 //Activate this to win!
 /obj/structure/destruction_computer
 	name = "Point Of No Return"
@@ -641,7 +637,7 @@
 
 /obj/structure/destruction_computer/blue
 	faction = BLUE_TEAM
-
+*/
 
 /obj/structure/banner
 	name = "Banner"
@@ -663,7 +659,7 @@
 
 /obj/structure/banner/blue/small
 	icon_state = "bluesmall"
-
+/*
 /obj/structure/factionbanner
 	name = "faction banner"
 	desc = "Raise it, or die trying.<br>Portable now, too!<br><b>Left click to raise<br>Right click to lower</b>"
@@ -835,7 +831,8 @@
 			else
 				user.doing_something = FALSE
 				return
-
+*/
+/*
 /obj/structure/warfare/thehatch
 	name = "the hatch"
 	desc = "\"The dead are to be put into this, as it is my decree.\"\n\"Then you are to knock on this here door.. twice.. no more, no less..\"\n\"And then, you shall wait for the confirmation..\""
@@ -930,63 +927,52 @@
 	if(CanPhysicallyInteract(user))
 		busy = TRUE
 		if(do_after(user, 20))
-			if(istype(SSjobs.GetJobByTitle(user.job), /datum/job/fortress/red/practitioner) || istype(SSjobs.GetJobByTitle(user.job), /datum/job/fortress/blue/practitioner))
-				user.visible_message("[user] knocks on the door..", "You knock on the door..")
-				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
-				sleep(3)
-				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
-				if(inside)
-					var/total_teeth = 0
-					for(var/obj/item/organ/O in inside.organs)
-						if(O.status & ORGAN_CUT_AWAY)
+			user.visible_message("[user] knocks on the door..", "You knock on the door..")
+			playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+			sleep(3)
+			playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
+			if(inside)
+				var/total_teeth = 0
+				for(var/obj/item/organ/O in inside.organs)
+					if(O.status & ORGAN_CUT_AWAY)
+						continue
+					else
+						if(istype(O, /obj/item/organ/external))
+							if(istype(O, /obj/item/organ/external/head/))
+								var/obj/item/organ/external/head/H = O
+								total_teeth += H.get_teeth()
+							total_teeth += 1
 							continue
 						else
-							if(istype(O, /obj/item/organ/external))
-								if(istype(O, /obj/item/organ/external/head/))
-									var/obj/item/organ/external/head/H = O
-									total_teeth += H.get_teeth()
-								total_teeth += 1
-								continue
-							else
-								total_teeth += 2
-								continue
-					other_stuff_inside = new/obj/item/stack/teeth/human()
-					other_stuff_inside.amount = total_teeth
-					other_stuff_inside.update_icon()
-					if(inside.stat == DEAD)
-						sleep(rand(20,40))
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
-						sleep(6)
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
-						qdel(inside)
-						inside = null
-						busy = FALSE
-					else
-						sleep(rand(15,30))
-						playsound(get_turf(src), 'sound/effects/hatched.ogg', 90, 0, override_env = SEWER_PIPE)
-						sleep(110)
-						inside.death()
-						inside.ghostize(FALSE)
-						qdel(inside)
-						inside = null
-						goredinside = TRUE
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
-						sleep(6)
-						playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
-						busy = FALSE
+							total_teeth += 2
+							continue
+				other_stuff_inside = new/obj/item/stack/teeth/human()
+				other_stuff_inside.amount = total_teeth
+				other_stuff_inside.update_icon()
+				if(inside.stat == DEAD)
+					sleep(rand(20,40))
+					playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+					sleep(6)
+					playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+					qdel(inside)
+					inside = null
+					busy = FALSE
+				else
+					sleep(rand(15,30))
+					playsound(get_turf(src), 'sound/effects/hatched.ogg', 90, 0, override_env = SEWER_PIPE)
+					sleep(110)
+					inside.death()
+					inside.ghostize(FALSE)
+					qdel(inside)
+					inside = null
+					goredinside = TRUE
+					playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+					sleep(6)
+					playsound(get_turf(src), 'sound/effects/hatchknock.ogg',35,0.25, override_env = SEWER_PIPE)
+					busy = FALSE
 				else
 					busy = FALSE
 					return
-			else
-				busy = FALSE
-				user.visible_message("[user] knocks on the door..", "You knock on the door..")
-				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
-				sleep(3)
-				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
-				sleep(3)
-				playsound(get_turf(user), 'sound/effects/hatchknock.ogg',75,0.5)
-				sleep(30)
-				busy = FALSE
 		else
 			busy = FALSE
 
@@ -1020,3 +1006,4 @@
 		murderer.doing_something = FALSE
 	else
 		murderer.doing_something = FALSE
+*/

@@ -436,9 +436,6 @@ var/global/datum/controller/gameticker/ticker
 	round_end_stats += "Number of times the floor was shit on: <span class='danger'><B>[GLOB.shit_left]</B></span>\n"
 	round_end_stats += "Number of times the floor was pissed on: <span class='danger'><B>[GLOB.piss_left]</B></span>\n"
 	round_end_stats += "Number of holes fallen into: <span class='danger'><B>[GLOB.holes_fallen]</B></span>\n"
-	if(iswarfare())
-		round_end_stats += "Number of mines tripped: <span class='danger'><B>[GLOB.mines_tripped]</B></span>\n"
-		round_end_stats += "Number of mines defused: <span class='danger'><B>[GLOB.mines_disarmed]</B></span>\n"
 	round_end_stats += "Total teeth lost: <span class='danger'><B>[GLOB.teeth_lost]</B></span>\n"
 	round_end_stats += "Total friendly fire incidents: <span class='danger'><B>[GLOB.ff_incidents]</B></span>\n"
 	round_end_stats += "Total bloodshed: <span class='danger'><B>[GLOB.total_deaths] deaths</B></span>\n"

@@ -94,6 +94,3 @@
 
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	winset(src, null, "mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true")
-
-	if(warfare_faction)//If they are on a team already, then keep them on that team.
-		client.warfare_faction = warfare_faction

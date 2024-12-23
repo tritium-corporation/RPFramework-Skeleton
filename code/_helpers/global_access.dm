@@ -115,8 +115,6 @@
 			return global.SSvines;
 		if("SSvote")
 			return global.SSvote;
-		if("SSwarfare")
-			return global.SSwarfare;
 		if("SSwireless")
 			return global.SSwireless;
 		if("SSxenoarch")
@@ -1152,8 +1150,6 @@
 			global.SSvines=newval;
 		if("SSvote")
 			global.SSvote=newval;
-		if("SSwarfare")
-			global.SSwarfare=newval;
 		if("SSwireless")
 			global.SSwireless=newval;
 		if("SSxenoarch")

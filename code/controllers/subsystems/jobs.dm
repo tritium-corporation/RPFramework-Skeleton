@@ -426,8 +426,10 @@ SUBSYSTEM_DEF(jobs)
 			W.set_dir(H.dir)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
-
-	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
+	if(job.greet_text_override)
+		to_chat(H, job.greet_text_override)
+	else
+		to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
 
 	if(job.role_desc)
 		to_chat(H, "<b>Role Description:</b> <i>[job.role_desc]</i>")
@@ -435,7 +437,8 @@ SUBSYSTEM_DEF(jobs)
 	if(job.supervisors)
 		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 
-	to_chat(H, "<b>To speak on your squad's radio channel use :h. For the use of other channels, examine your headset. For general use, use ;.</b>")
+	if(job.misc_text)
+		to_chat(H, job.misc_text)
 
 	if(job.req_admin_notify)
 		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
@@ -476,9 +479,6 @@ SUBSYSTEM_DEF(jobs)
 			G.prescription = 7
 	if(job.possible_backstories.len && H.client.prefs.backstory)
 		pick_backstory(job.possible_backstories, H)
-	if(SSwarfare.battle_time)
-		H.set_squad_huds()
-		H.set_team_huds()
 	BITSET(H.hud_updateflag, ID_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
@@ -617,64 +617,3 @@ SUBSYSTEM_DEF(jobs)
 #undef GET_RANDOM_JOB
 #undef BE_ASSISTANT
 #undef RETURN_TO_LOBBY
-
-/mob/living/carbon/human/proc/set_team_huds()
-// only runs once now, should fix the lag hopefully
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if(H.warfare_faction == src.warfare_faction || istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/red/practitioner) || istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/blue/practitioner) || H.warfare_faction == null)
-			var/hud_state = "friendly"
-			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/red/practitioner)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/blue/practitioner) || H.warfare_faction == null)
-				hud_state = "prac"
-			var/image/HUD_icon = image('icons/effects/team_indicator.dmi', H, hud_state)
-			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/soldier/red_soldier/captain)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/soldier/blue_soldier/captain))
-				HUD_icon.pixel_y = -5
-				var/image/LEADER_icon = image('icons/effects/team_indicator.dmi', H, "leader") // captain
-				LEADER_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
-				src.client?.images += LEADER_icon
-			HUD_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
-			src.client?.images += HUD_icon//Make sure we get their HUD icon too.
-
-/* // DANGEROUS SHITCODE
-	spawn(10) // for some reason it tends to just assign enemy to your teammates.. should fix it?
-		for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-			var/hud_state
-			if(H.warfare_faction == src.warfare_faction || H == src)
-				hud_state = "friendly"
-			else
-				hud_state = "enemy"
-			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/red/practitioner)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/fortress/blue/practitioner) || H.warfare_faction == null)
-				hud_state = "prac"
-			var/image/HUD_icon = image('icons/effects/team_indicator.dmi', H, hud_state)
-			//HUD_icon.filters += filter(type="bloom", size=0.15, offset=0.5, alpha=100) // looks like ass..
-			HUD_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
-			//H.client?.images += HUD_icon
-			//if(H != src)//Don't add own icons twice
-			if(istype(SSjobs.GetJobByTitle(H.job), /datum/job/soldier/red_soldier/captain)||istype(SSjobs.GetJobByTitle(H.job), /datum/job/soldier/blue_soldier/captain))
-				HUD_icon.pixel_y = -5
-				var/image/LEADER_icon = image('icons/effects/team_indicator.dmi', H, "leader") // captain
-				LEADER_icon.plane = EFFECTS_ABOVE_LIGHTING_PLANE
-				src.overlays += LEADER_icon
-				src.overlays += LEADER_icon
-			src.overlays += HUD_icon//refresh..
-			src.overlays += HUD_icon//Make sure we get their HUD icon too.
-*/
-
-/mob/living/carbon/human/proc/set_squad_huds()
-	var/image/HUD_icon = get_squad_hud()
-	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
-		if(H.warfare_faction == src.warfare_faction)
-			if(istype(H.squad, src.squad))//IF they're in the same squad as us then they can see our icon. This includes us too.
-				H.client?.images -= HUD_icon // prevents it from stacking..
-				H.client?.images += HUD_icon
-				if(H != src)//Don't add own icons twice
-					src.client?.images -= H.get_squad_hud()
-					src.client?.images += H.get_squad_hud()//Make sure we get their HUD icon too.
-
-/mob/living/carbon/human/proc/get_squad_hud()
-	var/datum/job/J = SSjobs.GetJob(src.mind.assigned_role)
-	var/icon_source = 'icons/mob/hud_blue.dmi'
-	if(J.is_red_team)
-		icon_source = 'icons/mob/hud_red.dmi'
-	var/image/HUD_icon = image(icon_source, src, J.squad_overlay)
-	HUD_icon.plane = HUMAN_PLANE
-	return HUD_icon

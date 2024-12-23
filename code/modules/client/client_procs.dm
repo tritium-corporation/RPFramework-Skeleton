@@ -213,6 +213,8 @@
 /client
 	var/obj/hovered_obj = null
 
+/atom/var/tooltip_color = "#FFFFFF"
+
 /client/MouseEntered(atom/object, location, control, params)
 	if(mob && object)
 		update_cursor(object)
@@ -221,17 +223,7 @@
 		tooltip.maptext = ""
 
 		if(ticker.current_state >= GAME_STATE_SETTING_UP)
-			if(ishuman(object))
-				var/mob/living/carbon/human/H = object
-				if(H.warfare_faction)
-					if(H.warfare_faction == RED_TEAM)
-						tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\"><font color='#b27676'>[uppertext(object.name)]</font></span></center></b>"
-					else
-						tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\"><font color='#76abb2'>[uppertext(object.name)]</font></span></center></b>"
-				else
-					tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\">[uppertext(object.name)]</span></center></b>"
-			else
-				tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\">[uppertext(object.name)]</span></center></b>"
+			tooltip.maptext = "<b><center style=\"text-shadow: 1px 1px 2px black;\"><span style=\"font-family: 'Small Fonts'\"><font color='[object.tooltip_color]'>[uppertext(object.name)]</font></span></center></b>"
 		if(istype(object, /obj/))
 			hovered_obj = object
 		else
@@ -247,10 +239,6 @@
 		GLOB.admins -= src
 	GLOB.ckey_directory -= ckey
 	GLOB.clients -= src
-	if(warfare_faction == BLUE_TEAM)//remove them from the list if they disconnect, so we don't fuck the list up.
-		SSwarfare.blue.team_clients -= src
-	else
-		SSwarfare.red.team_clients -= src
 	return ..()
 
 /client/Destroy()

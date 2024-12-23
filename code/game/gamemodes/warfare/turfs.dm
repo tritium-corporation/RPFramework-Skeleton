@@ -81,8 +81,6 @@
 	return TRUE
 
 /turf/simulated/floor/can_climb(var/mob/living/user, post_climb_check=0)
-	if(locate(/obj/structure/bridge, get_turf(user)))
-		return FALSE
 	if (!(atom_flags & ATOM_FLAG_CLIMBABLE) || !can_touch(user))
 		return FALSE
 
@@ -95,16 +93,6 @@
 /turf/simulated/floor/do_climb(var/mob/living/user)
 	if(!can_climb(user))
 		return
-
-	if(istype(get_area(src), /area/warfare/battlefield/no_mans_land))//We're trying to go into no man's land?
-		if(locate(/obj/item/device/boombox) in user)//Locate the boombox.
-			to_chat(user, "I can't bring this with me onto the battlefield. Wouldn't want to lose it.")//No you fucking don't.
-			return //Keep that boombox at base asshole.
-		if(locate(/obj/item/storage) in user)//Gotta check storage as well.
-			var/obj/item/storage/S = locate() in user
-			if(locate(/obj/item/device/boombox) in S)
-				to_chat(user, "I can't bring this with me onto the battlefield. Wouldn't want to lose it.")
-				return
 
 	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
@@ -127,7 +115,7 @@
 
 	if(locate(/obj/structure/barbwire, get_turf(user))) // fuck you asshole, stop abusing climb to get out of barbed wire
 		return
-
+/*
 	if(istype(get_area(src), /area/warfare))//We're trying to go?
 		if(locate(/obj/item/gun/projectile/automatic/mg08) in user)//Locate the mg.
 			if(istype(usr.l_hand, /obj/item/gun/projectile/automatic/mg08) || istype(usr.r_hand, /obj/item/gun/projectile/automatic/mg08))
@@ -137,7 +125,7 @@
 			if(istype(usr.l_hand, /obj/item/mortar_launcher) || istype(usr.r_hand, /obj/item/mortar_launcher))
 				to_chat(user, "I can't climb with this in my hands!")//No you fucking don't.
 				return
-
+*/
 	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	climbers |= user
 
@@ -181,8 +169,6 @@
 		overlays.Cut()
 		vis_contents.Cut()
 		update_icon()
-	if(loc.type != /area/warfare/battlefield/no_mans_land) // no base puddles
-		return
 	if(!can_generate_water)//This type can't generate water so don't bother.
 		return
 	if(prob(1)) // puddle generation,  every turf has a probability to become a water tile, then it spreads itself out
@@ -309,6 +295,10 @@
 /////////
 //WATER//
 /////////
+
+/mob/living
+	var/has_trench_overlay = FALSE
+
 /turf/simulated/floor/exoplanet/water/shallow
 	name = "water"
 	icon = 'icons/turf/dirt.dmi'//This appears under the water.
@@ -318,7 +308,21 @@
 	has_coldbreath = TRUE
 	var/has_light = TRUE
 	atom_flags = ATOM_FLAG_CLIMBABLE
-	add_mask = TRUE
+	var/add_mask = TRUE
+
+/obj/effect/trench/mask
+	name = null
+	mouse_opacity = FALSE
+	icon = 'icons/obj/warfare.dmi'
+	icon_state = "trench_mask"
+	plane = HIDDEN_SHIT_PLANE
+	appearance_flags = KEEP_APART | RESET_TRANSFORM
+	vis_flags = VIS_UNDERLAY
+	pixel_y = -21
+
+/obj/effect/trench/mask/water
+	icon_state = "watermask_temp"
+	pixel_y = -19
 
 /turf/simulated/floor/exoplanet/water/shallow/update_dirt()
 	return
@@ -335,8 +339,6 @@
 	return TRUE
 
 /turf/simulated/floor/exoplanet/water/shallow/can_climb(var/mob/living/user, post_climb_check=0)
-	if(locate(/obj/structure/bridge, get_turf(user)))
-		return FALSE
 	if (!(atom_flags & ATOM_FLAG_CLIMBABLE) || !can_touch(user))
 		return FALSE
 
@@ -364,22 +366,6 @@
 	user.forceMove(get_turf(src))
 	user.visible_message("<span class='warning'>[user] climbed onto \the [src]!</span>")
 	climbers -= user
-
-/turf/simulated/floor/exoplanet/water/shallow/MouseDrop_T(mob/target, mob/user)
-	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
-		if(istype(get_area(src), /area/warfare/battlefield/no_mans_land))//We're trying to go into no man's land?
-			if(locate(/obj/item/device/boombox) in user)//Locate the boombox.
-				to_chat(user, "I can't bring this with me onto the battlefield. Wouldn't want to lose it.")//No you fucking don't.
-				return //Keep that boombox at base asshole.
-			if(locate(/obj/item/storage) in user)//Gotta check storage as well.
-				var/obj/item/storage/S = locate() in user
-				if(locate(/obj/item/device/boombox) in S)
-					to_chat(user, "I can't bring this with me onto the battlefield. Wouldn't want to lose it.")
-					return
-		do_climb(target)
-	else
-		return ..()
 
 /turf/simulated/floor/exoplanet/water/shallow/Cross(var/atom/A)//People who are on fire go out.
 	if(isliving(A))

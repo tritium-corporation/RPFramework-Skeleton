@@ -26,6 +26,14 @@ GLOBAL_LIST_EMPTY(family_blacklist)
 	var/ideal_character_age = 30
 	var/create_record = 1                 // Do we announce/make records for people who spawn on this job?
 
+	var/hide_at_roundstart = FALSE // Hides the job from the roundstart menu
+	var/hide_at_latejoin = FALSE // Hides the job from the latejoin menu
+
+	var/bold_name = FALSE // For bold names in the occupations list
+
+	var/greet_text_override = null		// Overrides the text you get greeted with "You are A: job name bla bla bla"
+	var/misc_text = "<b>To speak on your squad's radio channel use :h. For the use of other channels, examine your headset. For general use, use ;.</b>" // misc text
+
 	var/account_allowed = 1               // Does this job type come with a station account?
 	var/economic_modifier = 2             // With how much does this job modify the initial account amount?
 
@@ -46,10 +54,11 @@ GLOBAL_LIST_EMPTY(family_blacklist)
 	var/child_role = FALSE				 //If set to true they will automatically spawn as a child.
 	var/no_late_join = FALSE			 //If set to true, the job will no longer be in the late join list.
 	var/late_join_only = FALSE			 //Can only late join. Is not a roundstart role.
-	var/is_blue_team = FALSE			 //Warfare shit.
-	var/is_red_team = FALSE				 //Same here.
+//	var/is_blue_team = FALSE			 //Warfare shit.
+//	var/is_red_team = FALSE				 //Same here.
 	var/can_be_in_squad = FALSE			 //Whether or not the job can be in a squad or not. Used for warfare shit.
 	var/role_desc = null
+	var/role_desc_lobby = 				null // This is for the lobby role description shit so we can have it seperate
 	var/squad_overlay = ""
 	//Skill defines. Put the MAXIMUM skill you want here, when it assigns skills it will randomly subtract 3 unless specific skill is set.
 	var/specific_skill = FALSE //If set to true, it will not assign random skills, but the specific number you put.

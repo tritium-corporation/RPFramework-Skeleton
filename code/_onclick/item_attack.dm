@@ -145,16 +145,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 	if(!no_attack_log)
 		admin_attack_log(user, M, "Attacked using \a [src] (DAMTYE: [uppertext(damtype)])", "Was attacked with \a [src] (DAMTYE: [uppertext(damtype)])", "used \a [src] (DAMTYE: [uppertext(damtype)]) to attack")
-
-		if(ishuman(user) && ishuman(M))
-			var/mob/living/carbon/human/attacker = user
-			var/mob/living/carbon/human/victim = M
-			if(attacker != victim)
-				if(attacker.warfare_faction)
-					if(attacker.warfare_faction == victim.warfare_faction && victim.stat != DEAD)
-						to_chat(attacker, "<big>[victim] is on my side!</big>")
-						log_and_message_admins("[attacker] has hit his teammate [victim] with \a [src]!")
-						GLOB.ff_incidents++
 	/////////////////////////
 
 	if(!special)

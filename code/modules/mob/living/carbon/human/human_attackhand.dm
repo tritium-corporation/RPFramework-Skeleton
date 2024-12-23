@@ -200,11 +200,6 @@
 			if(aspect_chosen(/datum/aspect/trenchmas))
 				to_chat(M, "<span class='warning'>It's Trenchmas! It is not a time to fight!</span>")
 				return
-			if(H.warfare_faction)
-				if(H.warfare_faction == src.warfare_faction && src.stat != DEAD)
-					to_chat(H, "<big>[src] is on my side!</big>")
-					log_and_message_admins("[H] has punched his teammate [src]!", H)
-					GLOB.ff_incidents++
 			M.adjustStaminaLoss(rand(5,15))
 
 			aggro_npc()
@@ -341,19 +336,6 @@
 			receive_damage()
 
 		if(I_DISARM)
-			if(lying && !(warfare_faction == M.warfare_faction))
-				if(istype(get_equipped_item(slot_wear_id), /obj/item/card/id/dog_tag/) && M.zone_sel.selecting == BP_THROAT)
-					M.doing_something = TRUE
-					if(do_after(M, 20))
-						var/obj/item/card/id/dog_tag/tag = get_equipped_item(slot_wear_id)
-						if(tag.halfed)
-							return
-						tag.split(M)
-						M.visible_message("[M] snaps off half of [src]'s dogtag.", "You snap off half of [M]'s dogtag")
-						M.doing_something = FALSE
-						return
-					else
-						M.doing_something = FALSE
 			M.adjustStaminaLoss(rand(2,5))//No more spamming disarm without consequence!
 			if(attempt_dodge())
 				return

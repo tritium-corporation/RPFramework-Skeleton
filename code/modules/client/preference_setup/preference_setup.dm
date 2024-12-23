@@ -15,12 +15,12 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 */
 
 
-/*
+
 /datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
 	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/occupation
-*/
+
 
 
 /*
@@ -38,7 +38,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 */
 /datum/category_group/player_setup_category/global_preferences
 	name = "!SETTINGS!"
-	sort_order = 2 //3
+	sort_order = 3 //3
 	category_item_type = /datum/category_item/player_setup_item/player_global
 
 
