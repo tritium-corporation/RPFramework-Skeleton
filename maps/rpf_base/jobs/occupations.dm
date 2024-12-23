@@ -4,8 +4,7 @@
 /datum/map/roleplay
 	allowed_jobs = list(
 	/datum/job/assistant,
-	/datum/job/base,
-	/datum/job/base/second
+	/datum/job/base
 	)
 
 /mob/living/carbon/human/proc/set_language(var/language_name)

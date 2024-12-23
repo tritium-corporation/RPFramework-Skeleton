@@ -360,7 +360,6 @@
 	if(!character)
 		return 0
 
-	character = SSjobs.EquipRank(character, job.title, 1)					//equips the human
 	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core

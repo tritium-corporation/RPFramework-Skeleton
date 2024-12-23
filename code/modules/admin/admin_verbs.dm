@@ -948,8 +948,31 @@ var/list/admin_verbs_mentor = list(
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_and_message_admins("gave [key_name(T)] the spell [S].")
 
+/datum/mob_template
+	var/name = "no name"
+	var/mob_type = /mob/living/carbon/human
+
+/datum/mob_template/proc/on_spawn(var/mob/user)
+	return FALSE
+
+/datum/mob_template/morale/
+	name = "Morale Officer"
+
+/datum/mob_template/morale/on_spawn(mob/user)
+	to_chat(user,SPAN_WARNING("YOU ARE A MORALE OFFICER.\n\nGOAL:\n\nBE MYSTERIOUS AND SCARE THE TEAM OF YOUR CHOICE. WRITE PEOPLE UP IN THE BOOK FOR FUNSIES\n\nYOU ARE BILINGUAL. CHECK THE LANGUAGES PANEL.\n\nYOU ARE ALSO NEARLY IMMORTAL\n\n HAVE FUN!"))
+	user.fully_replace_character_name("Morale Officer #[rand(100,5000)]")
+	user.alpha = 0
+	animate(user, 5 SECONDS, alpha = 255, easing = SINE_EASING)
+	/*
+	var/decl/hierarchy/outfit/equip_this = outfit_by_type(/decl/hierarchy/outfit/moraleofficer)
+	equip_this.equip(src)
+	*/
+	user.add_language(LANGUAGE_BLUE)
+	user.add_language(LANGUAGE_RED)
+	return TRUE
+
 /client/proc/become_morale_oficer()
-	set name = "Become Morale Officer"
+	set name = "Become mob template"
 	set category = "Special Verbs"
 	if(!holder)
 		to_chat(usr, "<span class='danger'>Only administrators may use this command.</span>")
@@ -960,26 +983,23 @@ var/list/admin_verbs_mentor = list(
 	if(ticker.current_state == 1)
 		to_chat(usr, "<span class='danger'>The round hasn't started yet!</span>")
 		return
-
-	var/confirm = alert("Are you sure you want to become a Morale Officer?", "No politic here", "Yes", "No")
+	if(!LAZYLEN(subtypesof(/datum/mob_template)))//If there's nothing there afterwards return.
+		return
+	var/datum/mob_template/template = input(src, "Select a template", "templates yay") as null|anything in subtypesof(/datum/mob_template)
+	template = new template
+	if(!template) // somheow
+		return
+	to_chat(template)
+	var/client/C = null
+	var/selection = alert("Do you wish to put someone else in control?", "Pretty simple, really", "Yes", "No")
+	if(selection == "No")
+		C = src
+	else
+		C = input(src, "Select a person to put in control", "clients") as null|anything in GLOB.clients
+	var/confirm = alert("Are you sure you want to create a [template.name]?", "the grand choice", "Yes", "No")
 	if(confirm == "Yes")
-		log_and_message_admins("[src] became a morale officer.", src)
-		var/turf/T = get_turf(src)
-		var/mob/living/carbon/human/deployed_officer = new/mob/living/carbon/human/morale_officer(T)
-		deployed_officer.ckey = src.ckey
-		to_chat(deployed_officer,SPAN_WARNING("YOU ARE A MORALE OFFICER.\n\nGOAL:\n\nBE MYSTERIOUS AND SCARE THE TEAM OF YOUR CHOICE. WRITE PEOPLE UP IN THE BOOK FOR FUNSIES\n\nYOU ARE BILINGUAL. CHECK THE LANGUAGES PANEL.\n\nYOU ARE ALSO NEARLY IMMORTAL\n\n HAVE FUN!"))
-
-/mob/living/carbon/human/morale_officer
-	name = "Morale Officer"
-
-/mob/living/carbon/human/morale_officer/Initialize()
-	. = ..()
-	src.fully_replace_character_name("Morale Officer #[rand(100,5000)]")
-	to_chat(src,"[src.name]")
-	/*
-	var/decl/hierarchy/outfit/equip_this = outfit_by_type(/decl/hierarchy/outfit/moraleofficer)
-	equip_this.equip(src)
-	*/
-	src.add_language(LANGUAGE_BLUE)
-	src.add_language(LANGUAGE_RED)
-
+		log_and_message_admins("[C] became a [template.name].", src)
+		var/turf/T = get_turf(src.mob)
+		var/mob/living/carbon/human/spawned = new template.mob_type(T)
+		spawned.ckey = C.ckey
+		template.on_spawn(spawned)

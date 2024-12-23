@@ -453,15 +453,15 @@ client/proc/MayRespawn()
 
 	combat_mode_aim = !combat_mode_aim
 	if(combat_mode_aim)
-		to_chat(src, "You will now face the direction your mouse points when in combat mode.")
+		to_chat(src, "You will now face the direction your mouse points when aimed in.")
 	else
-		to_chat(src, "You will no longer face the direction your mouse points when in combat mode.")
+		to_chat(src, "You will no longer face the direction your mouse points when aiming in.")
 
 /atom/proc/onMouseMove(object, location, control, params)
 	return
 
 /mob/living/carbon/onMouseMove(var/atom/object, location, control, params)
-	if(combat_mode)
+	if(client?.combat_mode_aim && weapon_readied)
 		face_atom(object)
 
 

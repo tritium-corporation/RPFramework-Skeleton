@@ -24,13 +24,7 @@
 	shotgun_skill = 10
 	lmg_skill = 10
 	smg_skill = 10
-	hide_at_latejoin = TRUE
 
-/datum/job/base/second
-	title = "Base Occupation second"
-	selection_color = "#ff0909"
-	hide_at_latejoin = FALSE
-	//hide_at_roundstart = TRUE
 	// EXAMPLE VV
 /*
 	equip(var/mob/living/carbon/human/H)
