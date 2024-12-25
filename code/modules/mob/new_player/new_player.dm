@@ -105,7 +105,7 @@
 	if(href_list["ready"])
 		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 			if(!client.prefs.job_low.len && !client.prefs.job_medium.len && !client.prefs.job_high)
-				to_chat(usr, "You cant press ready, please, choose your occupation")
+				to_chat(usr, "You cannot ready up because you don't have an occupation selected.")
 			else// Make sure we don't ready up after the round has started
 				ready = text2num(href_list["ready"])
 		else
