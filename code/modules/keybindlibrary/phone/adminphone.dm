@@ -50,9 +50,14 @@ GLOBAL_VAR(operator_target) //hacky way to fetch somebody who decides to be a ph
 	if(confirm == "Yes")
 		log_and_message_admins("[src] became a phone operator.", src)
 		for(var/obj/effect/landmark/start/phoneoperator/spawnpoint in world)
-			GLOB.operator_target = src.mob
-			var/turf/T = get_turf(spawnpoint)
-			new/mob/living/carbon/human/phone_operator(T)
+			if(spawnpoint)
+				GLOB.operator_target = src.mob
+				var/turf/T = get_turf(spawnpoint)
+				new/mob/living/carbon/human/phone_operator(T)
+				return
+			else
+				continue
+
 			/*
 			phone_guy.attatched_being = src.mob
 			to_chat(src,"[phone_guy.attatched_being.name]")

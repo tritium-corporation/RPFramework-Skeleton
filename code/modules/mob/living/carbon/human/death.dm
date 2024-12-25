@@ -83,7 +83,6 @@
 	sound_to(src, sound(null, repeat = 1, wait = 0, volume = 70, channel = 3))
 	sound_to(src, sound(null, repeat = 1, wait = 0, volume = 50, channel = 6))
 	remove_coldbreath()
-	handle_warfare_death()
 	GLOB.total_deaths++
 	handle_hud_list()
 	if(prob(1))

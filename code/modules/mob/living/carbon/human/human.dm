@@ -69,19 +69,6 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 	if(statpanel("Status"))
-		if(iswarfare())
-			//stat("[BLUE_TEAM] reinforcements:", SSwarfare.blue.left)
-			//stat("[BLUE_TEAM] capture points:", SSwarfare.blue.points)
-			//stat("[RED_TEAM] reinforcements:", SSwarfare.red.left)
-			//stat("[RED_TEAM] capture points:", SSwarfare.red.points)
-
-
-			if(warfare_faction == RED_TEAM)
-				for(var/area/A in GLOB.red_captured_zones)
-					stat("Captured Trench:", A)
-			if(warfare_faction == BLUE_TEAM)
-				for(var/area/A in GLOB.blue_captured_zones)
-					stat("Captured Trench:", A)
 
 		if(crouching)
 			stat("Stance:", "Crouching")
@@ -330,7 +317,8 @@
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
 	if(is_anonymous)
-		return "Unknown"
+		return "[anonymous_voice_override?(anonymous_voice_override):("Unknown")]"
+
 
 	else if(face_name == "Unknown" && id_name)
 		var/job = get_assignment()

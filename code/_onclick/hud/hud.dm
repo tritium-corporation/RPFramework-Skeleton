@@ -22,6 +22,7 @@
 	var/obj/blur_planemaster/zmob = new
 	var/obj/blur_planemaster/under = new
 	var/obj/screen/plane_master/blur/bullet_plane/BP = new
+	var/obj/screen/plane_master/blur/anon_plane/AP = new
 	var/obj/screen/plane_master/blur/ghost_master/gm = new //So ghosts are spooky and blurry.
 	//var/obj/screen/plane_master/humanAO/HM = new
 	//var/obj/screen/plane_master/wallAO/WT = new
@@ -37,6 +38,7 @@
 	//client.screen += MO
 	client.screen += zmob
 	client.screen += PM
+	client.screen += AP
 	client.screen += under
 	client.screen += gm
 	client.screen += BP

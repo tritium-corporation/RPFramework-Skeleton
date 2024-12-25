@@ -3,22 +3,15 @@
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>")
 
 		if(get_dist(user,src) > 7)//Don't get descriptions of things far away.
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if(H.warfare_faction != src.warfare_faction)
-					if(aspect_chosen(/datum/aspect/trenchmas))
-						to_chat(user, "<span class='warning'><big><b>THEY ARE A FRIEND! HUG THEM!</b></big></span>")
-					else
-						to_chat(user, "<span class='warning'><big><b>THEY ARE THE ENEMY! KILL THEM!</b></big></span>")
+			if(is_anonymous)//Ghosts can bypass this.
+				to_chat(user, "[anonymous_text_override?(anonymous_text_override):("You can't make out anything about them.")]")
+				return
 
 			if(crouching)
 				to_chat(user, "<span class='warning'>They are crouching!</span>")
 			to_chat(user, "<span class='info'>It's too far away to see clearly.</span>")
 			return
 
-		if(is_anonymous)//Ghosts can bypass this.
-			to_chat(user, "You can't make out anything about them.")
-			return
 
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
@@ -70,20 +63,6 @@
 
 	if(isChild())
 		msg += "<b>[T.He] is but a child!</b>\n"
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.warfare_faction != src.warfare_faction)
-			if(aspect_chosen(/datum/aspect/trenchmas))
-				msg += "<span class='warning'><big><b>THEY ARE A FRIEND! HUG THEM!</b></big></span>\n"
-			else
-				msg += "<span class='warning'><big><b>THEY ARE THE ENEMY! KILL THEM!</b></big></span>\n"
-
-		if(H != src)
-			if(H.warfare_faction == src.warfare_faction)
-				if(istype(H.squad, src.squad))
-					msg += "<b><big>[T.He] is in my squad!</big></b>\n"
-
 
 
 	if((!skipface || wear_id) && src != user)
@@ -202,8 +181,6 @@
 				msg += E.species.disfigure_msg(src)
 			else //Just in case they lack a species for whatever reason.
 				msg += "<span class='warning'>[T.His] face is horribly mangled!</span>\n"
-		if(banished)
-			msg += "<span class ='warning'> [T.He] is banished from our land! How shameful!</span>\n"
 
 		if(branded)//For brands.
 			msg += "<span class='warning'><b>\"[branded]\" IS BRANDED ON THEIR FACE!</b></span>\n"

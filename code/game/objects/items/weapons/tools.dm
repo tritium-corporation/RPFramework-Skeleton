@@ -155,10 +155,6 @@
 		if(!O || !O.get_teeth())
 			to_chat(teeth_pulling_bitch, "<span class='notice'>[H] doesn't have any teeth left!</span>")
 			return
-		if(!H.stat == DEAD)//If they're dead they're fair game. Otherwise don't pull out your teammates fucking teeth.
-			if(teeth_pulling_bitch.warfare_faction == H.warfare_faction)
-				to_chat(teeth_pulling_bitch, "<span class='notice'>[H] is on my side, it would be rude to pull out their teeth!</span>") // this is broken?
-				return
 		if(!teeth_pulling_bitch.doing_something)
 			teeth_pulling_bitch.doing_something = 1
 			H.visible_message("<span class='danger'>[teeth_pulling_bitch] tries to tear off [H]'s tooth with [src]!</span>",

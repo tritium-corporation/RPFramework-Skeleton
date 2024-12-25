@@ -1104,7 +1104,7 @@
 	prices = list(/obj/item/toy/blink = 3, /obj/item/toy/spinningtoy = 10, /obj/item/deck/tarot = 3, /obj/item/deck/cards = 3, /obj/item/pack/cardemon = 5, /obj/item/storage/pill_bottle/dice_nerd = 6, /obj/item/storage/pill_bottle/dice = 6, /obj/item/storage/box/checkers = 10, /obj/item/storage/box/checkers/chess/red = 10, /obj/item/storage/box/checkers/chess = 10)
 	premium = list(/obj/item/gun/projectile/revolver/capgun = 1, /obj/item/ammo_magazine/caps = 4)
 	contraband = list(/obj/item/reagent_containers/spray/waterflower = 2, /obj/item/storage/box/snappops = 3)
-
+/*
 /obj/machinery/vending/soldier
 	name = "Sold-o-mat"
 	desc = "A Redistani vending machine powering their war machine."
@@ -1124,3 +1124,4 @@
 	icon_state = "soldiervendblue"
 	icon_vend = "soldiervendblue-vend"
 	icon_deny = "soldiervendblue-off"
+*/

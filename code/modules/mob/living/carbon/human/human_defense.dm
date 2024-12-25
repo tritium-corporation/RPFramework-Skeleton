@@ -611,14 +611,6 @@ meteor_act
 		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
 		return
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/attacker = user
-		if(attacker.warfare_faction)
-			if(attacker.warfare_faction == src.warfare_faction && src.stat != DEAD)
-				to_chat(attacker, "<big>[src] is on my side!</big>")
-				log_and_message_admins("[attacker] has kicked his teammate [src]!", attacker)
-				GLOB.ff_incidents++
-
 	var/armour = run_armor_check(hit_zone, "melee")
 	switch(hit_zone)
 		if(BP_CHEST)//If we aim for the chest we kick them in the direction we're facing.

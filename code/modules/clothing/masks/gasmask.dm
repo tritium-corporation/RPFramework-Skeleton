@@ -18,6 +18,10 @@
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 75, rad = 0)
 	helmet_vision = TRUE
 
+	var/soundfx = null // Soundfx for breathing. Can be a list or just a singular file.
+	var/sound_min = 2 // Minimum time before the next breathing sfx
+	var/sound_max = 4 // Maximum time before the next breathing sfx
+
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new
 

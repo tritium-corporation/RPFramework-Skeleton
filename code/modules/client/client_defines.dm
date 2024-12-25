@@ -26,8 +26,6 @@
 
 	var/combat_mode_aim = FALSE
 
-	var/warfare_faction = null
-
 		///////////////
 		//SOUND STUFF//
 		///////////////

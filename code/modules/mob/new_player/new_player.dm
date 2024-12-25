@@ -105,9 +105,9 @@
 	if(href_list["ready"])
 		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
 			if(!client.prefs.job_low.len && !client.prefs.job_medium.len && !client.prefs.job_high)
-				to_chat(usr, "You cant press ready, please, choose your occupation")
-			// Make sure we don't ready up after the round has started
-			ready = text2num(href_list["ready"])
+				to_chat(usr, "You cannot ready up because you don't have an occupation selected.")
+			else// Make sure we don't ready up after the round has started
+				ready = text2num(href_list["ready"])
 		else
 			ready = 0
 		client.prefs.ShowChoices(src)
@@ -305,12 +305,6 @@
 	if(jobban_isbanned(src, job.title))	return 0
 	if(!job.player_old_enough(src.client))	return 0
 	if(job.no_late_join) return 0
-	if(job.is_red_team)//Can't join the team if they have more people on their side.
-		if(client?.warfare_faction != RED_TEAM)
-			return 0
-	if(job.is_blue_team)
-		if(client?.warfare_faction != BLUE_TEAM)
-			return 0
 
 	return 1
 
@@ -366,7 +360,6 @@
 	if(!character)
 		return 0
 
-	character = SSjobs.EquipRank(character, job.title, 1)					//equips the human
 	equip_custom_items(character)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
@@ -435,8 +428,6 @@
 	dat += "<a href='byond://?src=\ref[src];invalid_jobs=1'>[show_invalid_jobs ? "Hide":"Show"] unavailable jobs.</a><br>"
 
 	var/list/jobcats = list(  // This is designed for warfare, in a warfare-less environment, this will need to be changed
-		"Team Red"=list("color"="#b27676", "jobs"=list()),
-		"Team Blue"=list("color"="#76abb2", "jobs"=list()),
 		"Command"=list("color"="#76abb2", "jobs"=list()),
 		"Security"=list("color"="#b27676", "jobs"=list()),
 		"Upkeeper"=list("color"="#76abb2", "jobs"=list()),
@@ -449,11 +440,8 @@
 	for(var/datum/job/job in SSjobs.occupations)
 		if(!IsJobAvailable(job))
 			continue
-
-		if(job.is_blue_team)
-			jobcats["Team Blue"]["jobs"] += job
-		else if(job.is_red_team)
-			jobcats["Team Red"]["jobs"] += job
+		if(job.hide_at_latejoin)
+			continue
 		else if(job.department_flag & COM)
 			jobcats["Command"]["jobs"] += job
 		else if(job.department_flag & SEC)

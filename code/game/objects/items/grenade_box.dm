@@ -88,16 +88,3 @@
 	name = "Smoke Grenade Box"
 	grenades = list(new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb, new /obj/item/grenade/smokebomb)
 	whitelisteditem = /obj/item/grenade/smokebomb
-
-/obj/item/grenade_box/supermatter //Spawn when admins want to Nixon all over the Wafare. - Stuff
-	name = "SUPERMATTER GRENADE BOX"
-	desc = "COURTESY OF PRESIDENT RICHARD. M. NIXON.<br>KEEP FIGHTING THE GOOD FIGHT!"
-	grenades = list(new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter, new /obj/item/grenade/supermatter)
-	whitelisteditem = /obj/item/grenade/supermatter
-
-/obj/item/grenade_box/trench_bridge //It's finally here, FINALLY
-	name = "TRENCH BRIDGE BOX"
-	desc = "COURTESY OF R.E.D. LUMBER"
-	grenades = list(new /obj/item/bridge, new /obj/item/bridge, new /obj/item/bridge, new /obj/item/bridge, new /obj/item/bridge)
-	whitelisteditem = /obj/item/bridge
-	w_class = ITEM_SIZE_HUGE

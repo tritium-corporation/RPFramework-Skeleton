@@ -272,41 +272,9 @@
 
 
 			// SOMEONE PLEASE REMIND ME TO WRITE THIS SHITTY THING BELOW SOMEDAY
-		if(locate(/obj/structure/bridge, get_turf(src)) && !in_trench) // HERE BEGINS THE SHITTY FOOTSTEP OVERRIDE TO MAKE CERTAIN STRUCTURES & TURFS SOUND NICE WITH ARMOR!
-		// TO-DO: rewrite someday.
-		// Rewritten it enough.. I don't wanna fuckin bother with trench bridges anymore they're so fucking buggy and need an overall rewrite!!!
-			var/list/footstepsounds_temp = list('sound/effects/footstep/wood1.ogg',
-			'sound/effects/footstep/wood2.ogg',
-			'sound/effects/footstep/wood3.ogg',
-			'sound/effects/footstep/wood4.ogg',
-			'sound/effects/footstep/wood5.ogg')
-			if(istype(wear_suit,/obj/item/clothing/suit/armor) && shoes)
-				if(m_intent == "walk" && !crouching)
-					footstepsounds_temp = list('sound/effects/footsteps/armor/wood/step1.ogg',
-					'sound/effects/footsteps/armor/wood/step2.ogg',
-					'sound/effects/footsteps/armor/wood/step3.ogg',
-					'sound/effects/footsteps/armor/wood/step4.ogg',
-					'sound/effects/footsteps/armor/wood/step5.ogg',)
-					volume = 34
-				else if(m_intent == "run" && !crouching)
-					footstepsounds_temp = list('sound/effects/footsteps/armor/wood/run1.ogg',
-					'sound/effects/footsteps/armor/wood/run2.ogg',
-					'sound/effects/footsteps/armor/wood/run3.ogg',
-					'sound/effects/footsteps/armor/wood/run4.ogg',
-					'sound/effects/footsteps/armor/wood/run5.ogg',)
-					volume = 42 // slightly quieter.. its too loud..
-				if(crouching)
-					footstepsounds_temp = list('sound/effects/footsteps/armor/wood/crouch1.ogg',
-					'sound/effects/footsteps/armor/wood/crouch2.ogg',
-					'sound/effects/footsteps/armor/wood/crouch3.ogg',
-					'sound/effects/footsteps/armor/wood/crouch4.ogg',
-					'sound/effects/footsteps/armor/wood/crouch5.ogg',)
-					volume = 50
-				playsound(T, safepick(footstepsounds_temp), volume, 1, range)
-		else
-			if(iswater(get_turf(src)) && wearingarmor) // this just makes it sound cooler..
-				playsound(T, safepick(T.footstep_sounds[FOOTSTEP_WATER]), volume, 1, range)
-			playsound(T, S, volume, 1, range)
+		//if(iswater(get_turf(src)) && wearingarmor) // this just makes it sound cooler..
+		//	playsound(T, safepick(T.footstep_sounds[FOOTSTEP_WATER]), volume, 1, range)
+		playsound(T, S, volume, 1, range)
 		var/list/clients_to_show = list()
 
 		for(var/mob/living/carbon/human/H in view())

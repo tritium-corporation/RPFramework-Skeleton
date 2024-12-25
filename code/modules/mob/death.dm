@@ -90,8 +90,7 @@
 	if(ticker && ticker.mode)
 		ticker.mode.check_win()
 	to_chat(src,"<span class='deadsay'>[show_dead_message]</span>")
-	if(iswarfare())//Only for warfare bullshit.
-		to_chat(src, "<font size='5'><span class='notice'>Once you ghost you will be able to respawn in [config.warfare_respawn_time] minutes.</span></fon>")
+	to_chat(src, "<font size='5'><span class='notice'>Once you ghost you will be able to respawn in [config.respawn_time] minutes.</span></fon>")
 
 	/*
 	if(client)  // the following is ported from r4407

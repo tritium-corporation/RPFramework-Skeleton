@@ -290,6 +290,14 @@ var/global/datum/controller/gameticker/ticker
 				SSjobs.EquipRank(player, player.mind.assigned_role, 0)
 				equip_custom_items(player)
 
+				var/obj/effect/fake_lobby_image = DuplicateObject(lobby_image) // RPF edit: just a lobby screen fadeout, really hacky
+				fake_lobby_image.plane = HUD_PLANE
+				fake_lobby_image.mouse_opacity = 0
+				player.client.screen += fake_lobby_image
+				animate(fake_lobby_image, time = 7 SECONDS, alpha = 0)
+				spawn(7 SECONDS)
+					player.client.screen -= fake_lobby_image
+					qdel(fake_lobby_image)
 
 /datum/controller/gameticker/proc/process()
 	if(current_state != GAME_STATE_PLAYING)
@@ -436,9 +444,6 @@ var/global/datum/controller/gameticker/ticker
 	round_end_stats += "Number of times the floor was shit on: <span class='danger'><B>[GLOB.shit_left]</B></span>\n"
 	round_end_stats += "Number of times the floor was pissed on: <span class='danger'><B>[GLOB.piss_left]</B></span>\n"
 	round_end_stats += "Number of holes fallen into: <span class='danger'><B>[GLOB.holes_fallen]</B></span>\n"
-	if(iswarfare())
-		round_end_stats += "Number of mines tripped: <span class='danger'><B>[GLOB.mines_tripped]</B></span>\n"
-		round_end_stats += "Number of mines defused: <span class='danger'><B>[GLOB.mines_disarmed]</B></span>\n"
 	round_end_stats += "Total teeth lost: <span class='danger'><B>[GLOB.teeth_lost]</B></span>\n"
 	round_end_stats += "Total friendly fire incidents: <span class='danger'><B>[GLOB.ff_incidents]</B></span>\n"
 	round_end_stats += "Total bloodshed: <span class='danger'><B>[GLOB.total_deaths] deaths</B></span>\n"

@@ -4,8 +4,6 @@
 		msg += "<span class='info'>My name is <span class='danger'>[real_name]</span>.</span>\n"
 	if(age)
 		msg += "<span class='info'>I am <span class='danger'>[age]</span> years old.</span>\n"
-	if(squad)
-		msg += "<span class='info'>I'm in <span class='danger'>[squad.name]</span> squad!</span>\n"
 	if(social_class)
 		msg +=	"<span class='info'>I am <span class='danger'>[get_social_class()]</span>.</span>\n"
 	if(trait)

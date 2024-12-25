@@ -317,14 +317,31 @@
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
 //generator types
-#define GEN_NUM "num"
-#define GEN_VECTOR "vector"
-#define GEN_BOX "box"
-#define GEN_COLOR "color"
-#define GEN_CIRCLE "circle"
-#define GEN_SPHERE "sphere"
-#define GEN_SQUARE "square"
-#define GEN_CUBE "cube"
+#define GEN_NUM        "num"
+#define GEN_VECTOR    "vector"
+#define GEN_BOX        "box"
+#define GEN_COLOR    "color"
+#define GEN_CIRCLE    "circle"
+#define GEN_SPHERE    "sphere"
+#define    GEN_SQUARE    "square"
+#define GEN_CUBE    "cube"
+
+// filter types
+
+#define    FILTER_ALPHA        "alpha"
+#define    FILTER_ANGULAR_BLUR    "angular_blur"
+#define    FILTER_BLOOM        "bloom"
+#define    FILTER_COLOR        "color"
+#define    FILTER_DISPLACE        "displace"
+#define    FILTER_DROP_SHADOW    "drop_shadow"
+#define    FILTER_BLUR            "blur"
+#define    FILTER_LAYER        "layer"
+#define    FILTER_MOTION_BLUR    "motion_blur"
+#define    FILTER_OUTLINE        "outline"
+#define    FILTER_RADIAL_BLUR    "radial_blur"
+#define    FILTER_RAYS            "rays"
+#define    FILTER_RIPPLE        "ripple"
+#define    FILTER_WAVE            "wave"
 
 // Skill sources
 #define SKILL_SOURCE_COMBAT_MODE "Prepared to fight"

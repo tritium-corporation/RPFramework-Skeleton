@@ -277,6 +277,10 @@ What is the naming convention for planes or layers?
 	plane = BULLET_PLANE
 	size = 1
 
+/obj/screen/plane_master/blur/anon_plane
+	plane = ANON_PLANE
+	size = 0.7
+
 /obj/screen/plane_master/blur/human_blur
 	plane = HUMAN_PLANE
 

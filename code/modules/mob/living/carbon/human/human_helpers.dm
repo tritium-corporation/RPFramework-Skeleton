@@ -228,7 +228,7 @@
 		to_chat(src, "<span class='notice'>You hear no movement but your own.</span>")
 
 /mob/living/carbon/human/reset_layer()
-	if(is_anonymous)
+	if(is_anonymous && blur_anonymous)
 		plane = ANON_PLANE
 		layer = BASE_MOB_LAYER
 	else if(hiding)
@@ -237,12 +237,6 @@
 	else if(lying)
 		plane = LYING_HUMAN_PLANE
 		layer = LYING_MOB_LAYER //Put lying humans in trenches below standing humans.
-	else if(!locate(/obj/structure/bridge, src.loc) && istype(src.loc, /turf/simulated/floor/trench))//WHen in the trench, you are on the lying plane, so that people outside of the trench can loom over you threatenly.
-		plane = LYING_HUMAN_PLANE
-		layer = LYING_HUMAN_LAYER
-	else if(locate(/obj/structure/bridge, src.loc) && src.plane == LYING_HUMAN_PLANE)
-		plane = LYING_HUMAN_PLANE
-		layer = LYING_HUMAN_LAYER
 	else
 		plane = HUMAN_PLANE
 		layer = BASE_MOB_LAYER

@@ -106,12 +106,7 @@ proc/print_aspect()
 	desc = "High Command has granted us additional reinforcements! Glory!"
 	deactivated = "Brothers and sisters! High Command has deemed our performance unsatisfactory! The reinforcements have been reallocated elsewhere!"
 
-/datum/aspect/additional_troops/activate()
-	. = ..()
-	SSwarfare.blue.left += 20
-	SSwarfare.red.left += 20
-
-
+/*
 /datum/aspect/extramoney/activate()
 	. = ..()
 	for(var/obj/machinery/kaos/cargo_machine/C)
@@ -123,7 +118,7 @@ proc/print_aspect()
 		C.credits -= 500
 		if(C.credits < 0)
 			C.credits = 0 // augh i hate negative numbers
-
+*/
 
 /datum/aspect/nightfare/activate()
 	//Change lobby to a moon or something. Adjust lobby music?

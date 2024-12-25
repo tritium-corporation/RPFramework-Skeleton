@@ -662,14 +662,6 @@
 						result = PROJECTILE_FORCE_MISS
 						to_chat(firer, "I'm lying down I can't hit shit.")
 
-			if(ishuman(firer) && ishuman(target_mob)) //I will let Kas suffer. I think he should know why this was put in here.
-				var/mob/living/carbon/human/attacker = firer //I will no longer suffer. I see the future and the past now. Thank you.
-				var/mob/living/carbon/human/victim = target_mob
-				if(attacker != victim && victim.stat != DEAD) // TWOFARE EDIT -- Enable friendly fire again :)
-					if(attacker?.warfare_faction == victim?.warfare_faction)
-						do_normal_check = FALSE
-						result = PROJECTILE_FORCE_MISS
-
 			if(cover_checked)//We passed over cover at some point.
 				if(target_mob.crouching || target_mob.lying)//The person is lying down so don't hit them.
 					do_normal_check = FALSE
@@ -740,16 +732,6 @@
 			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
 		else
 			admin_victim_log(target_mob, "was shot by an <b>UNKNOWN SUBJECT (No longer exists)</b> using \a [src]")
-
-	if(ishuman(firer) && ishuman(target_mob))
-		var/mob/living/carbon/human/attacker = firer
-		var/mob/living/carbon/human/victim = target_mob
-		if(attacker != victim && victim.stat != DEAD)
-			if(attacker.warfare_faction)
-				if(attacker.warfare_faction == victim.warfare_faction && victim.stat != DEAD)
-					to_chat(attacker, "<big>[victim] is on my side!</big>")
-					log_and_message_admins("[attacker] has shot his teammate [victim] with \a [src.type]!", attacker)
-					GLOB.ff_incidents++//Dumb round end stat stuff.
 
 
 	//sometimes bullet_act() will want the projectile to continue flying

@@ -422,7 +422,10 @@ var/global/datum/controller/occupations/SSjobs
 			W.buckled_mob = H
 			W.add_fingerprint(H)
 
-	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
+	if(job.greet_text_override)
+		to_chat(H, job.greet_text_override)
+	else
+		to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
 
 	if(job.role_desc)
 		to_chat(H, "<b>Role Description:</b> <i>[job.role_desc]</i>")
