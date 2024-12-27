@@ -1,7 +1,6 @@
-//Shitty variant of the normal bolt action rifle.
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty
-	name = "\improper Mark I Stormrider"
-	desc = "This piece is practically held together by rust and spite, jams half the time, and looks older than I am. They don’t actually expect me to fight with this, do they?"//"The much, much older brother of the sleeker, better, Mark II. Kind of a piece of shit."
+	name = "\improper RA Stormrider"
+	desc = "Standard issue bolt-action rifle of the Bobbies. Hundreds of them are made in a factory somewhere, and it isn't exactly the best."
 	//icon = 'icons/obj/gun32x64.dmi'
 	//condition_icon = 'icons/obj/gun32x64.dmi'
 	//icon_state = "lever2"
@@ -44,8 +43,8 @@
 
 //Now THIS is real gun, rare 5 in 100 gun spawn as soldier
 /obj/item/gun/projectile/shotgun/pump/boltaction/good
-	name = "\improper Mark II Glider"
-	desc = "This is the updated and revised version of the Mk. I Stormrider, complete with a more manageable caliber, higher mag capacity, sleek handguard and a straight bolt that makes it hard to shove multiple rounds at a time."
+	name = "\improper RA Glider"
+	desc = "Update to the RA Stormrider issued to higher-ranking people. It's noticeably better in quality."
 	icon = 'icons/obj/gun.dmi'
 	condition_icon = 'icons/obj/gun.dmi'
 	icon_state = "mosin2"
@@ -66,8 +65,8 @@
 
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/leverchester
-	name = "\improper Mark I Snapper"
-	desc = "The lever action on this thing’s grimy, hasn’t seen grease in years. Still, it’s smoother than the bolt on the Stormrider, though it’s slapped together from the same junk parts. Feels like it could seize up any second."
+	name = "\improper CA Snapper"
+	desc = "Lever action rifle made by Carcano Arms. It's got around the same quality as the RA Stormrider, yet slightly better with a wooden stock and handguard."
 	//icon = 'icons/obj/gun32x64.dmi'
 	//condition_icon = 'icons/obj/gun32x64.dmi'
 	//icon_state = "lever1"
@@ -113,12 +112,10 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 1260)
 	max_ammo = 20
 
-
-
 //Shitty shotgun
 /obj/item/gun/projectile/shotgun/pump/shitty
-	name = "\improper WTX Frontier Special"
-	desc = "Five in the tube, one in the chamber… yeah, that’s right. I remember a trench raider who swore by one of these. Said it was all he’d ever need. Poor bastard didn’t make it past the first shelling. Every time I hold it, though, I still hear his voice."
+	name = "\improper WTX Frontier"
+	desc = "12 gauge shotgun that carries 5 rounds in the tube, 1 in the chamber. It's not that well but it packs a huge punch."
 	//icon = 'icons/obj/gun32x64.dmi'
 	//condition_icon = 'icons/obj/gun32x64.dmi'
 	//icon_state = "shot1"
@@ -141,24 +138,24 @@
 		add_bayonet()
 
 /obj/item/gun/projectile/shotgun/pump/shitty/sawn
-	name = "\improper Sawn Off WTX Frontier Special"
-	desc = "Purposely cut down and made shorter, it still packs the same punch as its longer brother but in a more compact package. , I can’t help but wonder if it’s even reliable."
-	icon_state = "sawnchester"
-	item_state = "sawnchester"
-	wielded_item_state = "sawnchester-wielded"
-	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_S_STORE
-	w_class = ITEM_SIZE_NORMAL
-	max_shells = 4
-	empty_icon = "sawnchester-e"
-
-
-/obj/item/gun/projectile/shotgun/pump/shitty/sawn/smallshotty
-	name = "\improper WTX Reckoning"
-	desc = "Small enough to stow away and simple to handle deceptively compact shotgun became a common sight for Couriers running messages between command and the frontlines its better then nothing."
+	name = "\improper WTX Frontier Special"
+	desc = "Purposefully fit with a smaller stock, barrel and shell tube. Not any better than it's brother, the WTX Frontier, but it can be put in backpacks and satchels."
 	icon_state = "smallshotty"
 	item_state = "smallshotty"
 	wielded_item_state = "smallshotty-wielded"
+	slot_flags = SLOT_BELT|SLOT_BACK|SLOT_S_STORE
+	w_class = ITEM_SIZE_NORMAL
+	max_shells = 4
 	empty_icon = "smallshotty-e"
+
+
+/obj/item/gun/projectile/shotgun/pump/shitty/sawn/smallshotty
+	name = "\improper HT Border"
+	desc = "A copied design from the CA Snapper, it's been fitted with a 12 gauge conversion kit and sawed down."
+	icon_state = "sawn-leverchester"
+	item_state = "sawn-leverchester"
+	wielded_item_state = "sawn-leverchester-wielded"
+	empty_icon = "sawn-leverchester-e"
 
 /obj/item/gun/projectile/shotgun/pump/shitty/bayonet
 	force = 20
@@ -171,8 +168,6 @@
 	add_bayonet()
 	desc += " This one has a bayonet."
 
-
-
 /obj/item/gun/projectile/automatic
 	attachable_allowed = list(/obj/item/attachable/holosight, /obj/item/attachable/verticalgrip, /obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/angledgrip)
 	screen_shake = 2
@@ -181,8 +176,8 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 22, "under_x" = 22, "under_y" = 14, "stock_x" = 24, "stock_y" = 13, "special_x" = 28, "special_y" = 16)
 
 /obj/item/gun/projectile/automatic/m22/warmonger
-	name = "Mk.3 Warmonger"
-	desc = "One of those newer mass production factory-made rifles; it’s stuck in semi-automatic, but it makes you feel like a real soldier."
+	name = "RA Warmonger"
+	desc = "A semi automatic rifle chambered in .45 Warmonger, it has lower damage than those bolt actions or lever actions, but it does hold a bunch of ammo."
 	icon_state = "autorifle"
 	item_state = "autorifle"
 	wielded_item_state = "autorifle-wielded"
@@ -212,9 +207,9 @@
 		qdel(W)
 		add_bayonet()
 
-/obj/item/gun/projectile/automatic/m22/warmonger/fully_auto
-	name = "Mk.5 Warmonger"
-	desc = "The same old Warmonger rifle with a fully automatic switch; the grip’s been retextured as well. This is the kind of rifle you want but don’t deserve."
+/obj/item/gun/projectile/automatic/m22/warmonger/carcano
+	name = "CA Warmonger"
+	desc = "A variant of the RA Warmonger made by contractor Carcano Arms that sports a wooden stock and handguard that makes it easier to control."
 	icon_state = "autorifle-alt"
 	item_state = "autorifle-alt"
 	wielded_item_state = "autorifle-alt-wielded"
@@ -230,19 +225,12 @@
 	unwielded_unloaded_icon = "autorifle-alt-e"
 	wielded_unloaded_icon = "autorifle-alt-wielded-e"
 	far_fire_sound = 'sound/effects/weapons/gun/ak_farfire.ogg'
-	condition = 250
+	condition = 100
+	screen_shake = 1.5
 
-	gun_type = GUN_AUTOMATIC
-
-	firemodes = list(
-		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, one_hand_penalty=4, burst_accuracy=null, dispersion=null, automatic = 0),
-		list(mode_name="automatic",   	 burst=1, fire_delay=0,  move_delay=0, one_hand_penalty=6, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 3, 5), automatic = 2)
-		)
-
-
-/obj/item/gun/projectile/automatic/m22/warmonger/fully_auto/nemesis
-	name = "Mk.1 Nemesis"
-	desc = "A rough experiment to bring squad automatic riflesmen to the front lines. It's fully automatic and lighter than the GMPG, but that's where the positives end."
+/obj/item/gun/projectile/automatic/m22/warmonger/auto
+	name = "HT Ashmati"
+	desc = "A fully auto rifle made by Harmer's Tools that's put together from scraps taken from a CA Warmonger."
 	icon_state = "bar"
 	item_state = "bar"
 	wielded_item_state = "bar-wielded"
@@ -258,10 +246,18 @@
 	unloaded_icon = "bar-e"
 	unwielded_unloaded_icon = "bar-e"
 	wielded_unloaded_icon = "bar-wielded-e"
+	condition = 250
+
+	gun_type = GUN_AUTOMATIC
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, one_hand_penalty=4, burst_accuracy=null, dispersion=null, automatic = 0),
+		list(mode_name="automatic",   	 burst=1, fire_delay=0,  move_delay=0, one_hand_penalty=6, burst_accuracy=list(0,-1,-1), dispersion=list(0.0, 3, 5), automatic = 2)
+		)
 
 /obj/item/gun/projectile/automatic/m22/warmonger/m14
-	name = "M41 Eclipse"
-	desc = "A semi-automatic sharpshooter’s rifle made from old war scraps. Its rounds are powerful, but good luck trying to get this thing to work half the time."
+	name = "HT Scrappy"
+	desc = "A semi automatic rifle that packs a punch, however it's mostly made out of shitty wood, tape, and some aluminum."
 	icon_state = "semirifle"
 	item_state = "semirifle"
 	wielded_item_state = "semirifle-wielded"
@@ -276,6 +272,7 @@
 	unwielded_unloaded_icon = "semirifle-e"
 	wielded_unloaded_icon = "battlerifle-wielded-e"
 	can_have_bayonet = TRUE
+	condition = 50
 
 	magazine_type = /obj/item/ammo_magazine/a762/m14
 	allowed_magazines = /obj/item/ammo_magazine/a762/m14
@@ -289,7 +286,7 @@
 		add_bayonet()
 
 /obj/item/ammo_magazine/a762/m14
-	name = "M41 magazine"
+	name = "Scrappy magazine"
 	desc = "Found either in your gun, in your satchel, or on the ground empty."
 	max_ammo = 20
 	icon_state = "autorifle"
@@ -343,7 +340,7 @@
 	icon_state = "lmg-oldmag"
 
 /obj/item/gun/projectile/automatic/m22/warmonger/sks //GAAAAAAAAAAAAH
-	name = "Mk.1 Headhunter"
+	name = "CA Headhunter"
 	desc = "A faster firing marksman rifle known for its easy reload and solid frame. Much better than a bolt action but just as unreliable."
 	icon_state = "sks"
 	item_state = "sks"
@@ -377,8 +374,8 @@
 
 
 /obj/item/gun/projectile/automatic/m22/warmonger/allrounder
-	name = "Mk.1 Endbringer"
-	desc = "Another semi-automatic that was designed to replace older bolt actions from the old war. Instead, it failed and ended up issued alongside them as a supplement."
+	name = "HT Endbringer"
+	desc = "This rifle's seen a couple of wars. It was originally made by Carcano Arms yet was discontinued and refurbished by HT."
 	icon_state = "allrounder"
 	item_state = "allrounder"
 	wielded_item_state = "allrounder-wielded"
@@ -396,7 +393,7 @@
 
 	magazine_type = /obj/item/ammo_magazine/a762/allrounder
 	allowed_magazines = /obj/item/ammo_magazine/a762/allrounder
-	condition = 200
+	condition = 100
 
 
 /obj/item/ammo_magazine/a762/allrounder
@@ -407,8 +404,8 @@
 
 
 /obj/item/gun/projectile/automatic/m22/warmonger/m14/battlerifle
-	name = "Mk.1 Armageddon"
-	desc = "A factory-produced and oiled semi-automatic carbine that's much nicer than whatever scraps those medics are using."
+	name = "HT Ashmati II"
+	desc = "A variant of the Ashmati that looks like it's actually been taken care of by someone."
 	icon_state = "battlerifle"
 	item_state = "battlerifle"
 	wielded_item_state = "battlerifle-wielded"
@@ -423,14 +420,15 @@
 	unloaded_icon = "battlerifle-e"
 	unwielded_unloaded_icon = "battlerifle-e"
 	wielded_unloaded_icon = "battlerifle-wielded-e"
+	condition = 150
 
 /obj/item/ammo_magazine/a762/m14/battlerifle_mag
 	name = "Armageddon magazine"
 
 
 /obj/item/gun/projectile/automatic/m22/warmonger/m14/battlerifle/rsc
-	name = "Mk.1 Armageddon"
-	desc = "An alternate version of the Armageddon carbine, utilizing a specific clip design. It might just hold up in a real fight."
+	name = "RA Armageddon"
+	desc = "An alternate version of the Ashmati II carbine, utilizing a specific clip design. It might just hold up in a real fight."
 	icon_state = "rsc"
 	item_state = "rsc"
 	wielded_item_state = "rsc-wielded"
@@ -455,8 +453,8 @@
 	ammo_type = /obj/item/ammo_casing/brifle
 
 /obj/item/gun/projectile/automatic/m22/combatrifle
-	name = "Mk. 2 Nightfall"
-	desc = "An advanced design from post war days, with a rock solid frame and firm parts. It’s got a selective fire switch, and it might even hit what you're aiming at."
+	name = "WTX Ranger"
+	desc = "An advanced rifle design from WTX with a selective fire group. Quite rare and expensive."
 	icon_state = "combatrifle"
 	item_state ="combatrifle"
 	magazine_type = /obj/item/ammo_magazine/c45rifle/combatrifle
@@ -689,8 +687,8 @@
 	gun_type = GUN_LMG
 
 /obj/item/gun/projectile/automatic/machinepistol
-	name = "Mk.2 Soulburn SMG"
-	desc = "A prototype of what? I have no clue. It feels relatively new, and I’ve been told its high fire rate puts rounds downrange faster than any machine gun. those early production parts are practically exposed. I'm not an engineer but  I think this thing is going to malfunction."
+	name = "RA Soulburn"
+	desc = "A very fucking fast SMG that jams very easily due to its firerate. The flimsy stock makes it hard to control the recoil."
 	icon_state = "machinepistol"
 	item_state = "machinepistol"
 	wielded_item_state = "machinepistol-wielded"
@@ -726,8 +724,8 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 24, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13, "special_x" = 28, "special_y" = 16)
 
 /obj/item/gun/projectile/automatic/machinepistol/wooden
-	name = "Mk.1 Soulburn SMG"
-	desc = "A prototype of what? I have no clue. It feels relatively new, and I’ve been told its high fire rate puts rounds downrange faster than any machine gun. those early production parts are practically exposed. I'm not an engineer but  I think this thing is going to malfunction."
+	name = "RA Heartburn"
+	desc = "An older version of the RA Soulburn with a fully wooden stock that is much easier to control. They don't make them like they used to."
 	icon = 'icons/obj/gun.dmi'
 	//condition_icon = 'icons/obj/gun32x64.dmi'
 	//icon_state = "auto1"
@@ -737,11 +735,12 @@
 	icon_state = "schmeiser"
 	item_state = "schmeiser"
 	wielded_item_state = "schmeiser-wielded"
+	screen_shake = 1
 
-	//loaded_icon = "schmeiser"
+	loaded_icon = "schmeiser"
 	unwielded_loaded_icon = "schmeiser"
 	wielded_loaded_icon = "schmeiser-wielded"
-	//unloaded_icon = "schmeiser-e"
+	unloaded_icon = "schmeiser-e"
 	unwielded_unloaded_icon = "schmeiser-e"
 	wielded_unloaded_icon = "schmeiser-e"
 
@@ -776,8 +775,8 @@
 
 
 /obj/item/gun/projectile/automatic/autoshotty
-	name = "MS Warcrime"
-	desc = "This thing looks like a cross between one of those sleek, newer rifles and a shotgun. The automatic fire feels almost wrong, Despite being buried in dirt for ages, the feed and ejection are surprisingly well maintained. It’s unsettling to think that this weapon can turn a man inside out in eight different ways in under five sixths of a second. No wonder it earned its nickname."
+	name = "WTX Warcrime"
+	desc = "A mish-mash of parts from the WTX Ranger with parts from the WTX Frontier. It is a fully automatic rifle that fires 12 gauge shells. It's as powerful as it sounds."
 	icon_state = "autoshotty"
 	item_state = "autoshotty"
 	wielded_item_state = "autoshotty"
@@ -806,7 +805,7 @@
 	gun_type = GUN_SHOTGUN
 
 /obj/item/ammo_magazine/autoshotty
-	name = "Warcrime mag"
+	name = "WTX Warcrime mag"
 	desc = "Just looking at it makes you bloodthirsty."
 	icon_state = "autoshotty"
 	caliber = "shotgun"
@@ -817,7 +816,7 @@
 
 
 /obj/item/gun/projectile/warfare
-	name = "Mk.1 Reckoning"
+	name = "RA Reckoning"
 	icon_state = "handgun"
 	item_state = "handgun"
 	fire_sound = "gunshot"//Pistol sounds.
@@ -847,6 +846,12 @@
 	caliber = ".45"
 	max_ammo = 7
 	multiple_sprites = 1
+
+/obj/item/gun/projectile/warfare
+	name = "RA Colt"
+	desc = "Older version of the RA Reckoning that has a fake silver finish, fake wood grip, and fake everything. Nowadays it's sold by HT."
+	icon_state = "colt"
+	fire_delay = 2
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/grenadelauncher
 	name = "GRA Pubtrator"
