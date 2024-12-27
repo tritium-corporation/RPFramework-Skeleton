@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty
 	name = "\improper RA Stormrider"
-	desc = "Standard issue bolt-action rifle of the Bobbies. Hundreds of them are made in a factory somewhere, and it isn't exactly the best."
+	desc = "Standard issue bolt-action rifle. Hundreds of them are made in a factory somewhere, and it isn't exactly the best."
 	//icon = 'icons/obj/gun32x64.dmi'
 	//condition_icon = 'icons/obj/gun32x64.dmi'
 	//icon_state = "lever2"
@@ -66,7 +66,7 @@
 
 /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/leverchester
 	name = "\improper CA Snapper"
-	desc = "Lever action rifle made by Carcano Arms. It's got around the same quality as the RA Stormrider, yet slightly better with a wooden stock and handguard."
+	desc = "Lever action rifle made by CA. It's got around the same quality as the RA Stormrider, yet slightly better with a wooden stock and handguard."
 	//icon = 'icons/obj/gun32x64.dmi'
 	//condition_icon = 'icons/obj/gun32x64.dmi'
 	//icon_state = "lever1"
@@ -207,9 +207,9 @@
 		qdel(W)
 		add_bayonet()
 
-/obj/item/gun/projectile/automatic/m22/warmonger/carcano
+/obj/item/gun/projectile/automatic/m22/warmonger/ca
 	name = "CA Warmonger"
-	desc = "A variant of the RA Warmonger made by contractor Carcano Arms that sports a wooden stock and handguard that makes it easier to control."
+	desc = "A variant of the RA Warmonger made by contractor CA that sports a wooden stock and handguard that makes it easier to control."
 	icon_state = "autorifle-alt"
 	item_state = "autorifle-alt"
 	wielded_item_state = "autorifle-alt-wielded"
@@ -375,7 +375,7 @@
 
 /obj/item/gun/projectile/automatic/m22/warmonger/allrounder
 	name = "HT Endbringer"
-	desc = "This rifle's seen a couple of wars. It was originally made by Carcano Arms yet was discontinued and refurbished by HT."
+	desc = "This rifle's seen a couple of wars. It was originally made by CA yet was discontinued and refurbished by HT."
 	icon_state = "allrounder"
 	item_state = "allrounder"
 	wielded_item_state = "allrounder-wielded"
